@@ -16,6 +16,7 @@ public enum Nature {
         MossMound.self,
         IvyPatch.self,
         LeafLitter.self,
+        MapleTree.self, BeechTree.self, WillowTree.self, JapaneseMaple.self, DeadSnag.self, AspenTree.self,
         // realforge:nature
     ]
 }

@@ -55,6 +55,57 @@ func signedVolume(_ s: Surface) -> Float {
         for s in m.surfaces { #expect(s.extra.allSatisfy { $0.x >= 0 && $0.x <= 1 }) }
         for s in m.surfaces { #expect(s.occlusion.allSatisfy { $0 >= 0 && $0 <= 1 }) }
     }
+    @Test func windLayersAreHierarchical() {
+        let g = TreeGenerator(species: .oak, seed: 2)
+        let m = g.model()
+        let bark = m.surfaces.first { $0.material == "bark.oak" }!, leaves = m.surfaces.first { $0.material == "leaf.oak" }!
+        #expect(bark.extra.allSatisfy { $0.y >= 0 && $0.y < 3 }, "wood packs layer 0...2 + phase")
+        #expect(leaves.extra.allSatisfy { $0.y >= 3 && $0.y < 4 }, "leaves pack layer 3 + phase")
+        // Children start at their parent's weight at the junction, so weights never jump down the hierarchy.
+        for b in g.branches where b.parent >= 0 {
+            let p = g.branches[b.parent]
+            #expect(b.wind[0] >= (p.wind.min() ?? 0) - 1e-4)
+            #expect(b.wind.last! >= b.wind[0])
+        }
+        let trunkTop = g.branches[0].wind.max() ?? 1
+        #expect(trunkTop < 0.2)
+    }
+    @Test func deadAndBrokenOptions() {
+        let snag = TreeSpecies.oak.with { $0.leafDensity = 0; $0.brokenTop = 0.6; $0.levels[0].stubChance = 1 }
+        let g = TreeGenerator(species: snag, seed: 4), full = TreeGenerator(species: .oak, seed: 4)
+        #expect(g.branches[0].broken)
+        #expect(g.branches[0].length < full.branches[0].length * 0.65)
+        #expect(g.model().surfaces.allSatisfy { $0.material == "bark.oak" }, "leafless species has no leaf surface")
+        // Stubs carry no children.
+        for (i, b) in g.branches.enumerated() where b.broken && b.level >= 0 {
+            #expect(!g.branches.contains { $0.parent == i })
+        }
+    }
+    @Test func autumnSplitsLeafMaterial() {
+        let sp = TreeSpecies.oak.with { $0.autumn = 0.5; $0.autumnLeaf = "leaf.maple" }
+        let m = TreeGenerator(species: sp, seed: 1).model()
+        let green = m.surfaces.first { $0.material == "leaf.oak" }?.triangleCount ?? 0
+        let red = m.surfaces.first { $0.material == "leaf.maple" }?.triangleCount ?? 0
+        #expect(green > 0 && red > 0)
+        #expect(abs(Float(red) / Float(green + red) - 0.5) < 0.1)
+    }
+    @Test func twigBarkIsNotStretched() {
+        // Every branch tube wraps whole bark tiles: U spans a multiple of barkTile around the circumference,
+        // and V is scaled with it, so U and V texel density stay equal.
+        let sp = TreeSpecies.birch
+        let m = TreeGenerator(species: sp, seed: 3).model()
+        let bark = m.surfaces.first { $0.material == sp.bark }!
+        let maxU = bark.uvs.map(\.x).max() ?? 0
+        let k = maxU / sp.barkTile
+        #expect(abs(k - k.rounded()) < 1e-3)
+    }
+    @Test func rootsAndCollarsAddGeometry() {
+        let base = TreeGenerator(species: .oak.with { $0.roots = 0; $0.collar = 0 }, seed: 5).model().triangleCount
+        let full = TreeGenerator(species: .oak, seed: 5).model().triangleCount
+        #expect(full > base)
+        let bb = TreeGenerator(species: .oak, seed: 5).model().bounds
+        #expect(bb.min.y > -0.4)
+    }
 }
 
 @Suite struct ScatterTests {
