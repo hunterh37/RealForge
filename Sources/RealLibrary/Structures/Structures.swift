@@ -5,6 +5,7 @@ public enum Structures {
         JerseyBarrier.self,
         ConstructionFence.self,
         ScaffoldBay.self,
+        RailFence.self,
         // realforge:structure
     ]
 }
