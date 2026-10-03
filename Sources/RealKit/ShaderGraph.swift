@@ -106,6 +106,11 @@ public struct RealShaderOptions: Hashable, Sendable {
     /// Second texture layer (BaseColor2/Normal2/Roughness2) blended by the per-vertex splat weight
     /// in uv2.y, with a height-style edge from the luminance difference of the two layers.
     public var splat = false
+    /// Alpha-blended surface: opacity rises from `Opacity` to 1 with Fresnel; uv2.y is shallowness
+    /// (0 deep, 1 shoreline) and blends toward `ShallowColor` and lower opacity.
+    public var transparent = false
+    /// Two normal-map samples scrolling over time at `Flow` tiles per second (water ripples).
+    public var flowNormals = false
     public init() {}
 }
 
@@ -184,6 +189,20 @@ public enum RealShaderGraph {
             tint = g.node("ND_mix_color3", [("color3f", "fg", topCol), ("color3f", "bg", tint), ("float", "mix", mask)], out: "color3f")
         }
         var fogF: String?
+        var opacity: String?
+        if o.transparent {
+            let uv2 = g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2")
+            let shallow = g.separate("ND_separate2_vector2", "float2", uv2, ["outx", "outy"])[1]
+            tint = g.node("ND_mix_color3", [("color3f", "fg", g.param("ShallowColor")), ("color3f", "bg", tint), ("float", "mix", g.mul(shallow, "0.8"))], out: "color3f")
+            let wn = g.node("ND_normal_vector3", [("string", "space", "\"world\"")], out: "float3")
+            let vd = g.node("ND_realitykit_viewdirection_vector3", [], out: "float3")
+            let c = g.node("ND_absval_float", [("float", "in", g.node("ND_dotproduct_vector3", [("float3", "in1", wn), ("float3", "in2", vd)], out: "float"))], out: "float")
+            let m = g.add("1", g.mul(g.node("ND_min_float", [("float", "in1", c), ("float", "in2", "1")], out: "float"), "-1"))
+            let m2 = g.mul(m, m)
+            let fres = g.add("0.02", g.mul(g.mul(g.mul(m2, m2), m), "0.98"))
+            let base = g.mul(g.param("Opacity"), g.add("1", g.mul(shallow, "-0.75")))
+            opacity = g.node("ND_mix_float", [("float", "fg", "1"), ("float", "bg", base), ("float", "mix", fres)], out: "float")
+        }
         if o.fog {
             let wp = g.node("ND_position_vector3", [("string", "space", "\"world\"")], out: "float3")
             let cam = g.node("ND_realitykit_cameraposition_vector3", [], out: "float3")
@@ -194,7 +213,18 @@ public enum RealShaderGraph {
             fogF = f
             tint = g.node("ND_multiply_color3FA", [("color3f", "in1", tint), ("float", "in2", g.add("1", g.mul(f, "-1")))], out: "color3f")
         }
-        var nt = g.texture("Normal", uv, color: false)
+        var nt: String
+        if o.flowNormals {
+            let t = g.mul(g.node("ND_time_float", [], out: "float"), g.param("Flow"))
+            let offA = g.node("ND_combine2_vector2", [("float", "in1", g.mul(t, "0.8")), ("float", "in2", g.mul(t, "0.6"))], out: "float2")
+            let offB = g.node("ND_combine2_vector2", [("float", "in1", g.mul(t, "-0.55")), ("float", "in2", g.mul(t, "0.83"))], out: "float2")
+            let uvA = g.node("ND_add_vector2", [("float2", "in1", uv), ("float2", "in2", offA)], out: "float2")
+            let uvB0 = g.node("ND_multiply_vector2FA", [("float2", "in1", uv), ("float", "in2", "1.37")], out: "float2")
+            let uvB = g.node("ND_add_vector2", [("float2", "in1", uvB0), ("float2", "in2", offB)], out: "float2")
+            nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal", uvA, color: false)), ("float4", "bg", g.texture("Normal", uvB, color: false)), ("float", "mix", "0.5")], out: "float4")
+        } else {
+            nt = g.texture("Normal", uv, color: false)
+        }
         if let uvB {
             let nt2 = g.texture("Normal", uvB, color: false)
             nt = g.node("ND_mix_vector4", [("float4", "fg", nt2), ("float4", "bg", nt), ("float", "mix", "0.45")], out: "float4")
@@ -231,6 +261,7 @@ public enum RealShaderGraph {
             let mt = g.separate("ND_separate4_vector4", "float4", g.texture("Metallic", uv, color: false), ["outx", "outy", "outz", "outw"])
             surfaceInputs.append(("float", "metallic", mt[0]))
         }
+        if let opacity { surfaceInputs.append(("float", "opacity", opacity)) }
         if o.cutout {
             surfaceInputs.append(("float", "opacity", bc[3]))
             surfaceInputs.append(("float", "opacityThreshold", g.param("OpacityThreshold")))
@@ -311,6 +342,9 @@ public enum RealShaderGraph {
                 float inputs:UVScale2 = 1
                 float inputs:SplatSoftness = 0.2
                 float inputs:SplatHeight = 1.5
+                float inputs:Opacity = 1
+                color3f inputs:ShallowColor = (0.4, 0.45, 0.3)
+                float inputs:Flow = 0
                 float inputs:UVScale = 1
                 color3f inputs:Tint = (1, 1, 1)
                 float inputs:Specular = 0.5

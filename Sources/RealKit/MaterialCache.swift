@@ -206,6 +206,7 @@ public final class RealMaterialCache {
         m.specular = .init(floatLiteral: s.specular)
         if s.clearcoat > 0 { m.clearcoat = .init(floatLiteral: s.clearcoat) }
         if s.twoSided { m.faceCulling = .none }
+        if s.mode == .transparent { m.blending = .transparent(opacity: .init(floatLiteral: s.opacity)) }
         if s.mode == .emissive {
             m.emissiveColor = .init(color: .init(s.emissive))
             m.emissiveIntensity = s.emissiveIntensity
@@ -238,6 +239,8 @@ public final class RealMaterialCache {
         o.wind = s.wind > 0; o.translucency = s.translucency > 0; o.antiTile = s.antiTile
         o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0; o.triplanar = s.triplanar
         o.instanceJitter = jitter != .zero
+        o.transparent = s.mode == .transparent
+        o.flowNormals = s.mode == .transparent && s.flow > 0
         let splatSpec = s.splat.map { spec($0) }
         let t2 = try splatSpec.flatMap { try textures($0) }
         o.splat = t2 != nil
@@ -262,6 +265,11 @@ public final class RealMaterialCache {
             try m.setParameter(name: "TopColor", value: .color(cgLinear(SIMD3(s.topColor.x, s.topColor.y, s.topColor.z))))
             try m.setParameter(name: "TopAmount", value: .float(s.topAmount))
             try m.setParameter(name: "TopLow", value: .float(s.topLow))
+        }
+        if o.transparent {
+            try m.setParameter(name: "Opacity", value: .float(s.opacity))
+            try m.setParameter(name: "ShallowColor", value: .color(cgLinear(SIMD3(s.colorB.x, s.colorB.y, s.colorB.z))))
+            try m.setParameter(name: "Flow", value: .float(s.flow))
         }
         if let t2, let splatSpec {
             try m.setParameter(name: "BaseColor2", value: .textureResource(t2.albedo))

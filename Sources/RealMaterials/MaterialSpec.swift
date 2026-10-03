@@ -5,12 +5,18 @@ import RealCore
 public enum TextureProgram: Int32, Sendable, CaseIterable {
     case barkOak = 0, barkBirch, barkPine, leafBroad, leafNeedle, grassBlades, rockGranite, forestFloor
     case woodPlank, paintedMetal, rustMetal, concrete, asphalt, plastic, brick
+    case water
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
 /// render it. Colors are linear RGB.
 public struct MaterialSpec: Sendable, Hashable {
-    public enum Mode: Sendable, Hashable { case opaque, cutout, emissive }
+    public enum Mode: Sendable, Hashable {
+        case opaque, cutout, emissive
+        /// Alpha-blended: `opacity` at normal incidence, rising to 1 at grazing angles (Fresnel) on the
+        /// ShaderGraph path. Glass and water.
+        case transparent
+    }
 
     public var key: MaterialKey
     public var program: TextureProgram?
@@ -55,6 +61,9 @@ public struct MaterialSpec: Sendable, Hashable {
     public var splat: MaterialKey? = nil
     /// Width of the splat transition in weight units (0.05 crisp, 0.4 soft).
     public var splatSoftness: Float = 0.2
+    /// Water (ShaderGraph, transparent mode): scroll speed of the two normal-map layers in tiles per
+    /// second. 0 = still surface.
+    public var flow: Float = 0
     /// How much the layers' texture brightness pushes the boundary (stones poke through mud).
     public var splatHeight: Float = 1.5
 
@@ -73,7 +82,7 @@ public func linear(_ hex: UInt32, _ a: Float = 1) -> V4 {
 /// Specs live in `Library/<Family>.swift`; add a family array to `all` when creating a new file.
 public enum MaterialLibrary {
     /// Every built-in spec, in catalog order. Keys are unique (tested).
-    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive
+    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + water
 
     public static let keys: [MaterialKey] = all.map { $0.key }
 
