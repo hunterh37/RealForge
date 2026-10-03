@@ -33,6 +33,11 @@ public extension MaterialLibrary {
             $0.key = "bark.pine-mossy"; $0.seed = 36; $0.wind = 0
             $0.topColor = linear(0x40591E); $0.topAmount = 0.8; $0.topLow = 0.45
         },
+        // Dead wood under fallen bark: brown-grey, partly weathered, soft.
+        MaterialSpec(key: "wood.deadwood", program: .woodPlank).with {
+            $0.colorA = linear(0x6E5A48); $0.colorB = linear(0x3E3024); $0.knobs = V4(0.25, 0.85, 0, 0); $0.seed = 38
+            $0.tileSize = 1.0; $0.normalStrength = 3.5; $0.roughness = 0.9
+        },
         // Seasoned oak bark on firewood and branch wood: lower contrast than trunk bark, little lichen.
         bark.first { $0.key == "bark.oak" }!.with {
             $0.key = "bark.oak-dry"; $0.seed = 37; $0.wind = 0

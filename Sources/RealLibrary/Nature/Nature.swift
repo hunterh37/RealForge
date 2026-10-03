@@ -5,6 +5,7 @@ public enum Nature {
         Boulder.self, Pebbles.self, GroundPatch.self, GrassClump.self,
         LogStump.self,
         Firewood.self,
+        FallenLog.self,
         // realforge:nature
     ]
 }
