@@ -5,6 +5,7 @@ import RealCore
 public enum TextureProgram: Int32, Sendable, CaseIterable {
     case barkOak = 0, barkBirch, barkPine, leafBroad, leafNeedle, grassBlades, rockGranite, forestFloor
     case woodPlank, paintedMetal, rustMetal, concrete, asphalt, plastic, brick
+    case gravel, sand, mud, snow, cobblestone, dirtPath
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
@@ -65,7 +66,7 @@ public func linear(_ hex: UInt32, _ a: Float = 1) -> V4 {
 /// Specs live in `Library/<Family>.swift`; add a family array to `all` when creating a new file.
 public enum MaterialLibrary {
     /// Every built-in spec, in catalog order. Keys are unique (tested).
-    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive
+    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + ground
 
     public static let keys: [MaterialKey] = all.map { $0.key }
 
