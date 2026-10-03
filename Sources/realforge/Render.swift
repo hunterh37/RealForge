@@ -12,6 +12,7 @@ struct RenderOptions {
     var lod = 0
     var sky = "afternoon"
     var fog: Float?
+    var sunLux: Float?, iblExposure: Float?
     var pbr = false, ground = true
     var deltaTime = 0.0166
     var eye: SIMD3<Float>?, at: SIMD3<Float>?
@@ -34,6 +35,7 @@ struct RenderOptions {
         lod = Int(a.opt("--lod") ?? "0") ?? 0
         sky = a.opt("--sky") ?? "afternoon"
         if let v = a.opt("--fog").flatMap(Float.init) { fog = v }
+        sunLux = a.opt("--sun").flatMap(Float.init); iblExposure = a.opt("--ibl").flatMap(Float.init)
         deltaTime = Double(a.opt("--dt") ?? "0.0166") ?? 0.0166
         pbr = a.flag("--pbr"); if a.flag("--no-ground") { ground = false }
         eye = v3("--eye"); at = v3("--at")
@@ -47,6 +49,8 @@ func render(_ id: String, to out: String, _ o: RenderOptions) async throws -> St
     RealMaterialCache.shared.useShaderGraph = !o.pbr
     var sky = skyPreset(o.sky)
     if let fog = o.fog { sky.fogDensity = fog }
+    if let v = o.sunLux { sky.sunLux = v }
+    if let v = o.iblExposure { sky.iblExposure = v }
     let env = try RealEnvironment(sky, skybox: true)
     let preview = try RealPreview(environment: env)
     let root = Entity()
@@ -61,6 +65,11 @@ func render(_ id: String, to out: String, _ o: RenderOptions) async throws -> St
         if o.ground {
             let g = try await GroundPatch().with { $0.size = 30; $0.segments = 60; $0.relief = 0.05; $0.flatCenter = 6 }.build(seed: 3).levels[0].modelEntityAsync()
             root.addChild(g)
+            // Land to the horizon so the 30 m patch has no visible edge.
+            let far = Model(name: "far-ground", surfaces: [Prim.terrain(size: V2(4000, 4000), segments: 8, material: "ground.forest") { _ in -0.12 }])
+            let fe = try await far.modelEntityAsync()
+            fe.components.set(DynamicLightShadowComponent(castsShadow: false))
+            root.addChild(fe)
         }
         preview.frame(focus, azimuth: o.azimuth, elevation: o.elevation, distanceScale: o.distance)
     }
@@ -74,7 +83,7 @@ func render(_ id: String, to out: String, _ o: RenderOptions) async throws -> St
 
 @MainActor
 func renderCommand(_ args: Args) async throws {
-    let valued: Set<String> = ["--seed", "--w", "--h", "--az", "--el", "--dist", "--lod", "--sky", "--fog", "--dt", "--eye", "--at", "--out"]
+    let valued: Set<String> = ["--seed", "--w", "--h", "--az", "--el", "--dist", "--lod", "--sky", "--fog", "--dt", "--eye", "--at", "--out", "--sun", "--ibl"]
     let r = args.rest
     guard let id = r.indices.first(where: { !r[$0].hasPrefix("-") && ($0 == 0 || !valued.contains(r[$0 - 1])) }).map({ r[$0] }) else { print(usage); return }
     let o = RenderOptions(args, hint: Catalog.type(id)?.preview ?? PreviewHint())
