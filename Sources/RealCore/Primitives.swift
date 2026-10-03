@@ -55,7 +55,7 @@ public enum Prim {
 
     /// Surface of revolution around +Y. `profile` is (radius, y) from bottom to top. Closed ends happen
     /// when the profile starts/ends at radius 0. `seamTile` quantizes U so tiling textures wrap cleanly.
-    public static func lathe(_ profile: [V2], segments: Int = 32, seamTile: Float = 0.25, material: MaterialKey) -> Surface {
+    public static func lathe(_ profile: [V2], segments: Int = 32, seamTile: Float = 0.25, material: MaterialKey, swapUV: Bool = false) -> Surface {
         var s = Surface(material: material)
         let maxR = profile.map(\.x).max() ?? 0.1
         let uTotal = max(seamTile, (2 * .pi * maxR / seamTile).rounded() * seamTile)
@@ -64,7 +64,8 @@ public enum Prim {
         for (i, pr) in profile.enumerated() {
             for k in 0...segments {
                 let t = Float(k) / Float(segments), a = t * 2 * .pi
-                s.add(V3(pr.x * cos(a), pr.y, -pr.x * sin(a)), .up, V2(t * uTotal, vAcc[i]))
+                let uv = V2(t * uTotal, vAcc[i])
+                s.add(V3(pr.x * cos(a), pr.y, -pr.x * sin(a)), .up, swapUV ? V2(uv.y, uv.x) : uv)
             }
         }
         let row = UInt32(segments + 1)

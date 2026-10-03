@@ -12,6 +12,8 @@ public struct RealScene {
     public var fields: [Field] = []
     public var singles: [Single] = []
     public var camera: Camera?
+    /// Huge flat ground under everything so the horizon is land fading into aerial haze.
+    public var farGround: MaterialKey? = "ground.meadow"
     public init(name: String) { self.name = name }
 
     @MainActor
@@ -19,6 +21,12 @@ public struct RealScene {
         let root = Entity()
         root.name = name
         for f in fields { root.addChild(try await RealInstancing.field(f.asset, transforms: f.transforms, options: f.options, materials: materials)) }
+        if let farGround {
+            let far = Model(name: "far-ground", surfaces: [Prim.terrain(size: V2(4000, 4000), segments: 8, material: farGround) { _ in -0.25 }])
+            let e = try await far.modelEntityAsync(materials: materials)
+            e.components.set(DynamicLightShadowComponent(castsShadow: false))
+            root.addChild(e)
+        }
         for s in singles {
             let e: Entity
             if s.asset.levels.count == 1 { e = try await s.asset.levels[0].modelEntityAsync(materials: materials) }
@@ -31,10 +39,12 @@ public struct RealScene {
 }
 
 public enum SceneCatalog {
-    public static let ids: [String] = ["forest-glade"]
+    public static let ids: [String] = ["forest-glade", "park-path", "prop-yard"]
     public static func build(_ id: String, seed: UInt64) -> RealScene? {
         switch id {
         case "forest-glade": return ForestGlade().build(seed: seed)
+        case "park-path": return ParkPath().build(seed: seed)
+        case "prop-yard": return PropYard().build(seed: seed)
         default: return nil
         }
     }
@@ -104,6 +114,78 @@ public struct ForestGlade {
 
         let eyeY = y(V2(0, 6)) + 1.6
         scene.camera = .init(eye: V3(0, eyeY, 6), target: V3(-6, eyeY + 1.2, -14), fov: 60)
+        return scene
+    }
+}
+
+/// City-park walkway: meadow ground, asphalt path with concrete curbs, benches, lamps, bins, hydrant,
+/// bollards, and shade trees with grass.
+public struct ParkPath {
+    public var length: Float = 60
+    public init() {}
+    public func build(seed: UInt64) -> RealScene {
+        var scene = RealScene(name: "park-path")
+        var rng = SeededRNG(seed: seed)
+        let ground = GroundPatch().with { $0.size = 90; $0.segments = 128; $0.relief = 0.25; $0.flatCenter = 10; $0.material = "ground.meadow" }
+        scene.singles.append(.init(asset: ground.build(seed: seed), at: .identity))
+        // Path: asphalt strip + curbs, slightly raised over the flat center.
+        var path = Model(name: "path")
+        path.add(Prim.terrain(size: V2(length, 3), segments: 24, material: "asphalt") { _ in 0.03 })
+        for z: Float in [-1.58, 1.58] {
+            path.add(Prim.roundedBox(V3(length, 0.14, 0.16), radius: 0.015, bevelSegments: 2, material: "concrete.smooth"), Xform(translation: V3(0, 0.05, z)))
+        }
+        scene.singles.append(.init(asset: LODModel(path), at: .identity))
+
+        func one<A: RealAsset>(_ a: A, _ x: Float, _ z: Float, yaw: Float, s: UInt64) {
+            scene.singles.append(.init(asset: a.build(seed: seed &+ s), at: place(x, z, yaw: yaw)))
+        }
+        for (i, x) in stride(from: -24, through: 24, by: 12).enumerated() {
+            let xf = Float(x)
+            one(StreetLamp(), xf, -2.2, yaw: 0, s: UInt64(10 + i))
+            one(ParkBench(), xf + 4, -2.5, yaw: 0, s: UInt64(20 + i))
+            if i % 2 == 0 { one(TrashCan(), xf + 6.2, -2.3, yaw: rng.float(0...360), s: UInt64(30 + i)) }
+            one(Bollard(), xf - 1, 1.9, yaw: 0, s: 40)
+        }
+        one(FireHydrant(), 3, 2.3, yaw: 200, s: 50)
+        one(Mailbox(), -9, 2.4, yaw: 180, s: 51)
+        one(TrafficCone(), -3.5, 0.9, yaw: 20, s: 52)
+        one(TrafficCone(), -2.4, 1.1, yaw: 70, s: 53)
+        one(PicnicTable(), 8, 7, yaw: 15, s: 54)
+
+        var opts = RealInstancing.Options(); opts.cellSize = 18
+        func y(_ p: V2) -> Float { ground.height(x: p.x, z: p.y, seed: seed) }
+        let treeSpots = Scatter.poisson(count: 40, outerRadius: 40, innerRadius: 6, minSpacing: 7, seed: seed &+ 3) { abs($0.y) > 5 }
+        var oaks: [simd_float4x4] = [], birches: [simd_float4x4] = []
+        for p in treeSpots {
+            let m = Xform(translation: V3(p.x, y(p) - 0.1, p.y), rotation: simd_quatf(degrees: rng.float(0...360), axis: .up), scale: V3(repeating: rng.float(0.85...1.15))).matrix
+            if rng.chance(0.6) { oaks.append(m) } else { birches.append(m) }
+        }
+        scene.fields.append(.init(asset: OakTree().build(seed: seed &+ 4), transforms: oaks, options: opts))
+        scene.fields.append(.init(asset: BirchTree().build(seed: seed &+ 5), transforms: birches, options: opts))
+        var gopts = RealInstancing.Options(); gopts.cellSize = 8; gopts.cullDistance = 28; gopts.shadowCasterMaxLOD = -1
+        let blades = Scatter.uniform(count: 22000, outerRadius: 30, seed: seed &+ 6) { abs($0.y) > 1.75 }
+        scene.fields.append(.init(asset: GrassClump().with { $0.height = 0.22; $0.width = 0.35 }.build(seed: seed &+ 7),
+                                  transforms: blades.map { Xform(translation: V3($0.x, y($0) - 0.02, $0.y), rotation: simd_quatf(degrees: rng.float(0...360), axis: .up),
+                                                                  scale: V3(repeating: rng.float(0.7...1.3))).matrix }, options: gopts))
+        scene.camera = .init(eye: V3(-7, 1.65, 0.4), target: V3(6, 1.0, -1.2), fov: 60)
+        return scene
+    }
+}
+
+/// Every prop on a concrete pad, in a grid. Visual regression scene.
+public struct PropYard {
+    public init() {}
+    public func build(seed: UInt64) -> RealScene {
+        var scene = RealScene(name: "prop-yard")
+        var pad = Model(name: "pad")
+        pad.add(Prim.terrain(size: V2(14, 10), segments: 8, material: "concrete.smooth") { _ in 0 })
+        scene.singles.append(.init(asset: LODModel(pad), at: .identity))
+        for (i, t) in Props.all.enumerated() {
+            let x = Float(i % 4) * 3 - 4.5, z = Float(i / 4) * 3 - 3
+            scene.singles.append(.init(asset: t.init().build(seed: seed), at: place(x, z, yaw: 25)))
+        }
+        scene.camera = .init(eye: V3(0, 5.5, 10), target: V3(0, 0.3, -0.5), fov: 50)
+        scene.farGround = "concrete.smooth"
         return scene
     }
 }

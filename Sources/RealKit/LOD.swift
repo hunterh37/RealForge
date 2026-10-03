@@ -2,9 +2,9 @@ import Foundation
 import RealityKit
 import RealCore
 
-/// Where LOD distances are measured from. On visionOS, RealityKit can't read head pose from a System,
-/// so either set `RealViewer.position` yourself (e.g. from ARKit `queryDeviceAnchor`) or call
-/// `RealViewer.startTracking()` inside an ImmersiveSpace (see Viewer.swift).
+/// Where LOD distances are measured from (scene space). On visionOS call
+/// `await RealViewerTracker.shared.start()` inside an ImmersiveSpace to follow the head; otherwise set
+/// `RealViewer.position` yourself.
 @MainActor
 public enum RealViewer {
     public static var position: SIMD3<Float> = SIMD3(0, 1.6, 0)
@@ -36,7 +36,7 @@ public struct RealLODSystem: System {
         accumulator += context.deltaTime
         guard accumulator >= Self.interval else { return }
         accumulator = 0
-        let viewer = MainActor.assumeIsolated { RealViewer.position }
+        let viewer = MainActor.assumeIsolated { RealViewer.refresh(); return RealViewer.position }
         for e in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
             guard var lod = e.components[RealLODComponent.self] else { continue }
             let p = e.convert(position: lod.center, to: nil)

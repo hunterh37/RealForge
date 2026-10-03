@@ -341,7 +341,7 @@ S forestFloor(float2 uv, constant RFParams &P) {
     // Leaf litter: three overlapping layers of oriented leaf shapes.
     for (int layer = 0; layer < 3; layer++) {
         float cid = 0.0, cid2 = 0.0;
-        int fr = 14 + layer * 5;
+        int fr = 22 + layer * 7;
         float2 off = cellLocal(uv + float2(0.37, 0.11) * float(layer), int2(fr, fr), sd + 10u + uint(layer) * 19u, cid, cid2);
         if (cid > P.f.y) continue;                                   // litter amount
         float2 q = rot2(off, cid2 * 6.2831853);
@@ -376,27 +376,32 @@ S forestFloor(float2 uv, constant RFParams &P) {
 // ---------------------------------------------------------------- built world
 S woodPlank(float2 uv, constant RFParams &P) {
     S s = defaults(); uint sd = P.seed;
-    // Flat-sawn grain along U: thin dark latewood lines over lighter earlywood, gently wavy, with
-    // occasional cathedral arches from the low-frequency warp.
-    float warp = fbm(uv, int2(1, 2), 4, sd + 1u) * 1.6 + fbm(uv, int2(3, 6), 3, sd + 2u) * 0.25;
-    float r = fract(uv.y * 22.0 + warp * 3.0);
-    float late = smoothstep(0.0, 0.06, r) * (1.0 - smoothstep(0.06, 0.32, r));
-    float streak = fbm(uv, int2(3, 128), 3, sd + 3u);
-    float pores = smoothstep(0.35, 0.6, fbm(uv, int2(6, 256), 2, sd + 9u));
-    float4 kw = worley(uv, int2(2, 3), sd + 4u, 0.8);
-    float knotMask = step(0.78, kw.z);
-    float knot = smoothstep(0.07, 0.0, kw.x) * knotMask;
-    float knotRing = (0.5 + 0.5 * sin(kw.x * 180.0)) * smoothstep(0.18, 0.05, kw.x) * knotMask;
-    float3 c = mix(P.colorA.rgb, P.colorB.rgb, sat(late * 0.75 + streak * 0.35 + 0.15));
-    c *= 1.0 - pores * 0.08;
-    c = mix(c, P.colorB.rgb * 0.45, max(knot, knotRing * 0.45));
+    // Flat-sawn grain along U. Fine latewood lines (~1 cm apart at a 1 m tile) bent by a low-frequency
+    // warp into long cathedral arches; medullary flecks and pores at high frequency; rare knots.
+    float warp = fbm(uv, int2(1, 3), 4, sd + 1u) * 0.9 + fbm(uv, int2(2, 8), 3, sd + 2u) * 0.12;
+    float figure = uv.y * 90.0 + warp * 14.0 + sin(uv.x * 6.2831853 * 1.0 + warp * 3.0) * 1.5;
+    float r = fract(figure);
+    float late = smoothstep(0.0, 0.08, r) * (1.0 - smoothstep(0.08, 0.45, r));
+    float band = fbm(uv, int2(2, 12), 3, sd + 3u);                       // board-scale color bands
+    float streak = fbm(uv, int2(3, 160), 3, sd + 4u);                    // fine streaks along grain
+    float pores = smoothstep(0.3, 0.65, fbm(uv, int2(8, 400), 2, sd + 9u));
+    float4 kw = worley(uv, int2(2, 3), sd + 5u, 0.8);
+    float knotMask = step(0.82, kw.z);
+    float2 kd = (uv * float2(2, 3) - floor(uv * float2(2, 3)));
+    float knot = smoothstep(0.06, 0.0, kw.x) * knotMask;
+    float knotRing = (0.5 + 0.5 * sin(kw.x * 260.0)) * smoothstep(0.16, 0.05, kw.x) * knotMask;
+    float3 c = mix(P.colorA.rgb, P.colorB.rgb, sat(0.25 + band * 0.9 + streak * 0.25));
+    c = mix(c, P.colorB.rgb * 0.75, late * 0.55);
+    c *= 1.0 - pores * 0.06;
+    c = mix(c, P.colorB.rgb * 0.45, max(knot, knotRing * 0.4));
     float weather = P.f.x;
-    float3 grey = float3(0.30, 0.29, 0.27) * (0.85 + 0.35 * streak);
-    c = mix(c, mix(grey, c * 0.8, late * 0.4), weather);
+    float3 grey = float3(0.29, 0.28, 0.26) * (0.85 + 0.35 * streak + 0.2 * band);
+    c = mix(c, mix(grey, grey * 0.7, late), weather);
     s.albedo = c;
-    s.height = 0.5 - late * 0.05 * (1.0 + weather * 5.0) + streak * 0.06 * (1.0 + weather * 3.0) - knot * 0.1 - pores * 0.03;
-    s.rough = mix(P.f.y, 0.9, weather) + late * 0.04;
-    s.ao = 1.0 - late * 0.2 * weather;
+    s.height = 0.5 - late * 0.04 * (1.0 + weather * 6.0) + streak * 0.05 * (1.0 + weather * 4.0) - knot * 0.1 - pores * 0.03;
+    s.rough = mix(P.f.y, 0.92, weather) + late * 0.04 + pores * 0.04;
+    s.ao = 1.0 - late * 0.25 * weather;
+    (void)kd;
     return s;
 }
 S paintedMetal(float2 uv, constant RFParams &P) {
@@ -442,14 +447,14 @@ S concrete(float2 uv, constant RFParams &P) {
     float n = fbm(uv, int2(4, 4), 6, sd + 1u);
     float4 ag = worley(uv, int2(55, 55), sd + 2u, 1.0);
     float stone = smoothstep(0.4, 0.3, ag.x) * step(0.6, ag.z);
-    float4 pw = worley(uv, int2(90, 90), sd + 3u, 1.0);
-    float pore = smoothstep(0.12, 0.05, pw.x) * step(0.75, pw.z);
+    float4 pw = worley(uv, int2(220, 220), sd + 3u, 1.0);
+    float pore = smoothstep(0.14, 0.05, pw.x) * step(0.8, pw.z);
     float stain = smoothstep(0.0, 0.5, fbm(uv, int2(2, 2), 5, sd + 4u)) * P.f.y;
     float3 c = P.colorA.rgb * (0.85 + 0.3 * n);
     c = mix(c, P.colorB.rgb * (0.8 + 0.5 * ag.w), stone * 0.6);
     c *= 1.0 - pore * 0.6;
     c = mix(c, c * float3(0.6, 0.58, 0.52), stain);
-    s.albedo = c; s.height = 0.5 + n * 0.15 + stone * 0.05 - pore * 0.4;
+    s.albedo = c; s.height = 0.5 + n * 0.15 + stone * 0.05 - pore * 0.2;
     s.rough = P.f.x + 0.08 * n + stain * 0.05; s.ao = 1.0 - pore * 0.5;
     return s;
 }
@@ -652,7 +657,8 @@ kernel void rf_sky(texture2d<float, access::write> out [[texture(0)]],
     float3 sd = normalize(S.sunDir);
     float3 col;
     if (rd.y >= 0.0) {
-        col = atmosphere(normalize(float3(rd.x, max(rd.y, 0.002), rd.z)), sd, S.turbidity, S.sunIntensity);
+        // Single scattering darkens grazing rays; real horizons stay bright from multiple scattering.
+        col = atmosphere(normalize(float3(rd.x, max(rd.y, 0.045), rd.z)), sd, S.turbidity, S.sunIntensity);
         if (S.drawSun == 1) {
             float cosA = dot(rd, sd);
             float disk = smoothstep(0.99996, 0.999985, cosA);
@@ -660,12 +666,10 @@ kernel void rf_sky(texture2d<float, access::write> out [[texture(0)]],
             col += disk * trans * S.sunIntensity * 40.0;
         }
     } else {
-        // Ground: lit by sun + sky dome; fades into a horizon haze.
-        float3 horizon = atmosphere(normalize(float3(rd.x, 0.002, rd.z)), sd, S.turbidity, S.sunIntensity);
-        float sunH = max(sd.y, 0.0);
-        float3 skyAmb = atmosphere(float3(0, 1, 0), sd, S.turbidity, S.sunIntensity);
-        float3 groundCol = float3(0.16, 0.17, 0.12) * S.groundAlbedo * (skyAmb * 3.0 + float3(1.0, 0.95, 0.85) * sunH * S.sunIntensity * 0.06);
-        col = mix(horizon, groundCol, smoothstep(0.0, 0.25, -rd.y));
+        // Below the horizon: distant land seen through haze (never a hard brown band).
+        float3 horizon = atmosphere(normalize(float3(rd.x, 0.045, rd.z)), sd, S.turbidity, S.sunIntensity);
+        float3 land = horizon * float3(0.55, 0.6, 0.5) * S.groundAlbedo;
+        col = mix(horizon, land, smoothstep(0.0, 0.35, -rd.y));
     }
     col *= S.exposure;
     out.write(float4(col, 1.0), gid);

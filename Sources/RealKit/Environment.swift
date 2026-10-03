@@ -58,7 +58,7 @@ public final class RealEnvironment {
         guard let iblImage = synth.cgImage(iblTex) else { throw TextureSynth.SynthError.encode }
         // Horizon haze color drives aerial perspective in every ShaderGraph material.
         do {
-            let w = iblTex.width, row = iblTex.height / 2 - max(1, iblTex.height / 90)
+            let w = iblTex.width, row = iblTex.height / 2 - max(1, iblTex.height / 60)
             var half = [Float16](repeating: 0, count: w * 4)
             iblTex.getBytes(&half, bytesPerRow: w * 8, from: MTLRegionMake2D(0, row, w, 1), mipmapLevel: 0)
             var acc = SIMD3<Float>.zero

@@ -203,7 +203,7 @@ public enum MaterialLibrary {
             }
         case "concrete.rough":
             return MaterialSpec(key: k, program: .concrete).with {
-                $0.colorA = linear(0x8A867E); $0.colorB = linear(0x6E6A62); $0.knobs = V4(0.88, 0.7, 0, 0); $0.seed = 6; $0.tileSize = 1.5; $0.normalStrength = 4
+                $0.colorA = linear(0x8A867E); $0.colorB = linear(0x6E6A62); $0.knobs = V4(0.88, 0.7, 0, 0); $0.seed = 6; $0.tileSize = 1.5; $0.normalStrength = 2
                 $0.antiTile = true
             }
         case "asphalt":

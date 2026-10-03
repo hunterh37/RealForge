@@ -9,7 +9,17 @@ public enum RealQuality {
     /// Multiplier on every material's base resolution (1024 -> 512 at 0.5). Clamped to 128...4096.
     nonisolated(unsafe) public static var textureScale: Float = 1
     /// Upper bound on any generated texture side.
-    nonisolated(unsafe) public static var maxTextureSize: Int = 2048
+    nonisolated(unsafe) public static var maxTextureSize: Int = 1024
+
+    public enum Preset: Sendable { case performance, balanced, ultra }
+    /// performance: 512 max (~25 MB for a full forest). balanced: 1024 (default). ultra: 2048 ground/bark.
+    public static func apply(_ p: Preset) {
+        switch p {
+        case .performance: textureScale = 0.5; maxTextureSize = 512
+        case .balanced: textureScale = 1; maxTextureSize = 1024
+        case .ultra: textureScale = 1; maxTextureSize = 2048
+        }
+    }
     public static func pixels(for spec: MaterialSpec) -> Int {
         let raw = Float(spec.resolution) * textureScale
         var p = 128
