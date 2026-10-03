@@ -8,6 +8,9 @@ public enum Nature {
         CypressTree.self,
         SnowySpruce.self,
         PalmTree.self,
+        Saguaro.self,
+        BarrelCactus.self,
+        Agave.self,
         // realforge:nature
     ]
 }
