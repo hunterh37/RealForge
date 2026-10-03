@@ -10,6 +10,7 @@ public enum Props {
         RebarBundle.self,
         Sandbag.self,
         CableSpool.self,
+        TrafficBarrel.self,
         // realforge:prop
     ]
 }
