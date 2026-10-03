@@ -27,6 +27,8 @@ public enum Nature {
         BarrelCactus.self,
         Agave.self,
         LarchTree.self,
+        RockOutcrop.self, CliffFace.self, ScreePile.self, RiverStones.self, SteppingStone.self, MossyRock.self,
+        MesaRock.self, Flagstone.self, RockPile.self,
         // realforge:nature
     ]
 }
