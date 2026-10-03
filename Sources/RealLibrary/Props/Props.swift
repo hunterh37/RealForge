@@ -18,6 +18,14 @@ public enum Props {
         MilkCan.self,
         FeedSack.self,
         TractorTire.self,
+        FirewoodStack.self,
+        CampfireRing.self,
+        DomeTent.self,
+        CampChair.self,
+        Cooler.self,
+        CampLantern.self,
+        Canoe.self,
+        AxeInStump.self,
         // realforge:prop
     ]
 }

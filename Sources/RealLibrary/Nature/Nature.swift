@@ -29,6 +29,10 @@ public enum Nature {
         LarchTree.self,
         RockOutcrop.self, CliffFace.self, ScreePile.self, RiverStones.self, SteppingStone.self, MossyRock.self,
         MesaRock.self, Flagstone.self, RockPile.self,
+        LogStump.self,
+        Firewood.self,
+        FallenLog.self,
+        RootStump.self,
         // realforge:nature
     ]
 }
