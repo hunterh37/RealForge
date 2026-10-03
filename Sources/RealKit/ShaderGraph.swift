@@ -273,9 +273,17 @@ public enum RealShaderGraph {
             let fArg = g.add(g.mul(t, "7.1"), g.add(g.mul(phase, "5"), g.add(g.mul(p[0], "4.1"), g.mul(p[1], "3.3"))))
             let flutter = g.mul(g.mul(g.sin(fArg), weight), g.mul(g.param("WindStrength"), g.param("Flutter")))
             let dir = g.separate("ND_separate3_vector3", "float3", g.param("WindDirection"), ["outx", "outy", "outz"])
-            let ox = g.add(g.mul(sway, dir[0]), flutter)
-            let oy = g.mul(flutter, "0.7")
-            let oz = g.add(g.mul(sway, dir[2]), g.mul(flutter, "-0.6"))
+            // Leaf flutter from the per-vertex phase in uv2.x (Surface.extra.y). The phase enters as
+            // sin(2*pi*phase), so an integer layer index packed in front of a fractional phase does not
+            // change it. Vertices with extra.y == 0 get no extra motion (gate below).
+            let ph = g.separate("ND_separate2_vector2", "float2", g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2"), ["outx", "outy"])[0]
+            let gate = g.node("ND_clamp_float", [("float", "in", g.mul(g.node("ND_absval_float", [("float", "in", ph)], out: "float"), "1000")), ("float", "low", "0"), ("float", "high", "1")], out: "float")
+            let lArg = g.add(g.mul(t, g.param("LeafFlutterSpeed")), g.mul(ph, "6.2832"))
+            let leaf = g.mul(g.mul(g.mul(g.sin(lArg), weight), gate), g.mul(g.param("WindStrength"), g.param("LeafFlutter")))
+            let leaf2 = g.mul(g.mul(g.mul(g.sin(g.add(g.mul(lArg, "1.37"), "1.9")), weight), gate), g.mul(g.param("WindStrength"), g.param("LeafFlutter")))
+            let ox = g.add(g.add(g.mul(sway, dir[0]), flutter), leaf)
+            let oy = g.add(g.mul(flutter, "0.7"), g.mul(leaf2, "0.8"))
+            let oz = g.add(g.add(g.mul(sway, dir[2]), g.mul(flutter, "-0.6")), g.mul(leaf2, "-0.7"))
             let off = g.node("ND_combine3_vector3", [("float", "in1", ox), ("float", "in2", oy), ("float", "in3", oz)], out: "float3")
             vertex = g.node("ND_realitykit_geometrymodifier_vertexshader", [("float3", "modelPositionOffset", off)], out: "token")
         }
@@ -310,6 +318,8 @@ public enum RealShaderGraph {
                 float inputs:WindStrength = 0.05
                 float inputs:WindSpeed = 1.3
                 float inputs:Flutter = 0.3
+                float inputs:LeafFlutter = 0.12
+                float inputs:LeafFlutterSpeed = 11
                 float3 inputs:WindDirection = (0.8, 0, 0.6)
                 float3 inputs:SunDirection = (0, -1, 0)
                 float inputs:Translucency = 0.6
