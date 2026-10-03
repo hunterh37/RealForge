@@ -8,7 +8,7 @@ public struct TerrainHill: RealAsset {
     public static let summary = "Hilly 120 m terrain: eroded fBm hills fading to a flat border, meadow on gentle slopes, granite on steep faces, 3 LODs."
     public static let tags = ["nature", "terrain", "ground", "rock"]
     public static let budget = 60_000
-    public static let preview = PreviewHint(azimuth: 30, elevation: 16, distance: 0.7, ground: false, fog: 0.004)
+    public static let preview = PreviewHint(azimuth: 30, elevation: 16, distance: 0.7, ground: false, fog: 0.0015)
 
     /// Side length in meters.
     public var size: Float = 120
