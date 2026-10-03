@@ -33,6 +33,8 @@ struct SpaceConfig: Codable, Hashable {
     var scene: DemoScene
     var sky: DemoSky
     var seed: UInt64
+    /// Extra heading in degrees (clockwise) applied after the scene's camera hint.
+    var yaw: Float = 0
 }
 
 @Observable @MainActor
@@ -55,6 +57,7 @@ struct RealForgeDemoApp: App {
         WindowGroup(id: "menu") {
             MenuView().environment(model)
         }
+        .windowStyle(.plain)
         .defaultSize(width: 560, height: 640)
 
         ImmersiveSpace(id: "space", for: SpaceConfig.self) { $config in

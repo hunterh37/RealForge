@@ -4,6 +4,8 @@ struct MenuView: View {
     @Environment(DemoModel.self) private var model
     @Environment(\.openImmersiveSpace) private var openSpace
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
+    /// Capture mode: the window stays open (dismissing it recenters the simulator view) but draws nothing.
+    @State private var hidden = UserDefaults.standard.bool(forKey: "hideMenu")
 
     var body: some View {
         @Bindable var model = model
@@ -42,14 +44,22 @@ struct MenuView: View {
             }
             .navigationTitle("RealForge")
         }
+        .opacity(hidden ? 0 : 1)
+        .glassBackgroundEffect(displayMode: hidden ? .never : .always)
+        .persistentSystemOverlays(hidden ? .hidden : .automatic)
         .task {
-            // Launch argument `-scene forest-glade` opens a scene directly (simulator checks, demos).
-            if let id = UserDefaults.standard.string(forKey: "scene"), let scene = DemoScene(rawValue: id) { await enter(scene) }
+            // Launch arguments for captures: -scene forest-glade -sky golden -seed 2 -yaw -30 -hideMenu YES
+            let d = UserDefaults.standard
+            guard let id = d.string(forKey: "scene"), let scene = DemoScene(rawValue: id) else { return }
+            if let sky = d.string(forKey: "sky").flatMap(DemoSky.init(rawValue:)) { model.sky = sky }
+            if d.integer(forKey: "seed") > 0 { model.seed = UInt64(d.integer(forKey: "seed")) }
+            await enter(scene, yaw: d.float(forKey: "yaw"))
+
         }
     }
 
-    private func enter(_ scene: DemoScene) async {
-        let config = SpaceConfig(scene: scene, sky: model.sky, seed: model.seed)
+    private func enter(_ scene: DemoScene, yaw: Float = 0) async {
+        let config = SpaceConfig(scene: scene, sky: model.sky, seed: model.seed, yaw: yaw)
         if model.open != nil { await dismissSpace(); model.open = nil }
         switch await openSpace(id: "space", value: config) {
         case .opened: model.open = config
