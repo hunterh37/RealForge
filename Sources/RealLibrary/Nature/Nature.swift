@@ -4,6 +4,8 @@ public enum Nature {
         OakTree.self, BirchTree.self, SpruceTree.self, Shrub.self, Tree.self,
         Boulder.self, Pebbles.self, GroundPatch.self, GrassClump.self,
         ScotsPine.self,
+        FirTree.self,
+        CypressTree.self,
         // realforge:nature
     ]
 }
