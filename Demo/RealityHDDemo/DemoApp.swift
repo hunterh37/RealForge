@@ -10,6 +10,9 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case farmyard = "farmyard"
     case lakesideCamp = "lakeside-camp"
     case autumnWoods = "autumn-woods"
+    case alpineMeadow = "alpine-meadow"
+    case canyonRoad = "canyon-road"
+    case winterForest = "winter-forest"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -19,6 +22,9 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .farmyard: "Farmyard"
         case .lakesideCamp: "Lakeside Camp"
         case .autumnWoods: "Autumn Woods"
+        case .alpineMeadow: "Alpine Meadow"
+        case .canyonRoad: "Canyon Road"
+        case .winterForest: "Winter Forest"
         }
     }
     var detail: String {
@@ -29,8 +35,13 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .farmyard: "Red barn corner, rail-fence paddock, hay bales and trough, grass and wildflower fields."
         case .lakesideCamp: "Tent, fire ring and canoe on a pond bank, ringed by spruce, pine and birch."
         case .autumnWoods: "Red maple, gold aspen, beech and oak over leaf litter, a dirt path winding through."
+        case .alpineMeadow: "Flower meadow and pebble stream below a cliff band, conifers and peaks behind."
+        case .canyonRoad: "Desert highway between sandstone buttes, saguaro and dunes."
+        case .winterForest: "Snowy clearing in spruce and fir, drifts, fallen log and a woodpile."
         }
     }
+    /// Sky picked when the scene is opened from the menu.
+    var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {

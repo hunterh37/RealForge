@@ -23,7 +23,10 @@ public enum SceneCatalog {
         Farmyard.self,
         LakesideCamp.self,
         AutumnWoods.self,
-        // realityhd:scene
+        AlpineMeadow.self,
+        CanyonRoad.self,
+        WinterForest.self,
+                // realityhd:scene
     ]
 
     public static var ids: [String] { all.map { $0.id } }
