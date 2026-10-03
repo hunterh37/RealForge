@@ -10,6 +10,6 @@ public extension MaterialLibrary {
         MaterialSpec(key: "emissive.warm", program: nil).with {
             $0.baseColor = V3(1, 0.7, 0.4); $0.mode = .emissive; $0.emissive = V3(1, 0.62, 0.32); $0.emissiveIntensity = 4
         },
-        // realforge:material.emissive
+        // realityhd:material.emissive
     ]
 }

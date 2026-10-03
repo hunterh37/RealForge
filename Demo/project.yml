@@ -1,31 +1,31 @@
-name: RealForgeDemo
+name: RealityHDDemo
 options:
-  bundleIdPrefix: io.medvr.realforge
+  bundleIdPrefix: io.medvr.realityhd
   deploymentTarget:
     visionOS: "26.0"
   createIntermediateGroups: true
 packages:
-  RealForge:
+  RealityHD:
     path: ..
 targets:
-  RealForgeDemo:
+  RealityHDDemo:
     type: application
     platform: visionOS
-    sources: [RealForgeDemo]
+    sources: [RealityHDDemo]
     dependencies:
-      - package: RealForge
-        product: RealForge
+      - package: RealityHD
+        product: RealityHD
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: io.medvr.realforge.demo
+        PRODUCT_BUNDLE_IDENTIFIER: io.medvr.realityhd.demo
         SWIFT_VERSION: "5.0"
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: RealForge
+        INFOPLIST_KEY_CFBundleDisplayName: RealityHD
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         CODE_SIGN_STYLE: Automatic
         TARGETED_DEVICE_FAMILY: "7"
     info:
-      path: RealForgeDemo/Info.plist
+      path: RealityHDDemo/Info.plist
       properties:
         UIApplicationSceneManifest:
           UIApplicationPreferredDefaultSceneSessionRole: UIWindowSceneSessionRoleApplication

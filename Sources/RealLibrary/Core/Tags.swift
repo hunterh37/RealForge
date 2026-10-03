@@ -1,4 +1,4 @@
-/// Controlled tag vocabulary. Tests reject tags outside it, so `realforge list <tag>` and
+/// Controlled tag vocabulary. Tests reject tags outside it, so `realityhd list <tag>` and
 /// `Catalog.ids(tag:)` stay useful as the library grows. Add a tag here in the same PR that first uses it.
 public enum AssetTag {
     /// `tags[0]` of every asset. Also picks the source folder: Nature/, Props/, Structures/.
@@ -7,6 +7,7 @@ public enum AssetTag {
     public static let vocabulary: Set<String> = Set(kinds).union([
         // nature
         "tree", "deciduous", "conifer", "palm", "foliage", "flower", "grass", "rock", "ground", "terrain", "water",
+        "plant", "fungus",
         // material families
         "wood", "metal", "concrete", "stone", "brick", "plastic", "glass", "ceramic", "fabric", "paper", "rubber",
         // settings
@@ -14,6 +15,8 @@ public enum AssetTag {
         "beach", "desert", "snow", "harbor", "rail", "construction", "industrial", "playground", "sports",
         // function
         "container", "furniture", "light", "sign", "barrier", "fence", "wall", "vehicle", "tool", "food", "decor",
+        // RealityHD 3
+        "leather", "workshop", "travel", "antique",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

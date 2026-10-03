@@ -1,4 +1,4 @@
-# RealForge
+# RealityHD
 
 [![Swift 6.2](https://img.shields.io/badge/Swift-6.2-F05138?logo=swift&logoColor=white)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/platforms-visionOS%2026%20%7C%20macOS%2026%20%7C%20iOS%2026-0A84FF)](#requirements)
@@ -9,7 +9,7 @@ Procedural, photoreal trees, rocks, ground, props and scenes for RealityKit, gen
 load time. No mesh or texture files ship in your app: geometry is built on the CPU in milliseconds and
 every PBR texture is synthesized on the GPU.
 
-![RealForgeDemo running park-path in the Apple Vision Pro simulator](docs/demo/hero.png)
+![RealityHDDemo running park-path in the Apple Vision Pro simulator](docs/demo/hero.png)
 
 ## Contents
 
@@ -21,7 +21,7 @@ every PBR texture is synthesized on the GPU.
 - [Usage](#usage)
 - [Gallery](#gallery)
 - [Performance](#performance)
-- [Command-line tool](#command-line-tool)
+- [Command-line tool](#command-line-tool) (3.0 agent loop)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -58,21 +58,21 @@ for head-tracked LOD.
 
 ### Xcode
 
-File > Add Package Dependencies, enter the repository URL, and add the `RealForge` product to your
+File > Add Package Dependencies, enter the repository URL, and add the `RealityHD` product to your
 app target.
 
 ```
-https://github.com/hunterh37/RealForge.git
+https://github.com/hunterh37/RealityHD.git
 ```
 
 ### Package.swift
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/hunterh37/RealForge.git", branch: "main"),
+    .package(url: "https://github.com/hunterh37/RealityHD.git", branch: "main"),
 ],
 targets: [
-    .target(name: "MyApp", dependencies: [.product(name: "RealForge", package: "RealForge")]),
+    .target(name: "MyApp", dependencies: [.product(name: "RealityHD", package: "RealityHD")]),
 ]
 ```
 
@@ -88,13 +88,13 @@ import RealLibrary
 
 @main
 struct ForestApp: App {
-    init() { RealForge.setup(.balanced) }
+    init() { RealityHD.setup(.balanced) }
 
     var body: some Scene {
         ImmersiveSpace(id: "forest") {
             RealityView { content in
-                let env = try! RealForge.environment(.afternoon, skybox: true)
-                let forest = try! await RealForge.scene("forest-glade")
+                let env = try! RealityHD.environment(.afternoon, skybox: true)
+                let forest = try! await RealityHD.scene("forest-glade")
                 env.illuminate(forest)
                 content.add(env.root)
                 content.add(forest)
@@ -128,7 +128,7 @@ camp props (picnic table, crates on a pallet, barrels, drum) along the edge of t
 
 ```sh
 brew install xcodegen
-cd Demo && xcodegen generate && open RealForgeDemo.xcodeproj
+cd Demo && xcodegen generate && open RealityHDDemo.xcodeproj
 ```
 
 Launch arguments open a scene without input, for captures and checks:
@@ -140,8 +140,8 @@ Launch arguments open a scene without input, for captures and checks:
 ### Single assets
 
 ```swift
-let oak = try await RealForge.entity("oak-tree", seed: 4)
-let hydrant = try await RealForge.entity("fire-hydrant")
+let oak = try await RealityHD.entity("oak-tree", seed: 4)
+let hydrant = try await RealityHD.entity("fire-hydrant")
 content.add(oak)
 ```
 
@@ -150,9 +150,9 @@ content.add(oak)
 Assets are value types with stored parameters; edit them inline.
 
 ```swift
-let drum  = try await RealForge.entity(OilDrum().with { $0.color = 0x8C1F1F })
-let birch = try await RealForge.entity(Tree(.birch).with { $0.species.height = 9 }, seed: 2)
-let rock  = try await RealForge.entity(Boulder().with { $0.size = [3, 1.6, 2.4]; $0.facets = 12 })
+let drum  = try await RealityHD.entity(OilDrum().with { $0.color = 0x8C1F1F })
+let birch = try await RealityHD.entity(Tree(.birch).with { $0.species.height = 9 }, seed: 2)
+let rock  = try await RealityHD.entity(Boulder().with { $0.size = [3, 1.6, 2.4]; $0.facets = 12 })
 ```
 
 ### Instanced fields
@@ -162,13 +162,13 @@ One draw per cell per LOD, however many instances.
 ```swift
 let spots = Scatter.poisson(count: 400, outerRadius: 60, minSpacing: 4, seed: 1)
 let transforms = spots.map { place($0.x, $0.y, yaw: .random(in: 0...360)).matrix }
-let forest = try await RealForge.field(SpruceTree(), transforms: transforms)
+let forest = try await RealityHD.field(SpruceTree(), transforms: transforms)
 ```
 
 ### Lighting
 
 ```swift
-let env = try RealForge.environment(SunSky(elevation: 20, azimuth: 250, turbidity: 2.8), skybox: true)
+let env = try RealityHD.environment(SunSky(elevation: 20, azimuth: 250, turbidity: 2.8), skybox: true)
 env.illuminate(myContent)   // image-based light for every model under it
 content.add(env.root)       // sun with cascaded shadows, IBL entity, optional skybox
 ```
@@ -181,7 +181,7 @@ skip the environment and let system lighting apply (set `RealAtmosphere.fogDensi
 ```swift
 RealWind.direction = [1, 0, 0.3]; RealWind.strength = 1.5      // before materials are created
 RealAtmosphere.fogDensity = 0.002
-RealForge.setup(.performance)                                  // 512 px textures
+RealityHD.setup(.performance)                                  // 512 px textures
 ```
 
 ### Materials on your own meshes
@@ -219,6 +219,12 @@ Material keys accept a hex tint: `"metal.painted:1F4E8C"`. All keys are listed i
 | ![picnic-table](docs/assets/picnic-table.png)<br>`picnic-table` | ![street-lamp](docs/assets/street-lamp.png)<br>`street-lamp` | ![traffic-cone](docs/assets/traffic-cone.png)<br>`traffic-cone` | ![fire-hydrant](docs/assets/fire-hydrant.png)<br>`fire-hydrant` |
 | ![bollard](docs/assets/bollard.png)<br>`bollard` | ![pallet](docs/assets/pallet.png)<br>`pallet` | ![mailbox](docs/assets/mailbox.png)<br>`mailbox` | ![trash-can](docs/assets/trash-can.png)<br>`trash-can` |
 
+### Photoreal props (3.0)
+
+Built and signed off through the vision gate (`docs/V3.md`).
+
+![RealityHD 3 props](docs/props-hd-gallery.png)
+
 ### Materials
 
 Albedo channel of the GPU-generated texture sets.
@@ -227,7 +233,7 @@ Albedo channel of the GPU-generated texture sets.
 
 ## Performance
 
-Release build on an M2 Pro (`swift run -c release realforge bench`).
+Release build on an M2 Pro (`swift run -c release realityhd bench`).
 
 | Measure | Result |
 |---|---|
@@ -246,17 +252,29 @@ scenes at frame rate on Vision Pro.
 ## Command-line tool
 
 ```sh
-swift run -q realforge list                      # assets and scenes
-swift run -q realforge stats oak-tree            # triangles per LOD, materials, generation time
-swift run -q realforge render park-bench         # out/park-bench.png via RealityRenderer
-swift run -q realforge render forest-glade --sky golden --w 1920 --h 1080
-swift run -q realforge thumbs --missing          # docs/assets/<id>.png, docs/scenes/<id>.png
-swift run -q realforge textures bark.oak         # dump albedo/normal/roughness PNGs
-swift run -q realforge shaders                   # load every ShaderGraph variant
-swift run -q realforge catalog                   # regenerate CATALOG.md
-swift run -q realforge new prop wheelbarrow --theme Construction   # scaffold + register
-swift run -c release realforge bench
+swift run -q realityhd list                      # assets and scenes
+swift run -q realityhd stats oak-tree            # triangles per LOD, materials, generation time
+swift run -q realityhd render park-bench         # out/park-bench.png via RealityRenderer
+swift run -q realityhd render forest-glade --sky golden --w 1920 --h 1080
+swift run -q realityhd thumbs --missing          # docs/assets/<id>.png, docs/scenes/<id>.png
+swift run -q realityhd textures bark.oak         # dump albedo/normal/roughness PNGs
+swift run -q realityhd shaders                   # load every ShaderGraph variant
+swift run -q realityhd catalog                   # regenerate CATALOG.md
+swift run -q realityhd new prop wheelbarrow --theme Construction   # scaffold + register
+swift run -c release realityhd bench
+
+# 3.0 agent loop
+swift run -q realityhd context prop              # API, materials, props, loop in one print
+swift run -q realityhd brief copper-kettle --theme Kitchen --name "Hammered copper kettle"
+swift run -q realityhd new prop copper-kettle --brief briefs/copper-kettle.json
+swift run -q realityhd lint copper-kettle        # budget, grounding, texel scale, size vs brief
+swift run -q realityhd gate copper-kettle --ref photo.jpg    # sheet, compare, report, verdict template
+swift run -q realityhd gate copper-kettle --verdict out/gate/copper-kettle/verdict.json --signoff
+python3 Scripts/vision_judge.py copper-kettle    # headless verdict via the Claude API
 ```
+
+Coding agents: `.claude/skills/realityhd-prop` runs the loop end to end; `realityhd-gate` holds the
+rubric and scoring.
 
 ## Package structure
 
@@ -265,8 +283,8 @@ swift run -c release realforge bench
 | `RealCore` | Surfaces, models, LODs, primitives, tree generator, noise, scatter. No RealityKit. |
 | `RealMaterials` | `MaterialSpec`, material library by family (`Library/`), Metal texture programs (`Shaders/`), sky. |
 | `RealKit` | LowLevelMesh upload, material cache, ShaderGraph emitter, environment, LOD, instancing, preview. |
-| `RealLibrary` | `RealAsset` and registries (`Core/`), building helpers, `Nature/`, `Props/<Theme>/`, `Structures/`, `Scenes/`, `RealForge` entry points. |
-| `realforge` | Command-line tool. |
+| `RealLibrary` | `RealAsset` and registries (`Core/`), building helpers, `Nature/`, `Props/<Theme>/`, `Structures/`, `Scenes/`, `RealityHD` entry points. |
+| `realityhd` | Command-line tool. |
 
 One asset per file. The full tree and conventions are in [AGENTS.md](AGENTS.md); design notes in
 [DESIGN.md](DESIGN.md).
@@ -279,14 +297,14 @@ guides for [assets](docs/guides/assets.md), [scenes](docs/guides/scenes.md) and
 [materials](docs/guides/materials.md).
 
 ```sh
-swift run -q realforge new prop wheelbarrow --theme Construction --author your-handle
+swift run -q realityhd new prop wheelbarrow --theme Construction --author your-handle
 # write build(seed:), then:
-swift test && swift run -q realforge render wheelbarrow
-swift run -q realforge thumbs wheelbarrow && swift run -q realforge catalog
+swift test && swift run -q realityhd render wheelbarrow
+swift run -q realityhd thumbs wheelbarrow && swift run -q realityhd catalog
 ```
 
 Coding agents read [AGENTS.md](AGENTS.md); IDEAS.md ends with prompts to paste into one.
 
 ## License
 
-RealForge is available under the MIT license. See [LICENSE](LICENSE).
+RealityHD is available under the MIT license. See [LICENSE](LICENSE).

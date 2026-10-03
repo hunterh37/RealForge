@@ -2,10 +2,10 @@
 
 A scene is a `RealSceneBuilder`: metadata plus `build(seed:) -> RealScene`. A `RealScene` holds
 single entities (`singles`), GPU-instanced fields (`fields`) and a camera hint. `scene.entity()` uploads
-it; the demo app and `realforge render` use the camera hint.
+it; the demo app and `realityhd render` use the camera hint.
 
 ```sh
-swift run -q realforge new scene harbor-dock --author your-handle
+swift run -q realityhd new scene harbor-dock --author your-handle
 ```
 
 ## Structure
@@ -50,17 +50,17 @@ public struct HarborDock: RealSceneBuilder {
   The demo app puts the viewer's feet at the eye position.
 - `scene.farGround` (default `ground.meadow`) extends the ground to the horizon; set it to a material
   that matches the scene edge, or `nil` for enclosed scenes.
-- Keep `worstCaseTriangles` reasonable. `realforge bench` prints it per scene. Vision Pro holds
+- Keep `worstCaseTriangles` reasonable. `realityhd bench` prints it per scene. Vision Pro holds
   frame rate with LOD and culling doing their job; check that distant fields actually reach LOD2.
 
 ## Checking it
 
 ```sh
 swift test --filter SceneTests
-swift run -q realforge render harbor-dock                       # camera hint
-swift run -q realforge render harbor-dock --eye 4,1.7,2 --at 0,1,-8 --sky golden
-swift run -q realforge thumbs harbor-dock && swift run -q realforge catalog
+swift run -q realityhd render harbor-dock                       # camera hint
+swift run -q realityhd render harbor-dock --eye 4,1.7,2 --at 0,1,-8 --sky golden
+swift run -q realityhd thumbs harbor-dock && swift run -q realityhd catalog
 ```
 
-Then add a case to `DemoScene` in `Demo/RealForgeDemo/DemoApp.swift` and walk it on device or in the
+Then add a case to `DemoScene` in `Demo/RealityHDDemo/DemoApp.swift` and walk it on device or in the
 simulator (`-scene harbor-dock`).

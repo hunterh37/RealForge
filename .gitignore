@@ -4,3 +4,5 @@
 DerivedData/
 out/
 .DS_Store
+briefs/refs/
+__pycache__/

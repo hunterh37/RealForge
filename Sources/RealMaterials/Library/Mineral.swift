@@ -14,6 +14,6 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x1E1E1F); $0.colorB = linear(0x5A5853); $0.knobs = V4(0.5, 0, 0, 0); $0.tileSize = 2; $0.normalStrength = 4; $0.resolution = 2048
             $0.antiTile = true
         },
-        // realforge:material.mineral
+        // realityhd:material.mineral
     ]
 }

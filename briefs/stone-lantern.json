@@ -1,0 +1,35 @@
+{
+  "budget": 14000,
+  "id": "stone-lantern",
+  "kind": "prop",
+  "materials": [
+    "stone.granite-moss"
+  ],
+  "name": "Kasuga stone lantern",
+  "notes": "Depth is across the hexagon flats.",
+  "parts": [
+    "hexagonal foundation stone (kiso)",
+    "round post with carved bands (sao)",
+    "hexagonal middle platform with lotus petals (chudai)",
+    "light box with deer and moon openings (hibukuro)",
+    "six-sided roof with upturned corners (kasa)",
+    "lotus bud jewel finial (hoju)"
+  ],
+  "references": [],
+  "size": [
+    0.62,
+    1.5,
+    0.54
+  ],
+  "style": "temple garden granite, rounded by weather, moss on horizontal ledges, lichen speckle",
+  "summary": "Kasuga-style granite garden lantern, 1.5 m: hexagonal base, round shaft, carved light box with openings, curved roof, jewel finial.",
+  "tags": [
+    "prop",
+    "garden",
+    "stone",
+    "decor"
+  ],
+  "theme": "Garden",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

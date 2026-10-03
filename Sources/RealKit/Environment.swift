@@ -14,10 +14,12 @@ public struct SunSky: Sendable {
     public var azimuth: Float = 135
     /// 1.6 = very clear, 3 = hazy, 6 = smoggy.
     public var turbidity: Float = 2.2
-    /// Directional sun illuminance (RealityKit lux units).
-    public var sunLux: Float = 3000
+    /// Directional sun illuminance (RealityKit lux units). With `iblExposure` this sets the
+    /// sun-to-sky balance: 9000 / -0.3 EV puts sunny-day shadows at roughly a third of lit ground
+    /// (3000 / 0.9 left them at ~0.85, which read as overcast).
+    public var sunLux: Float = 9000
     /// IBL exponent (EV) applied to the sky dome.
-    public var iblExposure: Float = 0.9
+    public var iblExposure: Float = -0.3
     /// Shadow distance in meters (cascaded automatically).
     public var shadowDistance: Float = 40
     public var skyResolution: Int = 1024
@@ -66,7 +68,7 @@ public final class RealEnvironment {
             RealAtmosphere.fogColor = acc / Float(w) * p.fogBrightness
             RealAtmosphere.fogDensity = p.fogDensity
         }
-        resource = try EnvironmentResource(equirectangular: iblImage, withName: "realforge.sky")
+        resource = try EnvironmentResource(equirectangular: iblImage, withName: "realityhd.sky")
         ibl.name = "IBL"
         ibl.components.set(ImageBasedLightComponent(source: .single(resource), intensityExponent: p.iblExposure))
         root.addChild(ibl)
@@ -88,7 +90,7 @@ public final class RealEnvironment {
         if skybox {
             let skyTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: p.skyResolution * 2, drawSun: true, exposure: 1.25))
             if let img = synth.cgImage(skyTex) {
-                let tr = try TextureResource(image: img, withName: "realforge.skybox", options: .init(semantic: .hdrColor, mipmapsMode: .none))
+                let tr = try TextureResource(image: img, withName: "realityhd.skybox", options: .init(semantic: .hdrColor, mipmapsMode: .none))
                 var m = UnlitMaterial()
                 m.color = .init(tint: .white, texture: .init(tr))
                 m.faceCulling = .none

@@ -1,0 +1,38 @@
+{
+  "budget": 15000,
+  "id": "chesterfield-armchair",
+  "kind": "prop",
+  "materials": [
+    "leather.oxblood",
+    "wood.mahogany",
+    "metal.brass-aged"
+  ],
+  "name": "Chesterfield club armchair",
+  "notes": "",
+  "parts": [
+    "deep-buttoned back and arms in a diamond grid",
+    "scroll-rolled arm fronts",
+    "loose seat cushion with piped edges",
+    "nailhead trim along the base rail and arm fronts",
+    "plain base rail",
+    "four turned mahogany bun feet"
+  ],
+  "references": [],
+  "size": [
+    1.05,
+    0.78,
+    0.9
+  ],
+  "style": "English gentleman's club, waxed leather creased on the seat, lighter rub on arm tops",
+  "summary": "Chesterfield club armchair: button-tufted oxblood leather, rolled arms level with the back, nailhead trim, turned mahogany feet.",
+  "tags": [
+    "prop",
+    "furniture",
+    "leather",
+    "interior",
+    "antique"
+  ],
+  "theme": "Furniture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

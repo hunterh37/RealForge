@@ -8,8 +8,8 @@ anti-tiling, triplanar projection, a world-up top layer and aerial fog.
 ## Adding a variant
 
 ```sh
-swift run -q realforge new material wood.walnut --like wood.oak
-swift run -q realforge textures wood.walnut --size 512        # out/tex/wood.walnut-albedo.png
+swift run -q realityhd new material wood.walnut --like wood.oak
+swift run -q realityhd textures wood.walnut --size 512        # out/tex/wood.walnut-albedo.png
 ```
 
 Change colors and `seed` so the variant is distinct, then render an asset that uses it. Colors are
@@ -27,7 +27,7 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `tileSize` | meters per texture repeat; `0` = atlas UVs (foliage) |
 | `resolution` | 512, 1024 or 2048 before the quality preset scales it |
 | `normalStrength` | height-to-normal gain |
-| `mode` | `.opaque`, `.cutout` (alpha-tested, needs `twoSided`), `.emissive` |
+| `mode` | `.opaque`, `.cutout` (alpha-tested, needs `twoSided`), `.emissive`, `.transparent` (alpha-blended, `opacity` plus Fresnel) |
 | `hasMetallicMap` | program writes metalness (painted and rusted metal) |
 | `roughness`, `metallic`, `baseColor`, `emissive`, `emissiveIntensity` | scalar values and fallbacks |
 | `wind` | vertex sway in meters at weight 1 |
@@ -35,6 +35,8 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `antiTile` | two-scale plus macro variation for large surfaces |
 | `triplanar` | object-space projection (rock) |
 | `topColor`, `topAmount`, `topLow` | world-up layer (moss, snow, dust) by normal.y |
+| `splat`, `splatSoftness`, `splatHeight` | second material blended by per-vertex `Surface.splat` weights (`paintSplat`); `realityhd demo splat` |
+| `flow` | transparent water: ripple normal scroll speed (tiles/s); `Surface.splat` = shallowness; `realityhd demo water` |
 
 ## Program parameters
 
@@ -55,6 +57,7 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `asphalt` | binder | aggregate | | x cracks |
 | `plastic` | color | | | x scuffs, y dirt, z roughness |
 | `brick` | brick | brick variation | mortar | |
+| `water` | deep body color | shallow color (ShaderGraph) | | x chop |
 
 Read the program in `Sources/RealMaterials/Shaders/` before relying on a knob; the table is a summary.
 
@@ -68,13 +71,25 @@ Read the program in `Sources/RealMaterials/Shaders/` before relying on a knob; t
 4. Append `case myProgram` to `TextureProgram`. The case name is the Metal function name; dispatch is
    generated, and `MaterialTests` checks both sides.
 5. Add at least one material that uses it (tests require every program to be used).
-6. `swift run -q realforge textures <key> --size 1024`: check tiling by viewing the PNG tiled 2x2,
+6. `swift run -q realityhd textures <key> --size 1024`: check tiling by viewing the PNG tiled 2x2,
    check the normal map for stair-stepping, check roughness range.
 
 Texture V: row 0 is v = 0. Atlas content is drawn with v up the card.
 
 ## ShaderGraph options
 
-`RealKit/ShaderGraph.swift` emits USDA from `RealShaderOptions` (8 flags, 256 variants). After any
-change, `swift run -q realforge shaders` must report 0 failures, and `--pbr` renders must still work
+`RealKit/ShaderGraph.swift` emits USDA from `RealShaderOptions` (12 flags; `shaders` loads every valid combination). After any
+change, `swift run -q realityhd shaders` must report 0 failures, and `--pbr` renders must still work
 (the `PhysicallyBasedMaterial` fallback).
+
+## RealityHD 3 craft programs
+
+| program | colorA / B / C | knobs x y z w | keys |
+|---|---|---|---|
+| `leather` | dye / crease / rubbed | grain cells per tile, wear, roughness, creases | `leather.tan` `leather.oxblood` `leather.oxblood-worn` `leather.black` |
+| `brushedMetal` | metal / smudge | streaks, roughness, smudges, scratches (grain along U) | `metal.aluminum-brushed` `metal.stainless` |
+| `polishedMetal` | metal / tarnish / verdigris | tarnish, patina, dents per tile, roughness | `metal.brass` `metal.brass-aged` `metal.copper` `metal.copper-patina` |
+| `ceramicGlaze` | glaze / thin glaze / speckle | speckle, runs, crackle, roughness (runs along V) | `ceramic.stoneware` `ceramic.cobalt` `ceramic.celadon` `ceramic.bisque` |
+| `caneWeave` | cane / shadow | cells per tile, strand width, roughness, aging (cutout) | `cane.woven` |
+
+Feature size = tileSize / count: leather pebbles 1.5-3 mm, hammer dents 10-15 mm, cane holes 8-12 mm.

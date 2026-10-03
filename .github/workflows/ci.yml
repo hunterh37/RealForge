@@ -18,5 +18,5 @@ jobs:
         run: swift test
       - name: CATALOG.md is current
         run: |
-          swift run -q realforge catalog
-          git diff --exit-code CATALOG.md || (echo "::error::run 'swift run -q realforge catalog' and commit CATALOG.md" && exit 1)
+          swift run -q realityhd catalog
+          git diff --exit-code CATALOG.md || (echo "::error::run 'swift run -q realityhd catalog' and commit CATALOG.md" && exit 1)

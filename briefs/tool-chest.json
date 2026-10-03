@@ -1,0 +1,41 @@
+{
+  "budget": 14000,
+  "id": "tool-chest",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat",
+    "metal.aluminum-brushed",
+    "rubber",
+    "metal.chrome"
+  ],
+  "name": "Rolling tool chest",
+  "notes": "Width includes the side push handle.",
+  "parts": [
+    "cabinet body with folded edges",
+    "eight drawers of three heights with gaps",
+    "full-width brushed aluminum drawer pulls",
+    "lift-up lid with gas strut seam",
+    "rubber top mat",
+    "side push handle tube",
+    "four swivel casters",
+    "key lock"
+  ],
+  "references": [],
+  "size": [
+    0.8,
+    0.95,
+    0.48
+  ],
+  "style": "professional garage chest, glossy red, scratched by tools around the pulls",
+  "summary": "Rolling mechanic's tool chest: red powder-coated steel cabinet, eight drawers with aluminum pulls, side handle, casters.",
+  "tags": [
+    "prop",
+    "workshop",
+    "metal",
+    "container",
+    "tool"
+  ],
+  "theme": "Workshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

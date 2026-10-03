@@ -272,7 +272,7 @@ Issue-sized; discuss in an issue before starting.
 - Decals: projected cards for stains, leaves, graffiti-free signage.
 - Per-instance color variation for fields (tint jitter through a custom instance attribute).
 - Collision shapes from assets (`CollisionComponent` boxes and hulls) for interactive apps.
-- USDZ export of a generated asset (`realforge export <id>`) for Reality Composer Pro.
+- USDZ export of a generated asset (`realityhd export <id>`) for Reality Composer Pro.
 - Snow and wet variants of the top layer, driven by a global weather parameter.
 
 ## Prompting a coding agent
@@ -283,10 +283,10 @@ Single asset:
 
 ```
 Read AGENTS.md and docs/guides/assets.md. Add the `wheelbarrow` prop from docs/IDEAS.md
-(Construction site pack) with `realforge new prop wheelbarrow --theme Construction --author <me>`.
+(Construction site pack) with `realityhd new prop wheelbarrow --theme Construction --author <me>`.
 Model a real builder's wheelbarrow with real dimensions. Follow the photoreal checklist. Iterate
-with `realforge render` from at least two angles until scale, bevels and materials look right. Finish
-with swift test, realforge thumbs, realforge catalog.
+with `realityhd render` from at least two angles until scale, bevels and materials look right. Finish
+with swift test, realityhd thumbs, realityhd catalog.
 ```
 
 Whole pack:
@@ -302,6 +302,6 @@ New material family:
 
 ```
 Read AGENTS.md and docs/guides/materials.md. Add a `fabricWeave` texture program and the materials
-fabric.burlap, fabric.canvas and fabric.nylon. Verify tiling with realforge textures at 1024, then
+fabric.burlap, fabric.canvas and fabric.nylon. Verify tiling with realityhd textures at 1024, then
 render sandbag and dome-tent placeholders that use them.
 ```

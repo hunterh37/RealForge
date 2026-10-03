@@ -99,6 +99,18 @@ public struct RealShaderOptions: Hashable, Sendable {
     public var fog = true
     /// Object-space triplanar projection for color/roughness/AO (rocks: no stretching on steep facets).
     public var triplanar = false
+    /// Per-instance hue/value/saturation variation hashed from the instance origin (object-to-world
+    /// transform of 0), plus a low-frequency patch term so neighbors drift together. Works for
+    /// MeshInstancesComponent instances and plain entities alike.
+    public var instanceJitter = false
+    /// Second texture layer (BaseColor2/Normal2/Roughness2) blended by the per-vertex splat weight
+    /// in uv2.y, with a height-style edge from the luminance difference of the two layers.
+    public var splat = false
+    /// Alpha-blended surface: opacity rises from `Opacity` to 1 with Fresnel; uv2.y is shallowness
+    /// (0 deep, 1 shoreline) and blends toward `ShallowColor` and lower opacity.
+    public var transparent = false
+    /// Two normal-map samples scrolling over time at `Flow` tiles per second (water ripples).
+    public var flowNormals = false
     public init() {}
 }
 
@@ -126,6 +138,38 @@ public enum RealShaderGraph {
             let mixed = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", "0.45")], out: "color3f")
             rgb = g.node("ND_multiply_color3FA", [("color3f", "in1", mixed), ("float", "in2", macro)], out: "color3f")
         }
+        var splatMask: String?, uvS: String?
+        if o.splat {
+            let uv2 = g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2")
+            let w = g.separate("ND_separate2_vector2", "float2", uv2, ["outx", "outy"])[1]
+            let us = g.node("ND_multiply_vector2FA", [("float2", "in1", uv0), ("float", "in2", g.param("UVScale2"))], out: "float2")
+            uvS = us
+            let b2 = g.separate("ND_separate4_color4", "color4f", g.texture("BaseColor2", us, color: true), ["outr", "outg", "outb", "outa"])
+            let rgb2 = g.node("ND_combine3_color3", [("float", "in1", b2[0]), ("float", "in2", b2[1]), ("float", "in3", b2[2])], out: "color3f")
+            // Height-style transition: brighter (raised) texels of either layer win near the boundary.
+            let l1 = g.add(g.mul(bc[0], "0.4"), g.mul(bc[1], "0.6")), l2 = g.add(g.mul(b2[0], "0.4"), g.mul(b2[1], "0.6"))
+            let t = g.add(g.add(g.mul(w, "2"), "-1"), g.mul(g.add(l2, g.mul(l1, "-1")), g.param("SplatHeight")))
+            let soft = g.param("SplatSoftness")
+            let mask = g.node("ND_smoothstep_float", [("float", "in", t), ("float", "low", g.mul(soft, "-1")), ("float", "high", soft)], out: "float")
+            splatMask = mask
+            rgb = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", mask)], out: "color3f")
+        }
+        if o.instanceJitter {
+            let org = g.node("ND_transformpoint_vector3", [("float3", "in", "(0, 0, 0)"), ("string", "fromspace", "\"object\""), ("string", "tospace", "\"world\"")], out: "float3")
+            // cellnoise is constant per unit cell: scale so instances 0.1 m apart land in different cells.
+            let p1 = g.node("ND_multiply_vector3FA", [("float3", "in1", org), ("float", "in2", "9.73")], out: "float3")
+            let p2 = g.node("ND_add_vector3", [("float3", "in1", p1), ("float3", "in2", "(17.3, 5.1, 31.7)")], out: "float3")
+            let c1 = g.add(g.node("ND_cellnoise3d_float", [("float3", "position", p1)], out: "float"), "-0.5")
+            let c2 = g.add(g.node("ND_cellnoise3d_float", [("float3", "position", p2)], out: "float"), "-0.5")
+            let pm = g.node("ND_multiply_vector3FA", [("float3", "in1", org), ("float", "in2", "0.09")], out: "float3")
+            let macro = g.node("ND_noise3d_float", [("float", "amplitude", "1"), ("float", "pivot", "0"), ("float3", "position", pm)], out: "float")
+            // Hue leans negative (green toward yellow: drier, older growth) more than toward blue.
+            let hue = g.mul(g.add(g.add(g.mul(c1, "2"), g.mul(macro, "0.8")), "-0.35"), g.param("HueJitter"))
+            let val = g.add("1", g.mul(g.add(g.mul(c2, "2"), macro), g.param("ValueJitter")))
+            let sat = g.add("1", g.mul(g.add(g.mul(c1, "-1"), g.mul(macro, "-1")), g.param("ValueJitter")))
+            let amt = g.node("ND_combine3_vector3", [("float", "in1", hue), ("float", "in2", sat), ("float", "in3", val)], out: "float3")
+            rgb = g.node("ND_hsvadjust_color3", [("color3f", "in", rgb), ("float3", "amount", amt)], out: "color3f")
+        }
         var tint = g.node("ND_multiply_color3", [("color3f", "in1", rgb), ("color3f", "in2", g.param("Tint"))], out: "color3f")
         // Baked vertex AO (uv2.x): darkens albedo in crowns/crevices, and multiplies texture AO below.
         let uv1s = g.node("ND_texcoord_vector2", [("int", "index", "1")], out: "float2")
@@ -145,6 +189,20 @@ public enum RealShaderGraph {
             tint = g.node("ND_mix_color3", [("color3f", "fg", topCol), ("color3f", "bg", tint), ("float", "mix", mask)], out: "color3f")
         }
         var fogF: String?
+        var opacity: String?
+        if o.transparent {
+            let uv2 = g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2")
+            let shallow = g.separate("ND_separate2_vector2", "float2", uv2, ["outx", "outy"])[1]
+            tint = g.node("ND_mix_color3", [("color3f", "fg", g.param("ShallowColor")), ("color3f", "bg", tint), ("float", "mix", g.mul(shallow, "0.8"))], out: "color3f")
+            let wn = g.node("ND_normal_vector3", [("string", "space", "\"world\"")], out: "float3")
+            let vd = g.node("ND_realitykit_viewdirection_vector3", [], out: "float3")
+            let c = g.node("ND_absval_float", [("float", "in", g.node("ND_dotproduct_vector3", [("float3", "in1", wn), ("float3", "in2", vd)], out: "float"))], out: "float")
+            let m = g.add("1", g.mul(g.node("ND_min_float", [("float", "in1", c), ("float", "in2", "1")], out: "float"), "-1"))
+            let m2 = g.mul(m, m)
+            let fres = g.add("0.02", g.mul(g.mul(g.mul(m2, m2), m), "0.98"))
+            let base = g.mul(g.param("Opacity"), g.add("1", g.mul(shallow, "-0.75")))
+            opacity = g.node("ND_mix_float", [("float", "fg", "1"), ("float", "bg", base), ("float", "mix", fres)], out: "float")
+        }
         if o.fog {
             let wp = g.node("ND_position_vector3", [("string", "space", "\"world\"")], out: "float3")
             let cam = g.node("ND_realitykit_cameraposition_vector3", [], out: "float3")
@@ -155,10 +213,24 @@ public enum RealShaderGraph {
             fogF = f
             tint = g.node("ND_multiply_color3FA", [("color3f", "in1", tint), ("float", "in2", g.add("1", g.mul(f, "-1")))], out: "color3f")
         }
-        var nt = g.texture("Normal", uv, color: false)
+        var nt: String
+        if o.flowNormals {
+            let t = g.mul(g.node("ND_time_float", [], out: "float"), g.param("Flow"))
+            let offA = g.node("ND_combine2_vector2", [("float", "in1", g.mul(t, "0.8")), ("float", "in2", g.mul(t, "0.6"))], out: "float2")
+            let offB = g.node("ND_combine2_vector2", [("float", "in1", g.mul(t, "-0.55")), ("float", "in2", g.mul(t, "0.83"))], out: "float2")
+            let uvA = g.node("ND_add_vector2", [("float2", "in1", uv), ("float2", "in2", offA)], out: "float2")
+            let uvB0 = g.node("ND_multiply_vector2FA", [("float2", "in1", uv), ("float", "in2", "1.37")], out: "float2")
+            let uvB = g.node("ND_add_vector2", [("float2", "in1", uvB0), ("float2", "in2", offB)], out: "float2")
+            nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal", uvA, color: false)), ("float4", "bg", g.texture("Normal", uvB, color: false)), ("float", "mix", "0.5")], out: "float4")
+        } else {
+            nt = g.texture("Normal", uv, color: false)
+        }
         if let uvB {
             let nt2 = g.texture("Normal", uvB, color: false)
             nt = g.node("ND_mix_vector4", [("float4", "fg", nt2), ("float4", "bg", nt), ("float", "mix", "0.45")], out: "float4")
+        }
+        if let splatMask, let uvS {
+            nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal2", uvS, color: false)), ("float4", "bg", nt), ("float", "mix", splatMask)], out: "float4")
         }
         // RG8 normal: reconstruct z = sqrt(1 - x^2 - y^2) in tangent space.
         let nc = g.separate("ND_separate4_vector4", "float4", nt, ["outx", "outy", "outz", "outw"])
@@ -168,6 +240,10 @@ public enum RealShaderGraph {
         let normal = g.node("ND_combine3_vector3", [("float", "in1", nx), ("float", "in2", ny), ("float", "in3", nz)], out: "float3")
         let rt = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("Roughness", color: false, scale: g.param("UVScale")) : g.texture("Roughness", uv, color: false), ["outx", "outy", "outz", "outw"])
         var rough = rt[0]
+        if let splatMask, let uvS {
+            let r2 = g.separate("ND_separate4_vector4", "float4", g.texture("Roughness2", uvS, color: false), ["outx", "outy", "outz", "outw"])[0]
+            rough = g.node("ND_mix_float", [("float", "fg", r2), ("float", "bg", rough), ("float", "mix", splatMask)], out: "float")
+        }
         if let topMask { rough = g.node("ND_mix_float", [("float", "fg", "0.95"), ("float", "bg", rough), ("float", "mix", topMask)], out: "float") }
         var surfaceInputs: [(String, String, String)] = [
             ("color3f", "baseColor", tint), ("float3", "normal", normal), ("float", "roughness", rough),
@@ -175,7 +251,9 @@ public enum RealShaderGraph {
         ]
         if o.aoMap {
             let at = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("AO", color: false, scale: g.param("UVScale")) : g.texture("AO", uv, color: false), ["outx", "outy", "outz", "outw"])
-            surfaceInputs.append(("float", "ambientOcclusion", g.mul(at[0], vao)))
+            var ao = at[0]
+            if let splatMask { ao = g.node("ND_mix_float", [("float", "fg", "0.9"), ("float", "bg", ao), ("float", "mix", splatMask)], out: "float") }
+            surfaceInputs.append(("float", "ambientOcclusion", g.mul(ao, vao)))
         } else {
             surfaceInputs.append(("float", "ambientOcclusion", vao))
         }
@@ -183,6 +261,7 @@ public enum RealShaderGraph {
             let mt = g.separate("ND_separate4_vector4", "float4", g.texture("Metallic", uv, color: false), ["outx", "outy", "outz", "outw"])
             surfaceInputs.append(("float", "metallic", mt[0]))
         }
+        if let opacity { surfaceInputs.append(("float", "opacity", opacity)) }
         if o.cutout {
             surfaceInputs.append(("float", "opacity", bc[3]))
             surfaceInputs.append(("float", "opacityThreshold", g.param("OpacityThreshold")))
@@ -225,9 +304,17 @@ public enum RealShaderGraph {
             let fArg = g.add(g.mul(t, "7.1"), g.add(g.mul(phase, "5"), g.add(g.mul(p[0], "4.1"), g.mul(p[1], "3.3"))))
             let flutter = g.mul(g.mul(g.sin(fArg), weight), g.mul(g.param("WindStrength"), g.param("Flutter")))
             let dir = g.separate("ND_separate3_vector3", "float3", g.param("WindDirection"), ["outx", "outy", "outz"])
-            let ox = g.add(g.mul(sway, dir[0]), flutter)
-            let oy = g.mul(flutter, "0.7")
-            let oz = g.add(g.mul(sway, dir[2]), g.mul(flutter, "-0.6"))
+            // Leaf flutter from the per-vertex phase in uv2.x (Surface.extra.y). The phase enters as
+            // sin(2*pi*phase), so an integer layer index packed in front of a fractional phase does not
+            // change it. Vertices with extra.y == 0 get no extra motion (gate below).
+            let ph = g.separate("ND_separate2_vector2", "float2", g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2"), ["outx", "outy"])[0]
+            let gate = g.node("ND_clamp_float", [("float", "in", g.mul(g.node("ND_absval_float", [("float", "in", ph)], out: "float"), "1000")), ("float", "low", "0"), ("float", "high", "1")], out: "float")
+            let lArg = g.add(g.mul(t, g.param("LeafFlutterSpeed")), g.mul(ph, "6.2832"))
+            let leaf = g.mul(g.mul(g.mul(g.sin(lArg), weight), gate), g.mul(g.param("WindStrength"), g.param("LeafFlutter")))
+            let leaf2 = g.mul(g.mul(g.mul(g.sin(g.add(g.mul(lArg, "1.37"), "1.9")), weight), gate), g.mul(g.param("WindStrength"), g.param("LeafFlutter")))
+            let ox = g.add(g.add(g.mul(sway, dir[0]), flutter), leaf)
+            let oy = g.add(g.mul(flutter, "0.7"), g.mul(leaf2, "0.8"))
+            let oz = g.add(g.add(g.mul(sway, dir[2]), g.mul(flutter, "-0.6")), g.mul(leaf2, "-0.7"))
             let off = g.node("ND_combine3_vector3", [("float", "in1", ox), ("float", "in2", oy), ("float", "in3", oz)], out: "float3")
             vertex = g.node("ND_realitykit_geometrymodifier_vertexshader", [("float3", "modelPositionOffset", off)], out: "token")
         }
@@ -249,6 +336,15 @@ public enum RealShaderGraph {
                 asset inputs:Roughness = @@
                 asset inputs:AO = @@
                 asset inputs:Metallic = @@
+                asset inputs:BaseColor2 = @@
+                asset inputs:Normal2 = @@
+                asset inputs:Roughness2 = @@
+                float inputs:UVScale2 = 1
+                float inputs:SplatSoftness = 0.2
+                float inputs:SplatHeight = 1.5
+                float inputs:Opacity = 1
+                color3f inputs:ShallowColor = (0.4, 0.45, 0.3)
+                float inputs:Flow = 0
                 float inputs:UVScale = 1
                 color3f inputs:Tint = (1, 1, 1)
                 float inputs:Specular = 0.5
@@ -256,6 +352,8 @@ public enum RealShaderGraph {
                 float inputs:WindStrength = 0.05
                 float inputs:WindSpeed = 1.3
                 float inputs:Flutter = 0.3
+                float inputs:LeafFlutter = 0.12
+                float inputs:LeafFlutterSpeed = 11
                 float3 inputs:WindDirection = (0.8, 0, 0.6)
                 float3 inputs:SunDirection = (0, -1, 0)
                 float inputs:Translucency = 0.6
@@ -264,6 +362,8 @@ public enum RealShaderGraph {
                 color3f inputs:TopColor = (0.05, 0.09, 0.02)
                 float inputs:TopAmount = 1
                 float inputs:TopLow = 0.55
+                float inputs:HueJitter = 0
+                float inputs:ValueJitter = 0
                 token outputs:mtlx:surface.connect = \(surface)
 
         """

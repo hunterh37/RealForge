@@ -15,6 +15,6 @@ public extension MaterialLibrary {
         MaterialSpec(key: "rubber", program: .plastic).with {
             $0.colorA = linear(0x161616); $0.knobs = V4(0.3, 0.5, 0.85, 0); $0.tileSize = 0.5; $0.resolution = 512; $0.seed = 8
         },
-        // realforge:material.plastic
+        // realityhd:material.plastic
     ]
 }

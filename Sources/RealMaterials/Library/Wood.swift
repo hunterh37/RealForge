@@ -15,6 +15,6 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xD8B585); $0.colorB = linear(0xA0703E); $0.knobs = V4(0, 0.6, 0, 0); $0.seed = 4
             $0.tileSize = 1.0; $0.normalStrength = 1.5
         },
-        // realforge:material.wood
+        // realityhd:material.wood
     ]
 }

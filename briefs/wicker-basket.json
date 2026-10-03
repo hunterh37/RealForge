@@ -1,0 +1,38 @@
+{
+  "budget": 14000,
+  "id": "wicker-basket",
+  "kind": "prop",
+  "materials": [
+    "wood.rattan",
+    "leather.tan",
+    "metal.brass"
+  ],
+  "name": "Wicker picnic basket",
+  "notes": "",
+  "parts": [
+    "rectangular body woven over vertical stakes",
+    "braided rim border",
+    "two hinged lid halves",
+    "arched bentwood handle",
+    "two leather closure straps with brass buckles",
+    "flat woven base on skids"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.4,
+    0.3
+  ],
+  "style": "English country picnic hamper, sun-faded willow",
+  "summary": "Woven willow picnic basket: stake-and-strand weave, braided rim, hinged twin lids, bentwood handle, leather straps and buckles.",
+  "tags": [
+    "prop",
+    "decor",
+    "wood",
+    "container",
+    "leather"
+  ],
+  "theme": "Decor",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -32,6 +32,11 @@ public struct RealScene {
             if s.asset.levels.count == 1 { e = try await s.asset.levels[0].modelEntityAsync(materials: materials) }
             else { e = try await s.asset.entityAsync(materials: materials) }
             e.transform = Transform(scale: s.at.scale, rotation: s.at.rotation, translation: s.at.translation)
+            // Water and glass sheets: no sun shadow on the bed below.
+            let surfaces = s.asset.levels[0].surfaces
+            if !surfaces.isEmpty && surfaces.allSatisfy({ MaterialLibrary.spec(for: $0.material).mode == .transparent }) {
+                e.components.set(DynamicLightShadowComponent(castsShadow: false))
+            }
             root.addChild(e)
         }
         return root

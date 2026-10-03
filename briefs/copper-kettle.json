@@ -1,0 +1,37 @@
+{
+  "budget": 10000,
+  "id": "copper-kettle",
+  "kind": "prop",
+  "materials": [
+    "metal.copper",
+    "metal.brass",
+    "wood.walnut"
+  ],
+  "name": "Hammered copper kettle",
+  "notes": "",
+  "parts": [
+    "hammered copper body, wide base narrowing to the shoulder",
+    "domed lid with lip and wooden knob",
+    "curved gooseneck spout with drip lip",
+    "arched handle with brass mounts",
+    "turned wooden grip on the handle",
+    "rolled base rim"
+  ],
+  "references": [],
+  "size": [
+    0.3,
+    0.27,
+    0.2
+  ],
+  "style": "farmhouse copperware, polished but tarnished around the spout and base",
+  "summary": "Hammered copper stovetop kettle, 2 l: tinned seams, gooseneck spout, brass hinge, turned wooden handle grip and lid knob.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "antique"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

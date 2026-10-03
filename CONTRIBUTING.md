@@ -1,6 +1,6 @@
 # Contributing
 
-RealForge grows by small pull requests: one asset, one scene, one material or one engine change each.
+RealityHD grows by small pull requests: one asset, one scene, one material or one engine change each.
 Everything is Swift code that generates geometry and textures at load time, so a contribution is a
 source file, a thumbnail and a regenerated `CATALOG.md`.
 
@@ -11,10 +11,10 @@ Coding agents: point yours at [AGENTS.md](AGENTS.md). It holds the same workflow
 Xcode 26 (Swift 6.2 tools) on macOS 26 with a Metal GPU.
 
 ```sh
-git clone https://github.com/hunterh37/RealForge.git && cd RealForge
+git clone https://github.com/hunterh37/RealityHD.git && cd RealityHD
 swift build && swift test
-swift run -q realforge list
-swift run -q realforge render park-bench    # writes out/park-bench.png
+swift run -q realityhd list
+swift run -q realityhd render park-bench    # writes out/park-bench.png
 ```
 
 ## Picking work
@@ -28,13 +28,13 @@ swift run -q realforge render park-bench    # writes out/park-bench.png
 
 | Type | Command | Guide | Touches |
 |---|---|---|---|
-| Prop, nature asset, structure | `realforge new prop <id> --theme <Folder>` | [assets](docs/guides/assets.md) | one file in `Sources/RealLibrary/<Kind>/<Theme>/`, registry line |
-| Scene | `realforge new scene <id>` | [scenes](docs/guides/scenes.md) | one file in `Sources/RealLibrary/Scenes/`, registry line |
-| Material on an existing program | `realforge new material <family.variant> --like <key>` | [materials](docs/guides/materials.md) | one entry in `Sources/RealMaterials/Library/<Family>.swift` |
+| Prop, nature asset, structure | `realityhd new prop <id> --theme <Folder>` | [assets](docs/guides/assets.md) | one file in `Sources/RealLibrary/<Kind>/<Theme>/`, registry line |
+| Scene | `realityhd new scene <id>` | [scenes](docs/guides/scenes.md) | one file in `Sources/RealLibrary/Scenes/`, registry line |
+| Material on an existing program | `realityhd new material <family.variant> --like <key>` | [materials](docs/guides/materials.md) | one entry in `Sources/RealMaterials/Library/<Family>.swift` |
 | Texture program | by hand | [materials](docs/guides/materials.md) | `Shaders/<Family>Shaders.swift`, `TextureProgram` case, one material using it |
 | Engine (RealCore, RealKit) | by hand | [DESIGN.md](DESIGN.md) | open an issue first |
 
-Add `--author <github-handle>` to `realforge new` to be credited in `CATALOG.md`.
+Add `--author <github-handle>` to `realityhd new` to be credited in `CATALOG.md`.
 
 ## Definition of done
 
@@ -45,14 +45,14 @@ Add `--author <github-handle>` to `realforge new` to be credited in `CATALOG.md`
   (add new tags there in the same PR).
 - Deterministic for a seed, finite geometry, base at y = 0, centered on X/Z, LOD0 within `budget`.
 - Only `MaterialLibrary` keys. No image, mesh or USD files under `Sources/`.
-- `docs/assets/<id>.png` or `docs/scenes/<id>.png` from `realforge thumbs <id>`.
-- `CATALOG.md` regenerated (`realforge catalog`). CI fails when it is stale.
+- `docs/assets/<id>.png` or `docs/scenes/<id>.png` from `realityhd thumbs <id>`.
+- `CATALOG.md` regenerated (`realityhd catalog`). CI fails when it is stale.
 - Rendered and inspected: scale against a 1.8 m person, grounding, material scale, grain direction,
   bevels, no z-fighting, at two angles and the `golden` sky.
 
 ## Pull requests
 
-Fill in the template: ids, the thumbnail, `realforge stats <id>` output. Keep unrelated changes out.
+Fill in the template: ids, the thumbnail, `realityhd stats <id>` output. Keep unrelated changes out.
 Reviewers check the render first, then the code. Expect requests about realism (bevels, wear, scale)
 more than style.
 
