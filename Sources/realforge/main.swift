@@ -1,4 +1,5 @@
 import Foundation
+import RealKit
 
 @MainActor
 func run() async throws {
@@ -14,8 +15,9 @@ func run() async throws {
     case "new": try newCommand(args)
     case "bench": try await benchCommand()
     case "sky": try skyCommand(args)
+    case "demo": try await demoCommand(args)
     default: print(usage)
     }
 }
 
-do { try await run() } catch { print("error: \(error)"); exit(1) }
+do { try await run(); RealTextureDiskCache.flush() } catch { print("error: \(error)"); exit(1) }

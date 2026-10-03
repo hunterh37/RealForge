@@ -27,7 +27,7 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `tileSize` | meters per texture repeat; `0` = atlas UVs (foliage) |
 | `resolution` | 512, 1024 or 2048 before the quality preset scales it |
 | `normalStrength` | height-to-normal gain |
-| `mode` | `.opaque`, `.cutout` (alpha-tested, needs `twoSided`), `.emissive` |
+| `mode` | `.opaque`, `.cutout` (alpha-tested, needs `twoSided`), `.emissive`, `.transparent` (alpha-blended, `opacity` plus Fresnel) |
 | `hasMetallicMap` | program writes metalness (painted and rusted metal) |
 | `roughness`, `metallic`, `baseColor`, `emissive`, `emissiveIntensity` | scalar values and fallbacks |
 | `wind` | vertex sway in meters at weight 1 |
@@ -35,6 +35,8 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `antiTile` | two-scale plus macro variation for large surfaces |
 | `triplanar` | object-space projection (rock) |
 | `topColor`, `topAmount`, `topLow` | world-up layer (moss, snow, dust) by normal.y |
+| `splat`, `splatSoftness`, `splatHeight` | second material blended by per-vertex `Surface.splat` weights (`paintSplat`); `realforge demo splat` |
+| `flow` | transparent water: ripple normal scroll speed (tiles/s); `Surface.splat` = shallowness; `realforge demo water` |
 
 ## Program parameters
 
@@ -55,6 +57,7 @@ about 0x303030 (dark asphalt) and 0xE0E0E0 (fresh snow); stay inside it.
 | `asphalt` | binder | aggregate | | x cracks |
 | `plastic` | color | | | x scuffs, y dirt, z roughness |
 | `brick` | brick | brick variation | mortar | |
+| `water` | deep body color | shallow color (ShaderGraph) | | x chop |
 
 Read the program in `Sources/RealMaterials/Shaders/` before relying on a knob; the table is a summary.
 
@@ -75,6 +78,6 @@ Texture V: row 0 is v = 0. Atlas content is drawn with v up the card.
 
 ## ShaderGraph options
 
-`RealKit/ShaderGraph.swift` emits USDA from `RealShaderOptions` (8 flags, 256 variants). After any
+`RealKit/ShaderGraph.swift` emits USDA from `RealShaderOptions` (12 flags; `shaders` loads every valid combination). After any
 change, `swift run -q realforge shaders` must report 0 failures, and `--pbr` renders must still work
 (the `PhysicallyBasedMaterial` fallback).

@@ -12,10 +12,10 @@ struct RFVertex {
     var bx, by, bz: Float          // 36
     var u0, v0: Float              // 48
     var u1, v1: Float              // 56
-    var u2, v2: Float              // 64  (phase, reserved)
-    init(_ p: SIMD3<Float>, _ n: SIMD3<Float>, _ t: SIMD3<Float>, _ b: SIMD3<Float>, _ uv: SIMD2<Float>, _ e: SIMD2<Float>, _ ao: Float) {
+    var u2, v2: Float              // 64  (phase, splat weight)
+    init(_ p: SIMD3<Float>, _ n: SIMD3<Float>, _ t: SIMD3<Float>, _ b: SIMD3<Float>, _ uv: SIMD2<Float>, _ e: SIMD2<Float>, _ ao: Float, splat: Float = 0) {
         px = p.x; py = p.y; pz = p.z; nx = n.x; ny = n.y; nz = n.z; tx = t.x; ty = t.y; tz = t.z
-        bx = b.x; by = b.y; bz = b.z; u0 = uv.x; v0 = uv.y; u1 = e.x; v1 = e.y; u2 = ao; v2 = 0
+        bx = b.x; by = b.y; bz = b.z; u0 = uv.x; v0 = uv.y; u1 = e.x; v1 = e.y; u2 = ao; v2 = splat
     }
 }
 
@@ -48,7 +48,8 @@ public extension Model {
                     let n = s.normals[i], t4 = s.tangents[i], t = SIMD3(t4.x, t4.y, t4.z)
                     // USD/RealityKit UV origin is bottom-left; our generators already use v-up.
                     // uv1 = (wind weight, baked AO). ShaderGraph only exposes uv0/uv1.
-                    v[k] = RFVertex(s.positions[i], n, t, simd_cross(n, t) * t4.w, s.uvs[i], SIMD2(s.extra[i].x, s.occlusion[i]), s.extra[i].y)
+                    v[k] = RFVertex(s.positions[i], n, t, simd_cross(n, t) * t4.w, s.uvs[i], SIMD2(s.extra[i].x, s.occlusion[i]), s.extra[i].y,
+                                   splat: s.splat.isEmpty ? 0 : s.splat[i])
                     k += 1
                 }
             }

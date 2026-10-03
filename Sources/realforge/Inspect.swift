@@ -48,13 +48,25 @@ func shadersCommand(_ args: Args) async throws {
     let keepAlive = try RealityRenderer()
     _ = keepAlive
     var failures = 0
-    for bits in 0..<256 {
+    // One setter per RealShaderOptions flag; every combination is loaded.
+    let flags: [(inout RealShaderOptions, Bool) -> Void] = [
+        { $0.cutout = $1 }, { $0.wind = $1 }, { $0.translucency = $1 }, { $0.antiTile = $1 }, { $0.topLayer = $1 },
+        { $0.fog = $1 }, { $0.triplanar = $1 }, { $0.metallicMap = $1 }, { $0.instanceJitter = $1 }, { $0.splat = $1 },
+        { $0.transparent = $1 }, { $0.flowNormals = $1 },
+    ]
+    let t0 = Date()
+    var checked = 0
+    for bits in 0..<(1 << flags.count) {
         var o = RealShaderOptions()
-        o.cutout = bits & 1 != 0; o.wind = bits & 2 != 0; o.translucency = bits & 4 != 0
-        o.antiTile = bits & 8 != 0; o.topLayer = bits & 16 != 0; o.fog = bits & 32 != 0
-        o.triplanar = bits & 64 != 0; o.metallicMap = bits & 128 != 0
+        for (i, set) in flags.enumerated() { set(&o, bits & (1 << i) != 0) }
+        // Combinations no material produces: transparent water/glass never uses foliage or splat paths,
+        // and flow normals only come with transparency.
+        if o.flowNormals && !o.transparent { continue }
+        if o.transparent && (o.cutout || o.wind || o.translucency || o.splat || o.topLayer || o.triplanar) { continue }
+        checked += 1
         do { _ = try await RealShaderGraph.material(o) } catch { failures += 1; print("FAIL \(o): \(error)") }
     }
+    print("\(checked) variants in \(Int(Date().timeIntervalSince(t0)))s")
     if args.flag("--dump") {
         var o = RealShaderOptions(); o.cutout = true; o.wind = true; o.translucency = true; o.topLayer = true
         print(RealShaderGraph.usda(o))

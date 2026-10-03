@@ -52,6 +52,8 @@ public final class RealMaterialCache {
     /// Approximate GPU bytes held by generated textures (mips included).
     public private(set) var textureBytes: Int = 0
     public var overrides: [MaterialKey: MaterialSpec] = [:]
+    /// Texture sets loaded from `RealTextureDiskCache` vs generated on the GPU (since launch).
+    public private(set) var diskHits = 0, synthesized = 0
     /// Set false to force PhysicallyBasedMaterial everywhere (no wind, no translucency).
     public var useShaderGraph = true
 
@@ -79,10 +81,42 @@ public final class RealMaterialCache {
         }
     }
 
+    /// ShaderGraph material with per-instance hue/value jitter (instanced fields). Shares textures
+    /// with the plain variant. Falls back to the plain material when ShaderGraph is off.
+    /// - Parameters: hue: max hue shift in turns (0.02 = 7 degrees); value: max relative brightness change.
+    public func materialAsync(_ key: MaterialKey, hueJitter hue: Float, valueJitter value: Float) async -> any RealityKit.Material {
+        guard hue > 0 || value > 0 else { return await materialAsync(key) }
+        let vk = "\(key)#jitter\(hue),\(value)"
+        if let m = graph[vk] { return m }
+        let s = spec(key)
+        guard useShaderGraph, s.program != nil else { return material(key) }
+        do {
+            let m = try await buildGraph(s, jitter: SIMD2(hue, value))
+            graph[vk] = m
+            return m
+        } catch {
+            return material(key)
+        }
+    }
+
+    /// PhysicallyBasedMaterial copies with the base color scaled by `value` (PBR fallback for jitter).
+    public func material(_ key: MaterialKey, brightness value: Float) -> any RealityKit.Material {
+        let base = material(key)
+        guard value != 1, var m = base as? PhysicallyBasedMaterial else { return base }
+        m.baseColor.tint = .init(SIMD3(repeating: value) * spec(key).baseColorTintBase(textured: m.baseColor.texture != nil))
+        return m
+    }
+
     /// Pre-generate (e.g. behind a loading state) so first frames don't hitch.
     public func warm(_ keys: [MaterialKey]) async { for k in keys { _ = await materialAsync(k) } }
 
-    public func purge() { pbr.removeAll(); graph.removeAll(); tex.removeAll(); textureBytes = 0 }
+    /// Blocks until all queued texture work has finished on the GPU (benchmarks).
+    public func waitForGPU() {
+        guard let cb = TextureSynth.shared?.queue.makeCommandBuffer() else { return }
+        cb.commit(); cb.waitUntilCompleted()
+    }
+
+    public func purge() { pbr.removeAll(); graph.removeAll(); tex.removeAll(); alphaViews.removeAll(); alphaBacking.removeAll(); textureBytes = 0 }
 
     // MARK: textures
 
@@ -103,18 +137,27 @@ public final class RealMaterialCache {
         let ao = s.hasAOMap ? try lowLevel(.r8Unorm, n) : nil
         let metal = s.hasMetallicMap ? try lowLevel(.r8Unorm, n) : nil
         guard let cb = synth.queue.makeCommandBuffer() else { throw TextureSynth.SynthError.encode }
-        let scratchNormal = synth.makeTexture(.rg8Unorm, n)
-        let set = TextureSet(albedo: albedo.replace(using: cb), normal: scratchNormal, roughness: rough.replace(using: cb),
-                             ao: ao?.replace(using: cb), metallic: metal?.replace(using: cb))
-        try synth.encode(s, into: set, commandBuffer: cb)
-        if let blit = cb.makeBlitCommandEncoder() {
-            let dst = normal.replace(using: cb)
-            for level in 0..<scratchNormal.mipmapLevelCount {
-                let w = max(1, n >> level)
-                blit.copy(from: scratchNormal, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
-                          to: dst, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+        let dAlbedo = albedo.replace(using: cb), dNormal = normal.replace(using: cb), dRough = rough.replace(using: cb)
+        let dAO = ao?.replace(using: cb), dMetal = metal?.replace(using: cb)
+        let targets = [dAlbedo, dNormal, dRough] + [dAO, dMetal].compactMap { $0 }
+        if let cached = RealTextureDiskCache.load(s, n: n),
+           RealTextureDiskCache.encodeLoad(cached, s, n: n, into: targets, device: synth.device, commandBuffer: cb) {
+            diskHits += 1
+        } else {
+            let scratchNormal = synth.makeTexture(.rg8Unorm, n)
+            let set = TextureSet(albedo: dAlbedo, normal: scratchNormal, roughness: dRough, ao: dAO, metallic: dMetal)
+            try synth.encode(s, into: set, commandBuffer: cb)
+            if let blit = cb.makeBlitCommandEncoder() {
+                for level in 0..<scratchNormal.mipmapLevelCount {
+                    let w = max(1, n >> level)
+                    blit.copy(from: scratchNormal, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
+                              to: dNormal, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+                }
+                blit.endEncoding()
             }
-            blit.endEncoding()
+            RealTextureDiskCache.encodeStore(s, n: n, textures: [dAlbedo, scratchNormal, dRough] + [dAO, dMetal].compactMap { $0 },
+                                             device: synth.device, commandBuffer: cb)
+            synthesized += 1
         }
         cb.commit()
         let all = [albedo, normal, rough] + [ao, metal].compactMap { $0 }
@@ -128,6 +171,31 @@ public final class RealMaterialCache {
         return t
     }
 
+    /// Albedo copy swizzled to (a, a, a, a), for the PBR opacity slot. Cached by texture identity.
+    private var alphaViews: [ObjectIdentifier: TextureResource] = [:]
+    private func alphaView(_ t: RealTextures) throws -> TextureResource {
+        let src = t.backing[0]
+        if let r = alphaViews[ObjectIdentifier(src)] { return r }
+        guard let synth = TextureSynth.shared, let cb = synth.queue.makeCommandBuffer() else { throw TextureSynth.SynthError.encode }
+        let n = src.descriptor.width
+        let dst = try lowLevel(src.descriptor.pixelFormat, n, swizzle: .init(red: .alpha, green: .alpha, blue: .alpha, alpha: .alpha))
+        guard let blit = cb.makeBlitCommandEncoder() else { throw TextureSynth.SynthError.encode }
+        let from = src.read(), to = dst.replace(using: cb)
+        for level in 0..<from.mipmapLevelCount {
+            let w = max(1, n >> level)
+            blit.copy(from: from, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
+                      to: to, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+        }
+        blit.endEncoding()
+        cb.commit()
+        let r = try TextureResource(from: dst)
+        alphaViews[ObjectIdentifier(src)] = r
+        alphaBacking.append(dst)
+        textureBytes += n * n * 4 * 4 / 3
+        return r
+    }
+    private var alphaBacking: [LowLevelTexture] = []
+
     // MARK: builders
 
     private func buildPBR(_ s: MaterialSpec) throws -> any RealityKit.Material {
@@ -138,6 +206,7 @@ public final class RealMaterialCache {
         m.specular = .init(floatLiteral: s.specular)
         if s.clearcoat > 0 { m.clearcoat = .init(floatLiteral: s.clearcoat) }
         if s.twoSided { m.faceCulling = .none }
+        if s.mode == .transparent { m.blending = .transparent(opacity: .init(floatLiteral: s.opacity)) }
         if s.mode == .emissive {
             m.emissiveColor = .init(color: .init(s.emissive))
             m.emissiveIntensity = s.emissiveIntensity
@@ -149,20 +218,32 @@ public final class RealMaterialCache {
             if let ao = t.ao { m.ambientOcclusion = .init(texture: .init(ao)) }
             if let mt = t.metallic { m.metallic = .init(scale: 1, texture: .init(mt)) }
             if s.mode == .cutout {
-                m.blending = .transparent(opacity: .init(scale: 1, texture: .init(t.albedo)))
+                // PhysicallyBasedMaterial reads opacity from the red channel: give it a copy of the albedo
+                // whose swizzle routes alpha to every channel.
+                let a = (try? alphaView(t)).map { MaterialParameters.Texture($0) } ?? .init(t.albedo)
+                m.blending = .transparent(opacity: .init(scale: 1, texture: a))
                 m.opacityThreshold = 0.5
             }
-            if s.tileSize > 0 { m.textureCoordinateTransform = .init(scale: SIMD2(repeating: 1 / s.tileSize)) }
+            // PhysicallyBasedMaterial samples with v flipped relative to ShaderGraph texcoords; flip back
+            // so atlases (foliage cards) stand upright and tiled maps match the ShaderGraph path.
+            let k: Float = s.tileSize > 0 ? 1 / s.tileSize : 1
+            m.textureCoordinateTransform = .init(offset: SIMD2(0, s.tileSize > 0 ? 0 : 1), scale: SIMD2(k, -k))
         }
         return m
     }
 
-    private func buildGraph(_ s: MaterialSpec) async throws -> any RealityKit.Material {
+    private func buildGraph(_ s: MaterialSpec, jitter: SIMD2<Float> = .zero) async throws -> any RealityKit.Material {
         guard let t = try textures(s) else { throw TextureSynth.SynthError.encode }
         var o = RealShaderOptions()
         o.cutout = s.mode == .cutout; o.aoMap = t.ao != nil; o.metallicMap = t.metallic != nil
         o.wind = s.wind > 0; o.translucency = s.translucency > 0; o.antiTile = s.antiTile
         o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0; o.triplanar = s.triplanar
+        o.instanceJitter = jitter != .zero
+        o.transparent = s.mode == .transparent
+        o.flowNormals = s.mode == .transparent && s.flow > 0
+        let splatSpec = s.splat.map { spec($0) }
+        let t2 = try splatSpec.flatMap { try textures($0) }
+        o.splat = t2 != nil
         var m = try await RealShaderGraph.material(o)
         try m.setParameter(name: "BaseColor", value: .textureResource(t.albedo))
         try m.setParameter(name: "Normal", value: .textureResource(t.normal))
@@ -185,9 +266,31 @@ public final class RealMaterialCache {
             try m.setParameter(name: "TopAmount", value: .float(s.topAmount))
             try m.setParameter(name: "TopLow", value: .float(s.topLow))
         }
+        if o.transparent {
+            try m.setParameter(name: "Opacity", value: .float(s.opacity))
+            try m.setParameter(name: "ShallowColor", value: .color(cgLinear(SIMD3(s.colorB.x, s.colorB.y, s.colorB.z))))
+            try m.setParameter(name: "Flow", value: .float(s.flow))
+        }
+        if let t2, let splatSpec {
+            try m.setParameter(name: "BaseColor2", value: .textureResource(t2.albedo))
+            try m.setParameter(name: "Normal2", value: .textureResource(t2.normal))
+            try m.setParameter(name: "Roughness2", value: .textureResource(t2.roughness))
+            try m.setParameter(name: "UVScale2", value: .float(splatSpec.tileSize > 0 ? 1 / splatSpec.tileSize : 1))
+            try m.setParameter(name: "SplatSoftness", value: .float(max(0.01, s.splatSoftness)))
+            try m.setParameter(name: "SplatHeight", value: .float(s.splatHeight))
+        }
+        if o.instanceJitter {
+            try m.setParameter(name: "HueJitter", value: .float(jitter.x))
+            try m.setParameter(name: "ValueJitter", value: .float(jitter.y))
+        }
         if s.twoSided { m.faceCulling = .none }
         return m
     }
+}
+
+extension MaterialSpec {
+    /// Linear tint the PBR builder puts on the base color (white when textured).
+    func baseColorTintBase(textured: Bool) -> SIMD3<Float> { textured ? SIMD3(repeating: 1) : baseColor }
 }
 
 extension RealityKit.Material.Color {

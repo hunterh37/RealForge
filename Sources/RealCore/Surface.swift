@@ -16,6 +16,9 @@ public struct Surface: Sendable {
     public var extra: [V2] = []
     /// Baked per-vertex ambient occlusion (1 = open). Feeds the shader's AO and darkens albedo.
     public var occlusion: [Float] = []
+    /// Optional per-vertex weight (0...1) of the material's second layer (`MaterialSpec.splat`):
+    /// path wear, mud or moss on terrain. Empty = no splat. Set with `paintSplat`.
+    public var splat: [Float] = []
     public var indices: [UInt32] = []
 
     public init(material: MaterialKey) { self.material = material }
@@ -42,6 +45,10 @@ public struct Surface: Sendable {
         uvs += o.uvs
         extra += o.extra.count == o.positions.count ? o.extra : Array(repeating: .zero, count: o.positions.count)
         occlusion += o.occlusion.count == o.positions.count ? o.occlusion : Array(repeating: 1, count: o.positions.count)
+        if !o.splat.isEmpty || !splat.isEmpty {
+            if splat.count < Int(base) { splat += Array(repeating: 0, count: Int(base) - splat.count) }
+            splat += o.splat.count == o.positions.count ? o.splat : Array(repeating: 0, count: o.positions.count)
+        }
         if !o.tangents.isEmpty && tangents.count == base {
             tangents += x == .identity ? o.tangents : o.tangents.map { V4(x.direction(V3($0.x, $0.y, $0.z)), $0.w) }
         } else { tangents = [] }
@@ -121,12 +128,18 @@ public struct Surface: Sendable {
         }
     }
 
+    /// Sets the splat weight of every vertex from its position (clamped to 0...1).
+    public mutating func paintSplat(_ weight: (V3) -> Float) {
+        splat = positions.map { min(1, max(0, weight($0))) }
+    }
+
     /// Finalize: fill missing channels so every array matches positions.count.
     public mutating func finalize() {
         if normals.count != positions.count { recomputeNormals() }
         if uvs.count != positions.count { uvs = Array(repeating: .zero, count: positions.count) }
         if extra.count != positions.count { extra = Array(repeating: .zero, count: positions.count) }
         if occlusion.count != positions.count { occlusion = Array(repeating: 1, count: positions.count) }
+        if !splat.isEmpty && splat.count != positions.count { splat = Array(splat.prefix(positions.count)) + Array(repeating: 0, count: max(0, positions.count - splat.count)) }
         if tangents.count != positions.count { computeTangents() }
     }
 }
