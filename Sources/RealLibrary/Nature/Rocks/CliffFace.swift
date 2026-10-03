@@ -3,7 +3,8 @@ import Foundation
 
 /// Limestone cliff section 6 m long and 6 m high (4 to 8 m works), 1.6 m deep: bedded strata with protruding
 /// hard beds, undercut soft beds, jointed blocks and a rounded top lip. The face is +Z. Modular along X:
-/// both ends share one profile, so sections repeat at `place(x + i * length, z)`. 3 LODs.
+/// both ends share one profile, so with `endTaper = 0` sections repeat at `place(x + i * length, z)`. By default
+/// the ends taper into the ground with rounded rock caps. 3 LODs.
 public struct CliffFace: RealAsset {
     public static let id = "cliff-face"
     public static let summary = "Cliff section, 6 x 6 m: bedded strata ledges, undercuts, jointed blocks, rounded lip; tiles along X, 3 LODs."
@@ -19,6 +20,11 @@ public struct CliffFace: RealAsset {
     public var bedHeight: Float = 0.55
     public var ledgeDepth: Float = 0.28
     public var material: MaterialKey = "rock.limestone"
+    /// Length over which each free end shrinks toward the back and the ground, in meters. 0 keeps the full
+    /// profile at both ends, for tiling sections edge to edge.
+    public var endTaper: Float = 1.8
+    /// How far the rounded end caps swell out past each end, in meters (0 = flat).
+    public var endBulge: Float = 0.25
     /// Grid spacing in meters per LOD.
     public var spacing: [Float] = [0.07, 0.15, 0.34]
     public var lodDistances: [Float] = [25, 60]
@@ -90,6 +96,22 @@ public struct CliffFace: RealAsset {
             for j in 1...nTop { rows.append((1, Float(j) / Float(nTop))) }
             for j in 1...nBack { rows.append((2, H - (H + 0.3) * Float(j) / Float(nBack))) }
             func point(_ x: Float, _ r: (Int, Float)) -> V3 {
+                // Free ends: over `endTaper` the section shrinks toward the back and the ground, so the cliff
+                // dies into the slope and the end cap stays small.
+                var p = rawPoint(x, r)
+                if endTaper > 0 {
+                    // Beds stay level: the face recedes and everything above a falling ceiling is pressed down
+                    // onto it (soft minimum), which reads as the upper beds having weathered away.
+                    let t = pow(smoothstep(L / 2 - endTaper, L / 2, abs(x)), 1.2)
+                    let ceiling = H - t * H * 0.7
+                    let k: Float = 0.35
+                    let hcl = saturate(0.5 + 0.5 * (ceiling - p.y) / k)
+                    p.y = lerp(ceiling, p.y, hcl) - k * hcl * (1 - hcl)
+                    p.z = -depth * 0.8 + (p.z + depth * 0.8) * (1 - t * 0.6)
+                }
+                return p
+            }
+            func rawPoint(_ x: Float, _ r: (Int, Float)) -> V3 {
                 switch r.0 {
                 case 0:
                     // Round the lip over the last 0.4 m.
@@ -114,15 +136,39 @@ public struct CliffFace: RealAsset {
                 let a = j * row + i
                 s.quad(a, a + 1, a + row + 1, a + row)
             }}
-            // End caps: fan from the profile centroid. The profile is identical at both ends.
+            // End caps: concentric rings shrinking from the profile toward its centroid, bulged outward along X
+            // with rocky noise so a free end reads as a weathered rock end. The profile is identical at both ends.
+            let capRings = max(3, Int(8 * 0.07 / sp))
             for (end, x) in [(0, -L / 2), (1, L / 2)] {
+                let dir: Float = end == 0 ? -1 : 1
                 let ring = rows.map { point(x, $0) }
-                let c = ring.reduce(V3.zero, +) / Float(ring.count)
-                let ci = s.add(V3(x, c.y, c.z), V3(end == 0 ? -1 : 1, 0, 0), V2(c.z, c.y))
-                let first = UInt32(s.positions.count)
-                for p in ring { _ = s.add(p, V3(end == 0 ? -1 : 1, 0, 0), V2(p.z, p.y)) }
-                for k in 0..<UInt32(ring.count - 1) {
-                    if end == 0 { s.tri(ci, first + k, first + k + 1) } else { s.tri(ci, first + k + 1, first + k) }
+                // Center of the profile's bounding box (the face rows are far denser than the back rows).
+                let lo = ring.reduce(V3(repeating: .greatestFiniteMagnitude)) { simd_min($0, $1) }
+                let hi = ring.reduce(V3(repeating: -.greatestFiniteMagnitude)) { simd_max($0, $1) }
+                let c = (lo + hi) / 2
+                func capPoint(_ p: V3, _ f: Float) -> V3 {
+                    var q = lerp(p, V3(x, c.y, c.z), f)
+                    let rough = Noise.fbm(V3(q.y * 0.9, q.z * 0.9, Float(end) * 7.1), octaves: 3, seed: ns &+ 9) * 0.35
+                        + Noise.fbm(V3(q.y * 3, q.z * 3, Float(end) * 3.3), octaves: 2, seed: ns &+ 10) * 0.06
+                    q.x += dir * (endBulge * (1 - (1 - f) * (1 - f)) + rough * smoothstep(0, 0.35, f) * min(1, endBulge * 3))
+                    return q
+                }
+                let n = UInt32(ring.count)
+                var prev = UInt32(s.positions.count)
+                for p in ring { _ = s.add(p, V3(dir, 0, 0), V2(p.z, p.y)) }
+                for k in 1...capRings {
+                    let f = Float(k) / Float(capRings + 1)
+                    let cur = UInt32(s.positions.count)
+                    for p in ring { let q = capPoint(p, f); _ = s.add(q, V3(dir, 0, 0), V2(q.z, q.y)) }
+                    for m in 0..<(n - 1) {
+                        if end == 0 { s.quad(prev + m, prev + m + 1, cur + m + 1, cur + m) } else { s.quad(prev + m, cur + m, cur + m + 1, prev + m + 1) }
+                    }
+                    prev = cur
+                }
+                let cp = capPoint(c, 1)
+                let ci = s.add(cp, V3(dir, 0, 0), V2(cp.z, cp.y))
+                for m in 0..<(n - 1) {
+                    if end == 0 { s.tri(ci, prev + m, prev + m + 1) } else { s.tri(ci, prev + m + 1, prev + m) }
                 }
             }
             s.recomputeNormals(weldSeams: false)
