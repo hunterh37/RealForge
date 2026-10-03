@@ -13,17 +13,17 @@ public extension TreeSpecies {
             // Side branches, near horizontal, tips turning up.
             BranchLevel(density: 1.5, span: 0.25...1, lengthRatio: 0.5, profile: .tapered, downAngle: 58, downAngleSpread: 16, curve: 24, gravity: 0.1, radiusRatio: 0.48, wobble: 0.06),
             // Shoots carrying the tufts.
-            BranchLevel(density: 8, span: 0.6...1, lengthRatio: 0.3, downAngle: 50, downAngleSpread: 18, curve: 15, gravity: 0.16, radiusRatio: 0.5, wobble: 0.04),
+            BranchLevel(density: 6.2, span: 0.6...1, lengthRatio: 0.3, downAngle: 50, downAngleSpread: 18, curve: 15, gravity: 0.16, radiusRatio: 0.5, wobble: 0.04),
         ],
-        leaves: LeafParams(cardSize: V2(0.62, 0.72), density: 7, span: 0.15...1, crownNormalBlend: 0.5),
+        leaves: LeafParams(cardSize: V2(0.66, 0.76), density: 7, span: 0.15...1, crownNormalBlend: 0.5),
         barkTile: 0.5).woodLevels(1)
 
-    /// Balsam fir, ~15 m: narrow cone with a spire top, dense horizontal branches, flat sprays.
+    /// Balsam fir, ~15 m: narrow cone with a spire top, dense horizontal branches in whorls of 5, flat sprays.
     static let fir = TreeSpecies(
         name: "fir", bark: "bark.fir", leaf: "leaf.fir", height: 15, trunkRadius: 0.2, trunkTipRatio: 0.03,
         trunkCurve: 1.5, trunkWobble: 0.005, flare: 0.22, flareLobes: 5,
         levels: [
-            BranchLevel(density: 6.5, span: 0.04...0.985, lengthRatio: 0.24, profile: .conical, downAngle: 84, downAngleSpread: 6, curve: 8, gravity: 0.06, radiusRatio: 0.22, wobble: 0.02),
+            BranchLevel(density: 6.5, span: 0.04...0.985, lengthRatio: 0.24, profile: .conical, downAngle: 84, downAngleSpread: 6, curve: 8, gravity: 0.06, radiusRatio: 0.22, wobble: 0.02, whorl: 5),
             BranchLevel(density: 3.0, span: 0.12...0.95, lengthRatio: 0.38, downAngle: 60, downAngleSpread: 10, curve: 6, gravity: -0.04, radiusRatio: 0.45, wobble: 0.02),
         ],
         leaves: LeafParams(cardSize: V2(0.64, 0.74), density: 6, span: 0.0...1, crownNormalBlend: 0.45),

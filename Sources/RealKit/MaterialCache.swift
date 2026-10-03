@@ -71,7 +71,7 @@ public final class RealMaterialCache {
     public func materialAsync(_ key: MaterialKey) async -> any RealityKit.Material {
         if let m = graph[key] { return m }
         let s = spec(key)
-        guard useShaderGraph, s.program != nil else { return material(key) }
+        guard useShaderGraph, s.program != nil, s.mode != .emissive else { return material(key) }
         do {
             let m = try await buildGraph(s)
             graph[key] = m
@@ -89,7 +89,7 @@ public final class RealMaterialCache {
         let vk = "\(key)#jitter\(hue),\(value)"
         if let m = graph[vk] { return m }
         let s = spec(key)
-        guard useShaderGraph, s.program != nil else { return material(key) }
+        guard useShaderGraph, s.program != nil, s.mode != .emissive else { return material(key) }
         do {
             let m = try await buildGraph(s, jitter: SIMD2(hue, value))
             graph[vk] = m

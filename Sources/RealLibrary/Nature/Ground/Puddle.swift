@@ -17,7 +17,8 @@ public struct Puddle: RealAsset {
     /// Outline irregularity (0 = circle).
     public var wobble: Float = 0.35
     public var mudMaterial: MaterialKey = "ground.mud"
-    public var waterMaterial: MaterialKey = "ground.puddle"
+    /// Transparent muddy water with Fresnel opacity; `ground.puddle` gives an opaque look.
+    public var waterMaterial: MaterialKey = "water.puddle"
     public init() {}
 
     public func build(seed: UInt64) -> LODModel {
@@ -38,7 +39,12 @@ public struct Puddle: RealAsset {
             return y - smoothstep(0.72, 1, t) * (lift + 0.035)
         }
         mud.occlusion = mud.positions.map { 0.75 + 0.25 * smoothstep(lift - depth, lift, $0.y) }
-        let water = GroundMesh.disc(material: waterMaterial, rings: 3, sectors: 56, outline: { waterR($0) * 1.12 }) { _, _ in level }
+        var water = GroundMesh.disc(material: waterMaterial, rings: 6, sectors: 56, outline: { waterR($0) * 1.12 }) { _, _ in level }
+        // Shallowness for transparent water: 1 at the waterline, easing to 0.45 over the deepest mud.
+        water.paintSplat { p in
+            let a = atan2(p.z, p.x), rn = simd_length(V2(p.x, p.z)) / waterR(a)
+            return 0.45 + 0.55 * smoothstep(0.35, 1.05, rn)
+        }
         return LODModel(Model(name: Self.id, surfaces: [mud, water]))
     }
 }
