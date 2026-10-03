@@ -11,6 +11,7 @@ public enum Props {
         Sandbag.self,
         CableSpool.self,
         TrafficBarrel.self,
+        Dumpster.self,
         // realforge:prop
     ]
 }
