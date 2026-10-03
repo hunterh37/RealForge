@@ -6,14 +6,30 @@ import RealLibrary
 enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case forestGlade = "forest-glade"
     case parkPath = "park-path"
+    case alpineMeadow = "alpine-meadow"
+    case canyonRoad = "canyon-road"
+    case winterForest = "winter-forest"
     var id: String { rawValue }
-    var title: String { self == .forestGlade ? "Forest Glade" : "Park Path" }
+    var title: String {
+        switch self {
+        case .forestGlade: "Forest Glade"
+        case .parkPath: "Park Path"
+        case .alpineMeadow: "Alpine Meadow"
+        case .canyonRoad: "Canyon Road"
+        case .winterForest: "Winter Forest"
+        }
+    }
     var detail: String {
         switch self {
         case .forestGlade: "Mixed forest ringing a grassy glade, camp props along the edge."
         case .parkPath: "Asphalt walkway with benches, lamps, bins, shade trees and grass."
+        case .alpineMeadow: "Flower meadow and pebble stream below a cliff band, conifers and peaks behind."
+        case .canyonRoad: "Desert highway between sandstone buttes, saguaro and dunes."
+        case .winterForest: "Snowy clearing in spruce and fir, drifts, fallen log and a woodpile."
         }
     }
+    /// Sky picked when the scene is opened from the menu.
+    var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {
