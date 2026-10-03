@@ -23,6 +23,9 @@ public enum SceneCatalog {
         Farmyard.self,
         LakesideCamp.self,
         AutumnWoods.self,
+        AlpineMeadow.self,
+        CanyonRoad.self,
+        WinterForest.self,
         // realforge:scene
     ]
 

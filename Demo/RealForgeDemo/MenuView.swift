@@ -13,7 +13,10 @@ struct MenuView: View {
             Form {
                 Section("Scenes") {
                     ForEach(DemoScene.allCases) { scene in
-                        Button { Task { await enter(scene) } } label: {
+                        Button {
+                            if let sky = scene.defaultSky { model.sky = sky }
+                            Task { await enter(scene) }
+                        } label: {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(scene.title).font(.headline)
@@ -51,7 +54,7 @@ struct MenuView: View {
             // Launch arguments for captures: -scene forest-glade -sky golden -seed 2 -yaw -30 -hideMenu YES
             let d = UserDefaults.standard
             guard let id = d.string(forKey: "scene"), let scene = DemoScene(rawValue: id) else { return }
-            if let sky = d.string(forKey: "sky").flatMap(DemoSky.init(rawValue:)) { model.sky = sky }
+            if let sky = d.string(forKey: "sky").flatMap(DemoSky.init(rawValue:)) ?? scene.defaultSky { model.sky = sky }
             if d.integer(forKey: "seed") > 0 { model.seed = UInt64(d.integer(forKey: "seed")) }
             await enter(scene, yaw: d.float(forKey: "yaw"))
 
