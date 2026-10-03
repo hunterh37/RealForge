@@ -9,6 +9,7 @@ public enum Props {
         DomeTent.self,
         CampChair.self,
         Cooler.self,
+        CampLantern.self,
         // realforge:prop
     ]
 }
