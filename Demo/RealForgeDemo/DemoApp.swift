@@ -8,6 +8,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case parkPath = "park-path"
     case constructionLot = "construction-lot"
     case farmyard = "farmyard"
+    case lakesideCamp = "lakeside-camp"
+    case autumnWoods = "autumn-woods"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -15,6 +17,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .parkPath: "Park Path"
         case .constructionLot: "Construction Lot"
         case .farmyard: "Farmyard"
+        case .lakesideCamp: "Lakeside Camp"
+        case .autumnWoods: "Autumn Woods"
         }
     }
     var detail: String {
@@ -23,6 +27,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .parkPath: "Asphalt walkway with benches, lamps, bins, shade trees and grass."
         case .constructionLot: "Fenced building site: brick shell with scaffold, mixer, sandbags, cones on the street."
         case .farmyard: "Red barn corner, rail-fence paddock, hay bales and trough, grass and wildflower fields."
+        case .lakesideCamp: "Tent, fire ring and canoe on a pond bank, ringed by spruce, pine and birch."
+        case .autumnWoods: "Red maple, gold aspen, beech and oak over leaf litter, a dirt path winding through."
         }
     }
 }

@@ -21,6 +21,8 @@ public enum SceneCatalog {
         ForestGlade.self, ParkPath.self, PropYard.self,
         ConstructionLot.self,
         Farmyard.self,
+        LakesideCamp.self,
+        AutumnWoods.self,
         // realforge:scene
     ]
 
