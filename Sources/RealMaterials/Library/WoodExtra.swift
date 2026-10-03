@@ -27,11 +27,17 @@ public extension MaterialLibrary {
         },
         bark.first { $0.key == "bark.oak" }!.with {
             $0.key = "bark.oak-mossy"; $0.seed = 35; $0.wind = 0; $0.knobs = V4(0.5, 0.7, 0, 0)
-            $0.topColor = linear(0x40591E); $0.topAmount = 0.9; $0.topLow = 0.3
+            $0.topColor = linear(0x3A5020); $0.topAmount = 0.75; $0.topLow = 0.45
         },
         bark.first { $0.key == "bark.pine" }!.with {
             $0.key = "bark.pine-mossy"; $0.seed = 36; $0.wind = 0
             $0.topColor = linear(0x40591E); $0.topAmount = 0.8; $0.topLow = 0.45
+        },
+        // Seasoned oak bark on firewood and branch wood: lower contrast than trunk bark, little lichen.
+        bark.first { $0.key == "bark.oak" }!.with {
+            $0.key = "bark.oak-dry"; $0.seed = 37; $0.wind = 0
+            $0.colorA = linear(0x5F5347); $0.colorB = linear(0x2E241C); $0.colorC = linear(0x7C826A)
+            $0.knobs = V4(0.15, 0, 0, 0); $0.normalStrength = 4
         },
         MaterialSpec(key: "emissive.ember", program: nil).with {
             $0.baseColor = V3(0.9, 0.3, 0.08); $0.roughness = 0.9; $0.mode = .emissive
