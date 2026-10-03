@@ -21,7 +21,7 @@ public extension MaterialLibrary {
             $0.roughness = 0.8
         },
         MaterialSpec(key: "wood.ash", program: .charcoal).with {
-            $0.colorA = linear(0x3C3936); $0.colorB = linear(0xA6A29A); $0.colorC = linear(0x5A4636)
+            $0.colorA = linear(0x34312E); $0.colorB = linear(0x8F8B84); $0.colorC = linear(0x5A4636)
             $0.knobs = V4(0.85, 14, 0.1, 0); $0.seed = 34; $0.tileSize = 0.5; $0.normalStrength = 2
             $0.roughness = 0.95
         },
@@ -45,8 +45,13 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.15, 0, 0, 0); $0.normalStrength = 4
         },
         MaterialSpec(key: "emissive.ember", program: nil).with {
-            $0.baseColor = V3(0.9, 0.3, 0.08); $0.roughness = 0.9; $0.mode = .emissive
-            $0.emissive = V3(1, 0.32, 0.06); $0.emissiveIntensity = 3
+            $0.baseColor = V3(0.6, 0.12, 0.02); $0.roughness = 0.9; $0.mode = .emissive
+            $0.emissive = V3(1, 0.22, 0.03); $0.emissiveIntensity = 1.6
+        },
+        // Rounded river and field stones for fire rings and cairns: no moss layer.
+        MaterialSpec(key: "rock.river", program: .rockGranite).with {
+            $0.colorA = linear(0x66615A); $0.colorB = linear(0x8C867D); $0.colorC = linear(0x6A5446)
+            $0.knobs = V4(0.08, 0, 0, 0); $0.seed = 39; $0.tileSize = 0.8; $0.normalStrength = 1.6; $0.triplanar = true
         },
         // realforge:material.woodextra
     ]
