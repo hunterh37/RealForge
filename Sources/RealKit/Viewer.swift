@@ -10,12 +10,15 @@ import QuartzCore
 public final class RealViewerTracker {
     public static let shared = RealViewerTracker()
     let session = ARKitSession()
-    let world = WorldTrackingProvider()
+    /// ARKit refuses to re-run a stopped provider, so each start() makes a fresh one.
+    var world = WorldTrackingProvider()
     public private(set) var running = false
 
     public func start() async {
         guard !running, WorldTrackingProvider.isSupported else { return }
-        do { try await session.run([world]); running = true } catch { running = false }
+        if world.state == .stopped { world = WorldTrackingProvider() }
+        running = true
+        do { try await session.run([world]) } catch { running = false }
     }
 
     public func stop() { session.stop(); running = false }

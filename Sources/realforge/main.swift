@@ -27,7 +27,7 @@ realforge list [tag]
 realforge stats [id] [--seed n]
 realforge textures [key...] [--size 512] [--out out/tex]
 realforge render <id|scene> [--seed n] [--out out/<id>.png] [--w 1280] [--h 800] [--sky morning|midday|afternoon|golden]
-                 [--az deg] [--el deg] [--dist k] [--lod n] [--pbr] [--no-ground]
+                 [--az deg] [--el deg] [--dist k] [--lod n] [--pbr] [--no-ground] [--eye x,y,z --at x,y,z]
 """
 
 @MainActor
@@ -88,7 +88,11 @@ func run() async throws {
         if let scene = SceneCatalog.build(id, seed: seed) {
             focus = try await scene.entity()
             root.addChild(focus)
-            if let cam = scene.camera { preview.look(from: cam.eye, at: cam.target, fov: cam.fov) }
+            func v3(_ k: String) -> SIMD3<Float>? {
+                guard let c = opt(k)?.split(separator: ",").compactMap({ Float($0) }), c.count == 3 else { return nil }
+                return SIMD3(c[0], c[1], c[2])
+            }
+            if let cam = scene.camera { preview.look(from: v3("--eye") ?? cam.eye, at: v3("--at") ?? cam.target, fov: cam.fov) }
         } else {
             guard let asset = Catalog.build(id, seed: seed) else { print("unknown \(id)"); return }
             let model = asset.levels[min(lod, asset.levels.count - 1)]

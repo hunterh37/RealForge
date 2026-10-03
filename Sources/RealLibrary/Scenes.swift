@@ -57,6 +57,8 @@ public struct ForestGlade {
     public var gladeRadius: Float = 9
     public var trees = 140
     public var grass = 7000
+    /// Camp props (picnic table, crates on a pallet, barrels, drum) along the glade's edge.
+    public var edgeProps = true
     public init() {}
 
     public func build(seed: UInt64) -> RealScene {
@@ -98,6 +100,30 @@ public struct ForestGlade {
         for (i, p) in rocks.enumerated() {
             scene.singles.append(.init(asset: Boulder().with { $0.size = V3(1.4, 0.9, 1.2) * rng.float(0.6...1.6) }.build(seed: seed &+ UInt64(40 + i)),
                                        at: Xform(translation: V3(p.x, y(p), p.y), rotation: simd_quatf(degrees: rng.float(0...360), axis: .up))))
+        }
+
+        // Edge camp: props sit just inside the tree line, facing the glade center.
+        if edgeProps {
+            func edge(_ deg: Float, _ r: Float, yawJitter: Float = 0) -> Xform {
+                let a = deg * .pi / 180, p = V2(sin(a) * r, -cos(a) * r)
+                let face = deg + 180 + rng.float(-yawJitter...yawJitter)
+                return Xform(translation: V3(p.x, y(p) - 0.02, p.y), rotation: simd_quatf(degrees: face, axis: .up))
+            }
+            func one<A: RealAsset>(_ a: A, _ at: Xform, _ s: UInt64) { scene.singles.append(.init(asset: a.build(seed: seed &+ s), at: at)) }
+            func local(_ base: Xform, _ x: Float, _ z: Float, y dy: Float = 0, yaw: Float) -> Xform {
+                Xform(translation: base.translation + base.rotation.act(V3(x, dy, z)), rotation: base.rotation * simd_quatf(degrees: yaw, axis: .up))
+            }
+            one(PicnicTable(), edge(-28, gladeRadius - 1.2, yawJitter: 10), 60)
+            let stack = edge(-52, gladeRadius - 0.6)
+            one(Pallet(), stack, 61)
+            one(WoodenCrate(), local(stack, -0.3, 0, y: 0.145, yaw: 4), 62)
+            one(WoodenCrate(), local(stack, 0.3, 0.03, y: 0.145, yaw: -7), 63)
+            one(WoodenCrate().with { $0.size = V3(0.45, 0.35, 0.35) }, local(stack, 0.05, 0, y: 0.59, yaw: 18), 64)
+            let barrels = edge(-66, gladeRadius - 0.4)
+            one(Barrel(), barrels, 65)
+            one(Barrel(), local(barrels, 0.68, 0.2, yaw: 40), 66)
+            one(OilDrum().with { $0.color = 0x3B5A2A }, edge(18, gladeRadius - 0.5, yawJitter: 30), 67)
+            one(WoodenCrate(), edge(34, gladeRadius - 0.8, yawJitter: 25), 68)
         }
 
         // Grass: dense in the glade, thinning under the canopy, culled with distance.

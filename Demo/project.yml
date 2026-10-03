@@ -1,0 +1,35 @@
+name: RealForgeDemo
+options:
+  bundleIdPrefix: io.medvr.realforge
+  deploymentTarget:
+    visionOS: "26.0"
+  createIntermediateGroups: true
+packages:
+  RealForge:
+    path: ..
+targets:
+  RealForgeDemo:
+    type: application
+    platform: visionOS
+    sources: [RealForgeDemo]
+    dependencies:
+      - package: RealForge
+        product: RealForge
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.medvr.realforge.demo
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: RealForge
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "7"
+    info:
+      path: RealForgeDemo/Info.plist
+      properties:
+        UIApplicationSceneManifest:
+          UIApplicationPreferredDefaultSceneSessionRole: UIWindowSceneSessionRoleApplication
+          UIApplicationSupportsMultipleScenes: true
+          UISceneConfigurations:
+            UISceneSessionRoleImmersiveSpaceApplication:
+              - UISceneInitialImmersionStyle: UIImmersionStyleFull
