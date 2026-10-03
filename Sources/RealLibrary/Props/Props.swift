@@ -11,6 +11,7 @@ public enum Props {
         Cooler.self,
         CampLantern.self,
         Canoe.self,
+        AxeInStump.self,
         // realforge:prop
     ]
 }
