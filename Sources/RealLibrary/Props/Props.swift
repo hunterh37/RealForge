@@ -8,6 +8,7 @@ public enum Props {
         Wheelbarrow.self,
         CementMixer.self,
         RebarBundle.self,
+        Sandbag.self,
         // realforge:prop
     ]
 }
