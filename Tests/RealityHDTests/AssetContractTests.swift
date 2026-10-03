@@ -55,7 +55,7 @@ import RealMaterials
 
     @Test(arguments: Catalog.assets.map { $0.id })
     func thumbnail(_ id: String) {
-        #expect(exists("docs/assets/\(id).png"), "\(id): missing docs/assets/\(id).png, run `swift run -q realforge thumbs \(id)`")
+        #expect(exists("docs/assets/\(id).png"), "\(id): missing docs/assets/\(id).png, run `swift run -q realityhd thumbs \(id)`")
     }
 
     /// One asset per file, named after the type, under the kind's folder.

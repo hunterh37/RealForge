@@ -21,7 +21,7 @@ runtime from `RealShaderOptions` (cutout, wind, translucency, anti-tile, top lay
 metallic map), compiled once per option set and copied per material. `PhysicallyBasedMaterial` is
 the synchronous fallback.
 
-RealLibrary holds the catalog and scenes plus the `RealForge` facade. Assets are one value type per
+RealLibrary holds the catalog and scenes plus the `RealityHD` facade. Assets are one value type per
 file, grouped by kind (`Nature/`, `Props/<Theme>/`, `Structures/`) and listed in a per-kind registry;
 `Catalog.assets` concatenates them. Scenes conform to `RealSceneBuilder` and are listed in
 `SceneCatalog.all`. Contract tests iterate the registries, so a registered asset is tested with no

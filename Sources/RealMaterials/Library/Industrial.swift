@@ -64,6 +64,6 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x5E3A24); $0.colorB = linear(0x2A2420); $0.knobs = V4(0.25, 0, 0, 0); $0.seed = 71
             $0.tileSize = 0.4; $0.hasMetallicMap = true; $0.normalStrength = 2.5
         },
-        // realforge:material.industrial
+        // realityhd:material.industrial
     ]
 }

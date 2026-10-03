@@ -8,7 +8,7 @@ public struct RiverStones: RealAsset {
     public static let summary = "Group of 5-9 smooth flattened river stones, 12-40 cm, over 1.2 m; wet knob darkens and glosses them, 2 LODs."
     public static let tags = ["nature", "rock", "water"]
     public static let budget = 12_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 35)
 
     public var radius: Float = 0.6

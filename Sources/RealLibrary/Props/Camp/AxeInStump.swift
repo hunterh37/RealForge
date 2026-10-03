@@ -9,7 +9,7 @@ public struct AxeInStump: RealAsset {
     public static let summary = "Chopping block with a felling axe sunk in the end grain: oak round, forged head, hickory handle, split chips around."
     public static let tags = ["prop", "camp", "wood", "tool"]
     public static let budget = 5_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 20, elevation: 22, distance: 1.1)
 
     public var blockDiameter: Float = 0.45

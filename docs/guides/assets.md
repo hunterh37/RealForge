@@ -12,7 +12,7 @@ generated on the CPU in milliseconds; materials are referenced by key and synthe
 | `structure` | `Structures/<Theme>/` | `Structures.all` | 30k | fences, walls, stairs, sheds, bridges |
 
 Theme folders group by setting (`Street`, `Containers`, `Construction`, `Kitchen`). Create a folder
-when a theme pack starts; `realforge new prop <id> --theme Construction` does it.
+when a theme pack starts; `realityhd new prop <id> --theme Construction` does it.
 
 ## Anatomy
 
@@ -97,9 +97,9 @@ and crown-sphere normals for volumetric shading; `TreeGenerator` shows both.
 
 ```sh
 swift test --filter AssetContractTests
-swift run -q realforge render wheelbarrow                    # out/wheelbarrow.png
-swift run -q realforge render wheelbarrow --az 210 --el 35 --sky golden
-swift run -q realforge render wheelbarrow --lod 1            # each LOD
-swift run -q realforge stats wheelbarrow
-swift run -q realforge thumbs wheelbarrow && swift run -q realforge catalog
+swift run -q realityhd render wheelbarrow                    # out/wheelbarrow.png
+swift run -q realityhd render wheelbarrow --az 210 --el 35 --sky golden
+swift run -q realityhd render wheelbarrow --lod 1            # each LOD
+swift run -q realityhd stats wheelbarrow
+swift run -q realityhd thumbs wheelbarrow && swift run -q realityhd catalog
 ```

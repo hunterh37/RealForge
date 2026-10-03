@@ -59,7 +59,7 @@ func render(_ id: String, to out: String, _ o: RenderOptions) async throws -> St
         root.addChild(try await scene.entity())
         if let cam = scene.camera { preview.look(from: o.eye ?? cam.eye, at: o.at ?? cam.target, fov: cam.fov) }
     } else {
-        guard let asset = Catalog.build(id, seed: o.seed) else { throw CLIError("unknown id \(id) (realforge list)") }
+        guard let asset = Catalog.build(id, seed: o.seed) else { throw CLIError("unknown id \(id) (realityhd list)") }
         let focus = try await asset.levels[min(o.lod, asset.levels.count - 1)].modelEntityAsync()
         root.addChild(focus)
         if o.ground {

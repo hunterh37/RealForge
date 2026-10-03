@@ -9,7 +9,7 @@ public struct Agave: RealAsset {
     public static let summary = "Agave americana, ~1.3 m: rosette of 22-32 thick channeled blue-grey leaves with toothed margins and terminal spines, 3 LODs."
     public static let tags = ["nature", "desert"]
     public static let budget = 12_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 22, distance: 1.1)
 
     /// Longest (outer) leaf length, meters.

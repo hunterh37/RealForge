@@ -87,7 +87,7 @@ public final class TextureSynth: @unchecked Sendable {
         self.device = device; self.queue = queue
         let opts = MTLCompileOptions()
         opts.mathMode = .fast
-        let lib = try device.makeLibrary(source: realForgeMetalSource, options: opts)
+        let lib = try device.makeLibrary(source: realityHDMetalSource, options: opts)
         func pipe(_ n: String) throws -> MTLComputePipelineState {
             guard let f = lib.makeFunction(name: n) else { throw SynthError.missingFunction(n) }
             return try device.makeComputePipelineState(function: f)
@@ -98,7 +98,7 @@ public final class TextureSynth: @unchecked Sendable {
     public enum SynthError: Error { case noMetal, missingFunction(String), encode }
 
     /// SHA-256 of the Metal source: changes whenever any texture program changes (disk cache key).
-    public static let sourceFingerprint: String = SHA256.hash(data: Data(realForgeMetalSource.utf8)).map { String(format: "%02x", $0) }.joined()
+    public static let sourceFingerprint: String = SHA256.hash(data: Data(realityHDMetalSource.utf8)).map { String(format: "%02x", $0) }.joined()
 
     // MARK: textures
 

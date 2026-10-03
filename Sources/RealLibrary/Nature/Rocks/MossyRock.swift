@@ -8,7 +8,7 @@ public struct MossyRock: RealAsset {
     public static let summary = "Rounded forest rock, 1.3 m, under a thick moss cushion on its upper faces, 3 LODs."
     public static let tags = ["nature", "rock"]
     public static let budget = 13_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     public var size: V3 = V3(1.3, 0.8, 1.1)
     public var material: MaterialKey = "rock.mossy"

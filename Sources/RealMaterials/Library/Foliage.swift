@@ -73,6 +73,6 @@ public extension MaterialLibrary {
             $0.roughness = 0.55; $0.specular = 0.4
             $0.wind = 0.09; $0.translucency = 0.6
         },
-        // realforge:material.foliage
+        // realityhd:material.foliage
     ]
 }

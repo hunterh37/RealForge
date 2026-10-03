@@ -8,7 +8,7 @@ public struct Cooler: RealAsset {
     public static let summary = "50-quart hard cooler, 66 x 42 x 44 cm: tapered molded body, domed white lid, hinges, latch, swing handles, drain plug."
     public static let tags = ["prop", "camp", "plastic", "container"]
     public static let budget = 4_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 32, elevation: 18, distance: 1.1)
 
     public var size = V3(0.66, 0.44, 0.42)

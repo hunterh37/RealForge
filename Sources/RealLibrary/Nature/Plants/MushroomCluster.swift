@@ -8,7 +8,7 @@ public struct MushroomCluster: RealAsset {
     public static let summary = "Cluster of 3-7 woodland mushrooms, caps 2.5-6 cm: lathe caps with inrolled margins, gilled undersides, stalks; 2 LODs."
     public static let tags = ["nature", "fungus", "plant"]
     public static let budget = 2_400
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 20, distance: 1.0)
 
     public var count: ClosedRange<Int> = 3...7

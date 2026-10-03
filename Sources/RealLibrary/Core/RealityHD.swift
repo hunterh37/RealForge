@@ -4,7 +4,7 @@ import RealKit
 
 /// One-call entry points. Geometry is generated off the main actor (all generators are pure and
 /// Sendable); GPU upload, texture synthesis and ShaderGraph compilation happen on the main actor.
-public enum RealForge {
+public enum RealityHD {
     /// Register systems/components and pick a quality preset. Call once at app start.
     @MainActor
     public static func setup(_ quality: RealQuality.Preset = .balanced) {
@@ -20,7 +20,7 @@ public enum RealForge {
 
     /// Any catalog asset as an entity with LOD children (ShaderGraph wind/fog materials).
     public static func entity(_ id: String, seed: UInt64 = 1) async throws -> Entity {
-        guard let t = Catalog.type(id) else { throw RealForgeError.unknown(id) }
+        guard let t = Catalog.type(id) else { throw RealityHDError.unknown(id) }
         let lod = await Task.detached(priority: .userInitiated) { t.init().build(seed: seed) }.value
         return try await upload(lod, name: id)
     }
@@ -34,7 +34,7 @@ public enum RealForge {
     /// A composed scene by id (see SceneCatalog.ids).
     public static func scene(_ id: String, seed: UInt64 = 1) async throws -> Entity {
         guard let s = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
-            throw RealForgeError.unknown(id)
+            throw RealityHDError.unknown(id)
         }
         return try await s.entity()
     }
@@ -51,5 +51,5 @@ public enum RealForge {
         lod.levels.count == 1 ? try await lod.levels[0].modelEntityAsync() : try await lod.entityAsync(name: name)
     }
 
-    public enum RealForgeError: Error { case unknown(String) }
+    public enum RealityHDError: Error { case unknown(String) }
 }

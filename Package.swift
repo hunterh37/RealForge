@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "RealForge",
+    name: "RealityHD",
     platforms: [.visionOS(.v26), .macOS(.v26), .iOS(.v26)],
     products: [
-        .library(name: "RealForge", targets: ["RealCore", "RealMaterials", "RealKit", "RealLibrary"]),
-        .executable(name: "realforge", targets: ["realforge"]),
+        .library(name: "RealityHD", targets: ["RealCore", "RealMaterials", "RealKit", "RealLibrary"]),
+        .executable(name: "realityhd", targets: ["realityhd"]),
     ],
     targets: [
         // Geometry: smooth-shaded, UV'd, tangent-space meshes. No RealityKit; tests run anywhere.
@@ -18,8 +18,8 @@ let package = Package(
         // Asset catalog: trees, rocks, ground, props, scenes.
         .target(name: "RealLibrary", dependencies: ["RealCore", "RealMaterials", "RealKit"]),
         // CLI: list, stats, offscreen PNG preview via RealityRenderer.
-        .executableTarget(name: "realforge", dependencies: ["RealCore", "RealMaterials", "RealKit", "RealLibrary"]),
-        .testTarget(name: "RealForgeTests", dependencies: ["RealCore", "RealLibrary"]),
+        .executableTarget(name: "realityhd", dependencies: ["RealCore", "RealMaterials", "RealKit", "RealLibrary"]),
+        .testTarget(name: "RealityHDTests", dependencies: ["RealCore", "RealLibrary"]),
     ],
     swiftLanguageModes: [.v5]
 )

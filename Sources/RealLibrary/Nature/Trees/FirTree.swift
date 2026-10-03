@@ -8,7 +8,7 @@ public struct FirTree: RealAsset {
     public static let summary = "Balsam fir, ~15 m: narrow spire-topped cone of dense flat needle sprays on smooth grey bark, 3 LODs."
     public static let tags = ["nature", "tree", "conifer"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Total height in meters.
     public var height: Float = 15

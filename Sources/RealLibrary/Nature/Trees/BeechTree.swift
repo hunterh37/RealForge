@@ -22,7 +22,7 @@ public struct BeechTree: RealAsset {
     public static let summary = "European beech, ~18 m, smooth grey buttressed trunk, layered crown of flat leaf sprays."
     public static let tags = ["nature", "tree", "deciduous"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public var height: Float = 18
     public init() {}
     public func build(seed: UInt64) -> LODModel { Tree(TreeSpecies.beech.with { $0.height = height }).build(seed: seed) }

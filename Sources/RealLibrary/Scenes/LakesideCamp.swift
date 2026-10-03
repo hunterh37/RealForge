@@ -10,7 +10,7 @@ public struct LakesideCamp: RealSceneBuilder {
     public static let id = "lakeside-camp"
     public static let summary = "Pond-side camp: dome tent, fire ring, chairs, canoe on the bank, reeds and river stones, ringed by spruce, pine and birch."
     public static let tags = ["nature", "camp", "water", "forest", "showcase"]
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Terrain side length in meters.
     public var size: Float = 72

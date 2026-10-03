@@ -8,7 +8,7 @@ public struct LeafLitter: RealAsset {
     public static let summary = "Fallen-leaf litter, ~1 m: 60-100 curled dry leaf cards (oak, maple, beech, willow) hugging the ground; 2 LODs."
     public static let tags = ["nature", "ground", "plant"]
     public static let budget = 480
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 50, distance: 0.9, ground: false)
 
     public var radius: Float = 0.5

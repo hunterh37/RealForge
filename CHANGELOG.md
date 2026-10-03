@@ -10,7 +10,7 @@
 - Building helpers (`plank`, `board`, `turned`, `groundAO`, `catmull`, `Xform.jittered`) are public.
 - `RealScene.add`, `RealScene.field`, `RealScene.worstCaseTriangles`, `RealInstancing.Options.trees`,
   `.groundCover(cull:)`.
-- CLI: `realforge new` (asset, scene, material scaffolding), `realforge thumbs`; CLI split into files.
+- CLI: `realityhd new` (asset, scene, material scaffolding), `realityhd thumbs`; CLI split into files.
 - Contract tests for assets, scenes and materials; CI with a stale-`CATALOG.md` check.
 - Scene thumbnails moved to `docs/scenes/`. `prop-yard` grid sizes itself to `Props.all`.
 - Docs: AGENTS.md, CONTRIBUTING.md, docs/IDEAS.md, guides for assets, scenes and materials.

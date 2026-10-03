@@ -7,6 +7,6 @@ public enum Structures {
         ScaffoldBay.self,
         RailFence.self,
         BarnWall.self,
-        // realforge:structure
+        // realityhd:structure
     ]
 }

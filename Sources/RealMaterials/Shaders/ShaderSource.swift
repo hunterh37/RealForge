@@ -23,4 +23,4 @@ var metalDispatch: String {
     """
 }
 
-let realForgeMetalSource: String = ([metalCommon] + programSources + [metalDispatch, metalKernels, metalSky]).joined(separator: "\n\n")
+let realityHDMetalSource: String = ([metalCommon] + programSources + [metalDispatch, metalKernels, metalSky]).joined(separator: "\n\n")

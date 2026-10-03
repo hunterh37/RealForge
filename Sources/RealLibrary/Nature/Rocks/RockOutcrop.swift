@@ -8,7 +8,7 @@ public struct RockOutcrop: RealAsset {
     public static let summary = "Granite outcrop, 4.5 m: large jointed block, leaning slabs and broken pieces at the foot, 3 LODs."
     public static let tags = ["nature", "rock"]
     public static let budget = 48_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 18)
 
     /// Main block extents in meters.

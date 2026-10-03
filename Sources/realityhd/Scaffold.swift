@@ -2,12 +2,12 @@ import Foundation
 import RealMaterials
 import RealLibrary
 
-/// `realforge new ...`: writes a compiling, test-shaped source file and registers it at the
-/// `// realforge:<marker>` line of the matching registry. Tests then name what is left to do
+/// `realityhd new ...`: writes a compiling, test-shaped source file and registers it at the
+/// `// realityhd:<marker>` line of the matching registry. Tests then name what is left to do
 /// (summary, thumbnail).
 func newCommand(_ args: Args) throws {
     let root = try repoRoot()
-    let author = args.opt("--author") ?? "realforge"
+    let author = args.opt("--author") ?? "realityhd"
     let theme = args.opt("--theme")
     let material = args.opt("--material")
     let program = args.opt("--program")
@@ -43,10 +43,10 @@ private func validID(_ id: String) throws {
     }
 }
 
-/// Inserts `text` on the line before `// realforge:<marker>`, matching its indentation.
+/// Inserts `text` on the line before `// realityhd:<marker>`, matching its indentation.
 func register(_ text: String, marker: String, in file: URL) throws {
     var src = try String(contentsOf: file, encoding: .utf8)
-    guard let r = src.range(of: "// realforge:\(marker)\n") else { throw CLIError("marker realforge:\(marker) missing in \(file.lastPathComponent)") }
+    guard let r = src.range(of: "// realityhd:\(marker)\n") else { throw CLIError("marker realityhd:\(marker) missing in \(file.lastPathComponent)") }
     let lineStart = src[..<r.lowerBound].lastIndex(of: "\n").map { src.index(after: $0) } ?? src.startIndex
     let indent = String(src[lineStart..<r.lowerBound])
     let block = text.split(separator: "\n", omittingEmptySubsequences: false).map { indent + $0 }.joined(separator: "\n") + "\n"
@@ -105,7 +105,7 @@ private func newAsset(kind: String, id: String, theme: String, author: String, m
     print("""
     created \(rel(file, root))
     registered in \(rel(registry, root))
-    next: write build(), swift test, swift run -q realforge render \(id), swift run -q realforge thumbs \(id), swift run -q realforge catalog
+    next: write build(), swift test, swift run -q realityhd render \(id), swift run -q realityhd thumbs \(id), swift run -q realityhd catalog
     """)
 }
 
@@ -158,8 +158,8 @@ private func newScene(id: String, author: String, root: URL) throws {
     print("""
     created \(rel(file, root))
     registered in \(rel(registry, root))
-    next: compose build(), swift test, swift run -q realforge render \(id), swift run -q realforge thumbs \(id), swift run -q realforge catalog
-    demo app: add a case to DemoScene in Demo/RealForgeDemo/DemoApp.swift
+    next: compose build(), swift test, swift run -q realityhd render \(id), swift run -q realityhd thumbs \(id), swift run -q realityhd catalog
+    demo app: add a case to DemoScene in Demo/RealityHDDemo/DemoApp.swift
     """)
 }
 
@@ -194,7 +194,7 @@ private func newMaterial(key: String, program: String?, like: String?, root: URL
         public extension MaterialLibrary {
             /// TODO: what this family covers.
             static let \(family): [MaterialSpec] = [
-                // realforge:material.\(family)
+                // realityhd:material.\(family)
             ]
         }
 
@@ -211,7 +211,7 @@ private func newMaterial(key: String, program: String?, like: String?, root: URL
     try register(spec + ",", marker: "material.\(family)", in: file)
     print("""
     registered \(key) in \(rel(file, root))\(like.map { " (copy of \($0): change colors and seed)" } ?? "")
-    next: tune colors/knobs, swift run -q realforge textures \(key), render an asset using it, swift run -q realforge catalog
+    next: tune colors/knobs, swift run -q realityhd textures \(key), render an asset using it, swift run -q realityhd catalog
     """)
 }
 

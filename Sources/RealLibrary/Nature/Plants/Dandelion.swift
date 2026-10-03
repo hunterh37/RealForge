@@ -8,7 +8,7 @@ public struct Dandelion: RealAsset {
     public static let summary = "Dandelion: rosette of 6-10 toothed leaves and 1-3 hollow stalks with a yellow head or white seed clock; 2 LODs."
     public static let tags = ["nature", "flower", "plant"]
     public static let budget = 450
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 35, distance: 1.0)
 
     /// Chance that a scape carries a seed clock instead of a flower.

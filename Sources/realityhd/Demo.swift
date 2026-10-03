@@ -14,7 +14,7 @@ func demoCommand(_ args: Args) async throws {
     let az = args.opt("--az").flatMap(Float.init), el = args.opt("--el").flatMap(Float.init)
     let pbr = args.flag("--pbr")
     RealMaterialCache.shared.useShaderGraph = !pbr
-    guard let name = args.next() else { print("realforge demo splat|water [--sky s] [--az deg] [--el deg] [--pbr]"); return }
+    guard let name = args.next() else { print("realityhd demo splat|water [--sky s] [--az deg] [--el deg] [--pbr]"); return }
     let env = try RealEnvironment(sky, skybox: true)
     let preview = try RealPreview(environment: env)
     let root = Entity()

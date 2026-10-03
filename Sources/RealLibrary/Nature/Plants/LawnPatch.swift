@@ -9,7 +9,7 @@ public struct LawnPatch: RealAsset {
     public static let summary = "Mown lawn tile, 1 x 1 m: thatch floor plus ~550 short cut geometric blades; tiles edge to edge, 3 LODs."
     public static let tags = ["nature", "grass", "ground"]
     public static let budget = 2_800
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 30, distance: 0.9)
 
     /// Tile edge, meters.

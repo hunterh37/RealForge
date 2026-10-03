@@ -1,4 +1,4 @@
-/// Controlled tag vocabulary. Tests reject tags outside it, so `realforge list <tag>` and
+/// Controlled tag vocabulary. Tests reject tags outside it, so `realityhd list <tag>` and
 /// `Catalog.ids(tag:)` stay useful as the library grows. Add a tag here in the same PR that first uses it.
 public enum AssetTag {
     /// `tags[0]` of every asset. Also picks the source folder: Nature/, Props/, Structures/.

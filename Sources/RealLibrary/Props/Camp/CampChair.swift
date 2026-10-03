@@ -9,7 +9,7 @@ public struct CampChair: RealAsset {
     public static let summary = "Folding quad camp chair: steel tube X-frame, sagging canvas seat and back sling, armrests, cup holder, plastic feet."
     public static let tags = ["prop", "camp", "furniture", "fabric", "metal"]
     public static let budget = 6_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 14, distance: 1.1)
 
     /// Sling color (sRGB hex) on `fabric.canvas`.

@@ -10,7 +10,7 @@ public struct PalmTree: RealAsset {
     public static let summary = "Coconut palm, ~12 m: leaning ringed trunk, crown of 12-18 drooping pinnate fronds, coconut bunches, 3 LODs."
     public static let tags = ["nature", "tree", "palm", "beach"]
     public static let budget = 16_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 12, distance: 1.05)
 
     /// Trunk height in meters (crown top sits ~1.5 m higher).

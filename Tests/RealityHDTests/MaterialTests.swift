@@ -32,8 +32,8 @@ import simd
 
     @Test func dispatchCoversEveryProgram() {
         for p in TextureProgram.allCases {
-            #expect(realForgeMetalSource.contains("S \(p)(float2 uv, constant RFParams &P)"), "\(p): Metal function missing")
-            #expect(realForgeMetalSource.contains("case \(p.rawValue): return \(p)(uv, P);"))
+            #expect(realityHDMetalSource.contains("S \(p)(float2 uv, constant RFParams &P)"), "\(p): Metal function missing")
+            #expect(realityHDMetalSource.contains("case \(p.rawValue): return \(p)(uv, P);"))
         }
     }
 

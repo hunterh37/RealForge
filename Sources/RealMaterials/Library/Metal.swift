@@ -16,6 +16,6 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x1A1B1C); $0.colorC = linear(0x3A2418, 0.0); $0.knobs = V4(0.25, 0.3, 0.45, 0); $0.seed = 2
             $0.tileSize = 0.8; $0.hasMetallicMap = true; $0.normalStrength = 1.5; $0.resolution = 512
         },
-        // realforge:material.metal
+        // realityhd:material.metal
     ]
 }

@@ -8,7 +8,7 @@ public struct ScotsPine: RealAsset {
     public static let summary = "Scots pine, ~17 m: plated lower bole, orange flaking upper bark, flat-topped crown of needle tufts, 3 LODs."
     public static let tags = ["nature", "tree", "conifer"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Total height in meters.
     public var height: Float = 17

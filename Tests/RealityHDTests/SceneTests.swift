@@ -22,7 +22,7 @@ import RealMaterials
         let models = a.singles.flatMap { $0.asset.levels } + a.fields.flatMap { $0.asset.levels }
         for m in models { for s in m.surfaces { #expect(MaterialLibrary.keys.contains(baseKey(s.material)), "\(id): unknown material \(s.material)") } }
         for f in a.fields { for m in f.transforms { #expect(m.columns.3.x.isFinite && m.columns.3.y.isFinite && m.columns.3.z.isFinite) } }
-        #expect(exists("docs/scenes/\(id).png"), "\(id): missing docs/scenes/\(id).png, run `swift run -q realforge thumbs \(id)`")
+        #expect(exists("docs/scenes/\(id).png"), "\(id): missing docs/scenes/\(id).png, run `swift run -q realityhd thumbs \(id)`")
         #expect(swiftFiles(under: "Sources/RealLibrary/Scenes")[String(describing: t)] != nil, "\(id): expected Scenes/\(String(describing: t)).swift")
     }
 

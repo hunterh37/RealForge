@@ -8,7 +8,7 @@ public struct GrassTuft: RealAsset {
     public static let summary = "Meadow grass tuft, ~25 cm: 30-60 tapered, curved, twisted blade strips with per-blade color, wind weights and a card LOD."
     public static let tags = ["nature", "grass", "foliage"]
     public static let budget = 600
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 22, distance: 1.1)
 
     /// Tallest blade, meters.

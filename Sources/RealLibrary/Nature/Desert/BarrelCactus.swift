@@ -8,7 +8,7 @@ public struct BarrelCactus: RealAsset {
     public static let summary = "Barrel cactus, ~0.6 m: squat body with 20-26 deep ribs, hooked central spines, yellow fruit ring on top, 3 LODs."
     public static let tags = ["nature", "desert"]
     public static let budget = 14_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 18, distance: 1.2)
 
     /// Body height and radius (to the rib crests), meters.

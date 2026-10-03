@@ -42,7 +42,7 @@ struct MenuView: View {
                     Section { Text(model.status).font(.footnote.monospaced()).foregroundStyle(.secondary) }
                 }
             }
-            .navigationTitle("RealForge")
+            .navigationTitle("RealityHD")
         }
         .opacity(hidden ? 0 : 1)
         .glassBackgroundEffect(displayMode: hidden ? .never : .always)

@@ -8,7 +8,7 @@ public struct ScreePile: RealAsset {
     public static let summary = "Talus fan, 4 x 3 m, 1.2 m high: angular broken rocks on a gravel core, large blocks at the toe, 3 LODs."
     public static let tags = ["nature", "rock"]
     public static let budget = 50_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 20, elevation: 22)
 
     /// Footprint (x, z) and height in meters.

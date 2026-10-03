@@ -52,6 +52,6 @@ public extension MaterialLibrary {
             $0.roughness = 0.9; $0.mode = .emissive
             $0.emissive = V3(1, 0.22, 0.03); $0.emissiveIntensity = 0.05
         },
-        // realforge:material.woodextra
+        // realityhd:material.woodextra
     ]
 }

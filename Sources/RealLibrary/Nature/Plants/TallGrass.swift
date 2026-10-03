@@ -8,7 +8,7 @@ public struct TallGrass: RealAsset {
     public static let summary = "Knee-high meadow grass, ~0.7 m: arching geometric blades and 3-6 culms with seed-head panicles; card LOD."
     public static let tags = ["nature", "grass", "foliage"]
     public static let budget = 800
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 15, distance: 1.1)
 
     /// Leaf blade height, meters; culms reach ~1.25x.

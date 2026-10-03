@@ -8,7 +8,7 @@ public struct RootStump: RealAsset {
     public static let summary = "Old stump with exposed roots, 70 cm across: wide flare, eight arching surface roots, mossy bark, grey checked top."
     public static let tags = ["nature", "wood"]
     public static let budget = 6_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 30, distance: 1.0)
 
     public var diameter: Float = 0.7

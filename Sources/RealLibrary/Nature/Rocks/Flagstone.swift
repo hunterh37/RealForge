@@ -7,7 +7,7 @@ public struct Flagstone: RealAsset {
     public static let summary = "Slate flagstone, 0.9 x 0.6 m: split flat top 6 cm above ground, irregular broken outline."
     public static let tags = ["nature", "rock", "garden"]
     public static let budget = 3_200
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 40)
 
     public var size: V3 = V3(0.9, 0.14, 0.6)

@@ -48,6 +48,6 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.45, 0, 0, 0); $0.seed = 8; $0.tileSize = 0.9; $0.normalStrength = 4; $0.roughness = 0.85
             $0.wind = 0.01
         },
-        // realforge:material.bark
+        // realityhd:material.bark
     ]
 }

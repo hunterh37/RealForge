@@ -126,6 +126,6 @@ public extension MaterialLibrary {
             $0.wind = 0.015; $0.translucency = 0.15
             $0.topColor = linear(0xF2F4F8); $0.topAmount = 1; $0.topLow = 0.4
         },
-        // realforge:material.conifer
+        // realityhd:material.conifer
     ]
 }

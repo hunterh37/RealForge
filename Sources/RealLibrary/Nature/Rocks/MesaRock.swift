@@ -8,7 +8,7 @@ public struct MesaRock: RealAsset {
     public static let summary = "Red sandstone butte, 6 m tall: flat caprock, stepped strata ledges, undercut soft beds, fallen blocks, 3 LODs."
     public static let tags = ["nature", "rock", "desert"]
     public static let budget = 46_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 25, elevation: 12)
 
     public var size: V3 = V3(8, 6, 7)

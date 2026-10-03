@@ -8,7 +8,7 @@ public struct FirewoodStack: RealAsset {
     public static let summary = "Firewood rick, 1.2 x 0.9 m: split oak and birch pieces in rough rows on two sleeper boards, ragged ends."
     public static let tags = ["prop", "camp", "wood"]
     public static let budget = 10_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 28, elevation: 16, distance: 1.1)
 
     /// Stack length along X, meters.

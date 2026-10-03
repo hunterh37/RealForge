@@ -22,7 +22,7 @@ public struct JapaneseMaple: RealAsset {
     public static let summary = "Japanese maple, ~5 m, low-forked sinuous limbs, layered crown of deep red palmate leaves."
     public static let tags = ["nature", "tree", "deciduous", "garden"]
     public static let budget = 40_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 14)
     public var height: Float = 5
     public init() {}

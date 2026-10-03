@@ -9,7 +9,7 @@ public struct ReedClump: RealAsset {
     public static let summary = "Cattail clump, ~1.8 m: flat sword leaves arching at the top and 2-4 stems with brown velvet seed heads; 2 LODs."
     public static let tags = ["nature", "grass", "plant", "water"]
     public static let budget = 1_100
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 12, distance: 1.1)
 
     public var height: Float = 1.8

@@ -8,7 +8,7 @@ public struct MeadowFlowers: RealAsset {
     public static let summary = "Wildflower clump, 0.3-0.7 m: daisy, poppy, cornflower and buttercup stems with cupped heads and leaves; 2 LODs."
     public static let tags = ["nature", "flower", "plant"]
     public static let budget = 800
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 25, distance: 1.0)
 
     public var stems: ClosedRange<Int> = 7...12

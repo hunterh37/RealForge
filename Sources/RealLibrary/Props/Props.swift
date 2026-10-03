@@ -26,6 +26,6 @@ public enum Props {
         CampLantern.self,
         Canoe.self,
         AxeInStump.self,
-        // realforge:prop
+        // realityhd:prop
     ]
 }

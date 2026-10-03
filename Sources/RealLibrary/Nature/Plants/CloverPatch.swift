@@ -8,7 +8,7 @@ public struct CloverPatch: RealAsset {
     public static let summary = "White clover patch, ~0.4 m: 30-50 trefoil leaves on petioles and 3-6 white flower heads; 2 LODs."
     public static let tags = ["nature", "flower", "plant", "ground"]
     public static let budget = 800
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 40, distance: 1.0)
 
     public var radius: Float = 0.2

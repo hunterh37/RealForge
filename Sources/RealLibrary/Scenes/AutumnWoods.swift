@@ -10,7 +10,7 @@ public struct AutumnWoods: RealSceneBuilder {
     public static let id = "autumn-woods"
     public static let summary = "Autumn wood of red maple, gold aspen, beech and oak over leaf litter, a dirt path winding past logs, a snag and mossy rocks."
     public static let tags = ["nature", "forest", "showcase"]
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Terrain side length in meters.
     public var size: Float = 72

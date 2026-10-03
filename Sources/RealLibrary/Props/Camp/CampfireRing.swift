@@ -9,7 +9,7 @@ public struct CampfireRing: RealAsset {
     public static let summary = "Campfire ring, 1 m: sooted stones, ash bed, half-burnt logs with charred alligator checks and glowing tips, embers."
     public static let tags = ["prop", "camp", "stone", "wood", "light"]
     public static let budget = 10_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 32, distance: 1.05)
 
     /// Ring radius to the stone centers, meters.

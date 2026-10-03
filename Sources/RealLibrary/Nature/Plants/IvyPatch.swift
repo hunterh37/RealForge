@@ -8,7 +8,7 @@ public struct IvyPatch: RealAsset {
     public static let summary = "English ivy ground cover, ~1 m: woody runners on the soil with 80-140 glossy five-lobed leaves; 2 LODs."
     public static let tags = ["nature", "foliage", "plant", "ground"]
     public static let budget = 1_900
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 40, distance: 1.0)
 
     public var radius: Float = 0.5

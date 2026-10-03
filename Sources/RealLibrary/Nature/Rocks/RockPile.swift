@@ -8,7 +8,7 @@ public struct RockPile: RealAsset {
     public static let summary = "Field stone heap, 1.8 m across, 0.7 m high: 40-60 rounded stones stacked in layers, 3 LODs."
     public static let tags = ["nature", "rock", "farm"]
     public static let budget = 30_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     public var radius: Float = 0.9
     public var height: Float = 0.7

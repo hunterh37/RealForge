@@ -9,7 +9,7 @@ public struct LogStump: RealAsset {
     public static let summary = "Felled-tree stump, 50 cm across: root flare and buttresses, mossy bark, weathered sawn top with rings and checks."
     public static let tags = ["nature", "wood", "camp"]
     public static let budget = 4_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 28, distance: 1.0)
 
     /// Trunk diameter at the cut, meters.

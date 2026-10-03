@@ -92,6 +92,6 @@ public extension MaterialLibrary {
         forestFloor.with {
             $0.key = "ground.forest-worn"; $0.splat = "ground.dirt"; $0.splatSoftness = 0.25; $0.splatHeight = 1.5
         },
-        // realforge:material.ground
+        // realityhd:material.ground
     ]
 }

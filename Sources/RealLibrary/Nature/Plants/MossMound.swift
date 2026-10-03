@@ -8,7 +8,7 @@ public struct MossMound: RealAsset {
     public static let summary = "Cushion moss mound, 0.25-0.6 m across: 1-3 merged lumpy domes with a dense moss-shoot material; 2 LODs."
     public static let tags = ["nature", "plant", "ground"]
     public static let budget = 1_600
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 30, distance: 1.0)
 
     /// Main dome radius and height, meters.

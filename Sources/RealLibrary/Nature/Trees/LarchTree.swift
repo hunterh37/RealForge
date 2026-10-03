@@ -8,7 +8,7 @@ public struct LarchTree: RealAsset {
     public static let summary = "European larch, ~20 m: open cone of level branches with hanging branchlets and light-green needle rosettes, 3 LODs."
     public static let tags = ["nature", "tree", "conifer"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Total height in meters.
     public var height: Float = 20

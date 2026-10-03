@@ -22,7 +22,7 @@ public struct MapleTree: RealAsset {
     public static let summary = "Norway maple, ~14 m, dense rounded crown, palmate leaves; autumn knob turns it red."
     public static let tags = ["nature", "tree", "deciduous"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public var height: Float = 14
     /// 0 = summer green, 1 = full autumn red/orange.
     public var autumn: Float = 0

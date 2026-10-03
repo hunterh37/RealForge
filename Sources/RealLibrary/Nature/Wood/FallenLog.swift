@@ -9,7 +9,7 @@ public struct FallenLog: RealAsset {
     public static let summary = "Fallen trunk, 3.6 m: tapered and bowed, sawn butt, snapped top, branch stubs, peeling bark over grey wood, moss on top."
     public static let tags = ["nature", "wood"]
     public static let budget = 6_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 25, elevation: 22, distance: 0.75)
 
     public var length: Float = 3.6

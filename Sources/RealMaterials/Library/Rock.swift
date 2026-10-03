@@ -57,6 +57,6 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x484541); $0.colorB = linear(0x64605A); $0.colorC = linear(0x86705F)
             $0.knobs = V4(0.45, 0.08, 0.2, 0.6); $0.seed = 9; $0.tileSize = 2.5; $0.normalStrength = 2.6
         },
-        // realforge:material.rock
+        // realityhd:material.rock
     ]
 }

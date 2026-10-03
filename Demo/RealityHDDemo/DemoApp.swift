@@ -64,11 +64,11 @@ final class DemoModel {
 }
 
 @main
-struct RealForgeDemoApp: App {
+struct RealityHDDemoApp: App {
     @State private var model = DemoModel()
     @State private var style: ImmersionStyle = .full
 
-    init() { RealForge.setup(.balanced) }
+    init() { RealityHD.setup(.balanced) }
 
     var body: some Scene {
         WindowGroup(id: "menu") {

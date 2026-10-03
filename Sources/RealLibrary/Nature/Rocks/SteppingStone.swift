@@ -8,7 +8,7 @@ public struct SteppingStone: RealAsset {
     public static let summary = "Garden stepping stone, 0.6 m: flat tread about 10 cm above ground, broken beveled edges, 2 LODs."
     public static let tags = ["nature", "rock", "garden"]
     public static let budget = 4_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 35)
 
     public var size: V3 = V3(0.62, 0.26, 0.5)

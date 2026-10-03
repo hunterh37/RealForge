@@ -9,7 +9,7 @@ public struct Saguaro: RealAsset {
     public static let summary = "Saguaro, ~7 m: 18-rib column with 1-4 elbowed arms, domed tips, spine rows on rib crests, corky base, 3 LODs."
     public static let tags = ["nature", "desert"]
     public static let budget = 26_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 8, distance: 1.1)
 
     /// Trunk height in meters.

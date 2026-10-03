@@ -12,7 +12,7 @@ public protocol RealSceneBuilder: Sendable {
 }
 
 public extension RealSceneBuilder {
-    static var author: String { "realforge" }
+    static var author: String { "realityhd" }
     func with(_ edit: (inout Self) -> Void) -> Self { var c = self; edit(&c); return c }
 }
 
@@ -23,7 +23,7 @@ public enum SceneCatalog {
         Farmyard.self,
         LakesideCamp.self,
         AutumnWoods.self,
-        // realforge:scene
+        // realityhd:scene
     ]
 
     public static var ids: [String] { all.map { $0.id } }

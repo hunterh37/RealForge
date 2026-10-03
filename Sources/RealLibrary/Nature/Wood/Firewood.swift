@@ -8,7 +8,7 @@ public struct Firewood: RealAsset {
     public static let summary = "Split firewood piece, 40 cm from a 15 cm round: bark arc, rough split faces, sawn end-grain caps."
     public static let tags = ["nature", "wood", "camp"]
     public static let budget = 1_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 62, elevation: 24, distance: 1.2)
 
     /// Piece length in meters (stove and fire-pit wood is cut to 30 to 45 cm).

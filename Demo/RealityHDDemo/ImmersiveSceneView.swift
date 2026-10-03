@@ -16,7 +16,7 @@ struct ImmersiveSceneView: View {
             model.status = "building \(config.scene.rawValue)…"
             let t0 = Date()
             do {
-                let env = try RealForge.environment(config.sky.sunSky, skybox: true)
+                let env = try RealityHD.environment(config.sky.sunSky, skybox: true)
                 let id = config.scene.rawValue, seed = config.seed
                 guard let scene = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
                     model.status = "unknown scene \(id)"; model.loading = false; return

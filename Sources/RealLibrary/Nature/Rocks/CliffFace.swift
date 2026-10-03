@@ -10,7 +10,7 @@ public struct CliffFace: RealAsset {
     public static let summary = "Cliff section, 6 x 6 m: bedded strata ledges, undercuts, jointed blocks, rounded lip; tiles along X, 3 LODs."
     public static let tags = ["nature", "rock", "terrain"]
     public static let budget = 40_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 20, elevation: 10)
 
     public var length: Float = 6

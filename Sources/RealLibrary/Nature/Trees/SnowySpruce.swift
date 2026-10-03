@@ -8,7 +8,7 @@ public struct SnowySpruce: RealAsset {
     public static let summary = "Norway spruce, ~14 m, with snow lying on up-facing needle sprays and branches, 3 LODs."
     public static let tags = ["nature", "tree", "conifer", "snow"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
 
     /// Total height in meters.
     public var height: Float = 14

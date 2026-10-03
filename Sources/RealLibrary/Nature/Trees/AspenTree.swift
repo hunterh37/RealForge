@@ -21,7 +21,7 @@ public struct AspenTree: RealAsset {
     public static let summary = "Quaking aspen, ~15 m, narrow crown, white-green bark with dark eye scars; autumn knob turns it gold."
     public static let tags = ["nature", "tree", "deciduous"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public var height: Float = 15
     /// 0 = summer green, 1 = full autumn gold.
     public var autumn: Float = 0

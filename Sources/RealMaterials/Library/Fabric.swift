@@ -27,6 +27,6 @@ public extension MaterialLibrary {
             $0.knobs = V4(16, 1, 0.96, 0); $0.seed = 24; $0.tileSize = 0.03; $0.normalStrength = 3
             $0.roughness = 0.96
         },
-        // realforge:material.fabric
+        // realityhd:material.fabric
     ]
 }

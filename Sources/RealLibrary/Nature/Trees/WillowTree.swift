@@ -22,7 +22,7 @@ public struct WillowTree: RealAsset {
     public static let summary = "Weeping willow, ~12 m, arching limbs and curtains of long pendulous twigs with narrow leaves."
     public static let tags = ["nature", "tree", "deciduous", "water"]
     public static let budget = 45_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public var height: Float = 12
     public init() {}
     public func build(seed: UInt64) -> LODModel { Tree(TreeSpecies.willow.with { $0.height = height }).build(seed: seed) }

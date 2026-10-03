@@ -5,15 +5,15 @@ import RealMaterials
 
 /// On-disk cache of synthesized material textures (all mips, raw texels), keyed by a hash of the
 /// spec, the pixel size and the Metal source. A hit replaces GPU synthesis with a file read and a
-/// blit. Default location: ~/Library/Caches/RealForge/textures. Opt out with `isEnabled = false` or
-/// the environment variable REALFORGE_NO_DISK_CACHE=1.
+/// blit. Default location: ~/Library/Caches/RealityHD/textures. Opt out with `isEnabled = false` or
+/// the environment variable REALITYHD_NO_DISK_CACHE=1.
 public enum RealTextureDiskCache {
-    nonisolated(unsafe) public static var isEnabled = ProcessInfo.processInfo.environment["REALFORGE_NO_DISK_CACHE"] == nil
+    nonisolated(unsafe) public static var isEnabled = ProcessInfo.processInfo.environment["REALITYHD_NO_DISK_CACHE"] == nil
     nonisolated(unsafe) public static var directory: URL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        .appendingPathComponent("RealForge/textures", isDirectory: true)
+        .appendingPathComponent("RealityHD/textures", isDirectory: true)
     /// Bump when the file layout changes.
     static let formatVersion = 1
-    static let writer = DispatchQueue(label: "realforge.texture-disk-cache", qos: .utility)
+    static let writer = DispatchQueue(label: "realityhd.texture-disk-cache", qos: .utility)
 
     /// Texture order and bytes per texel inside a cache file.
     struct Layout {

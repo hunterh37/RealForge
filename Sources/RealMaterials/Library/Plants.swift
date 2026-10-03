@@ -112,6 +112,6 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.1, 0, 0, 0); $0.seed = 35; $0.tileSize = 0.02; $0.normalStrength = 1
             $0.resolution = 256; $0.roughness = 0.5; $0.wind = 0.05
         },
-        // realforge:material.plants
+        // realityhd:material.plants
     ]
 }

@@ -19,6 +19,6 @@ public extension MaterialLibrary {
         MaterialSpec(key: "glass.pane", program: nil).with {
             $0.baseColor = V3(0.82, 0.86, 0.84); $0.roughness = 0.02; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.18; $0.twoSided = true
         },
-        // realforge:material.water
+        // realityhd:material.water
     ]
 }

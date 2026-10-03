@@ -8,7 +8,7 @@ public struct CampLantern: RealAsset {
     public static let summary = "Two-mantle camp lantern, 36 cm: painted fuel fount with pump and valve, glowing globe, vented cap, bail handle."
     public static let tags = ["prop", "camp", "light", "metal", "glass"]
     public static let budget = 4_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 12, distance: 1.25)
 
     /// Paint color (sRGB hex) of the fount and cap.

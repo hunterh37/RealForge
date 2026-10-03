@@ -9,7 +9,7 @@ public struct DomeTent: RealAsset {
     public static let summary = "Two-person dome tent, 2.2 x 1.6 m: crossed poles, sagging ripstop fly, inner tent, D-door zip, guy lines and pegs."
     public static let tags = ["prop", "camp", "fabric"]
     public static let budget = 9_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 18, distance: 0.85)
 
     /// Fly footprint half extents (x, z) and peak height, meters.

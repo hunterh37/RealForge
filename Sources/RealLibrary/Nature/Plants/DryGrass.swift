@@ -8,7 +8,7 @@ public struct DryGrass: RealAsset {
     public static let summary = "Straw-colored summer grass, ~45 cm: flopped and broken geometric blades with pale seed heads; card LOD."
     public static let tags = ["nature", "grass", "foliage"]
     public static let budget = 700
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 18, distance: 1.1)
 
     public var height: Float = 0.45

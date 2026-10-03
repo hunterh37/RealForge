@@ -9,7 +9,7 @@ public struct Canoe: RealAsset {
     public static let summary = "16 ft open canoe, 0.9 m beam: lofted hull with rocker and sheer, inner skin, ash gunwales, yoke, two seats, end decks."
     public static let tags = ["prop", "camp", "vehicle", "plastic", "wood"]
     public static let budget = 10_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 24, distance: 0.8)
 
     public var length: Float = 4.9

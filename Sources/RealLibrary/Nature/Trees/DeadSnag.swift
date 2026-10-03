@@ -21,7 +21,7 @@ public struct DeadSnag: RealAsset {
     public static let summary = "Standing dead tree, ~6.5 m, splintered broken top, bare limbs and stubs, bark peeling off grey wood."
     public static let tags = ["nature", "tree", "wood"]
     public static let budget = 20_000
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public var height: Float = 9
     /// Fraction of the trunk left standing below the break.
     public var breakAt: Float = 0.72

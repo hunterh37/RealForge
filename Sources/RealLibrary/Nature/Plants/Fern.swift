@@ -9,7 +9,7 @@ public struct Fern: RealAsset {
     public static let summary = "Lady fern, ~0.8 m fronds: crown of 8-14 arching pinnate fronds as bent, ridged strips; bracken variant; 2 LODs."
     public static let tags = ["nature", "foliage", "plant"]
     public static let budget = 700
-    public static let author = "realforge"
+    public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 35, elevation: 25, distance: 1.1)
 
     /// Longest frond, meters.
