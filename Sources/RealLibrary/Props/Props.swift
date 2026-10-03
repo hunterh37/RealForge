@@ -13,6 +13,7 @@ public enum Props {
         TrafficBarrel.self,
         Dumpster.self,
         RoundHayBale.self,
+        SquareHayBale.self,
         // realforge:prop
     ]
 }
