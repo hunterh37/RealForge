@@ -44,9 +44,13 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x5F5347); $0.colorB = linear(0x2E241C); $0.colorC = linear(0x7C826A)
             $0.knobs = V4(0.15, 0, 0, 0); $0.normalStrength = 4
         },
-        MaterialSpec(key: "emissive.ember", program: nil).with {
-            $0.baseColor = V3(0.6, 0.12, 0.02); $0.roughness = 0.9; $0.mode = .emissive
-            $0.emissive = V3(1, 0.22, 0.03); $0.emissiveIntensity = 1.6
+        // Glowing coal: orange-red blocks, yellow-orange in the alligator cracks, grey ash skin, plus a uniform
+        // low glow (PhysicallyBasedMaterial path; emissive specs skip ShaderGraph).
+        MaterialSpec(key: "emissive.ember", program: .charcoal).with {
+            $0.colorA = linear(0xC8461A); $0.colorB = linear(0x8A8580); $0.colorC = linear(0xFFB040)
+            $0.knobs = V4(0.35, 8, 1.0, 0); $0.seed = 35; $0.tileSize = 0.12; $0.normalStrength = 3; $0.resolution = 512
+            $0.roughness = 0.9; $0.mode = .emissive
+            $0.emissive = V3(1, 0.22, 0.03); $0.emissiveIntensity = 0.05
         },
         // realforge:material.woodextra
     ]
