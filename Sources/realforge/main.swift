@@ -72,6 +72,7 @@ func run() async throws {
         let skyName = opt("--sky") ?? "afternoon"
         let pbr = flag("--pbr"), noGround = flag("--no-ground")
         let fog = opt("--fog")
+        let dt = Double(opt("--dt") ?? "0.0166") ?? 0.0166
         guard let id = args.first else { print(usage); return }
         let out = opt("--out") ?? "out/\(id).png"
         RealKitSetup.register()
@@ -102,7 +103,7 @@ func run() async throws {
         env.illuminate(root)
         preview.add(root)
         let build = Date().timeIntervalSince(t0) * 1000
-        guard let img = try await preview.render(width: w, height: h, frames: 6) else { print("render failed"); return }
+        guard let img = try await preview.render(width: w, height: h, frames: 6, deltaTime: dt) else { print("render failed"); return }
         writePNG(img, out)
         print("\(out) build \(Int(build))ms tex \(RealMaterialCache.shared.textureBytes / 1_048_576)MB")
     case "shaders":
