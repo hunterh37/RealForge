@@ -19,6 +19,7 @@ public extension RealSceneBuilder {
 public enum SceneCatalog {
     public static let all: [any RealSceneBuilder.Type] = [
         ForestGlade.self, ParkPath.self, PropYard.self,
+        AlpineMeadow.self,
         // realforge:scene
     ]
 
