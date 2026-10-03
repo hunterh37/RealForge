@@ -4,6 +4,7 @@ public enum Structures {
     public static let all: [any RealAsset.Type] = [
         JerseyBarrier.self,
         ConstructionFence.self,
+        ScaffoldBay.self,
         // realforge:structure
     ]
 }
