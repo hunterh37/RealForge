@@ -3,7 +3,7 @@ public enum Nature {
     public static let all: [any RealAsset.Type] = [
         OakTree.self, BirchTree.self, SpruceTree.self, Shrub.self, Tree.self,
         Boulder.self, Pebbles.self, GroundPatch.self, GrassClump.self,
-        TerrainHill.self, DirtPath.self,
+        TerrainHill.self, DirtPath.self, Puddle.self,
         // realforge:nature
     ]
 }
