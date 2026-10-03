@@ -103,6 +103,9 @@ public struct RealShaderOptions: Hashable, Sendable {
     /// transform of 0), plus a low-frequency patch term so neighbors drift together. Works for
     /// MeshInstancesComponent instances and plain entities alike.
     public var instanceJitter = false
+    /// Second texture layer (BaseColor2/Normal2/Roughness2) blended by the per-vertex splat weight
+    /// in uv2.y, with a height-style edge from the luminance difference of the two layers.
+    public var splat = false
     public init() {}
 }
 
@@ -129,6 +132,22 @@ public enum RealShaderGraph {
             let macro = g.add("0.55", g.mul(g.add(b3[0], b3[1]), "1.6"))
             let mixed = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", "0.45")], out: "color3f")
             rgb = g.node("ND_multiply_color3FA", [("color3f", "in1", mixed), ("float", "in2", macro)], out: "color3f")
+        }
+        var splatMask: String?, uvS: String?
+        if o.splat {
+            let uv2 = g.node("ND_texcoord_vector2", [("int", "index", "2")], out: "float2")
+            let w = g.separate("ND_separate2_vector2", "float2", uv2, ["outx", "outy"])[1]
+            let us = g.node("ND_multiply_vector2FA", [("float2", "in1", uv0), ("float", "in2", g.param("UVScale2"))], out: "float2")
+            uvS = us
+            let b2 = g.separate("ND_separate4_color4", "color4f", g.texture("BaseColor2", us, color: true), ["outr", "outg", "outb", "outa"])
+            let rgb2 = g.node("ND_combine3_color3", [("float", "in1", b2[0]), ("float", "in2", b2[1]), ("float", "in3", b2[2])], out: "color3f")
+            // Height-style transition: brighter (raised) texels of either layer win near the boundary.
+            let l1 = g.add(g.mul(bc[0], "0.4"), g.mul(bc[1], "0.6")), l2 = g.add(g.mul(b2[0], "0.4"), g.mul(b2[1], "0.6"))
+            let t = g.add(g.add(g.mul(w, "2"), "-1"), g.mul(g.add(l2, g.mul(l1, "-1")), g.param("SplatHeight")))
+            let soft = g.param("SplatSoftness")
+            let mask = g.node("ND_smoothstep_float", [("float", "in", t), ("float", "low", g.mul(soft, "-1")), ("float", "high", soft)], out: "float")
+            splatMask = mask
+            rgb = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", mask)], out: "color3f")
         }
         if o.instanceJitter {
             let org = g.node("ND_transformpoint_vector3", [("float3", "in", "(0, 0, 0)"), ("string", "fromspace", "\"object\""), ("string", "tospace", "\"world\"")], out: "float3")
@@ -180,6 +199,9 @@ public enum RealShaderGraph {
             let nt2 = g.texture("Normal", uvB, color: false)
             nt = g.node("ND_mix_vector4", [("float4", "fg", nt2), ("float4", "bg", nt), ("float", "mix", "0.45")], out: "float4")
         }
+        if let splatMask, let uvS {
+            nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal2", uvS, color: false)), ("float4", "bg", nt), ("float", "mix", splatMask)], out: "float4")
+        }
         // RG8 normal: reconstruct z = sqrt(1 - x^2 - y^2) in tangent space.
         let nc = g.separate("ND_separate4_vector4", "float4", nt, ["outx", "outy", "outz", "outw"])
         let nx = g.add(g.mul(nc[0], "2"), "-1"), ny = g.add(g.mul(nc[1], "2"), "-1")
@@ -188,6 +210,10 @@ public enum RealShaderGraph {
         let normal = g.node("ND_combine3_vector3", [("float", "in1", nx), ("float", "in2", ny), ("float", "in3", nz)], out: "float3")
         let rt = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("Roughness", color: false, scale: g.param("UVScale")) : g.texture("Roughness", uv, color: false), ["outx", "outy", "outz", "outw"])
         var rough = rt[0]
+        if let splatMask, let uvS {
+            let r2 = g.separate("ND_separate4_vector4", "float4", g.texture("Roughness2", uvS, color: false), ["outx", "outy", "outz", "outw"])[0]
+            rough = g.node("ND_mix_float", [("float", "fg", r2), ("float", "bg", rough), ("float", "mix", splatMask)], out: "float")
+        }
         if let topMask { rough = g.node("ND_mix_float", [("float", "fg", "0.95"), ("float", "bg", rough), ("float", "mix", topMask)], out: "float") }
         var surfaceInputs: [(String, String, String)] = [
             ("color3f", "baseColor", tint), ("float3", "normal", normal), ("float", "roughness", rough),
@@ -195,7 +221,9 @@ public enum RealShaderGraph {
         ]
         if o.aoMap {
             let at = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("AO", color: false, scale: g.param("UVScale")) : g.texture("AO", uv, color: false), ["outx", "outy", "outz", "outw"])
-            surfaceInputs.append(("float", "ambientOcclusion", g.mul(at[0], vao)))
+            var ao = at[0]
+            if let splatMask { ao = g.node("ND_mix_float", [("float", "fg", "0.9"), ("float", "bg", ao), ("float", "mix", splatMask)], out: "float") }
+            surfaceInputs.append(("float", "ambientOcclusion", g.mul(ao, vao)))
         } else {
             surfaceInputs.append(("float", "ambientOcclusion", vao))
         }
@@ -269,6 +297,12 @@ public enum RealShaderGraph {
                 asset inputs:Roughness = @@
                 asset inputs:AO = @@
                 asset inputs:Metallic = @@
+                asset inputs:BaseColor2 = @@
+                asset inputs:Normal2 = @@
+                asset inputs:Roughness2 = @@
+                float inputs:UVScale2 = 1
+                float inputs:SplatSoftness = 0.2
+                float inputs:SplatHeight = 1.5
                 float inputs:UVScale = 1
                 color3f inputs:Tint = (1, 1, 1)
                 float inputs:Specular = 0.5

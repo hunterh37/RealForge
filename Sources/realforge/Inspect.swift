@@ -51,7 +51,7 @@ func shadersCommand(_ args: Args) async throws {
     // One setter per RealShaderOptions flag; every combination is loaded.
     let flags: [(inout RealShaderOptions, Bool) -> Void] = [
         { $0.cutout = $1 }, { $0.wind = $1 }, { $0.translucency = $1 }, { $0.antiTile = $1 }, { $0.topLayer = $1 },
-        { $0.fog = $1 }, { $0.triplanar = $1 }, { $0.metallicMap = $1 }, { $0.instanceJitter = $1 },
+        { $0.fog = $1 }, { $0.triplanar = $1 }, { $0.metallicMap = $1 }, { $0.instanceJitter = $1 }, { $0.splat = $1 },
     ]
     let t0 = Date()
     for bits in 0..<(1 << flags.count) {

@@ -49,6 +49,14 @@ public struct MaterialSpec: Sendable, Hashable {
     public var topColor: V4 = linear(0x2F4A16)
     public var topAmount: Float = 0
     public var topLow: Float = 0.55
+    /// Second layer blended in by the mesh's per-vertex `Surface.splat` weights (ShaderGraph path;
+    /// the PhysicallyBasedMaterial fallback shows the base layer only). Its own spec supplies textures
+    /// and tile size: path wear, mud or moss over a ground material.
+    public var splat: MaterialKey? = nil
+    /// Width of the splat transition in weight units (0.05 crisp, 0.4 soft).
+    public var splatSoftness: Float = 0.2
+    /// How much the layers' texture brightness pushes the boundary (stones poke through mud).
+    public var splatHeight: Float = 1.5
 
     public init(key: MaterialKey, program: TextureProgram?) { self.key = key; self.program = program }
 

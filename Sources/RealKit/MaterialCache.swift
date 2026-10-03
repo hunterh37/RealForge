@@ -221,6 +221,9 @@ public final class RealMaterialCache {
         o.wind = s.wind > 0; o.translucency = s.translucency > 0; o.antiTile = s.antiTile
         o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0; o.triplanar = s.triplanar
         o.instanceJitter = jitter != .zero
+        let splatSpec = s.splat.map { spec($0) }
+        let t2 = try splatSpec.flatMap { try textures($0) }
+        o.splat = t2 != nil
         var m = try await RealShaderGraph.material(o)
         try m.setParameter(name: "BaseColor", value: .textureResource(t.albedo))
         try m.setParameter(name: "Normal", value: .textureResource(t.normal))
@@ -242,6 +245,14 @@ public final class RealMaterialCache {
             try m.setParameter(name: "TopColor", value: .color(cgLinear(SIMD3(s.topColor.x, s.topColor.y, s.topColor.z))))
             try m.setParameter(name: "TopAmount", value: .float(s.topAmount))
             try m.setParameter(name: "TopLow", value: .float(s.topLow))
+        }
+        if let t2, let splatSpec {
+            try m.setParameter(name: "BaseColor2", value: .textureResource(t2.albedo))
+            try m.setParameter(name: "Normal2", value: .textureResource(t2.normal))
+            try m.setParameter(name: "Roughness2", value: .textureResource(t2.roughness))
+            try m.setParameter(name: "UVScale2", value: .float(splatSpec.tileSize > 0 ? 1 / splatSpec.tileSize : 1))
+            try m.setParameter(name: "SplatSoftness", value: .float(max(0.01, s.splatSoftness)))
+            try m.setParameter(name: "SplatHeight", value: .float(s.splatHeight))
         }
         if o.instanceJitter {
             try m.setParameter(name: "HueJitter", value: .float(jitter.x))

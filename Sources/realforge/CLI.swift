@@ -49,5 +49,6 @@ realforge catalog                         regenerate CATALOG.md
 realforge new prop|nature|structure <id> [--theme Folder] [--author handle] [--material key]
 realforge new scene <id> [--author handle]
 realforge new material <family.variant> --program <TextureProgram> [--like key]
+realforge demo splat|water|glass [--pbr]   engine feature demos (out/demo-<name>.png)
 realforge bench                           release timing (swift run -c release realforge bench)
 """
