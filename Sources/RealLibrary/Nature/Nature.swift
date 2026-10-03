@@ -18,6 +18,15 @@ public enum Nature {
         LeafLitter.self,
         MapleTree.self, BeechTree.self, WillowTree.self, JapaneseMaple.self, DeadSnag.self, AspenTree.self,
         TerrainHill.self, DirtPath.self, Puddle.self, MudPatch.self, GravelPatch.self, SnowDrift.self, SandDune.self,
+        ScotsPine.self,
+        FirTree.self,
+        CypressTree.self,
+        SnowySpruce.self,
+        PalmTree.self,
+        Saguaro.self,
+        BarrelCactus.self,
+        Agave.self,
+        LarchTree.self,
         // realforge:nature
     ]
 }
