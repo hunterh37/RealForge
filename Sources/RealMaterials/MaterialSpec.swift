@@ -5,6 +5,7 @@ import RealCore
 public enum TextureProgram: Int32, Sendable, CaseIterable {
     case barkOak = 0, barkBirch, barkPine, leafBroad, leafNeedle, grassBlades, rockGranite, forestFloor
     case woodPlank, paintedMetal, rustMetal, concrete, asphalt, plastic, brick
+    case barkSmooth, barkAspen, barkDead, leafPalmate, leafLanceolate
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
