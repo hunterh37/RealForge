@@ -58,7 +58,9 @@ public enum Prim {
     public static func lathe(_ profile: [V2], segments: Int = 32, seamTile: Float = 0.25, material: MaterialKey, swapUV: Bool = false) -> Surface {
         var s = Surface(material: material)
         let maxR = profile.map(\.x).max() ?? 0.1
-        let uTotal = max(seamTile, (2 * .pi * maxR / seamTile).rounded() * seamTile)
+        // Small parts: true circumference (a seam is invisible at that size); larger ones quantize so tiles wrap.
+        let circ = 2 * .pi * maxR
+        let uTotal = circ < seamTile * 0.75 ? circ : max(seamTile, (circ / seamTile).rounded() * seamTile)
         var vAcc: [Float] = [0]
         for i in 1..<profile.count { vAcc.append(vAcc[i - 1] + simd_distance(profile[i], profile[i - 1])) }
         for (i, pr) in profile.enumerated() {
@@ -84,7 +86,8 @@ public enum Prim {
                             weights: [Float]? = nil, phase: Float = 0, capEnd: Bool = true, rippling: ((Float, Float) -> Float)? = nil) -> Surface {
         precondition(path.count >= 2 && radii.count == path.count)
         var s = Surface(material: material)
-        let uTotal = max(seamTile, (2 * .pi * radii[0] / seamTile).rounded() * seamTile)
+        let circ = 2 * .pi * radii[0]
+        let uTotal = circ < seamTile * 0.75 ? circ : max(seamTile, (circ / seamTile).rounded() * seamTile)
         var tangents: [V3] = []
         for i in path.indices {
             let a = path[max(0, i - 1)], b = path[min(path.count - 1, i + 1)]

@@ -1,0 +1,39 @@
+{
+  "budget": 8000,
+  "id": "stoneware-crock",
+  "kind": "prop",
+  "materials": [
+    "ceramic.stoneware",
+    "ceramic.cobalt",
+    "ceramic.bisque",
+    "wood.weathered"
+  ],
+  "name": "Salt-glazed stoneware crock",
+  "notes": "",
+  "parts": [
+    "thick-walled thrown body with visible throwing rings",
+    "rolled rim lip",
+    "two lug handles",
+    "cobalt-blue decorative band",
+    "unglazed foot ring",
+    "loose wooden board lid with batten"
+  ],
+  "references": [],
+  "size": [
+    0.34,
+    0.36,
+    0.3
+  ],
+  "style": "19th-century pantry crock, speckled buff glaze, glaze runs, chipped foot",
+  "summary": "Salt-glazed stoneware crock, 3 gallon: wheel-thrown body with throwing rings, cobalt band, rolled lip, lug handles, wooden lid.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "ceramic",
+    "container",
+    "antique"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

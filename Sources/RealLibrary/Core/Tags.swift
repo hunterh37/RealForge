@@ -15,6 +15,8 @@ public enum AssetTag {
         "beach", "desert", "snow", "harbor", "rail", "construction", "industrial", "playground", "sports",
         // function
         "container", "furniture", "light", "sign", "barrier", "fence", "wall", "vehicle", "tool", "food", "decor",
+        // RealityHD 3
+        "leather", "workshop", "travel", "antique",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

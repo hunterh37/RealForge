@@ -39,7 +39,11 @@ Sources/
     Props/<Theme>/<Type>.swift       registry: Props/Props.swift
     Structures/<Theme>/<Type>.swift  registry: Structures/Structures.swift
     Scenes/<Type>.swift              registry: Scenes/SceneCatalog.swift
-  realityhd/       CLI: list, stats, render, thumbs, textures, shaders, catalog, new, bench
+  realityhd/       CLI: list, stats, render, thumbs, textures, shaders, catalog, new, bench,
+                   context, brief, lint, sheet, gate (Gate.swift, Imaging.swift, Agent.swift)
+briefs/<id>.json, briefs/signoff/<id>.json   prop briefs and gate sign-offs (tests check both)
+.claude/skills/  realityhd-prop, realityhd-brief, realityhd-gate, realityhd-material
+Scripts/vision_judge.py   headless vision verdict via the Claude API
 Tests/RealityHDTests/  AssetContractTests, SceneTests, MaterialTests, CoreTests
 docs/assets/<id>.png, docs/scenes/<id>.png   thumbnails (tests require them)
 Demo/              visionOS demo app (xcodegen)
@@ -50,15 +54,18 @@ One asset per file, file named after the type. Registries end in a `// realityhd
 
 ## Workflow: add an asset
 
-1. `swift run -q realityhd list`, read `CATALOG.md`. Reuse assets, helpers and materials first.
-2. `swift run -q realityhd new prop <id> --theme <Folder> --author <handle> [--material key]`
-   (`nature` or `structure` instead of `prop`). Writes `Sources/RealLibrary/Props/<Folder>/<Type>.swift`
-   and registers it.
-3. Write `build(seed:)`. Real dimensions in meters; expose dimensions and colors as `var`s.
-4. `swift test`. Failures name the fix: summary, tags, budget, grounding, centering, materials, thumbnail.
-5. `swift run -q realityhd render <id>` and Read `out/<id>.png`. Also `--az 200`, `--el 40`, `--sky golden`.
-   Check scale, grounding, material scale, grain direction, bevels, z-fighting. Fix and re-render.
-6. `swift run -q realityhd thumbs <id>` then `swift run -q realityhd catalog`. Commit sources, thumbnail, CATALOG.md.
+Props: use the `realityhd-prop` skill (`.claude/skills/realityhd-prop/SKILL.md`). Short form:
+
+1. `swift run -q realityhd context prop` (API, materials, props by theme, loop). Reuse helpers and materials.
+2. `swift run -q realityhd brief <id> --theme <Folder> --name "..."`, fill `briefs/<id>.json` (real size, parts, materials).
+3. `swift run -q realityhd new prop <id> --brief briefs/<id>.json` (`nature` or `structure` without a brief:
+   `realityhd new nature <id> --theme <Folder>`).
+4. Write `build(seed:)`. Real dimensions in meters; expose dimensions, colors and material keys as `var`s.
+5. `swift run -q realityhd lint <id>`, then `swift run -q realityhd gate <id> [--ref photo.jpg]`. Read
+   `out/gate/<id>/sheet.png`, write `out/gate/<id>/verdict.json` (rubric in `realityhd-gate`), rerun with
+   `--verdict out/gate/<id>/verdict.json`. Iterate on the fixes until it passes, then add `--signoff`.
+6. `swift run -q realityhd thumbs <id>`, `swift run -q realityhd catalog`, `swift test`. Commit sources, brief,
+   sign-off, thumbnail, CATALOG.md.
 
 ## Workflow: add a scene
 
@@ -99,7 +106,15 @@ Per-asset defaults: `static let preview = PreviewHint(...)`.
 
 ## API cheat sheet
 
+Full live listing: `swift run -q realityhd context api`.
+
 ```swift
+// RealityHD 3 geometry kit
+Prim.extrude(Shape2D.roundedRect(w, h, radius:), depth:, bevel:, material:)   Prim.sweep(profile2D, along: path, up:, grainAlongPath:, material:)
+Prim.loft([Prim.ring(outline2D, y:)], capStart:, capEnd:, material:)   Prim.superellipsoid(size, exponent:, material:)
+Prim.torus(major:, minor:, arc:, material:)   Prim.helix(radius:, pitch:, turns:, wire:, material:)   Prim.cylinder(radius:, height:, bevel:, material:)
+rivet / rivetRow / hexBolt / stitches / barHandle / chain / caster / tuftedPanel / buttons   surface.deform { }  surface.displace { }
+
 // Primitives (RealCore.Prim), all return Surface (one material)
 Prim.roundedBox(size, radius:, bevelSegments:, material:)   Prim.lathe([V2(r, y)], segments:, seamTile:, material:, swapUV:)
 Prim.tube(points, radii:, sides:, seamTile:, material:, weights:)   Prim.cubeSphere(subdivisions:, material:) { dir in point }

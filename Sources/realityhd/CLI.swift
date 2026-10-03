@@ -46,10 +46,16 @@ realityhd thumbs [id...] [--missing]      docs/assets/<id>.png (640x480), docs/s
 realityhd textures [key...] [--size 512] [--out out/tex]
 realityhd shaders [--dump]                load every ShaderGraph variant
 realityhd catalog                         regenerate CATALOG.md
-realityhd new prop|nature|structure <id> [--theme Folder] [--author handle] [--material key]
+realityhd new prop|nature|structure <id> [--theme Folder] [--author handle] [--material key] [--brief briefs/<id>.json]
 realityhd new scene <id> [--author handle]
 realityhd new material <family.variant> --program <TextureProgram> [--like key]
 realityhd demo splat|water|glass [--pbr]   engine feature demos (out/demo-<name>.png)
+realityhd context [prop|api|materials [family]|props|gate]   compact agent context from the live library
+realityhd brief <id> --theme Folder --name "..."   briefs/<id>.json skeleton (size, parts, materials, refs)
+realityhd lint [id...] [--all]             budget, grounding, texel scale, size vs brief
+realityhd sheet <id> [--seed n]            out/gate/<id>/sheet.png: six views + stats, one image
+realityhd gate <id> [--ref img] [--view az,el] [--fit-view] [--verdict file] [--signoff] [--no-sheet] [--threshold t]
+                                          vision gate: lint, sheet, reference compare, score, sign-off
 realityhd bench                           release timing (swift run -c release realityhd bench)
 
 REALITYHD_NO_DISK_CACHE=1 skips the texture disk cache (~/Library/Caches/RealityHD/textures).

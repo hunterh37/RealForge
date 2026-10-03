@@ -16,9 +16,10 @@ struct RenderOptions {
     var pbr = false, ground = true
     var deltaTime = 0.0166
     var eye: SIMD3<Float>?, at: SIMD3<Float>?
+    var studio = false
 
     init(hint: PreviewHint = PreviewHint()) {
-        azimuth = hint.azimuth; elevation = hint.elevation; distance = hint.distance; ground = hint.ground; fog = hint.fog
+        azimuth = hint.azimuth; elevation = hint.elevation; distance = hint.distance; ground = hint.ground; fog = hint.fog; studio = hint.studio
     }
     /// Flags override the asset's `PreviewHint`.
     init(_ a: Args, hint: PreviewHint) {
@@ -62,7 +63,11 @@ func render(_ id: String, to out: String, _ o: RenderOptions) async throws -> St
         guard let asset = Catalog.build(id, seed: o.seed) else { throw CLIError("unknown id \(id) (realityhd list)") }
         let focus = try await asset.levels[min(o.lod, asset.levels.count - 1)].modelEntityAsync()
         root.addChild(focus)
-        if o.ground {
+        if o.ground && o.studio {
+            var floor = Prim.terrain(size: V2(80, 80), segments: 8, material: "concrete.smooth") { _ in 0 }
+            floor.uvs = floor.uvs.map { $0 * 2.5 }
+            root.addChild(try await Model(name: "studio-floor", surfaces: [floor]).modelEntityAsync())
+        } else if o.ground {
             let g = try await GroundPatch().with { $0.size = 30; $0.segments = 60; $0.relief = 0.05; $0.flatCenter = 6 }.build(seed: 3).levels[0].modelEntityAsync()
             root.addChild(g)
             // Land to the horizon so the 30 m patch has no visible edge.

@@ -21,7 +21,7 @@ every PBR texture is synthesized on the GPU.
 - [Usage](#usage)
 - [Gallery](#gallery)
 - [Performance](#performance)
-- [Command-line tool](#command-line-tool)
+- [Command-line tool](#command-line-tool) (3.0 agent loop)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -219,6 +219,12 @@ Material keys accept a hex tint: `"metal.painted:1F4E8C"`. All keys are listed i
 | ![picnic-table](docs/assets/picnic-table.png)<br>`picnic-table` | ![street-lamp](docs/assets/street-lamp.png)<br>`street-lamp` | ![traffic-cone](docs/assets/traffic-cone.png)<br>`traffic-cone` | ![fire-hydrant](docs/assets/fire-hydrant.png)<br>`fire-hydrant` |
 | ![bollard](docs/assets/bollard.png)<br>`bollard` | ![pallet](docs/assets/pallet.png)<br>`pallet` | ![mailbox](docs/assets/mailbox.png)<br>`mailbox` | ![trash-can](docs/assets/trash-can.png)<br>`trash-can` |
 
+### Photoreal props (3.0)
+
+Built and signed off through the vision gate (`docs/V3.md`).
+
+![RealityHD 3 props](docs/props-hd-gallery.png)
+
 ### Materials
 
 Albedo channel of the GPU-generated texture sets.
@@ -256,7 +262,19 @@ swift run -q realityhd shaders                   # load every ShaderGraph varian
 swift run -q realityhd catalog                   # regenerate CATALOG.md
 swift run -q realityhd new prop wheelbarrow --theme Construction   # scaffold + register
 swift run -c release realityhd bench
+
+# 3.0 agent loop
+swift run -q realityhd context prop              # API, materials, props, loop in one print
+swift run -q realityhd brief copper-kettle --theme Kitchen --name "Hammered copper kettle"
+swift run -q realityhd new prop copper-kettle --brief briefs/copper-kettle.json
+swift run -q realityhd lint copper-kettle        # budget, grounding, texel scale, size vs brief
+swift run -q realityhd gate copper-kettle --ref photo.jpg    # sheet, compare, report, verdict template
+swift run -q realityhd gate copper-kettle --verdict out/gate/copper-kettle/verdict.json --signoff
+python3 Scripts/vision_judge.py copper-kettle    # headless verdict via the Claude API
 ```
+
+Coding agents: `.claude/skills/realityhd-prop` runs the loop end to end; `realityhd-gate` holds the
+rubric and scoring.
 
 ## Package structure
 

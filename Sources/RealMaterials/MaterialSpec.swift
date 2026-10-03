@@ -13,6 +13,7 @@ public enum TextureProgram: Int32, Sendable, CaseIterable {
     case strataRock, rockSlate, rockRiver
     case fabricWeave, woodEndGrain, charcoal
     case water
+    case leather, brushedMetal, polishedMetal, ceramicGlaze, caneWeave
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
@@ -89,7 +90,7 @@ public func linear(_ hex: UInt32, _ a: Float = 1) -> V4 {
 /// Specs live in `Library/<Family>.swift`; add a family array to `all` when creating a new file.
 public enum MaterialLibrary {
     /// Every built-in spec, in catalog order. Keys are unique (tested).
-    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + plants + industrial + ground + conifer + rock + fabric + woodExtra + water + groundBlend + groundBlends
+    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + plants + industrial + ground + conifer + rock + fabric + woodExtra + water + groundBlend + groundBlends + craft
 
     public static let keys: [MaterialKey] = all.map { $0.key }
 

@@ -1,0 +1,37 @@
+{
+  "budget": 12000,
+  "id": "ship-anchor",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron",
+    "metal.rust"
+  ],
+  "name": "Admiralty anchor",
+  "notes": "Brief size corrected after first gate: with the stock flat on the ground the arms stand in a vertical plane, so the upper fluke rises about 1 m (seabed pose).",
+  "parts": [
+    "tapered square shank",
+    "curved arms with crown",
+    "triangular flukes with bills",
+    "iron stock through the shank eye with ball ends",
+    "anchor ring (shackle)",
+    "short length of stud chain",
+    "resting in the seabed pose: stock flat on the ground, lower fluke biting, upper arm raised"
+  ],
+  "references": [],
+  "size": [
+    1.45,
+    1.02,
+    1.2
+  ],
+  "style": "decommissioned harbour display anchor, heavy flaking rust, pitted",
+  "summary": "Admiralty pattern anchor, 1.3 m: rusted cast iron shank, curved arms with spade flukes, iron stock, ring and short chain.",
+  "tags": [
+    "prop",
+    "harbor",
+    "metal",
+    "decor"
+  ],
+  "theme": "Harbor",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

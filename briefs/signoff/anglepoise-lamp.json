@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99101186,
+  "date" : "2026-10-03",
+  "final" : 0.8660416,
+  "fingerprint" : "7a2449a4f3a38002",
+  "id" : "anglepoise-lamp",
+  "iterations" : 1,
+  "judge" : "claude-opus-5-5 (agent, sheet review)",
+  "scores" : {
+    "artifacts" : 7,
+    "construction" : 9,
+    "edges" : 7,
+    "grounding" : 8,
+    "materials" : 8,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.79875
+}

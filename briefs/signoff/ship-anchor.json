@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9482515,
+  "date" : "2026-10-03",
+  "final" : 0.861638,
+  "fingerprint" : "a84bb5ad702a44c7",
+  "id" : "ship-anchor",
+  "iterations" : 1,
+  "judge" : "claude-opus-5-5 (agent, sheet review)",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 8,
+    "grounding" : 8,
+    "materials" : 8,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 8
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.81500006
+}

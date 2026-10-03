@@ -56,6 +56,20 @@ and apps edit knobs with `Wheelbarrow().with { $0.trayColor = 0x8C1F1F }`.
 | Instanced cards with wind | `Nature/Ground/GrassClump.swift` |
 | New tree species | `Nature/Trees/Species.swift` (`TreeSpecies`), then a 9-line asset like `OakTree.swift` |
 
+## RealityHD 3 geometry kit
+
+| Part shape | Call | Example |
+|---|---|---|
+| Profiled slab, plate, bracket | `Prim.extrude(Shape2D.rounded(outline, radius:), depth:, bevel:)` | `Props/Travel/VintageSuitcase.swift` |
+| Rod, frame, rim, strap, handle | `Prim.sweep(profile, along:, up:, grainAlongPath:)` | `Props/Furniture/BentwoodChair.swift` |
+| Section that changes shape | `Prim.loft([Prim.ring(outline, y:)])` | `Props/Garden/StoneLantern.swift` |
+| Cushion, cap, button | `Prim.superellipsoid(size, exponent:)` | `Props/Furniture/ChesterfieldArmchair.swift` |
+| Hoop, ring, spring | `Prim.torus`, `Prim.helix` | `Props/Office/AnglepoiseLamp.swift` |
+| Upholstery | `tuftedPanel` + `buttons` | `Props/Furniture/ChesterfieldArmchair.swift` |
+| Hardware | `rivet`, `rivetRow`, `hexBolt`, `stitches`, `barHandle`, `chain`, `caster` | `Props/Workshop/ToolChest.swift` |
+
+Then gate it: `docs/V3.md`, `.claude/skills/realityhd-gate/SKILL.md`.
+
 ## Photoreal checklist
 
 Lighting does most of the work, so geometry and materials have to give it something to catch.

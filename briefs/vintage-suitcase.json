@@ -1,0 +1,41 @@
+{
+  "budget": 12000,
+  "id": "vintage-suitcase",
+  "kind": "prop",
+  "materials": [
+    "leather.tan",
+    "metal.brass-aged",
+    "fabric.canvas"
+  ],
+  "name": "Vintage leather suitcase",
+  "notes": "",
+  "parts": [
+    "case body with rounded vertical edges",
+    "lid seam groove at 2/3 depth",
+    "perimeter saddle stitching",
+    "two brass draw-bolt latches",
+    "center brass lock",
+    "eight brass corner caps",
+    "rolled leather carry handle on brass loops",
+    "two buckled leather straps around the case",
+    "four brass base studs"
+  ],
+  "references": [],
+  "size": [
+    0.66,
+    0.44,
+    0.2
+  ],
+  "style": "interwar steamer luggage, well travelled, scuffed corners, darker grime at the handle",
+  "summary": "1930s leather suitcase, 66 cm: stitched tan hide over a frame, brass latches and corners, leather handle and straps.",
+  "tags": [
+    "prop",
+    "travel",
+    "leather",
+    "container",
+    "antique"
+  ],
+  "theme": "Travel",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,38 @@
+{
+  "budget": 10000,
+  "id": "bentwood-chair",
+  "kind": "prop",
+  "materials": [
+    "wood.beech-stained",
+    "cane.woven",
+    "metal.steel"
+  ],
+  "name": "Bentwood bistro chair",
+  "notes": "",
+  "parts": [
+    "looped back hoop that forms the back legs",
+    "inner back loop",
+    "round seat ring with beaded rim",
+    "woven cane seat panel",
+    "two front legs tapering to the floor",
+    "leg ring below the seat",
+    "small brass-less screws at the joints"
+  ],
+  "references": [],
+  "size": [
+    0.43,
+    0.89,
+    0.52
+  ],
+  "style": "Viennese cafe chair, dark walnut stain, satin lacquer worn on the hoop top",
+  "summary": "Bentwood bistro chair after Thonet No. 14: steam-bent beech hoop back, splayed legs, leg ring, woven cane seat.",
+  "tags": [
+    "prop",
+    "furniture",
+    "wood",
+    "interior"
+  ],
+  "theme": "Furniture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

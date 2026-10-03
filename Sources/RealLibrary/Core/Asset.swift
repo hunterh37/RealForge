@@ -43,8 +43,11 @@ public struct PreviewHint: Sendable {
     public var ground = true
     /// Fog density override (0 = none); nil keeps the sky preset's.
     public var fog: Float?
-    public init(azimuth: Float = 35, elevation: Float = 10, distance: Float = 1.15, ground: Bool = true, fog: Float? = nil) {
-        self.azimuth = azimuth; self.elevation = elevation; self.distance = distance; self.ground = ground; self.fog = fog
+    /// Sealed-concrete studio floor instead of forest floor (interior and small props; the gate sheet
+    /// always uses it for props).
+    public var studio = false
+    public init(azimuth: Float = 35, elevation: Float = 10, distance: Float = 1.15, ground: Bool = true, fog: Float? = nil, studio: Bool = false) {
+        self.azimuth = azimuth; self.elevation = elevation; self.distance = distance; self.ground = ground; self.fog = fog; self.studio = studio
     }
 }
 

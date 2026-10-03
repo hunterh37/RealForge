@@ -1,0 +1,41 @@
+{
+  "budget": 10000,
+  "id": "anglepoise-lamp",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat",
+    "metal.chrome",
+    "emissive.bulb",
+    "rubber"
+  ],
+  "name": "Spring-balanced desk lamp",
+  "notes": "Size corrected after first gate: 34 cm arms at a working pose reach about 30 cm forward of the base; width includes the cable lying on the desk.",
+  "parts": [
+    "stepped round cast-iron base",
+    "swivel turret",
+    "lower twin arms and upper twin arms with knuckle joints",
+    "four coil tension springs near the base",
+    "domed shade with rolled rim and rear cap",
+    "bulb visible inside the shade",
+    "switch on the shade cap",
+    "cloth cable"
+  ],
+  "references": [],
+  "size": [
+    0.56,
+    0.58,
+    0.22
+  ],
+  "style": "1930s British engineering, satin black enamel with polished chrome springs and knuckles",
+  "summary": "Spring-balanced desk lamp after the Anglepoise 1227: stepped cast base, twin parallel arms, four tension springs, domed shade.",
+  "tags": [
+    "prop",
+    "office",
+    "light",
+    "metal",
+    "interior"
+  ],
+  "theme": "Office",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

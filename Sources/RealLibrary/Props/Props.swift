@@ -26,6 +26,16 @@ public enum Props {
         CampLantern.self,
         Canoe.self,
         AxeInStump.self,
+        VintageSuitcase.self,
+        ChesterfieldArmchair.self,
+        BentwoodChair.self,
+        AnglepoiseLamp.self,
+        CopperKettle.self,
+        StonewareCrock.self,
+        StoneLantern.self,
+        ShipAnchor.self,
+        ToolChest.self,
+        WickerBasket.self,
         // realityhd:prop
     ]
 }

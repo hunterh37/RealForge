@@ -16,6 +16,11 @@ func run() async throws {
     case "bench": try await benchCommand()
     case "sky": try skyCommand(args)
     case "demo": try await demoCommand(args)
+    case "gate": try await gateCommand(args)
+    case "sheet": try await sheetCommand(args)
+    case "lint": lintCommand(args)
+    case "context": contextCommand(args)
+    case "brief": try briefCommand(args)
     default: print(usage)
     }
 }

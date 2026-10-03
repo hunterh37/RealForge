@@ -12,10 +12,16 @@ func newCommand(_ args: Args) throws {
     let material = args.opt("--material")
     let program = args.opt("--program")
     let like = args.opt("--like")
+    let briefPath = args.opt("--brief")
     guard let what = args.next(), let id = args.next() else { print(usage); return }
     switch what {
     case "prop", "nature", "structure":
-        try newAsset(kind: what, id: id, theme: theme ?? defaultTheme[what]!, author: author, material: material, root: root)
+        if let briefPath {
+            let b = try PropBrief.load(URL(fileURLWithPath: briefPath, relativeTo: root))
+            try newAsset(kind: what, id: id, theme: theme ?? b.theme, author: author, material: material ?? b.materials.first, root: root, brief: b)
+        } else {
+            try newAsset(kind: what, id: id, theme: theme ?? defaultTheme[what]!, author: author, material: material, root: root)
+        }
     case "scene":
         try newScene(id: id, author: author, root: root)
     case "material":
@@ -62,7 +68,7 @@ private func create(_ url: URL, _ text: String) throws {
 
 private func rel(_ url: URL, _ root: URL) -> String { String(url.path.dropFirst(root.path.count + 1)) }
 
-private func newAsset(kind: String, id: String, theme: String, author: String, material: String?, root: URL) throws {
+private func newAsset(kind: String, id: String, theme: String, author: String, material: String?, root: URL, brief: PropBrief? = nil) throws {
     try validID(id)
     guard Catalog.type(id) == nil else { throw CLIError("asset id taken: \(id)") }
     let d = kindDefaults[kind]!, name = typeName(id), folder = kindFolder[kind]!
@@ -70,27 +76,33 @@ private func newAsset(kind: String, id: String, theme: String, author: String, m
     guard MaterialLibrary.keys.contains(String(mat.split(separator: ":")[0])) else { throw CLIError("unknown material \(mat)") }
     var tags = ["\"\(kind)\""]
     if AssetTag.vocabulary.contains(theme.lowercased()), theme.lowercased() != kind { tags.append("\"\(theme.lowercased())\"") }
+    if let brief { tags = ([kind] + brief.tags.filter { $0 != kind && AssetTag.vocabulary.contains($0) }).map { "\"\($0)\"" } }
+    let size = brief.map { "V3(\($0.size[0]), \($0.size[1]), \($0.size[2]))" } ?? d.size
+    let budget = brief.map { String($0.budget) } ?? d.budget
+    let summary = brief?.summary ?? "TODO: one sentence, what it is and how it's built."
+    let doc = brief.map { "\($0.name): \($0.style). Parts: \($0.parts.joined(separator: ", "))." } ?? "TODO: what it is, real-world dimensions, construction (parts, materials, wear)."
+    let matNote = brief.map { "// Brief materials: \($0.materials.joined(separator: " ")). Gate: realityhd gate \(id)." } ?? "// Replace with the real construction."
     let file = root.appendingPathComponent("Sources/RealLibrary/\(folder)/\(theme)/\(name).swift")
     try create(file, """
     import simd
     import Foundation
 
-    /// TODO: what it is, real-world dimensions, construction (parts, materials, wear).
+    /// \(doc)
     public struct \(name): RealAsset {
         public static let id = "\(id)"
-        public static let summary = "TODO: one sentence, what it is and how it's built."
+        public static let summary = "\(summary)"
         public static let tags = [\(tags.joined(separator: ", "))]
-        public static let budget = \(d.budget)
+        public static let budget = \(budget)
         public static let author = "\(author)"
 
         /// Overall size in meters (x width, y height, z depth). Expose every knob a scene might tune.
-        public var size = \(d.size)
+        public var size = \(size)
         public init() {}
 
         public func build(seed: UInt64) -> LODModel {
             var rng = SeededRNG(seed: seed)
             var m = Model(name: Self.id)
-            // Replace with the real construction. Boards: plank()/board() along +X (grain on U).
+            \(matNote) Boards: plank()/board() along +X (grain on U).
             // Turned parts: turned(). Bevel every hard edge; jitter assembled parts.
             m.add(Prim.roundedBox(size, radius: 0.01, bevelSegments: 2, material: "\(mat)"),
                   Xform(translation: V3(0, size.y / 2, 0)).jittered(&rng))

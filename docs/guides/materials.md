@@ -81,3 +81,15 @@ Texture V: row 0 is v = 0. Atlas content is drawn with v up the card.
 `RealKit/ShaderGraph.swift` emits USDA from `RealShaderOptions` (12 flags; `shaders` loads every valid combination). After any
 change, `swift run -q realityhd shaders` must report 0 failures, and `--pbr` renders must still work
 (the `PhysicallyBasedMaterial` fallback).
+
+## RealityHD 3 craft programs
+
+| program | colorA / B / C | knobs x y z w | keys |
+|---|---|---|---|
+| `leather` | dye / crease / rubbed | grain cells per tile, wear, roughness, creases | `leather.tan` `leather.oxblood` `leather.oxblood-worn` `leather.black` |
+| `brushedMetal` | metal / smudge | streaks, roughness, smudges, scratches (grain along U) | `metal.aluminum-brushed` `metal.stainless` |
+| `polishedMetal` | metal / tarnish / verdigris | tarnish, patina, dents per tile, roughness | `metal.brass` `metal.brass-aged` `metal.copper` `metal.copper-patina` |
+| `ceramicGlaze` | glaze / thin glaze / speckle | speckle, runs, crackle, roughness (runs along V) | `ceramic.stoneware` `ceramic.cobalt` `ceramic.celadon` `ceramic.bisque` |
+| `caneWeave` | cane / shadow | cells per tile, strand width, roughness, aging (cutout) | `cane.woven` |
+
+Feature size = tileSize / count: leather pebbles 1.5-3 mm, hammer dents 10-15 mm, cane holes 8-12 mm.
