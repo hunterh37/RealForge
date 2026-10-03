@@ -2,7 +2,7 @@ import simd
 import Foundation
 
 /// Hilly terrain tile, 120 m square, up to ~16 m relief: eroded rolling hills fading to y = 0 at the
-/// border, meadow everywhere and a granite layer that breaks through where slopes pass ~35 degrees. 3 LODs.
+/// border, meadow everywhere and lumpy bare granite (splat-blended) where slopes pass ~35 degrees. 3 LODs.
 public struct TerrainHill: RealAsset {
     public static let id = "terrain-hill"
     public static let summary = "Hilly 120 m terrain: eroded fBm hills fading to a flat border, meadow on gentle slopes, granite on steep faces, 3 LODs."
@@ -20,14 +20,16 @@ public struct TerrainHill: RealAsset {
     public var border: Float = 12
     /// Slope (rise over run) where rock replaces the ground material.
     public var rockSlope: Float = 0.7
-    public var material: MaterialKey = "ground.meadow"
-    public var rockMaterial: MaterialKey = "rock.granite"
+    /// Height of the lumps pushed out of rocky faces, in meters.
+    public var rockRelief: Float = 0.9
+    /// Ground material whose splat layer is the rock (`ground.meadow-rock`: meadow over bare granite).
+    public var material: MaterialKey = "ground.meadow-rock"
     /// Grid segments per LOD.
     public var detail: [Int] = [136, 68, 34]
     public var lodDistances: [Float] = [60, 150]
     public init() {}
 
-    /// Height at (x, z), matching LOD 0 at the grid vertices.
+    /// Height at (x, z), matching LOD 0 at the grid vertices outside rock outcrops.
     public func height(x: Float, z: Float, seed: UInt64) -> Float {
         let ns = UInt32(truncatingIfNeeded: seed)
         let f = 1 / featureSize
@@ -49,41 +51,26 @@ public struct TerrainHill: RealAsset {
         var rng = SeededRNG(seed: seed)
         let ns = UInt32(truncatingIfNeeded: rng.next())
         func lod(_ n: Int) -> Model {
-            let grid = Prim.terrain(size: V2(size, size), segments: n, material: material) { p in height(x: p.x, z: p.y, seed: seed) }
-            var g = grid
-            GroundMesh.shadeHollows(&g, gridSide: n + 1, radius: max(2, n / 40), relief: peak * 0.15, strength: 0.6)
-            // Rock layer: a copy of the ground grid pushed out along the normal where the slope is steep and
-            // sunk below it elsewhere. The two meshes cross along the smooth mask contour, so the rock edge
-            // follows the slope field instead of stepping along triangle edges.
-            var rock = Surface(material: rockMaterial)
-            var map = [Int32](repeating: -1, count: g.vertexCount)
+            var g = Prim.terrain(size: V2(size, size), segments: n, material: material) { p in height(x: p.x, z: p.y, seed: seed) }
+            // Rock mask from the slope field; the splat layer paints bare granite there and the mesh is
+            // pushed out into lumpy outcrops, so the rock edge follows the slope instead of triangle edges.
             var mask = [Float](repeating: 0, count: g.vertexCount)
             for i in g.positions.indices {
-                let n = g.normals[i], p = g.positions[i]
-                let slope = sqrt(max(0, 1 - n.y * n.y)) / max(n.y, 0.05)
+                let nn = g.normals[i], p = g.positions[i]
+                let slope = sqrt(max(0, 1 - nn.y * nn.y)) / max(nn.y, 0.05)
                 let jitter = Noise.fbm(V3(p.x * 0.08, 0, p.z * 0.08), octaves: 3, seed: ns) * 0.6
                 mask[i] = smoothstep(rockSlope - 0.2, rockSlope + 0.2, slope + jitter)
             }
-            for t in stride(from: 0, to: g.indices.count, by: 3) {
-                let tri = [Int(g.indices[t]), Int(g.indices[t + 1]), Int(g.indices[t + 2])]
-                guard tri.contains(where: { mask[$0] > 0.2 }) else { continue }
-                var ids: [UInt32] = []
-                for i in tri {
-                    if map[i] < 0 {
-                        let p = g.positions[i], n = g.normals[i]
-                        let lump = Noise.ridged(V3(p.x * 0.6, p.y * 0.6, p.z * 0.6), octaves: 3, seed: ns &+ 5) * 0.9
-                        let off = lerp(Float(-0.15), 0.05 + lump, mask[i])
-                        let k = rock.add(p + n * off, n, g.uvs[i])
-                        rock.occlusion[Int(k)] = g.occlusion[i] * (0.75 + 0.25 * mask[i])
-                        map[i] = Int32(k)
-                    }
-                    ids.append(UInt32(map[i]))
-                }
-                rock.tri(ids[0], ids[1], ids[2])
+            for i in g.positions.indices where mask[i] > 0 {
+                let p = g.positions[i]
+                let lump = Noise.ridged(V3(p.x * 0.6, p.y * 0.6, p.z * 0.6), octaves: 3, seed: ns &+ 5) * rockRelief
+                g.positions[i] += g.normals[i] * lump * smoothstep(0.2, 0.8, mask[i])
             }
-            if !rock.isEmpty { rock.recomputeNormals(weldSeams: false); rock.computeTangents() }
-            let soil = g
-            return Model(name: Self.id, surfaces: [soil, rock].filter { !$0.isEmpty })
+            g.recomputeNormals(weldSeams: false)
+            g.computeTangents()
+            GroundMesh.shadeHollows(&g, gridSide: n + 1, radius: max(2, n / 40), relief: peak * 0.15, strength: 0.6)
+            g.splat = mask
+            return Model(name: Self.id, surfaces: [g])
         }
         return LODModel(levels: detail.map(lod), switchDistances: Array(lodDistances.prefix(detail.count - 1)))
     }

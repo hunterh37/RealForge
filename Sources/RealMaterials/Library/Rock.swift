@@ -51,6 +51,12 @@ public extension MaterialLibrary {
             $0.knobs = V4(1, 0.6, 0, 0); $0.seed = 37; $0.tileSize = 0.5; $0.normalStrength = 1.2; $0.triplanar = true
             $0.specular = 0.6
         },
+        // Weathered granite for terrain faces seen from tens of meters: darker, lichen-flecked, rain streaks,
+        // 2.5 m tile. Splat layer of ground.meadow-rock.
+        MaterialSpec(key: "rock.granite-weathered", program: .rockGranite).with {
+            $0.colorA = linear(0x484541); $0.colorB = linear(0x64605A); $0.colorC = linear(0x86705F)
+            $0.knobs = V4(0.45, 0.08, 0.2, 0.6); $0.seed = 9; $0.tileSize = 2.5; $0.normalStrength = 2.6
+        },
         // realforge:material.rock
     ]
 }

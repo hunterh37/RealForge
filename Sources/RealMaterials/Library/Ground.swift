@@ -1,18 +1,21 @@
 import RealCore
 
 public extension MaterialLibrary {
+    private static let forestFloor = MaterialSpec(key: "ground.forest", program: .forestFloor).with {
+        $0.colorA = linear(0x2E241B); $0.colorB = linear(0x5C4129); $0.colorC = linear(0x76603F)
+        $0.knobs = V4(0.45, 0.7, 0, 0); $0.tileSize = 2.0; $0.normalStrength = 4; $0.resolution = 2048
+        $0.antiTile = true
+    }
+    private static let meadow = MaterialSpec(key: "ground.meadow", program: .forestFloor).with {
+        $0.colorA = linear(0x3B3020); $0.colorB = linear(0x6E5A30); $0.colorC = linear(0x7D6E3C)
+        $0.knobs = V4(0.85, 0.25, 0, 0); $0.seed = 5; $0.tileSize = 2.0; $0.normalStrength = 3; $0.resolution = 2048
+        $0.antiTile = true
+    }
+
     /// Ground surfaces: forest floor, gravel, sand, mud, snow, cobbles, dirt. Large tiles, mostly anti-tiled.
     static let ground: [MaterialSpec] = [
-        MaterialSpec(key: "ground.forest", program: .forestFloor).with {
-            $0.colorA = linear(0x2E241B); $0.colorB = linear(0x5C4129); $0.colorC = linear(0x76603F)
-            $0.knobs = V4(0.45, 0.7, 0, 0); $0.tileSize = 2.0; $0.normalStrength = 4; $0.resolution = 2048
-            $0.antiTile = true
-        },
-        MaterialSpec(key: "ground.meadow", program: .forestFloor).with {
-            $0.colorA = linear(0x3B3020); $0.colorB = linear(0x6E5A30); $0.colorC = linear(0x7D6E3C)
-            $0.knobs = V4(0.85, 0.25, 0, 0); $0.seed = 5; $0.tileSize = 2.0; $0.normalStrength = 3; $0.resolution = 2048
-            $0.antiTile = true
-        },
+        forestFloor,
+        meadow,
         /// Autumn broadleaf litter: oak, beech and maple leaves, little moss.
         MaterialSpec(key: "ground.leaf-litter", program: .forestFloor).with {
             $0.colorA = linear(0x2A2018); $0.colorB = linear(0x62432A); $0.colorC = linear(0x8A6E44)
@@ -76,6 +79,18 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x6A5440); $0.colorB = linear(0x917B60); $0.colorC = linear(0x3E3226)
             $0.knobs = V4(0.5, 0.5, 0.25, 0.2); $0.seed = 71; $0.tileSize = 2.0; $0.normalStrength = 3; $0.resolution = 2048
             $0.antiTile = true
+        },
+        /// Meadow with weathered granite blended in by `Surface.splat` (steep terrain faces).
+        meadow.with {
+            $0.key = "ground.meadow-rock"; $0.splat = "rock.granite-weathered"; $0.splatSoftness = 0.22; $0.splatHeight = 1.2
+        },
+        /// Meadow worn to packed earth where `Surface.splat` is high (footpaths, gateways).
+        meadow.with {
+            $0.key = "ground.meadow-worn"; $0.splat = "ground.dirt"; $0.splatSoftness = 0.25; $0.splatHeight = 1.5
+        },
+        /// Forest floor worn to packed earth where `Surface.splat` is high.
+        forestFloor.with {
+            $0.key = "ground.forest-worn"; $0.splat = "ground.dirt"; $0.splatSoftness = 0.25; $0.splatHeight = 1.5
         },
         // realforge:material.ground
     ]
