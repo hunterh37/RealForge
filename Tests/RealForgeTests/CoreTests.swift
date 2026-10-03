@@ -42,65 +42,6 @@ func signedVolume(_ s: Surface) -> Float {
     }
 }
 
-@Suite struct CatalogTests {
-    @Test(arguments: Catalog.assets.map { $0.id })
-    func assetIsValid(_ id: String) throws {
-        let t = try #require(Catalog.type(id))
-        let a = t.init().build(seed: 7), b = t.init().build(seed: 7)
-        // Deterministic.
-        #expect(a.levels.count == b.levels.count)
-        for (x, y) in zip(a.levels, b.levels) {
-            #expect(x.triangleCount == y.triangleCount)
-            #expect(x.surfaces.first?.positions.first == y.surfaces.first?.positions.first)
-        }
-        let lod0 = a.levels[0]
-        #expect(lod0.triangleCount > 0)
-        #expect(lod0.triangleCount <= t.budget, "\(id) LOD0 \(lod0.triangleCount) > budget \(t.budget)")
-        // LODs get cheaper.
-        for i in 1..<a.levels.count { #expect(a.levels[i].triangleCount <= a.levels[i - 1].triangleCount) }
-        #expect(a.switchDistances.count == a.levels.count - 1)
-        for m in a.levels {
-            for s in m.surfaces {
-                #expect(s.positions.allSatisfy { $0.x.isFinite && $0.y.isFinite && $0.z.isFinite })
-                #expect(s.indices.allSatisfy { Int($0) < s.positions.count })
-                // Every material key resolves to a built-in spec.
-                let base = String(s.material.split(separator: ":")[0])
-                #expect(MaterialLibrary.keys.contains(base) || base == "metal.painted", "unknown material \(s.material)")
-            }
-        }
-        // Grounded: base near y = 0 (trees/rocks sink slightly), centered on X/Z.
-        let bb = lod0.bounds
-        #expect(bb.min.y > -0.6 && bb.min.y < 0.2, "\(id) min.y \(bb.min.y)")
-    }
-
-    @Test func idsUnique() {
-        let ids = Catalog.assets.map { $0.id }
-        #expect(Set(ids).count == ids.count)
-    }
-
-    @Test func scenesBuild() {
-        for id in SceneCatalog.ids {
-            let s = SceneCatalog.build(id, seed: 1)
-            #expect(s != nil)
-            #expect(!(s!.fields.isEmpty && s!.singles.isEmpty))
-        }
-    }
-}
-
-@Suite struct Materials {
-    @Test func everyKeyHasProgramOrScalars() {
-        for k in MaterialLibrary.keys {
-            let s = MaterialLibrary.spec(for: k)
-            #expect(s.key == k)
-            if s.mode == .cutout { #expect(s.program != nil && s.twoSided) }
-        }
-    }
-    @Test func tintSuffixParses() {
-        let s = MaterialLibrary.spec(for: "metal.painted:FF0000")
-        #expect(s.colorA.x > 0.9 && s.colorA.y < 0.01)
-    }
-}
-
 @Suite struct TreeTests {
     @Test func skeletonIsDeterministicAndLODsShareIt() {
         let g1 = TreeGenerator(species: .oak, seed: 3), g2 = TreeGenerator(species: .oak, seed: 3)

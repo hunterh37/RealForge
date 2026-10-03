@@ -1,0 +1,15 @@
+name: Scene request
+description: Propose a composed scene.
+labels: [scene]
+body:
+  - type: input
+    id: id
+    attributes: { label: Proposed id, placeholder: harbor-dock }
+    validations: { required: true }
+  - type: textarea
+    id: layout
+    attributes: { label: Layout, description: "Size, ground, hero assets, instanced fields, camera position." }
+    validations: { required: true }
+  - type: textarea
+    id: missing
+    attributes: { label: Missing assets and materials, description: "What has to exist first. Link asset requests." }

@@ -1,0 +1,22 @@
+name: Asset request
+description: Propose a prop, nature asset or structure.
+labels: [asset]
+body:
+  - type: input
+    id: id
+    attributes: { label: Proposed id, description: "kebab-case, e.g. wheelbarrow", placeholder: wheelbarrow }
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes: { label: Kind, options: [prop, nature, structure] }
+    validations: { required: true }
+  - type: input
+    id: theme
+    attributes: { label: Theme pack, description: "From docs/IDEAS.md, e.g. Construction", placeholder: Construction }
+  - type: textarea
+    id: reference
+    attributes: { label: Real-world reference, description: "Dimensions in meters, parts, materials, wear. Links to photos." }
+    validations: { required: true }
+  - type: textarea
+    id: materials
+    attributes: { label: Materials, description: "Existing keys from CATALOG.md, or new ones needed." }

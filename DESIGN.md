@@ -21,7 +21,16 @@ runtime from `RealShaderOptions` (cutout, wind, translucency, anti-tile, top lay
 metallic map), compiled once per option set and copied per material. `PhysicallyBasedMaterial` is
 the synchronous fallback.
 
-RealLibrary holds the catalog and scenes plus the `RealForge` facade.
+RealLibrary holds the catalog and scenes plus the `RealForge` facade. Assets are one value type per
+file, grouped by kind (`Nature/`, `Props/<Theme>/`, `Structures/`) and listed in a per-kind registry;
+`Catalog.assets` concatenates them. Scenes conform to `RealSceneBuilder` and are listed in
+`SceneCatalog.all`. Contract tests iterate the registries, so a registered asset is tested with no
+further wiring.
+
+Materials are data: `MaterialSpec` values in `RealMaterials/Library/<Family>.swift`, concatenated into
+`MaterialLibrary.all`. Texture programs are Metal functions in `Shaders/<Family>Shaders.swift`; the
+`evaluate()` switch is generated from `TextureProgram.allCases`, whose case names match the function
+names.
 
 ## Realism techniques
 
@@ -68,4 +77,5 @@ world position. No GPU texture compression yet: ASTC encode in compute, then bli
 `LowLevelTexture`s, would cut texture memory about 4x. Candidates after that: impostor billboards
 for LOD3 via `RealityRenderer` captures, terrain splat blending (path wear, moss), snow and wet
 variants of the top layer, more species (maple, pine, palm), interiors (furniture, kitchen props),
-and disk caching of generated textures keyed by spec hash.
+and disk caching of generated textures keyed by spec hash. The issue-sized list is in
+[docs/IDEAS.md](docs/IDEAS.md#engine).

@@ -9,7 +9,7 @@ Procedural, photoreal trees, rocks, ground, props and scenes for RealityKit, gen
 load time. No mesh or texture files ship in your app: geometry is built on the CPU in milliseconds and
 every PBR texture is synthesized on the GPU.
 
-![Forest glade](docs/forest-glade.png)
+![RealForgeDemo running park-path in the Apple Vision Pro simulator](docs/demo/hero.png)
 
 ## Contents
 
@@ -17,6 +17,7 @@ every PBR texture is synthesized on the GPU.
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Quick start](#quick-start)
+- [Demo app](#demo-app)
 - [Usage](#usage)
 - [Gallery](#gallery)
 - [Performance](#performance)
@@ -105,6 +106,35 @@ struct ForestApp: App {
 }
 ```
 
+## Demo app
+
+`Demo/` is a visionOS app that opens `forest-glade` and `park-path` as full ImmersiveSpaces. The menu
+window picks the scene, sky (morning, midday, afternoon, golden hour) and seed. The scene's camera
+hint is placed at the viewer's feet, and LOD follows head pose through `RealViewerTracker`.
+
+<table>
+  <tr>
+    <td><img src="docs/demo/forest-glade.png" alt="forest-glade, afternoon"></td>
+    <td><img src="docs/demo/forest-glade-golden.png" alt="forest-glade, golden hour"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/demo/park-path.png" alt="park-path, afternoon"></td>
+    <td><img src="docs/demo/park-path-golden.png" alt="park-path, golden hour"></td>
+  </tr>
+</table>
+
+Captured in the visionOS 26 simulator. The forest scene has 140 instanced trees, 7,000 grass clumps and
+camp props (picnic table, crates on a pallet, barrels, drum) along the edge of the glade.
+
+```sh
+brew install xcodegen
+cd Demo && xcodegen generate && open RealForgeDemo.xcodeproj
+```
+
+Launch arguments open a scene without input, for captures and checks:
+`-scene forest-glade|park-path`, `-sky morning|midday|afternoon|golden`, `-seed n`, `-yaw deg`,
+`-hideMenu YES`. `Scripts/frame.py` frames a simulator screenshot for this README.
+
 ## Usage
 
 ### Single assets
@@ -171,9 +201,9 @@ Material keys accept a hex tint: `"metal.painted:1F4E8C"`. All keys are listed i
 
 | `forest-glade` | `park-path` |
 |---|---|
-| ![forest-glade](docs/forest-glade.png) | ![park-path](docs/park-path.png) |
+| ![forest-glade](docs/scenes/forest-glade.png) | ![park-path](docs/scenes/park-path.png) |
 | `park-path`, golden hour | `prop-yard` |
-| ![park-path golden hour](docs/park-golden.png) | ![prop-yard](docs/prop-yard.png) |
+| ![park-path golden hour](docs/park-golden.png) | ![prop-yard](docs/scenes/prop-yard.png) |
 
 ### Nature
 
@@ -220,9 +250,11 @@ swift run -q realforge list                      # assets and scenes
 swift run -q realforge stats oak-tree            # triangles per LOD, materials, generation time
 swift run -q realforge render park-bench         # out/park-bench.png via RealityRenderer
 swift run -q realforge render forest-glade --sky golden --w 1920 --h 1080
+swift run -q realforge thumbs --missing          # docs/assets/<id>.png, docs/scenes/<id>.png
 swift run -q realforge textures bark.oak         # dump albedo/normal/roughness PNGs
 swift run -q realforge shaders                   # load every ShaderGraph variant
 swift run -q realforge catalog                   # regenerate CATALOG.md
+swift run -q realforge new prop wheelbarrow --theme Construction   # scaffold + register
 swift run -c release realforge bench
 ```
 
@@ -231,20 +263,29 @@ swift run -c release realforge bench
 | Target | Contents |
 |---|---|
 | `RealCore` | Surfaces, models, LODs, primitives, tree generator, noise, scatter. No RealityKit. |
-| `RealMaterials` | Material library and Metal texture synthesis, sky rendering. |
+| `RealMaterials` | `MaterialSpec`, material library by family (`Library/`), Metal texture programs (`Shaders/`), sky. |
 | `RealKit` | LowLevelMesh upload, material cache, ShaderGraph emitter, environment, LOD, instancing, preview. |
-| `RealLibrary` | Asset catalog, props, scenes, `RealForge` entry points. |
+| `RealLibrary` | `RealAsset` and registries (`Core/`), building helpers, `Nature/`, `Props/<Theme>/`, `Structures/`, `Scenes/`, `RealForge` entry points. |
 | `realforge` | Command-line tool. |
 
-Design notes are in [DESIGN.md](DESIGN.md). The agent workflow and API cheat sheet are in
-[CLAUDE.md](CLAUDE.md).
+One asset per file. The full tree and conventions are in [AGENTS.md](AGENTS.md); design notes in
+[DESIGN.md](DESIGN.md).
 
 ## Contributing
 
-1. Add an asset as a `RealAsset` in `Sources/RealLibrary` and register it in `Catalog`.
-2. `swift test` (determinism, triangle budgets, grounding, winding, material keys).
-3. `swift run -q realforge render <id>` and check the PNG.
-4. `swift run -q realforge catalog`, then open a pull request.
+Assets, scenes and materials are welcome, one per pull request. Start with
+[CONTRIBUTING.md](CONTRIBUTING.md), pick a theme pack from [docs/IDEAS.md](docs/IDEAS.md), and follow the
+guides for [assets](docs/guides/assets.md), [scenes](docs/guides/scenes.md) and
+[materials](docs/guides/materials.md).
+
+```sh
+swift run -q realforge new prop wheelbarrow --theme Construction --author your-handle
+# write build(seed:), then:
+swift test && swift run -q realforge render wheelbarrow
+swift run -q realforge thumbs wheelbarrow && swift run -q realforge catalog
+```
+
+Coding agents read [AGENTS.md](AGENTS.md); IDEAS.md ends with prompts to paste into one.
 
 ## License
 

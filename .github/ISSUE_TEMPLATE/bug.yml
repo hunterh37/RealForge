@@ -1,0 +1,12 @@
+name: Bug
+description: Wrong output, crash, or regression.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: What happens, description: "Command or code, expected vs actual. Attach the render." }
+    validations: { required: true }
+  - type: input
+    id: env
+    attributes: { label: Environment, placeholder: "Xcode 26.1, macOS 26.0, M2 Pro / Vision Pro visionOS 26.0" }
+    validations: { required: true }

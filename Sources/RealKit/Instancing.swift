@@ -14,6 +14,15 @@ public enum RealInstancing {
         public var shadowCasterMaxLOD: Int = 1
         public var asyncMaterials = true
         public init() {}
+
+        public func with(_ edit: (inout Options) -> Void) -> Options { var c = self; edit(&c); return c }
+
+        /// Trees and large plants: 18 m cells.
+        public static var trees: Options { Options().with { $0.cellSize = 18 } }
+        /// Grass and ground cover: 8 m cells, culled past `cull` meters, no shadows.
+        public static func groundCover(cull: Float = 30) -> Options {
+            Options().with { $0.cellSize = 8; $0.cullDistance = cull; $0.shadowCasterMaxLOD = -1 }
+        }
     }
 
     /// - Parameter transforms: world-space (relative to the returned entity) instance transforms.

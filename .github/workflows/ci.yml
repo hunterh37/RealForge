@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
+      - name: CATALOG.md is current
+        run: |
+          swift run -q realforge catalog
+          git diff --exit-code CATALOG.md || (echo "::error::run 'swift run -q realforge catalog' and commit CATALOG.md" && exit 1)
