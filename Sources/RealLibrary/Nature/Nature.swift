@@ -17,6 +17,7 @@ public enum Nature {
         IvyPatch.self,
         LeafLitter.self,
         MapleTree.self, BeechTree.self, WillowTree.self, JapaneseMaple.self, DeadSnag.self, AspenTree.self,
+        TerrainHill.self, DirtPath.self, Puddle.self, MudPatch.self, GravelPatch.self, SnowDrift.self, SandDune.self,
         // realforge:nature
     ]
 }
