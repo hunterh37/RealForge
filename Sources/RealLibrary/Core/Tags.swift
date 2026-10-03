@@ -7,6 +7,7 @@ public enum AssetTag {
     public static let vocabulary: Set<String> = Set(kinds).union([
         // nature
         "tree", "deciduous", "conifer", "palm", "foliage", "flower", "grass", "rock", "ground", "terrain", "water",
+        "plant", "fungus",
         // material families
         "wood", "metal", "concrete", "stone", "brick", "plastic", "glass", "ceramic", "fabric", "paper", "rubber",
         // settings
