@@ -6,6 +6,7 @@ public enum Props {
         TrafficCone.self, FireHydrant.self, Bollard.self, Pallet.self, Mailbox.self, TrashCan.self,
         Sawhorse.self,
         Wheelbarrow.self,
+        CementMixer.self,
         // realforge:prop
     ]
 }
