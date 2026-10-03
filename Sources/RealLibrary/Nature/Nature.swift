@@ -6,6 +6,7 @@ public enum Nature {
         ScotsPine.self,
         FirTree.self,
         CypressTree.self,
+        SnowySpruce.self,
         // realforge:nature
     ]
 }
