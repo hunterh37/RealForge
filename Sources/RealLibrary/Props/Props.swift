@@ -5,6 +5,7 @@ public enum Props {
         WoodenCrate.self, Barrel.self, OilDrum.self, ParkBench.self, PicnicTable.self, StreetLamp.self,
         TrafficCone.self, FireHydrant.self, Bollard.self, Pallet.self, Mailbox.self, TrashCan.self,
         Sawhorse.self,
+        Wheelbarrow.self,
         // realforge:prop
     ]
 }
