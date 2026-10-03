@@ -85,8 +85,8 @@ public extension MaterialLibrary {
             $0.resolution = 1024; $0.normalStrength = 2.5; $0.roughness = 0.75
         },
         MaterialSpec(key: "moss.cushion", program: .moss).with {
-            $0.colorA = linear(0x263A10); $0.colorB = linear(0x62802A); $0.colorC = linear(0x6E6236)
-            $0.knobs = V4(0.15, 90, 0, 0); $0.seed = 30; $0.tileSize = 0.15; $0.normalStrength = 4
+            $0.colorA = linear(0x1A280B); $0.colorB = linear(0x48601E); $0.colorC = linear(0x5C5030)
+            $0.knobs = V4(0.3, 90, 0, 0); $0.seed = 30; $0.tileSize = 0.15; $0.normalStrength = 4
             $0.resolution = 1024; $0.roughness = 0.85
         },
         MaterialSpec(key: "plant.cattail", program: .moss).with {
