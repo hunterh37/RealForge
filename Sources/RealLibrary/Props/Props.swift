@@ -4,6 +4,7 @@ public enum Props {
     public static let all: [any RealAsset.Type] = [
         WoodenCrate.self, Barrel.self, OilDrum.self, ParkBench.self, PicnicTable.self, StreetLamp.self,
         TrafficCone.self, FireHydrant.self, Bollard.self, Pallet.self, Mailbox.self, TrashCan.self,
+        FirewoodStack.self,
         // realforge:prop
     ]
 }
