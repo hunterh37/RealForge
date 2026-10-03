@@ -1,6 +1,59 @@
 # Changelog
 
-## Unreleased
+## 2.0.0
+
+96 assets (from 21), 10 scenes (from 3), 142 materials (from 29), 54 texture programs (from 15).
+Scope and research notes: `docs/V2.md`.
+
+Trees
+- TreeGenerator v2: branch collars, root buttresses and surface roots, crotch occlusion, per-level bark
+  scale, leaf clusters at twig tips with sun bias, pendant leaves, dead stubs, broken tops, seasonal
+  `leafDensity`/`autumn`, `BranchLevel.whorl`, hierarchical wind data.
+- Broadleaf: maple-tree, beech-tree, willow-tree, japanese-maple, aspen-tree, dead-snag.
+- Conifer, palm, desert: scots-pine, fir-tree, cypress-tree, larch-tree, snowy-spruce, palm-tree,
+  saguaro, barrel-cactus, agave.
+
+Ground cover and terrain
+- Geometry-blade grass with card LODs: grass-tuft, tall-grass, dry-grass, lawn-patch; grass-clump reworked.
+- Plants: fern, meadow-flowers, clover-patch, dandelion, reed-clump, mushroom-cluster, moss-mound,
+  ivy-patch, leaf-litter.
+- Ground programs gravel, sand, mud, snow, cobblestone, dirtPath; forestFloor rework.
+- terrain-hill, dirt-path, puddle, mud-patch, gravel-patch, snow-drift, sand-dune; ground-patch erosion
+  relief and worn-path knobs.
+
+Rocks
+- `RockShape` generator (warped ridged body, beveled fractures, chips, strata); boulder and pebbles use it.
+- rock-outcrop, cliff-face (tiles along X), scree-pile, river-stones, stepping-stone, mossy-rock,
+  mesa-rock, flagstone, rock-pile. Programs strataRock, rockSlate, rockRiver.
+
+Props and structures
+- Campsite pack: dome-tent, campfire-ring, firewood-stack, camp-chair, cooler, camp-lantern, canoe,
+  axe-in-stump; log-stump, fallen-log, firewood, root-stump.
+- Construction pack: sawhorse, jersey-barrier, wheelbarrow, cement-mixer, rebar-bundle, sandbag,
+  cable-spool, construction-fence, scaffold-bay, traffic-barrel, dumpster.
+- Farm pack: round-hay-bale, square-hay-bale, rail-fence, water-trough, milk-can, feed-sack,
+  tractor-tire, barn-wall.
+- Programs fabricWeave, woodEndGrain, charcoal, plywood, galvanized, straw, paintedWood, jute.
+
+Scenes
+- New: lakeside-camp, autumn-woods, construction-lot, farmyard, alpine-meadow, canyon-road, winter-forest.
+- forest-glade, park-path and prop-yard rebuilt with v2 content.
+
+Engine
+- Per-instance hue, value and scale jitter for instanced fields (`RealInstancing.Options.tintJitter`).
+- Splat blending: `Surface.splat` weights and `MaterialSpec.splat` second layer.
+- Texture disk cache keyed by spec, size and shader hash (`REALFORGE_NO_DISK_CACHE=1` to opt out).
+- Leaf flutter from per-vertex phase; transparent mode, `water` program, water.pond, glass.pane.
+- Lighting recalibrated (sun 9000 lux, IBL -0.3 EV); `--sun`/`--ibl` render flags; `realforge demo`.
+- PBR path fixes: cutout foliage opacity and atlas V flip.
+
+Known limits
+- Splat layers and emissive textures show only on the ShaderGraph path.
+- Backdrop mountains in alpine-meadow read flat beyond 200 m; light rock can render near white under
+  the new lighting.
+- Scene worst-case LOD0 counts are 6 to 11M triangles; check frame time on Vision Pro.
+
+## 1.1.0
 
 - Library layout for contributors: one asset per file under `Nature/`, `Props/<Theme>/`, `Structures/`;
   per-kind registries; scenes in `Scenes/` behind `RealSceneBuilder` and `SceneCatalog.all`.
