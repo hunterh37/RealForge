@@ -11,7 +11,7 @@ public extension MaterialLibrary {
         },
         // Cotton duck canvas, about 10 threads per cm, tight weave.
         MaterialSpec(key: "fabric.canvas", program: .fabricWeave).with {
-            $0.colorA = linear(0xB9AD92); $0.colorB = linear(0xA3967A, 0.6); $0.colorC = linear(0x584836, 0.2)
+            $0.colorA = linear(0xB9AD92); $0.colorB = linear(0xA3967A, 0.1); $0.colorC = linear(0x584836, 0.2)
             $0.knobs = V4(40, 0.3, 0.86, 0); $0.seed = 22; $0.tileSize = 0.04; $0.normalStrength = 2.5
             $0.roughness = 0.86
         },

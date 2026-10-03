@@ -7,6 +7,7 @@ public enum Props {
         FirewoodStack.self,
         CampfireRing.self,
         DomeTent.self,
+        CampChair.self,
         // realforge:prop
     ]
 }
