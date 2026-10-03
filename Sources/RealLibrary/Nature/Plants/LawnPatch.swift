@@ -3,6 +3,7 @@ import Foundation
 
 /// Mown lawn tile, 1 x 1 m, for instancing edge to edge: opaque top-down thatch quad 5 mm up, plus
 /// ~550 short cut blades (3-7 cm, blunt tips). LOD1 keeps a fifth of the blades; LOD2 is the thatch alone.
+/// The thatch floor is four cells with turned, offset texture; mix seeds and 90 degree yaws when tiling.
 public struct LawnPatch: RealAsset {
     public static let id = "lawn-patch"
     public static let summary = "Mown lawn tile, 1 x 1 m: thatch floor plus ~550 short cut geometric blades; tiles edge to edge, 3 LODs."
@@ -23,7 +24,21 @@ public struct LawnPatch: RealAsset {
     public func build(seed: UInt64) -> LODModel {
         var rng = SeededRNG(seed: seed)
         let phase = rng.float(0...6.28)
-        var floor = Prim.terrain(size: V2(size, size), segments: 1, material: thatchMaterial) { _ in 0.005 }
+        // Thatch floor in 2 x 2 cells, each with its own quarter-turn and texture offset, so the 0.5 m
+        // thatch tile does not repeat inside the patch or line up with neighbors from other seeds.
+        var floor = Surface(material: thatchMaterial)
+        for cx in 0..<2 { for cz in 0..<2 {
+            var q = Prim.terrain(size: V2(size / 2, size / 2), segments: 1, material: thatchMaterial) { _ in 0.005 }
+            let turn = rng.int(0...3), off = V2(rng.float(0...7), rng.float(0...7))
+            q.uvs = q.uvs.map { uv in
+                var r = uv
+                for _ in 0..<turn { r = V2(-r.y, r.x) }
+                return r + off
+            }
+            q.positions = q.positions.map { $0 + V3((Float(cx) - 0.5) * size / 2, 0, (Float(cz) - 0.5) * size / 2) }
+            q.computeTangents()
+            floor.append(q)
+        }}
         floor.occlusion = Array(repeating: 0.8, count: floor.positions.count)
         func patch(_ count: Int, _ r: inout SeededRNG) -> Surface {
             var s = Surface(material: material)
