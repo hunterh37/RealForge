@@ -26,15 +26,20 @@ public struct BranchLevel: Sendable {
     /// Chance that a child is a dead broken stub: 12 to 30 percent of its length, jagged end, no children
     /// or leaves. Children low on the parent die more often. 0 = none.
     public var stubChance: Float = 0
+    /// Branches per whorl (0 = off, children spread along the parent). Conifers such as fir and pine put
+    /// their branches out in rings at each year's node: children are grouped into rings of this many,
+    /// evenly spaced around the parent, with the rings spaced along `span`. `density` still sets the total.
+    public var whorl: Int = 0
 
     public enum Profile: Sendable { case flat, conical, dome, tapered }
 
     public init(density: Float, span: ClosedRange<Float> = 0.2...1, lengthRatio: Float, profile: Profile = .flat,
                 downAngle: Float, downAngleSpread: Float = 10, rotate: Float = 137.5, curve: Float = 20,
-                gravity: Float = 0, radiusRatio: Float = 0.6, wobble: Float = 0.04, stubChance: Float = 0) {
+                gravity: Float = 0, radiusRatio: Float = 0.6, wobble: Float = 0.04, stubChance: Float = 0, whorl: Int = 0) {
         self.density = density; self.span = span; self.lengthRatio = lengthRatio; self.profile = profile
         self.downAngle = downAngle; self.downAngleSpread = downAngleSpread; self.rotate = rotate; self.curve = curve
         self.gravity = gravity; self.radiusRatio = radiusRatio; self.wobble = wobble; self.stubChance = stubChance
+        self.whorl = whorl
     }
 
     func shape(_ t: Float) -> Float {
@@ -279,15 +284,27 @@ public struct TreeGenerator: Sendable {
         if isTrunkSplit { count = max(3, Int(L.density.rounded())) }
         guard count > 0 else { return }
         var rot = rng.float(0...360)
+        var whorlT: Float = 0
         var children: [Int] = []
         let gain: Float = [0.3, 0.26, 0.22, 0.18][min(3, levelIndex)]
         for c in 0..<count {
             var t: Float
             if isTrunkSplit { t = rng.float(0.82...1.0) }
+            else if L.whorl > 0 {
+                // Whorls: ring w holds children w * whorl ..< (w + 1) * whorl, spread evenly around the parent.
+                let rings = max(1, (count + L.whorl - 1) / L.whorl), w = c / L.whorl, k = c % L.whorl
+                if k == 0 { whorlT = L.span.lowerBound + (L.span.upperBound - L.span.lowerBound) * (Float(w) + rng.float(0.35...0.65)) / Float(rings) }
+                t = whorlT + rng.float(-0.006...0.006)
+            }
             else { t = L.span.lowerBound + (L.span.upperBound - L.span.lowerBound) * (Float(c) + rng.float(0.15...0.85)) / Float(count) }
             t = min(t, 0.985)
             let (pos, tan, rad) = sample(parent, t)
-            rot += L.rotate + rng.float(-15...15)
+            if L.whorl > 0 && !isTrunkSplit {
+                if c % L.whorl == 0 { rot += 360 / Float(L.whorl) * 0.5 + rng.float(-20...20) }
+                else { rot += 360 / Float(L.whorl) + rng.float(-12...12) }
+            } else {
+                rot += L.rotate + rng.float(-15...15)
+            }
             let perp = simd_quatf(angle: radians(rot), axis: tan).act(tan.anyPerpendicular)
             let down = L.downAngle + rng.float(-L.downAngleSpread...L.downAngleSpread)
             let dir = simd_normalize(simd_quatf(angle: radians(down), axis: simd_cross(tan, perp).normalized).act(tan))
