@@ -6,12 +6,23 @@ import RealLibrary
 enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case forestGlade = "forest-glade"
     case parkPath = "park-path"
+    case lakesideCamp = "lakeside-camp"
+    case autumnWoods = "autumn-woods"
     var id: String { rawValue }
-    var title: String { self == .forestGlade ? "Forest Glade" : "Park Path" }
+    var title: String {
+        switch self {
+        case .forestGlade: "Forest Glade"
+        case .parkPath: "Park Path"
+        case .lakesideCamp: "Lakeside Camp"
+        case .autumnWoods: "Autumn Woods"
+        }
+    }
     var detail: String {
         switch self {
         case .forestGlade: "Mixed forest ringing a grassy glade, camp props along the edge."
         case .parkPath: "Asphalt walkway with benches, lamps, bins, shade trees and grass."
+        case .lakesideCamp: "Tent, fire ring and canoe on a pond bank, ringed by spruce, pine and birch."
+        case .autumnWoods: "Red maple, gold aspen, beech and oak over leaf litter, a dirt path winding through."
         }
     }
 }
