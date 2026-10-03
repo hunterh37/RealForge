@@ -23,7 +23,7 @@ public extension MaterialLibrary {
         /// Aged galvanized steel: dull zinc, white rust blooms, dirt (troughs, cans, buckets).
         MaterialSpec(key: "metal.galvanized-aged", program: .galvanized).with {
             $0.colorA = linear(0xA4A7A8); $0.colorB = linear(0xBDBDB5); $0.colorC = linear(0x4E4234)
-            $0.knobs = V4(0.5, 0.35, 12, 0); $0.seed = 32; $0.tileSize = 0.35; $0.normalStrength = 0.8
+            $0.knobs = V4(0.35, 0.3, 12, 0); $0.seed = 32; $0.tileSize = 0.35; $0.normalStrength = 0.8
             $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.55
         },
         MaterialSpec(key: "plastic.yellow", program: .plastic).with {
@@ -36,12 +36,12 @@ public extension MaterialLibrary {
         },
         /// Baled hay: golden strands with some green stems. Strands run along U.
         MaterialSpec(key: "straw.hay", program: .straw).with {
-            $0.colorA = linear(0xC7A45E); $0.colorB = linear(0x7F7A3E); $0.colorC = linear(0x8C877C)
-            $0.knobs = V4(0.1, 0.18, 0, 0); $0.seed = 41; $0.tileSize = 0.45; $0.normalStrength = 3; $0.roughness = 0.75
+            $0.colorA = linear(0xDDBC72); $0.colorB = linear(0x8E8848); $0.colorC = linear(0x9C968A)
+            $0.knobs = V4(0.1, 0.15, 0, 1); $0.seed = 41; $0.tileSize = 0.45; $0.normalStrength = 3; $0.roughness = 0.75
         },
         /// Field-stored round bale surface: weathered straw under white net wrap.
         MaterialSpec(key: "straw.hay-net", program: .straw).with {
-            $0.colorA = linear(0xB89A5C); $0.colorB = linear(0x77713E); $0.colorC = linear(0x8A857A)
+            $0.colorA = linear(0xCDB070); $0.colorB = linear(0x8A8247); $0.colorC = linear(0x8A857A)
             $0.knobs = V4(0.35, 0.1, 0.55, 0); $0.seed = 42; $0.tileSize = 0.6; $0.normalStrength = 3; $0.roughness = 0.8
         },
         /// Barn red oxide paint over weathered boards, chalked and peeling along the grain.
@@ -54,10 +54,15 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xD9D5C9); $0.colorB = linear(0x8A7E6C); $0.colorC = linear(0x3A3128)
             $0.knobs = V4(0.28, 0.2, 0.68, 0); $0.seed = 52; $0.tileSize = 1.0; $0.normalStrength = 2.5; $0.roughness = 0.7
         },
-        /// Jute sacking (burlap), plain weave about 3 threads per cm.
+        /// Jute sacking (burlap), plain weave about 2 threads per cm.
         MaterialSpec(key: "sack.jute", program: .jute).with {
-            $0.colorA = linear(0xA88B5E); $0.colorB = linear(0x30261A); $0.colorC = linear(0x8A6E46)
-            $0.knobs = V4(0, 0.2, 64, 0); $0.seed = 61; $0.tileSize = 0.2; $0.normalStrength = 2.5; $0.roughness = 0.92
+            $0.colorA = linear(0xA88B5E); $0.colorB = linear(0x4A3B28); $0.colorC = linear(0x8A6E46)
+            $0.knobs = V4(0, 0.2, 48, 0); $0.seed = 61; $0.tileSize = 0.25; $0.normalStrength = 1.8; $0.roughness = 0.92
+        },
+        /// Rebar and reinforcing mesh: dark mill scale with orange flash rust.
+        MaterialSpec(key: "metal.rebar", program: .rustMetal).with {
+            $0.colorA = linear(0x5E3A24); $0.colorB = linear(0x2A2420); $0.knobs = V4(0.25, 0, 0, 0); $0.seed = 71
+            $0.tileSize = 0.4; $0.hasMetallicMap = true; $0.normalStrength = 2.5
         },
         // realforge:material.industrial
     ]

@@ -93,7 +93,7 @@ S galvanized(float2 uv, constant RFParams &P) {
 
 // Straw: four layers of round strands running along U, bent by a low-frequency warp.
 // colorA golden straw, colorB olive/green stems, colorC grey weathering. f.x weathering,
-// f.y green fraction, f.z net wrap amount (white diamond net).
+// f.y green fraction, f.z net wrap amount (white diamond net), f.w > 0.5 lays the top layer diagonally (loose hay).
 S straw(float2 uv, constant RFParams &P) {
     S s = defaults(); uint sd = P.seed;
     float best = -1.0; float3 col = P.colorB.rgb * 0.18; float shade = 0.0;
@@ -102,7 +102,8 @@ S straw(float2 uv, constant RFParams &P) {
         int N = 70 + L * 16;
         int M = 2 + L;
         float wv = fbm(uv, int2(2, 3), 3, ls + 1u) * 0.05 + fbm(uv, int2(6, 4), 2, ls + 2u) * 0.012;
-        float cy = (uv.y + wv) * float(N);
+        float shear = (L == 3 && P.f.w > 0.5) ? 1.0 : 0.0;
+        float cy = (uv.y + shear * uv.x + wv) * float(N);
         float rowf = floor(cy); float f = cy - rowf;
         int row = int(rowf);
         float off = h01(wrapc(int2(row, L), int2(N, 4)), ls + 3u);
