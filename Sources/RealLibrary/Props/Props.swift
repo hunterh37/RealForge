@@ -34,6 +34,7 @@ func turned(_ profile: [(Float, Float)], segments: Int = 40, material: MaterialK
 func groundAO(_ m: inout Model, height: Float = 0.25, floor: Float = 0.5) {
     for i in m.surfaces.indices {
         m.surfaces[i].occlusion = m.surfaces[i].positions.map { floor + (1 - floor) * smoothstep(0, height, $0.y) }
+        m.surfaces[i].bakeCavityAO(strength: 0.6, floor: 0.6)
     }
 }
 
@@ -343,15 +344,12 @@ public struct Pallet: RealAsset {
     public static let id = "pallet"
     public static let summary = "EUR pallet (1.2 x 0.8 m): deck boards, blocks, bottom runners, rough pine."
     public static let tags = ["prop", "wood", "industrial"]
-    public static let budget = 6_000
+    public static let budget = 10_000
     public init() {}
     public func build(seed: UInt64) -> LODModel {
         var rng = SeededRNG(seed: seed)
         var m = Model(name: Self.id)
         let w: MaterialKey = "wood.weathered"
-        for x in [-0.5, -0.25, 0.0, 0.25, 0.5] as [Float] {   // bottom-to-top: runners along Z
-            _ = x
-        }
         for z: Float in [-0.35, 0, 0.35] { m.add(plank(1.2, 0.1, 0.022, material: w), Xform(translation: V3(0, 0.011, z)).jittered(&rng)) }
         for x: Float in [-0.545, 0, 0.545] { for z: Float in [-0.35, 0, 0.35] {
             m.add(Prim.roundedBox(V3(0.1, 0.078, z == 0 ? 0.145 : 0.1), radius: 0.004, material: w), Xform(translation: V3(x, 0.022 + 0.039, z)).jittered(&rng))

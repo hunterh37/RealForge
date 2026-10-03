@@ -161,6 +161,8 @@ public struct TreeGenerator: Sendable {
             d = simd_normalize(d + V3(0, gravity * step, 0))
             let w = V3(Noise.perlin(V3(t * 3, 0.5, 0), seed: nseed), Noise.perlin(V3(t * 3, 4.5, 0), seed: nseed), Noise.perlin(V3(t * 3, 9.5, 0), seed: nseed))
             p += d * step + w * wobble * length / Float(segs) * 2.2
+            // Branches never dip into the ground: deflect along it instead.
+            if level >= 0 && p.y < 0.25 { p.y = 0.25; d = simd_normalize(V3(d.x, max(d.y, 0.05), d.z)) }
             pts.append(p)
             // Pipe-model-ish taper: fast near the tip, slow near the base.
             radii.append(baseRadius * lerp(1, tipRatio, pow(t, 0.85)))
@@ -311,7 +313,7 @@ public struct TreeGenerator: Sendable {
                                  material: species.leaf, normal: shadeN, extra: V2(1, b.phase))
             // Crown normals are world-space already; keep them when transforming.
             let xf = Xform(translation: pos, rotation: rot)
-            card.positions = card.positions.map(xf.point)
+            card.positions = card.positions.map(xf.point).map { V3($0.x, max($0.y, 0.03), $0.z) }
             // Crown self-shadowing: interior and underside cards are darker (baked AO).
             card.occlusion = card.positions.map { p in
                 let d = simd_length(p - crownCenter) / crownRadius

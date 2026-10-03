@@ -10,8 +10,11 @@ public struct Boulder: RealAsset {
 
     public var size: V3 = V3(1.6, 1.0, 1.3)
     public var material: MaterialKey = "rock.granite"
-    public var facets = 6
-    public var roughness: Float = 0.22
+    public var facets = 9
+    public var roughness: Float = 0.3
+    /// Cube-sphere subdivisions per LOD.
+    public var detail: [Int] = [28, 12, 5]
+    public var lodDistances: [Float] = [10, 30]
     public init() {}
 
     public func build(seed: UInt64) -> LODModel {
@@ -40,9 +43,10 @@ public struct Boulder: RealAsset {
             let minY = surf.bounds.min.y
             surf.positions = surf.positions.map { V3($0.x, $0.y - minY - s.y * 0.18, $0.z) }  // sink into ground
             surf.occlusion = surf.positions.map { 0.35 + 0.65 * smoothstep(-0.05, s.y * 0.5, $0.y) }  // contact shadow
+            surf.bakeCavityAO(strength: 1.2)
             return Model(name: Self.id, surfaces: [surf])
         }
-        return LODModel(levels: [lod(28), lod(12), lod(5)], switchDistances: [10, 30])
+        return LODModel(levels: detail.map(lod), switchDistances: Array(lodDistances.prefix(detail.count - 1)))
     }
 }
 
@@ -60,8 +64,8 @@ public struct Pebbles: RealAsset {
         var m = Model(name: Self.id)
         for i in 0..<count {
             let p = rng.inDisc(radius: radius), sz = rng.float(0.04...0.14)
-            let b = Boulder().with { $0.size = V3(sz * 1.4, sz * 0.8, sz * 1.1); $0.facets = 2; $0.roughness = 0.12 }
-            let one = b.build(seed: seed &+ UInt64(i)).levels[2]
+            let b = Boulder().with { $0.size = V3(sz * 1.4, sz * 0.8, sz * 1.1); $0.facets = 2; $0.roughness = 0.12; $0.detail = [5] }
+            let one = b.build(seed: seed &+ UInt64(i)).levels[0]
             m.add(one, Xform(translation: V3(p.x, 0, p.y), rotation: simd_quatf(degrees: rng.float(0...360), axis: .up)))
         }
         return LODModel(m)

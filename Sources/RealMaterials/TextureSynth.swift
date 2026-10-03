@@ -109,7 +109,7 @@ public final class TextureSynth: @unchecked Sendable {
 
     /// Allocates a set the caller owns (CLI dumps, tests). RealKit instead encodes into LowLevelTextures.
     public func makeSet(for spec: MaterialSpec, size n: Int) -> TextureSet {
-        TextureSet(albedo: makeTexture(.rgba8Unorm_srgb, n), normal: makeTexture(.rgba8Unorm, n), roughness: makeTexture(.r8Unorm, n),
+        TextureSet(albedo: makeTexture(.rgba8Unorm_srgb, n), normal: makeTexture(.rg8Unorm, n), roughness: makeTexture(.r8Unorm, n),
                    ao: spec.hasAOMap ? makeTexture(.r8Unorm, n) : nil, metallic: spec.hasMetallicMap ? makeTexture(.r8Unorm, n) : nil)
     }
 
@@ -221,6 +221,18 @@ public final class TextureSynth: @unchecked Sendable {
             let info = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.floatComponents.rawValue | CGBitmapInfo.byteOrder16Little.rawValue)
             guard let prov = CGDataProvider(data: Data(bytes: data, count: data.count * 2) as CFData) else { return nil }
             return CGImage(width: w, height: h, bitsPerComponent: 16, bitsPerPixel: 64, bytesPerRow: w * 8, space: cs, bitmapInfo: info, provider: prov, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+        case .rg8Unorm:
+            var data = [UInt8](repeating: 0, count: w * h * 2)
+            src.getBytes(&data, bytesPerRow: w * 2, from: MTLRegionMake2D(0, 0, w, h), mipmapLevel: 0)
+            var rgba = [UInt8](repeating: 255, count: w * h * 4)
+            for i in 0..<(w * h) {
+                let x = Float(data[i * 2]) / 127.5 - 1, y = Float(data[i * 2 + 1]) / 127.5 - 1
+                rgba[i * 4] = data[i * 2]; rgba[i * 4 + 1] = data[i * 2 + 1]
+                rgba[i * 4 + 2] = UInt8(max(0, min(255, ((1 - x * x - y * y).squareRoot().isNaN ? 0 : (1 - x * x - y * y).squareRoot()) * 127.5 + 127.5)))
+            }
+            guard let prov = CGDataProvider(data: Data(rgba) as CFData) else { return nil }
+            return CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: w * 4, space: CGColorSpace(name: CGColorSpace.linearSRGB)!,
+                           bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipLast.rawValue), provider: prov, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
         case .r8Unorm:
             var data = [UInt8](repeating: 0, count: w * h)
             src.getBytes(&data, bytesPerRow: w, from: MTLRegionMake2D(0, 0, w, h), mipmapLevel: 0)

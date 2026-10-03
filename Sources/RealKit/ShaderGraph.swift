@@ -49,6 +49,34 @@ struct USDAGraph {
                     out: t)
     }
 
+    /// Triplanar sample of a texture: returns float4/color4 output path blended by |n|^4 weights.
+    mutating func triplanar(_ param: String, color: Bool, scale: String) -> String {
+        let pos = node("ND_position_vector3", [("string", "space", "\"object\"")], out: "float3")
+        let nrm = node("ND_normal_vector3", [("string", "space", "\"object\"")], out: "float3")
+        let p = separate("ND_separate3_vector3", "float3", pos, ["outx", "outy", "outz"])
+        let n = separate("ND_separate3_vector3", "float3", nrm, ["outx", "outy", "outz"])
+        func uv(_ a: String, _ b: String) -> String {
+            let v = node("ND_combine2_vector2", [("float", "in1", a), ("float", "in2", b)], out: "float2")
+            return node("ND_multiply_vector2FA", [("float2", "in1", v), ("float", "in2", scale)], out: "float2")
+        }
+        let sx = texture(param, uv(p[2], p[1]), color: color)
+        let sy = texture(param, uv(p[0], p[2]), color: color)
+        let sz = texture(param, uv(p[0], p[1]), color: color)
+        func w(_ c: String) -> String {
+            let a = node("ND_absval_float", [("float", "in", c)], out: "float")
+            let a2 = mul(a, a); return mul(a2, a2)
+        }
+        let wx = w(n[0]), wy = w(n[1]), wz = w(n[2])
+        let sum = add(add(wx, wy), add(wz, "0.0001"))
+        let t = color ? "color4" : "vector4", ty = color ? "color4f" : "float4"
+        func scaled(_ s: String, _ k: String) -> String {
+            node("ND_multiply_\(t)FA", [("\(ty)", "in1", s), ("float", "in2", node("ND_divide_float", [("float", "in1", k), ("float", "in2", sum)], out: "float"))], out: ty)
+        }
+        let ax = scaled(sx, wx), ay = scaled(sy, wy), az = scaled(sz, wz)
+        let s1 = node("ND_add_\(t)", [("\(ty)", "in1", ax), ("\(ty)", "in2", ay)], out: ty)
+        return node("ND_add_\(t)", [("\(ty)", "in1", s1), ("\(ty)", "in2", az)], out: ty)
+    }
+
     mutating func mul(_ a: String, _ b: String) -> String { node("ND_multiply_float", [("float", "in1", a), ("float", "in2", b)], out: "float") }
     mutating func add(_ a: String, _ b: String) -> String { node("ND_add_float", [("float", "in1", a), ("float", "in2", b)], out: "float") }
     mutating func sin(_ a: String) -> String { node("ND_sin_float", [("float", "in", a)], out: "float") }
@@ -69,6 +97,8 @@ public struct RealShaderOptions: Hashable, Sendable {
     public var topLayer = false
     /// Exponential distance fog toward the sky's horizon color (aerial perspective).
     public var fog = true
+    /// Object-space triplanar projection for color/roughness/AO (rocks: no stretching on steep facets).
+    public var triplanar = false
     public init() {}
 }
 
@@ -78,7 +108,7 @@ public enum RealShaderGraph {
         var g = USDAGraph(material: name)
         let uv0 = g.node("ND_texcoord_vector2", [("int", "index", "0")], out: "float2")
         let uv = g.node("ND_multiply_vector2FA", [("float2", "in1", uv0), ("float", "in2", g.param("UVScale"))], out: "float2")
-        let base = g.texture("BaseColor", uv, color: true)
+        let base = o.triplanar ? g.triplanar("BaseColor", color: true, scale: g.param("UVScale")) : g.texture("BaseColor", uv, color: true)
         let bc = g.separate("ND_separate4_color4", "color4f", base, ["outr", "outg", "outb", "outa"])
         var rgb = g.node("ND_combine3_color3", [("float", "in1", bc[0]), ("float", "in2", bc[1]), ("float", "in3", bc[2])], out: "color3f")
         var uvB: String?
@@ -130,10 +160,13 @@ public enum RealShaderGraph {
             let nt2 = g.texture("Normal", uvB, color: false)
             nt = g.node("ND_mix_vector4", [("float4", "fg", nt2), ("float4", "bg", nt), ("float", "mix", "0.45")], out: "float4")
         }
+        // RG8 normal: reconstruct z = sqrt(1 - x^2 - y^2) in tangent space.
         let nc = g.separate("ND_separate4_vector4", "float4", nt, ["outx", "outy", "outz", "outw"])
-        let n3 = g.node("ND_combine3_vector3", [("float", "in1", nc[0]), ("float", "in2", nc[1]), ("float", "in3", nc[2])], out: "float3")
-        let normal = g.node("ND_normal_map_decode", [("float3", "in", n3)], out: "float3")
-        let rt = g.separate("ND_separate4_vector4", "float4", g.texture("Roughness", uv, color: false), ["outx", "outy", "outz", "outw"])
+        let nx = g.add(g.mul(nc[0], "2"), "-1"), ny = g.add(g.mul(nc[1], "2"), "-1")
+        let nzz = g.add("1", g.mul(g.add(g.mul(nx, nx), g.mul(ny, ny)), "-1"))
+        let nz = g.node("ND_sqrt_float", [("float", "in", g.node("ND_max_float", [("float", "in1", nzz), ("float", "in2", "0")], out: "float"))], out: "float")
+        let normal = g.node("ND_combine3_vector3", [("float", "in1", nx), ("float", "in2", ny), ("float", "in3", nz)], out: "float3")
+        let rt = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("Roughness", color: false, scale: g.param("UVScale")) : g.texture("Roughness", uv, color: false), ["outx", "outy", "outz", "outw"])
         var rough = rt[0]
         if let topMask { rough = g.node("ND_mix_float", [("float", "fg", "0.95"), ("float", "bg", rough), ("float", "mix", topMask)], out: "float") }
         var surfaceInputs: [(String, String, String)] = [
@@ -141,7 +174,7 @@ public enum RealShaderGraph {
             ("float", "specular", g.param("Specular")),
         ]
         if o.aoMap {
-            let at = g.separate("ND_separate4_vector4", "float4", g.texture("AO", uv, color: false), ["outx", "outy", "outz", "outw"])
+            let at = g.separate("ND_separate4_vector4", "float4", o.triplanar ? g.triplanar("AO", color: false, scale: g.param("UVScale")) : g.texture("AO", uv, color: false), ["outx", "outy", "outz", "outw"])
             surfaceInputs.append(("float", "ambientOcclusion", g.mul(at[0], vao)))
         } else {
             surfaceInputs.append(("float", "ambientOcclusion", vao))

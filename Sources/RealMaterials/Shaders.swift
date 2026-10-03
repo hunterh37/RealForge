@@ -319,7 +319,7 @@ S rockGranite(float2 uv, constant RFParams &P) {
     float4 sp = worley(uv, int2(150, 150), sd + 3u, 0.9);
     float grain = smoothstep(0.6, 0.2, sp.x) * (0.5 + 0.5 * smoothstep(-0.2, 0.3, fbm(uv, int2(8, 8), 3, sd + 11u)));
     float3 base = mix(P.colorA.rgb, P.colorB.rgb, smoothstep(-0.3, 0.3, big));
-    float3 mineral = sp.z < 0.18 ? float3(0.025, 0.025, 0.028) : (sp.z < 0.30 ? float3(0.62, 0.6, 0.58) : (sp.z < 0.38 ? P.colorC.rgb : base));
+    float3 mineral = sp.z < 0.18 ? float3(0.025, 0.025, 0.028) : (sp.z < 0.30 ? float3(0.42, 0.41, 0.39) : (sp.z < 0.38 ? P.colorC.rgb : base));
     s.albedo = mix(base, mineral, grain * 0.45) * (0.85 + 0.3 * fbm(uv, int2(24, 24), 3, sd + 4u));
     float4 cr = worley(uv + 0.03 * float2(fbm(uv, int2(5, 5), 3, sd + 5u), fbm(uv, int2(5, 5), 3, sd + 6u)), int2(5, 5), sd + 7u, 1.0);
     float crack = (1.0 - smoothstep(0.0, 0.02, cr.y - cr.x)) * smoothstep(0.1, 0.35, fbm(uv, int2(4, 4), 4, sd + 12u));

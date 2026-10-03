@@ -86,26 +86,40 @@ public final class RealMaterialCache {
 
     // MARK: textures
 
-    private func lowLevel(_ fmt: MTLPixelFormat, _ n: Int) throws -> LowLevelTexture {
+    private func lowLevel(_ fmt: MTLPixelFormat, _ n: Int, swizzle: MTLTextureSwizzleChannels? = nil) throws -> LowLevelTexture {
+        // Swizzled textures can't be shader-writable; they are filled by blit copy instead.
         try LowLevelTexture(descriptor: .init(textureType: .type2D, pixelFormat: fmt, width: n, height: n,
-                                              mipmapLevelCount: TextureSynth.mipCount(n), textureUsage: [.shaderRead, .shaderWrite]))
+                                              mipmapLevelCount: TextureSynth.mipCount(n),
+                                              textureUsage: swizzle == nil ? [.shaderRead, .shaderWrite] : [.shaderRead],
+                                              swizzle: swizzle ?? .init(red: .red, green: .green, blue: .blue, alpha: .alpha)))
     }
 
     public func textures(_ s: MaterialSpec) throws -> RealTextures? {
         if let t = tex[s.key] { return t }
         guard let synth = TextureSynth.shared, s.program != nil else { return nil }
         let n = RealQuality.pixels(for: s)
-        let albedo = try lowLevel(.rgba8Unorm_srgb, n), normal = try lowLevel(.rgba8Unorm, n), rough = try lowLevel(.r8Unorm, n)
+        // Normals stored as RG8 (half the memory of RGBA8); blue reads as 1 and shaders renormalize.
+        let albedo = try lowLevel(.rgba8Unorm_srgb, n), normal = try lowLevel(.rg8Unorm, n, swizzle: .init(red: .red, green: .green, blue: .one, alpha: .one)), rough = try lowLevel(.r8Unorm, n)
         let ao = s.hasAOMap ? try lowLevel(.r8Unorm, n) : nil
         let metal = s.hasMetallicMap ? try lowLevel(.r8Unorm, n) : nil
         guard let cb = synth.queue.makeCommandBuffer() else { throw TextureSynth.SynthError.encode }
-        let set = TextureSet(albedo: albedo.replace(using: cb), normal: normal.replace(using: cb), roughness: rough.replace(using: cb),
+        let scratchNormal = synth.makeTexture(.rg8Unorm, n)
+        let set = TextureSet(albedo: albedo.replace(using: cb), normal: scratchNormal, roughness: rough.replace(using: cb),
                              ao: ao?.replace(using: cb), metallic: metal?.replace(using: cb))
         try synth.encode(s, into: set, commandBuffer: cb)
+        if let blit = cb.makeBlitCommandEncoder() {
+            let dst = normal.replace(using: cb)
+            for level in 0..<scratchNormal.mipmapLevelCount {
+                let w = max(1, n >> level)
+                blit.copy(from: scratchNormal, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
+                          to: dst, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+            }
+            blit.endEncoding()
+        }
         cb.commit()
         let all = [albedo, normal, rough] + [ao, metal].compactMap { $0 }
         textureBytes += all.reduce(0) { acc, t in
-            acc + t.descriptor.width * t.descriptor.height * (t.descriptor.pixelFormat == .r8Unorm ? 1 : 4) * 4 / 3
+            acc + t.descriptor.width * t.descriptor.height * (t.descriptor.pixelFormat == .r8Unorm ? 1 : t.descriptor.pixelFormat == .rg8Unorm ? 2 : 4) * 4 / 3
         }
         let t = RealTextures(albedo: try TextureResource(from: albedo), normal: try TextureResource(from: normal),
                              roughness: try TextureResource(from: rough), ao: try ao.map { try TextureResource(from: $0) },
@@ -148,7 +162,7 @@ public final class RealMaterialCache {
         var o = RealShaderOptions()
         o.cutout = s.mode == .cutout; o.aoMap = t.ao != nil; o.metallicMap = t.metallic != nil
         o.wind = s.wind > 0; o.translucency = s.translucency > 0; o.antiTile = s.antiTile
-        o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0
+        o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0; o.triplanar = s.triplanar
         var m = try await RealShaderGraph.material(o)
         try m.setParameter(name: "BaseColor", value: .textureResource(t.albedo))
         try m.setParameter(name: "Normal", value: .textureResource(t.normal))

@@ -43,6 +43,8 @@ public struct MaterialSpec: Sendable, Hashable {
     public var translucency: Float = 0
     /// Large-surface anti-tiling (ShaderGraph path): ground, asphalt, big rock faces.
     public var antiTile = false
+    /// Object-space triplanar color/roughness/AO (ShaderGraph path).
+    public var triplanar = false
     /// World-up layer (moss/snow/dust): linear color, amount 0...1, and threshold on normal.y.
     public var topColor: V4 = linear(0x2F4A16)
     public var topAmount: Float = 0
@@ -140,14 +142,14 @@ public enum MaterialLibrary {
         // ------------------------------------------------ stone / ground
         case "rock.granite":
             return MaterialSpec(key: k, program: .rockGranite).with {
-                $0.colorA = linear(0x77736D); $0.colorB = linear(0x9A958C); $0.colorC = linear(0xA77F72)
-                $0.knobs = V4(0.6, 0, 0, 0); $0.tileSize = 1.2; $0.normalStrength = 4
+                $0.colorA = linear(0x5F5B56); $0.colorB = linear(0x86817A); $0.colorC = linear(0x9A7468)
+                $0.knobs = V4(0.6, 0, 0, 0); $0.tileSize = 1.2; $0.normalStrength = 2.2; $0.triplanar = true
                 $0.topAmount = 0.85
             }
         case "rock.sandstone":
             return MaterialSpec(key: k, program: .rockGranite).with {
                 $0.colorA = linear(0xA98563); $0.colorB = linear(0xC4A27C); $0.colorC = linear(0x8E5A3A)
-                $0.knobs = V4(0.2, 0, 0, 0); $0.seed = 9; $0.tileSize = 1.5; $0.normalStrength = 3
+                $0.knobs = V4(0.2, 0, 0, 0); $0.seed = 9; $0.tileSize = 1.5; $0.normalStrength = 2; $0.triplanar = true
                 $0.topAmount = 0.35
             }
         case "ground.forest":

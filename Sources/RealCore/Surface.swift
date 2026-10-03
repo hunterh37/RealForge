@@ -101,6 +101,26 @@ public struct Surface: Sendable {
         }
     }
 
+    /// Bake cavity occlusion from mesh concavity (vertex vs. average of its neighbors along the normal).
+    /// Crevices darken, ridges stay bright; multiplied into `occlusion`.
+    public mutating func bakeCavityAO(strength: Float = 1, floor: Float = 0.35) {
+        if normals.count != positions.count { recomputeNormals() }
+        var sum = [V3](repeating: .zero, count: positions.count), cnt = [Float](repeating: 0, count: positions.count)
+        var edge = [Float](repeating: 0, count: positions.count)
+        for t in stride(from: 0, to: indices.count, by: 3) {
+            let a = Int(indices[t]), b = Int(indices[t + 1]), c = Int(indices[t + 2])
+            for (i, j) in [(a, b), (b, c), (c, a), (b, a), (c, b), (a, c)] {
+                sum[i] += positions[j]; cnt[i] += 1; edge[i] += simd_distance(positions[i], positions[j])
+            }
+        }
+        if occlusion.count != positions.count { occlusion = Array(repeating: 1, count: positions.count) }
+        for i in positions.indices where cnt[i] > 0 {
+            let avg = sum[i] / cnt[i], e = max(edge[i] / cnt[i], 1e-5)
+            let concave = simd_dot(normals[i], avg - positions[i]) / e   // >0 in pits
+            occlusion[i] *= max(floor, 1 - saturate(concave * 2.5 * strength))
+        }
+    }
+
     /// Finalize: fill missing channels so every array matches positions.count.
     public mutating func finalize() {
         if normals.count != positions.count { recomputeNormals() }
