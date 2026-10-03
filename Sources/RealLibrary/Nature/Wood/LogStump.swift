@@ -24,6 +24,10 @@ public struct LogStump: RealAsset {
     public var barkThickness: Float = 0.022
     /// Cut tilt in degrees (chainsaw cuts are rarely level).
     public var tilt: Float = 4
+    /// Surface root length as a multiple of the trunk radius scale (1 = short buttress roots).
+    public var rootReach: Float = 1
+    /// Height the roots arch above the ground before diving in, meters (eroded banks expose them).
+    public var rootArch: Float = 0
     public var bark: MaterialKey = "bark.oak-mossy"
     /// Bark seen in cross-section on the cut (no moss).
     public var barkEdge: MaterialKey = "bark.oak"
@@ -93,9 +97,9 @@ public struct LogStump: RealAsset {
                 for (ra, sz) in zip(rootAngles, rootSize) {
                     let d = V3(cos(ra), 0, -sin(ra))
                     let r0 = radius(ra, 0.04)
-                    let len = R * rng.float(0.7...1.2) * sz
+                    let len = R * rng.float(0.7...1.2) * sz * rootReach
                     let side = V3(-d.z, 0, d.x) * rng.float(-0.15...0.15)
-                    let pts = catmull([d * (r0 * 0.55) + V3(0, 0.12, 0), d * (r0 + len * 0.45) + side * len + V3(0, 0.0, 0),
+                    let pts = catmull([d * (r0 * 0.55) + V3(0, 0.12, 0), d * (r0 + len * 0.45) + side * len + V3(0, rootArch * rng.float(0.6...1.2), 0),
                                        d * (r0 + len) + side * len * 1.6 + V3(0, -0.16, 0)], per: 5)
                     let radii = pts.indices.map { i in R * 0.3 * sz * (1 - 0.6 * Float(i) / Float(pts.count - 1)) }
                     var root = Prim.tube(pts, radii: radii, sides: 10, seamTile: MaterialLibrary.spec(for: bark).tileSize, material: bark)

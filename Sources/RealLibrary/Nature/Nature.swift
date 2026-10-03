@@ -6,6 +6,7 @@ public enum Nature {
         LogStump.self,
         Firewood.self,
         FallenLog.self,
+        RootStump.self,
         // realforge:nature
     ]
 }
