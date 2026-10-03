@@ -17,6 +17,17 @@ await RealViewerTracker.shared.start()                        // head-tracked LO
 Mixed reality: skip the skybox, keep `env` for IBL and sun shadows, or skip `env` entirely and let
 the system lighting apply (fog uses `RealAtmosphere`; set `fogDensity = 0` indoors).
 
+## Demo app (visionOS)
+
+`Demo/` holds a visionOS app (xcodegen; `.xcodeproj` is gitignored). Menu window lists
+forest-glade and park-path, sky and seed; each opens a full ImmersiveSpace with the scene's camera
+hint at the viewer's feet. New scene in the demo: a case in `DemoScene` (`Demo/RealForgeDemo/DemoApp.swift`).
+
+```sh
+cd Demo && xcodegen generate && open RealForgeDemo.xcodeproj
+# simulator: launch arg `-scene forest-glade` opens a scene without tapping
+```
+
 ## Workflow for "add an asset / scene"
 
 1. `swift run -q realforge list`, read `CATALOG.md`. Reuse assets and materials first.
