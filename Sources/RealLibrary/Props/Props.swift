@@ -9,6 +9,7 @@ public enum Props {
         CementMixer.self,
         RebarBundle.self,
         Sandbag.self,
+        CableSpool.self,
         // realforge:prop
     ]
 }
