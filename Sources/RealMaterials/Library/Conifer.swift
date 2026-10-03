@@ -44,6 +44,18 @@ public extension MaterialLibrary {
             $0.knobs = V4(0, 6, 0, 0); $0.seed = 17; $0.tileSize = 0.25; $0.normalStrength = 1.5; $0.roughness = 0.55
             $0.resolution = 512; $0.wind = 0.03
         },
+        // European larch: reddish-brown scaly bark, soft light-green needle rosettes.
+        MaterialSpec(key: "bark.larch", program: .barkScotsPine).with {
+            $0.colorA = linear(0x6A4A3C); $0.colorB = linear(0x2E1810); $0.colorC = linear(0x8A6E60)
+            $0.knobs = V4(0, 0, 0, 0); $0.seed = 18; $0.tileSize = 0.45; $0.normalStrength = 5; $0.roughness = 0.9
+            $0.wind = 0.02
+        },
+        MaterialSpec(key: "leaf.larch", program: .leafPine).with {
+            $0.colorA = linear(0x4A6E2A); $0.colorB = linear(0x6A8E36); $0.colorC = linear(0x9AB25E)
+            $0.knobs = V4(0, 24, 2, 0); $0.seed = 26; $0.tileSize = 0; $0.mode = .cutout; $0.twoSided = true
+            $0.normalStrength = 1.5; $0.roughness = 0.55
+            $0.wind = 0.06; $0.translucency = 0.45
+        },
         MaterialSpec(key: "leaf.pine", program: .leafPine).with {
             $0.colorA = linear(0x263A2C); $0.colorB = linear(0x3C5440); $0.colorC = linear(0x7E968A)
             $0.knobs = V4(0, 30, 2, 0); $0.seed = 21; $0.tileSize = 0; $0.mode = .cutout; $0.twoSided = true

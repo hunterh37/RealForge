@@ -11,6 +11,7 @@ public enum Nature {
         Saguaro.self,
         BarrelCactus.self,
         Agave.self,
+        LarchTree.self,
         // realforge:nature
     ]
 }

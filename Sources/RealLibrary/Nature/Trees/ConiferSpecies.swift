@@ -39,6 +39,17 @@ public extension TreeSpecies {
         ],
         leaves: LeafParams(cardSize: V2(0.7, 0.85), density: 4.6, span: 0.0...1, crownNormalBlend: 0.8),
         leafLevels: [0, 1], barkTile: 0.35).woodLevels(0)
+
+    /// European larch, ~20 m: open cone, level branches with hanging branchlets, soft light-green needle rosettes.
+    static let larch = TreeSpecies(
+        name: "larch", bark: "bark.larch", leaf: "leaf.larch", height: 20, trunkRadius: 0.26, trunkTipRatio: 0.03,
+        trunkCurve: 3, trunkWobble: 0.008, flare: 0.25, flareLobes: 5,
+        levels: [
+            BranchLevel(density: 3.2, span: 0.18...0.98, lengthRatio: 0.3, profile: .conical, downAngle: 82, downAngleSpread: 10, curve: 22, gravity: 0.05, radiusRatio: 0.3, wobble: 0.04),
+            BranchLevel(density: 3.6, span: 0.1...1, lengthRatio: 0.45, downAngle: 62, downAngleSpread: 14, curve: 18, gravity: -0.35, radiusRatio: 0.45, wobble: 0.04),
+        ],
+        leaves: LeafParams(cardSize: V2(0.5, 0.6), density: 6.5, span: 0.1...1, crownNormalBlend: 0.6),
+        barkTile: 0.45).woodLevels(0)
 }
 
 extension TreeSpecies {
