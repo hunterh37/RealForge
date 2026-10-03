@@ -14,6 +14,7 @@ public enum Props {
         Dumpster.self,
         RoundHayBale.self,
         SquareHayBale.self,
+        WaterTrough.self,
         // realforge:prop
     ]
 }
