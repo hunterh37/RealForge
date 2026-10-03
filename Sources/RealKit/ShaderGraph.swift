@@ -99,6 +99,10 @@ public struct RealShaderOptions: Hashable, Sendable {
     public var fog = true
     /// Object-space triplanar projection for color/roughness/AO (rocks: no stretching on steep facets).
     public var triplanar = false
+    /// Per-instance hue/value/saturation variation hashed from the instance origin (object-to-world
+    /// transform of 0), plus a low-frequency patch term so neighbors drift together. Works for
+    /// MeshInstancesComponent instances and plain entities alike.
+    public var instanceJitter = false
     public init() {}
 }
 
@@ -125,6 +129,22 @@ public enum RealShaderGraph {
             let macro = g.add("0.55", g.mul(g.add(b3[0], b3[1]), "1.6"))
             let mixed = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", "0.45")], out: "color3f")
             rgb = g.node("ND_multiply_color3FA", [("color3f", "in1", mixed), ("float", "in2", macro)], out: "color3f")
+        }
+        if o.instanceJitter {
+            let org = g.node("ND_transformpoint_vector3", [("float3", "in", "(0, 0, 0)"), ("string", "fromspace", "\"object\""), ("string", "tospace", "\"world\"")], out: "float3")
+            // cellnoise is constant per unit cell: scale so instances 0.1 m apart land in different cells.
+            let p1 = g.node("ND_multiply_vector3FA", [("float3", "in1", org), ("float", "in2", "9.73")], out: "float3")
+            let p2 = g.node("ND_add_vector3", [("float3", "in1", p1), ("float3", "in2", "(17.3, 5.1, 31.7)")], out: "float3")
+            let c1 = g.add(g.node("ND_cellnoise3d_float", [("float3", "position", p1)], out: "float"), "-0.5")
+            let c2 = g.add(g.node("ND_cellnoise3d_float", [("float3", "position", p2)], out: "float"), "-0.5")
+            let pm = g.node("ND_multiply_vector3FA", [("float3", "in1", org), ("float", "in2", "0.09")], out: "float3")
+            let macro = g.node("ND_noise3d_float", [("float", "amplitude", "1"), ("float", "pivot", "0"), ("float3", "position", pm)], out: "float")
+            // Hue leans negative (green toward yellow: drier, older growth) more than toward blue.
+            let hue = g.mul(g.add(g.add(g.mul(c1, "2"), g.mul(macro, "0.8")), "-0.35"), g.param("HueJitter"))
+            let val = g.add("1", g.mul(g.add(g.mul(c2, "2"), macro), g.param("ValueJitter")))
+            let sat = g.add("1", g.mul(g.add(g.mul(c1, "-1"), g.mul(macro, "-1")), g.param("ValueJitter")))
+            let amt = g.node("ND_combine3_vector3", [("float", "in1", hue), ("float", "in2", sat), ("float", "in3", val)], out: "float3")
+            rgb = g.node("ND_hsvadjust_color3", [("color3f", "in", rgb), ("float3", "amount", amt)], out: "color3f")
         }
         var tint = g.node("ND_multiply_color3", [("color3f", "in1", rgb), ("color3f", "in2", g.param("Tint"))], out: "color3f")
         // Baked vertex AO (uv2.x): darkens albedo in crowns/crevices, and multiplies texture AO below.
@@ -264,6 +284,8 @@ public enum RealShaderGraph {
                 color3f inputs:TopColor = (0.05, 0.09, 0.02)
                 float inputs:TopAmount = 1
                 float inputs:TopLow = 0.55
+                float inputs:HueJitter = 0
+                float inputs:ValueJitter = 0
                 token outputs:mtlx:surface.connect = \(surface)
 
         """
