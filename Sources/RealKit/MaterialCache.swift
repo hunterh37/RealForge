@@ -52,6 +52,8 @@ public final class RealMaterialCache {
     /// Approximate GPU bytes held by generated textures (mips included).
     public private(set) var textureBytes: Int = 0
     public var overrides: [MaterialKey: MaterialSpec] = [:]
+    /// Texture sets loaded from `RealTextureDiskCache` vs generated on the GPU (since launch).
+    public private(set) var diskHits = 0, synthesized = 0
     /// Set false to force PhysicallyBasedMaterial everywhere (no wind, no translucency).
     public var useShaderGraph = true
 
@@ -108,6 +110,12 @@ public final class RealMaterialCache {
     /// Pre-generate (e.g. behind a loading state) so first frames don't hitch.
     public func warm(_ keys: [MaterialKey]) async { for k in keys { _ = await materialAsync(k) } }
 
+    /// Blocks until all queued texture work has finished on the GPU (benchmarks).
+    public func waitForGPU() {
+        guard let cb = TextureSynth.shared?.queue.makeCommandBuffer() else { return }
+        cb.commit(); cb.waitUntilCompleted()
+    }
+
     public func purge() { pbr.removeAll(); graph.removeAll(); tex.removeAll(); alphaViews.removeAll(); alphaBacking.removeAll(); textureBytes = 0 }
 
     // MARK: textures
@@ -129,18 +137,27 @@ public final class RealMaterialCache {
         let ao = s.hasAOMap ? try lowLevel(.r8Unorm, n) : nil
         let metal = s.hasMetallicMap ? try lowLevel(.r8Unorm, n) : nil
         guard let cb = synth.queue.makeCommandBuffer() else { throw TextureSynth.SynthError.encode }
-        let scratchNormal = synth.makeTexture(.rg8Unorm, n)
-        let set = TextureSet(albedo: albedo.replace(using: cb), normal: scratchNormal, roughness: rough.replace(using: cb),
-                             ao: ao?.replace(using: cb), metallic: metal?.replace(using: cb))
-        try synth.encode(s, into: set, commandBuffer: cb)
-        if let blit = cb.makeBlitCommandEncoder() {
-            let dst = normal.replace(using: cb)
-            for level in 0..<scratchNormal.mipmapLevelCount {
-                let w = max(1, n >> level)
-                blit.copy(from: scratchNormal, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
-                          to: dst, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+        let dAlbedo = albedo.replace(using: cb), dNormal = normal.replace(using: cb), dRough = rough.replace(using: cb)
+        let dAO = ao?.replace(using: cb), dMetal = metal?.replace(using: cb)
+        let targets = [dAlbedo, dNormal, dRough] + [dAO, dMetal].compactMap { $0 }
+        if let cached = RealTextureDiskCache.load(s, n: n),
+           RealTextureDiskCache.encodeLoad(cached, s, n: n, into: targets, device: synth.device, commandBuffer: cb) {
+            diskHits += 1
+        } else {
+            let scratchNormal = synth.makeTexture(.rg8Unorm, n)
+            let set = TextureSet(albedo: dAlbedo, normal: scratchNormal, roughness: dRough, ao: dAO, metallic: dMetal)
+            try synth.encode(s, into: set, commandBuffer: cb)
+            if let blit = cb.makeBlitCommandEncoder() {
+                for level in 0..<scratchNormal.mipmapLevelCount {
+                    let w = max(1, n >> level)
+                    blit.copy(from: scratchNormal, sourceSlice: 0, sourceLevel: level, sourceOrigin: MTLOrigin(), sourceSize: MTLSize(width: w, height: w, depth: 1),
+                              to: dNormal, destinationSlice: 0, destinationLevel: level, destinationOrigin: MTLOrigin())
+                }
+                blit.endEncoding()
             }
-            blit.endEncoding()
+            RealTextureDiskCache.encodeStore(s, n: n, textures: [dAlbedo, scratchNormal, dRough] + [dAO, dMetal].compactMap { $0 },
+                                             device: synth.device, commandBuffer: cb)
+            synthesized += 1
         }
         cb.commit()
         let all = [albedo, normal, rough] + [ao, metal].compactMap { $0 }

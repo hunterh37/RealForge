@@ -1,4 +1,5 @@
 import Foundation
+import RealKit
 
 @MainActor
 func run() async throws {
@@ -19,4 +20,4 @@ func run() async throws {
     }
 }
 
-do { try await run() } catch { print("error: \(error)"); exit(1) }
+do { try await run(); RealTextureDiskCache.flush() } catch { print("error: \(error)"); exit(1) }

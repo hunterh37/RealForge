@@ -23,6 +23,34 @@ func benchCommand() async throws {
         let t0 = Date(); _ = try synth.generate(spec, size: 1024)
         print(pad(k), ms(t0))
     }
+    print("-- texture disk cache (every material of every scene, at the current quality)")
+    do {
+        var keys = Set<MaterialKey>()
+        for id in SceneCatalog.ids {
+            let sc = SceneCatalog.build(id, seed: 1)!
+            for lod in sc.fields.map(\.asset) + sc.singles.map(\.asset) { for m in lod.levels { keys.formUnion(m.materials) } }
+            if let f = sc.farGround { keys.insert(f) }
+        }
+        let cache = RealMaterialCache.shared
+        let specs = keys.sorted().map { cache.spec($0) }.filter { $0.program != nil }
+        func pass(_ label: String) throws {
+            cache.purge(); cache.waitForGPU()
+            let t0 = Date()
+            for s in specs { _ = try cache.textures(s) }
+            cache.waitForGPU()
+            print(pad(label, 22), ms(t0), "\(specs.count) materials, \(cache.textureBytes / 1_048_576)MB")
+        }
+        let was = RealTextureDiskCache.isEnabled
+        RealTextureDiskCache.isEnabled = false
+        try pass("synthesize (no cache)")
+        RealTextureDiskCache.isEnabled = true
+        RealTextureDiskCache.clear()
+        try pass("synthesize + store")
+        RealTextureDiskCache.flush()
+        try pass("load from disk")
+        print(pad("on disk", 22), "\(RealTextureDiskCache.bytesOnDisk / 1_048_576)MB in \(RealTextureDiskCache.directory.path)")
+        RealTextureDiskCache.isEnabled = was
+    }
     print("-- scenes (build + upload, cold materials)")
     for id in SceneCatalog.ids {
         RealMaterialCache.shared.purge()

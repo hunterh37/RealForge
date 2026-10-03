@@ -51,4 +51,6 @@ realforge new scene <id> [--author handle]
 realforge new material <family.variant> --program <TextureProgram> [--like key]
 realforge demo splat|water|glass [--pbr]   engine feature demos (out/demo-<name>.png)
 realforge bench                           release timing (swift run -c release realforge bench)
+
+REALFORGE_NO_DISK_CACHE=1 skips the texture disk cache (~/Library/Caches/RealForge/textures).
 """
