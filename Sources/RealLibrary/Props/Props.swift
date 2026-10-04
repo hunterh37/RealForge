@@ -64,6 +64,7 @@ public enum Props {
         Baseball.self,
         BattingHelmet.self,
         BallBucket.self,
+        DoctorStool.self,
         // realityhd:prop
     ]
 }

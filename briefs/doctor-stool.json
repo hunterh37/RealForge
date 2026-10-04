@@ -1,0 +1,44 @@
+{
+  "budget": 15000,
+  "id": "doctor-stool",
+  "kind": "prop",
+  "materials": [
+    "vinyl.medical-black",
+    "metal.aluminum-brushed",
+    "metal.chrome",
+    "plastic.matte",
+    "rubber",
+    "label.rx"
+  ],
+  "name": "Doctor stool",
+  "notes": "",
+  "parts": [
+    "five-star polished aluminum base with tapered arms",
+    "five 50 mm swivel casters",
+    "black gas-lift shroud and chrome piston",
+    "chrome tubular foot ring on a three-spoke clamp collar",
+    "round seat: black vinyl cushion with welted top seam",
+    "molded black seat pan and swivel plate",
+    "height release lever under the seat",
+    "asset tag sticker on the shroud"
+  ],
+  "references": [],
+  "size": [
+    0.62,
+    0.48,
+    0.6
+  ],
+  "style": "Contemporary clinic stool (Midmark 272 class), 64 cm base, seat 48-64 cm; light scuffs on the base arms and foot ring, seam welt slightly creased.",
+  "summary": "Rolling physician stool: five-star cast base on casters, gas lift with chrome foot ring, swiveling round black vinyl seat with welted seam.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

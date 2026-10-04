@@ -1,0 +1,29 @@
+{
+  "budget" : 10000,
+  "id" : "overbed-table",
+  "kind" : "prop",
+  "materials" : [
+
+  ],
+  "name" : "Overbed table",
+  "notes" : "",
+  "parts" : [
+
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0,
+    0,
+    0
+  ],
+  "style" : "TODO: era, condition, finish",
+  "summary" : "TODO: one sentence, what it is and how it's built.",
+  "tags" : [
+    "prop"
+  ],
+  "theme" : "Patient",
+  "threshold" : 0.85,
+  "tolerance" : 0.08
+}
