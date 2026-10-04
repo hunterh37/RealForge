@@ -11,7 +11,7 @@ import Foundation
 /// pivots about a vertical axis at its pivot-edge radius center; positive angles swing it toward -Z.
 public struct HospitalDoors: RealArticulated {
     public static let id = "hospital-doors"
-    public static let summary = "Double-acting hospital corridor door pair: hollow-metal frame, maple laminate leaves with wired-glass vision lites, stainless kick and push plates, center-hung pivots."
+    public static let summary = "Double-acting hospital door pair: hollow-metal frame, laminate leaves with wired-glass lites, stainless kick and push plates, center-hung pivots."
     public static let tags = ["structure", "medical", "hospital", "interior", "door", "wood", "metal", "glass", "articulated"]
     public static let budget = 12_000
     public static let author = "realityhd"

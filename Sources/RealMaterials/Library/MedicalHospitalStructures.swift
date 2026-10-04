@@ -32,6 +32,10 @@ public extension MaterialLibrary {
         MaterialSpec(key: "glass.led-lens", program: nil).with {
             $0.baseColor = V3(0.6, 0.63, 0.66); $0.metallic = 0.75; $0.roughness = 0.1; $0.clearcoat = 1
         },
+        // Dried soap and hard-water residue runs (thin translucent white decal).
+        MaterialSpec(key: "decal.soap-residue", program: nil).with {
+            $0.baseColor = V3(0.95, 0.95, 0.9); $0.roughness = 0.85; $0.mode = .transparent; $0.opacity = 0.6
+        },
         // realityhd:material.medicalHospitalStructures
     ]
 }
