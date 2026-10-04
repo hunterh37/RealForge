@@ -1,0 +1,43 @@
+{
+  "budget": 3600,
+  "id": "clipboard-chart",
+  "kind": "prop",
+  "materials": [
+    "metal.satin-aluminum",
+    "metal.chrome",
+    "paper.sheet",
+    "paper.pages",
+    "label.rx",
+    "plastic.matte"
+  ],
+  "name": "Patient chart holder",
+  "notes": "Height corrected after the first lint: a closed aluminium chart holder over a 5 mm page stack stands 25 mm.",
+  "parts": [
+    "ribbed aluminium front cover",
+    "piano hinge along the top",
+    "inner board with spring clip",
+    "chart pages under the clip",
+    "name label window on the cover",
+    "rubber edge guards"
+  ],
+  "references": [],
+  "size": [
+    0.254,
+    0.025,
+    0.325
+  ],
+  "style": "Hospital chart binder, scuffed aluminium, pages slightly dog-eared",
+  "summary": "Aluminium patient chart holder: hinged ribbed cover, spring clip on the inner board and a stack of chart pages.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "metal",
+    "paper",
+    "hospital"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,41 @@
+{
+  "budget": 5600,
+  "id": "sanitizer-dispenser",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "plastic.clear",
+    "plastic.frosted",
+    "label.rx"
+  ],
+  "name": "Hand sanitizer dispenser",
+  "notes": "",
+  "parts": [
+    "white back plate with keyhole lock",
+    "hinged front cover with rounded top",
+    "grey push bar across the lower front",
+    "refill sight window",
+    "refill pouch with pump nozzle",
+    "drip tray lip under the nozzle"
+  ],
+  "references": [],
+  "size": [
+    0.154,
+    0.277,
+    0.102
+  ],
+  "style": "Current hospital dispenser, white ABS with grey trim, faint dried gel drip under the nozzle",
+  "summary": "Wall hand sanitizer dispenser (Purell ES8 class): white shell, grey push bar, refill window and a hinged front cover over the refill pouch.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "hospital",
+    "plastic",
+    "interior"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

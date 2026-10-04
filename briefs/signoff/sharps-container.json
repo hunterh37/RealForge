@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99986553,
+  "date" : "2026-10-04",
+  "final" : 0.8512654,
+  "fingerprint" : "4b63297e297c0c8f",
+  "id" : "sharps-container",
+  "iterations" : 1,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 7,
+    "construction" : 8,
+    "edges" : 8,
+    "grounding" : 7,
+    "materials" : 8,
+    "proportion" : 8,
+    "silhouette" : 8,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.77124995
+}

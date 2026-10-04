@@ -76,6 +76,14 @@ public enum Props {
         Wheelchair.self,
         ErStretcher.self,
         HospitalBed.self,
+        SharpsContainer.self,
+        SanitizerDispenser.self,
+        PillBottle.self,
+        MedicalScale.self,
+        SupplyCabinet.self,
+        OxygenCylinder.self,
+        ClipboardChart.self,
+        Microscope.self,
         // realityhd:prop
     ]
 }

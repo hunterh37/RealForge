@@ -1,0 +1,45 @@
+{
+  "budget": 11400,
+  "id": "supply-cabinet",
+  "kind": "prop",
+  "materials": [
+    "laminate.white",
+    "glass.clear",
+    "metal.anodized",
+    "metal.chrome",
+    "label.rx",
+    "plastic.medical",
+    "paper.exam"
+  ],
+  "name": "Clinic supply cabinet",
+  "notes": "Depth corrected after first lint: 300 mm carcass plus overlay doors and wire pulls measures 354 mm.",
+  "parts": [
+    "white laminate carcass with edge banding",
+    "two glass doors in aluminium frames with wire pulls",
+    "two adjustable shelves on pins",
+    "glove boxes, gauze packs and bottles",
+    "drawer with pull below the doors",
+    "hinges on the door edges"
+  ],
+  "references": [],
+  "size": [
+    0.914,
+    0.9,
+    0.354
+  ],
+  "style": "Modern clinic casework, clean, stocked, one glove box opened",
+  "summary": "Wall-hung clinic supply cabinet: white laminate casework, two framed glass doors, two adjustable shelves of supplies and a drawer below.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "furniture",
+    "hospital",
+    "interior",
+    "glass",
+    "container"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

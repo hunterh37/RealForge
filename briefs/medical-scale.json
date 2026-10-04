@@ -1,0 +1,43 @@
+{
+  "budget": 5800,
+  "id": "medical-scale",
+  "kind": "prop",
+  "materials": [
+    "metal.powder-white",
+    "metal.stainless",
+    "rubber",
+    "metal.anodized-black",
+    "plastic.matte"
+  ],
+  "name": "Physician beam scale",
+  "notes": "Width corrected after first lint: the beam with its trig loop reaches past the base to the right (about 0.53 m overall).",
+  "parts": [
+    "cast base platform with ribbed black rubber mat",
+    "square column",
+    "beam with two sliding poises and graduations",
+    "balance pointer and trig loop",
+    "telescoping height rod",
+    "flip-out headpiece",
+    "wheels at the back of the base"
+  ],
+  "references": [],
+  "size": [
+    0.526,
+    1.554,
+    0.52
+  ],
+  "style": "Classic clinic beam scale, white enamel with chrome beam, worn mat where feet stand",
+  "summary": "Physician mechanical beam scale (Detecto 339 class): platform with rubber mat, column, twin-poise beam, balance pointer and telescoping height rod.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "metal",
+    "rubber",
+    "interior",
+    "hospital"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
