@@ -1,27 +1,28 @@
 {
-  "budget": 3500,
+  "budget": 3550,
   "id": "reflex-hammer",
   "kind": "prop",
   "materials": [
     "metal.chrome",
-    "metal.surgical",
-    "rubber"
+    "metal.knurl-chrome",
+    "rubber",
+    "label.biomed"
   ],
   "name": "Reflex hammer",
-  "notes": "",
+  "notes": "stowed footprint: head folded 90 degrees beside the rod tip, so depth is the 50 mm disc plus the handle",
   "parts": [
     "knurled chrome outer handle tube",
     "telescoping inner rod",
-    "end cap",
-    "folding head mount with hinge pin",
-    "chrome disc hub",
-    "black rubber rim ring"
+    "domed end cap",
+    "forked head mount with vertical hinge pin",
+    "black rubber disc head with chrome centre bosses",
+    "name tape on the grip"
   ],
   "references": [],
   "size": [
-    0.19,
-    0.013,
-    0.06
+    0.171,
+    0.0125,
+    0.064
   ],
   "style": "neurology pocket hammer, chrome with a black rubber disc; rubber face slightly greyed from use",
   "summary": "Telescoping Babinski-style reflex hammer: chrome two-stage handle and a rubber-rimmed disc head on a folding mount.",
