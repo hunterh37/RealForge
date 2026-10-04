@@ -1,0 +1,39 @@
+{
+  "budget": 4900,
+  "id": "pill-bottle",
+  "kind": "prop",
+  "materials": [
+    "plastic.amber",
+    "plastic.medical",
+    "label.rx",
+    "plastic.gloss"
+  ],
+  "name": "Pharmacy pill bottle",
+  "notes": "Width corrected after first gate: the ribbed child-resistant cap measures about 52 mm across the ribs.",
+  "parts": [
+    "amber vial with rolled lip and lugs",
+    "white ribbed child-resistant cap",
+    "wrap-around Rx label",
+    "capsules visible inside",
+    "spilled capsules beside the bottle (option)"
+  ],
+  "references": [],
+  "size": [
+    0.052,
+    0.097,
+    0.052
+  ],
+  "style": "Current US pharmacy vial, new, label slightly crooked",
+  "summary": "40 dram amber pharmacy vial with a white child-resistant push-and-turn cap, wrap-around Rx label and capsules inside.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "plastic",
+    "container"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
