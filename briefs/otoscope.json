@@ -4,14 +4,15 @@
   "kind": "prop",
   "materials": [
     "metal.chrome",
-    "metal.surgical",
+    "metal.knurl-chrome",
     "plastic.matte",
-    "plastic.clear",
+    "glass.clear",
+    "plastic.frosted",
     "emissive.bulb",
-    "label.rx"
+    "label.biomed"
   ],
   "name": "Otoscope",
-  "notes": "",
+  "notes": "height: 118 mm handle with socket plus the MacroView head (viewing axis 37 mm above the socket)",
   "parts": [
     "knurled chrome C-cell handle with smooth bands",
     "rheostat collar with red index dot",
@@ -24,9 +25,9 @@
   ],
   "references": [],
   "size": [
-    0.036,
-    0.205,
-    0.105
+    0.038,
+    0.167,
+    0.106
   ],
   "style": "clinic wall-set handle, chrome knurl worn bright where held, matte black head",
   "summary": "Welch Allyn MacroView class otoscope standing on a knurled C-cell handle with rheostat collar, magnifier window and black disposable speculum.",
