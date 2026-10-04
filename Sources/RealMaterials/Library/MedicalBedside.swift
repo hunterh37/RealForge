@@ -37,6 +37,19 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xE9EEF0); $0.colorB = linear(0x2F7A4A); $0.colorC = linear(0x223040)
             $0.knobs = V4(0.14, 1, 6, 0.9); $0.seed = 804; $0.tileSize = 0; $0.resolution = 512; $0.normalStrength = 0.1
         },
+        // Infusion pump color LCD background: backlit deep blue (digits are emissive geometry on top).
+        MaterialSpec(key: "screen.bedside-pump", program: nil).with {
+            $0.baseColor = V3(0.04, 0.12, 0.3); $0.mode = .emissive; $0.emissive = V3(0.06, 0.2, 0.55); $0.emissiveIntensity = 0.9; $0.roughness = 0.15; $0.specular = 0.4
+        },
+        // White display numerals and text (pump, monitor and AED screens).
+        MaterialSpec(key: "emissive.bedside-white", program: nil).with {
+            $0.baseColor = V3(0.95, 0.97, 1); $0.mode = .emissive; $0.emissive = V3(0.95, 0.97, 1); $0.emissiveIntensity = 1.6
+        },
+        // Biomed asset / inspection label: white with a blue band and barcode.
+        MaterialSpec(key: "label.bedside-asset", program: .medLabel).with {
+            $0.colorA = linear(0xF2F2EE); $0.colorB = linear(0x2A5DA8); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.22, 1, 3, 0.4); $0.seed = 805; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalBedside
     ]
 }
