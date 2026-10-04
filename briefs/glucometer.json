@@ -1,0 +1,43 @@
+{
+  "budget": 3600,
+  "id": "glucometer",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.matte",
+    "screen.bedside-lcd-off",
+    "screen.bedside-lcd-on",
+    "fluid.bedside-blood",
+    "metal.surgical"
+  ],
+  "name": "Blood glucose meter",
+  "notes": "Default state is reading; size includes the lancing device and strip vial.",
+  "parts": [
+    "rounded meter body 88 x 47 x 12 mm, soft-touch sides",
+    "segment LCD (off/on/reading 104 mg/dL)",
+    "three buttons",
+    "strip port with test strip that slides in",
+    "blood drop on the strip (reading)",
+    "pen lancing device with slide-off cap and release button",
+    "test strip vial lying open with strips at the mouth, lid beside it"
+  ],
+  "references": [],
+  "size": [
+    0.124,
+    0.028,
+    0.113
+  ],
+  "style": "Current home meter (OneTouch Verio Flex / Accu-Chek Guide class), used: smudged screen.",
+  "summary": "Blood glucose meter with sliding test strip, segment LCD showing a reading, three buttons, and a pen lancing device with a removable cap.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "electronics",
+    "plastic"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

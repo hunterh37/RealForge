@@ -1,0 +1,46 @@
+{
+  "budget": 8200,
+  "id": "infusion-pump",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "screen.off",
+    "screen.bedside-pump",
+    "metal.chrome",
+    "rubber",
+    "plastic.frosted",
+    "label.bedside-asset",
+    "emissive.led-green"
+  ],
+  "name": "Infusion pump",
+  "notes": "Size includes the rear pole clamp and the administration set lying on the table either side.",
+  "parts": [
+    "two-tone molded housing with carry handle",
+    "color LCD in a bezel (off/on)",
+    "membrane keypad with start/stop and arrow keys, status LEDs",
+    "hinged door over the pumping segment with latch lever",
+    "IV tubing set passing through the door channel",
+    "rear pole clamp with T-handle clamp screw",
+    "rubber feet and side vents, rating label"
+  ],
+  "references": [],
+  "size": [
+    0.174,
+    0.269,
+    0.253
+  ],
+  "style": "Current volumetric pump (Alaris GP / B. Braun class), used: scuffed door edge, asset tag label.",
+  "summary": "Large-volume infusion pump channel: grey housing, LCD with keypad, hinged door over the pumping segment, tubing set, rear pole clamp with screw.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "electronics",
+    "hospital",
+    "plastic"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

@@ -1,0 +1,47 @@
+{
+  "budget": 10200,
+  "id": "iv-pole",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "metal.powder-white",
+    "metal.surgical",
+    "plastic.medical-grey",
+    "rubber",
+    "plastic.frosted",
+    "label.bedside-iv",
+    "fluid.saline",
+    "plastic.clear"
+  ],
+  "name": "IV pole with bag",
+  "notes": "",
+  "parts": [
+    "5-leg cast base 63 cm across with chrome legs and hub",
+    "five 65 mm twin-wheel casters",
+    "white powder-coated outer tube 25 mm",
+    "telescoping stainless inner pole 19 mm (slide 0.9 m)",
+    "twist-lock collet knob",
+    "stainless 2-hook ram's-horn top",
+    "1 L IV bag with printed label, hanger hole, ports",
+    "drip chamber, roller clamp and line looping down"
+  ],
+  "references": [],
+  "size": [
+    0.567,
+    1.4,
+    0.604
+  ],
+  "style": "Hospital ward IV stand (Pryor / Midmark class), chrome base with scuffed casters, fresh saline bag.",
+  "summary": "Telescoping IV pole: 5-leg chrome base on casters, powder-coated outer tube, twist lock, stainless 2-hook top and a 1 L IV bag with drip chamber and line.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "hospital",
+    "metal",
+    "plastic"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

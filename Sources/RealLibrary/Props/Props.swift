@@ -100,6 +100,13 @@ public enum Props {
         TympanicThermometer.self,
         PulseOximeter.self,
         Laryngoscope.self,
+        Sphygmomanometer.self,
+        Syringe.self,
+        IvPole.self,
+        InfusionPump.self,
+        PatientMonitor.self,
+        Aed.self,
+        Glucometer.self,
         // realityhd:prop
     ]
 }

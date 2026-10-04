@@ -1,0 +1,49 @@
+{
+  "budget": 5200,
+  "id": "sphygmomanometer",
+  "kind": "prop",
+  "materials": [
+    "fabric.cuff-navy",
+    "metal.surgical",
+    "metal.chrome",
+    "glass.gauge-lens",
+    "plastic.medical",
+    "plastic.matte",
+    "rubber.tubing",
+    "rubber.silicone",
+    "label.bedside-cuff"
+  ],
+  "name": "Aneroid sphygmomanometer",
+  "notes": "Laid out on a table: cuff roll with tail flap, gauge propped on its stem against the roll, bulb lying front to back, one loose coil behind the bulb.",
+  "parts": [
+    "2.25 in aneroid gauge: satin steel case, chrome bezel, domed lens",
+    "white dial printed 0-300 mmHg, 2 mmHg minor ticks, numerals every 20, zero box",
+    "black needle on a chrome hub, rotates about the dial center",
+    "adult nylon cuff 53 x 14.5 cm loosely rolled, spiral ends visible, tail flap on the table",
+    "cuff index/range label",
+    "two black PVC tubes from the cuff edge, one coiled loop",
+    "black rubber inflation bulb, pear shaped, 55 mm",
+    "chrome air-release valve with knurled thumbscrew, inlet valve cap"
+  ],
+  "references": [],
+  "size": [
+    0.252,
+    0.062,
+    0.209
+  ],
+  "style": "Current clinic kit (Welch Allyn DS / ADC Prosphyg class): navy nylon cuff, satin steel gauge, slightly worn cuff label.",
+  "summary": "Aneroid sphygmomanometer kit: 2.25 in chrome gauge with mmHg dial and needle, rolled nylon cuff, coiled tubing, rubber bulb and release valve.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "hospital",
+    "fabric",
+    "rubber",
+    "metal"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
