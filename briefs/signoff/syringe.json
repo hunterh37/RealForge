@@ -4,7 +4,7 @@
   "final" : 0.85291064,
   "fingerprint" : "87f05a2e1ea4e7e8",
   "id" : "syringe",
-  "iterations" : 2,
+  "iterations" : 3,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,

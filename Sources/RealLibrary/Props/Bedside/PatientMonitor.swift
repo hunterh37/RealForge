@@ -118,8 +118,16 @@ public struct PatientMonitor: RealArticulated {
                          Xform(translation: V3(-0.06 + Float(k) * 0.015, cy - 0.03, zBezelBack + 0.002 - shellD - 0.0002), rotation: .identity))
         }
         rig.add(vents, to: "monitor", lods: 0...0)
-        rig.add(BedsideKit.panel(center: V3(-W / 2 + 0.06, cy + H / 2 - 0.014, zFront + 0.0003), u: V3(1, 0, 0), v: V3(0, 1, 0), w: 0.07, h: 0.016, material: "label.bedside-bedtape", vDown: true),
+        // Wear and story: cloth tape with the bed number in marker, a dated "cleaned" sticker on the side,
+        // and a darker, glossier hand-worn patch on the handle grip.
+        let tapeC = V3(-W / 2 + 0.06, cy + H / 2 - 0.014, zFront + 0.0003)
+        rig.add(BedsideKit.panel(center: tapeC, u: V3(1, 0, 0), v: V3(0, 1, 0), w: 0.07, h: 0.018, material: "label.bedside-bedtape", vDown: true), to: "monitor", lods: 0...0)
+        rig.add(BedsideKit.segments("12", origin: tapeC + V3(0.006, -0.006, 0.0003), u: V3(1, 0, 0), v: V3(0, 1, 0), height: 0.012, stroke: 0.2, shear: 0.18,
+                                    material: "plastic.matte:1E2A5A"), to: "monitor", lods: 0...0)
+        rig.add(BedsideKit.panel(center: V3(-W / 2 - 0.0004, cy - 0.06, zFront - 0.02), u: V3(0, 0, 1), v: V3(0, 1, 0), w: 0.04, h: 0.028, material: "label.bedside-cleaned", vDown: true),
                 to: "monitor", lods: 0...0)
+        let gz = zBezelBack + 0.006, gt = cy + H / 2 + 0.0225
+        rig.add(Prim.roundedBox(V3(0.09, 0.0016, 0.016), radius: 0.0006, bevelSegments: 1, material: "plastic.medical:B9BCBC"), Xform(translation: V3(0, gt, gz)), to: "monitor", lods: 0...0)
         _ = rng.float()
 
         // MARK: display (off / vitals / alarm) and alarm light bar

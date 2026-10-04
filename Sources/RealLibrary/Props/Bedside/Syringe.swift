@@ -111,8 +111,8 @@ public struct Syringe: RealArticulated {
                 let f = Float(j) / Float(ls), phi: Float = -0.3 - 1.7 * f
                 let n = V3(0, cos(phi), sin(phi))
                 let r = ro + 0.0001, skew = 0.0012 * f
-                _ = lab.add(V3(0.031 + skew, r * cos(phi), r * sin(phi)), n, V2(f, 0))
-                _ = lab.add(V3(0.055 + skew, r * cos(phi), r * sin(phi)), n, V2(f, 1))
+                _ = lab.add(V3(0.031 + skew, r * cos(phi), r * sin(phi)), n, V2(f, 0) * BedsideKit.uvSpan("label.bedside-drug"))
+                _ = lab.add(V3(0.055 + skew, r * cos(phi), r * sin(phi)), n, V2(f, 1) * BedsideKit.uvSpan("label.bedside-drug"))
             }
             for j in 0..<UInt32(ls) { let a = j * 2; lab.quad(a, a + 1, a + 3, a + 2) }
             lab.computeTangents()

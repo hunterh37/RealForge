@@ -5,17 +5,28 @@ import Foundation
 /// seven-segment numerals built as quads (no texture program needed).
 enum BedsideKit {
     /// Flat quad centered at `c`, `w` along `u`, `h` along `v`; faces `cross(u, v)`. UVs 0...1 across
-    /// the quad (`vDown` puts v = 0 at the top edge, as label and screen programs expect).
+    /// the image (UVs span `uvSpan(material)`; `vDown` puts v = 0 at the top edge).
     static func panel(center c: V3, u: V3, v: V3, w: Float, h: Float, material: MaterialKey, vDown: Bool = false) -> Surface {
         var s = Surface(material: material)
         let uu = simd_normalize(u), vv = simd_normalize(v), n = simd_normalize(simd_cross(uu, vv))
         let eu = uu * w / 2, ev = vv * h / 2
-        let v0: Float = vDown ? 1 : 0, v1: Float = vDown ? 0 : 1
-        let a = s.add(c - eu - ev, n, V2(0, v0)), b = s.add(c + eu - ev, n, V2(1, v0))
-        let d = s.add(c + eu + ev, n, V2(1, v1)), e = s.add(c - eu + ev, n, V2(0, v1))
+        let k = uvSpan(material)
+        let v0: Float = vDown ? k : 0, v1: Float = vDown ? 0 : k
+        let a = s.add(c - eu - ev, n, V2(0, v0)), b = s.add(c + eu - ev, n, V2(k, v0))
+        let d = s.add(c + eu + ev, n, V2(k, v1)), e = s.add(c - eu + ev, n, V2(0, v1))
         s.quad(a, b, d, e)
         s.computeTangents()
         return s
+    }
+
+    /// UV span that maps one label/screen image across a panel: the material's tileSize (UVs 0...tileSize,
+    /// scaled by 1 / tileSize at render), so the image fits once and the texel lint sees meter-like UVs.
+    /// Emissive screens keep 0...1.
+    static func uvSpan(_ material: MaterialKey) -> Float {
+        let spec = MaterialLibrary.spec(for: material)
+        // Textured emitters render unlit with raw UVs (no tileSize transform): they keep 0...1.
+        if spec.mode == .emissive { return 1 }
+        return spec.tileSize > 0 ? spec.tileSize : 1
     }
 
     /// Adds a quad from local 2D corners (x along u, y along v, origin o) to `s`.

@@ -82,8 +82,8 @@ public struct Sphygmomanometer: RealArticulated {
                 let r = r0 + pitch * (thIn - th) / (2 * .pi) + t / 2 + 0.0003
                 let p = V2(zr + r * cos(th), yr + r * sin(th) * squash)
                 let nrm = simd_normalize(V3(0, sin(th), cos(th) * squash))
-                _ = s.add(V3(cx - 0.036 - lw / 2, p.y, p.x), nrm, V2(0, f))
-                _ = s.add(V3(cx - 0.036 + lw / 2, p.y, p.x), nrm, V2(1, f))
+                _ = s.add(V3(cx - 0.036 - lw / 2, p.y, p.x), nrm, V2(0, f) * BedsideKit.uvSpan("label.bedside-cuff"))
+                _ = s.add(V3(cx - 0.036 + lw / 2, p.y, p.x), nrm, V2(1, f) * BedsideKit.uvSpan("label.bedside-cuff"))
             }
             for k in 0..<UInt32(segs) { let a = k * 2; s.quad(a, a + 1, a + 3, a + 2) }
             s.computeTangents()
