@@ -1,16 +1,18 @@
 {
-  "budget": 8000,
+  "budget": 9500,
   "id": "instrument-container",
   "kind": "prop",
   "materials": [
-    "metal.anodized",
-    "metal.anodized:2E5C9E",
+    "metal.anodized-worn",
+    "metal.anodized-lid",
     "metal.surgical",
+    "metal.basket-mesh",
     "label.rx",
-    "plastic.medical"
+    "rubber.silicone",
+    "plastic.gloss:E8C21E"
   ],
   "name": "Sterilization instrument container",
-  "notes": "length along X; size with handles folded.",
+  "notes": "length along X; tub 580 x 280 mm, size includes end latches and folded handles (634 mm) and the lid plates (162 mm).",
   "parts": [
     "ribbed anodized aluminium tub, 580 x 280 mm",
     "blue anodized lid with two round filter retention plates",
@@ -21,9 +23,9 @@
   ],
   "references": [],
   "size": [
-    0.6,
-    0.152,
-    0.285
+    0.634,
+    0.162,
+    0.294
   ],
   "style": "hospital SPD full-size container (Aesculap SterilContainer JK class), satin anodized, scuffed corners, yellow tamper seals and a load card.",
   "summary": "Rigid sterilization container: anodized aluminium tub, blue lid with filter plates, side latches with seals and a perforated instrument basket.",
