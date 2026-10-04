@@ -1,0 +1,46 @@
+{
+  "budget": 9000,
+  "id": "patient-monitor",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "screen.off",
+    "screen.vitals",
+    "screen.vitals-alarm",
+    "emissive.led-red",
+    "metal.powder-white",
+    "metal.chrome"
+  ],
+  "name": "Patient monitor",
+  "notes": "",
+  "parts": [
+    "15 in display with vitals screen (off/on/alarm)",
+    "molded two-tone housing with rear vents and carry handle",
+    "alarm light bar across the top (off/red)",
+    "hard keys and power LED under the screen",
+    "tilt head with friction knobs",
+    "short arm and wall channel plate with screws",
+    "measurement cable entries on the side"
+  ],
+  "references": [],
+  "size": [
+    0.37,
+    0.36,
+    0.25
+  ],
+  "style": "Current ICU monitor (Philips IntelliVue MX500 class), clean, light wear on the handle.",
+  "summary": "15 in bedside patient monitor on a tilting wall-channel mount: grey bezel, vitals display, alarm light bar, rear handle and tilt bracket.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "electronics",
+    "hospital",
+    "plastic",
+    "metal"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

@@ -1,0 +1,45 @@
+{
+  "budget": 5500,
+  "id": "aed",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "rubber",
+    "screen.off",
+    "screen.lcd",
+    "emissive.led-red",
+    "label.hazard"
+  ],
+  "name": "Automated external defibrillator",
+  "notes": "",
+  "parts": [
+    "two-shell green case with rubber bumpers",
+    "molded carry handle at the back",
+    "flip-up lid hinged at the back",
+    "electrode pad package and cable stowed under the lid (out option)",
+    "status LCD and readiness indicator",
+    "flashing shock button and on/off button",
+    "speaker grille and pictogram label"
+  ],
+  "references": [],
+  "size": [
+    0.241,
+    0.133,
+    0.292
+  ],
+  "style": "Public-access AED (ZOLL AED Plus / Philips HeartStart class), lightly worn bumpers.",
+  "summary": "Automated external defibrillator: molded green case with carry handle, flip-up lid stowing electrode pads, status LCD, shock button and speaker.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "electronics",
+    "hospital",
+    "plastic"
+  ],
+  "theme": "Bedside",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
