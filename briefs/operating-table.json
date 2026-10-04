@@ -1,5 +1,5 @@
 {
-  "budget": 15000,
+  "budget": 14000,
   "id": "operating-table",
   "kind": "prop",
   "materials": [
@@ -12,7 +12,7 @@
     "rubber"
   ],
   "name": "Operating table",
-  "notes": "length along Z, head end at -Z; size in the flat state with the arm board folded along the table.",
+  "notes": "length along Z, head end at -Z; size in the flat state with the arm board stowed alongside the back section on +X (0.50 m pads, rails at 0.285 m). Height includes the gel head ring.",
   "parts": [
     "stainless base plate with rounded corners and floor locks",
     "rectangular column shroud telescoping on a lift",
@@ -24,9 +24,9 @@
   ],
   "references": [],
   "size": [
-    0.62,
-    0.8,
-    2.06
+    0.815,
+    0.796,
+    2.056
   ],
   "style": "current electro-hydraulic general surgery table (Maquet Alphamaxx / Steris 5085 class), electropolished stainless, black pads with a scuffed kick zone on the base.",
   "summary": "General surgical table: stainless base and column lift, four-section radiolucent top with black pads, side rails, arm board and hand pendant.",
