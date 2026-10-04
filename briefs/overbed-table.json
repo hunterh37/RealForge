@@ -1,0 +1,48 @@
+{
+  "budget": 11000,
+  "id": "overbed-table",
+  "kind": "prop",
+  "materials": [
+    "metal.powder-white",
+    "laminate.patient-maple",
+    "plastic.matte",
+    "metal.chrome",
+    "rubber",
+    "label.rx",
+    "plastic.frosted"
+  ],
+  "name": "Overbed table",
+  "notes": "Height includes the patient's lidded cup and straw on the vanity section (top surface at 0.725 m).",
+  "parts": [
+    "H-base of flat steel tube legs and crossbar",
+    "four 50 mm casters, two with brake pedals",
+    "rectangular telescoping column with gas spring",
+    "squeeze release lever under the top",
+    "support arm under the top",
+    "fixed vanity section of the top",
+    "tilting reading panel with book-stop lip",
+    "PVC T-mold edge band around the laminate",
+    "room number label on the column",
+    "lidded water cup with bendy straw on the vanity section"
+  ],
+  "references": [],
+  "size": [
+    0.8,
+    0.89,
+    0.41
+  ],
+  "style": "Contemporary hospital overbed table (Invacare 6417 / Drive 13008 class), 76 x 38 cm top, 72-112 cm high; laminate worn at the near edge, scuffed caster housings.",
+  "summary": "Hospital overbed table: H-base on four casters, gas-spring telescoping column, woodgrain laminate top with a tilting reading panel and vanity section.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "metal",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

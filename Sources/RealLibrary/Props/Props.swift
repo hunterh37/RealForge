@@ -70,6 +70,12 @@ public enum Props {
         TissueForceps.self,
         Scalpel.self,
         WeitlanerRetractor.self,
+        DoctorStool.self,
+        OverbedTable.self,
+        ExamTable.self,
+        Wheelchair.self,
+        ErStretcher.self,
+        HospitalBed.self,
         // realityhd:prop
     ]
 }

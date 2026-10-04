@@ -1,0 +1,48 @@
+{
+  "budget": 14000,
+  "id": "er-stretcher",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical-grey",
+    "metal.casework",
+    "vinyl.medical-black",
+    "fabric.linen",
+    "metal.chrome",
+    "rubber",
+    "fabric.nylon"
+  ],
+  "name": "ER stretcher",
+  "notes": "",
+  "parts": [
+    "molded grey base shroud over a steel base frame",
+    "four 200 mm casters with brake pedals",
+    "two telescoping lift columns",
+    "aluminum litter frame with corner bumpers",
+    "black vinyl mattress pad with fitted linen sheet",
+    "Fowler backrest section on a hinge with red CPR release",
+    "two fold-down side rails",
+    "head-end push handles with grips",
+    "folding IV pole with hooks",
+    "patient restraint strap with buckle"
+  ],
+  "references": [],
+  "size": [
+    2.04,
+    0.91,
+    0.79
+  ],
+  "style": "Contemporary ER transport stretcher (Stryker Prime / Hill-Rom Transtar class), 66 x 193 cm pad, deck 57-92 cm; clean linen, scuffed bumpers, restraint strap laid across the pad.",
+  "summary": "Emergency stretcher: shrouded base on four braked casters, twin lift columns, vinyl pad with linen sheet, Fowler backrest, fold-down side rails and IV pole.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "metal",
+    "plastic",
+    "articulated"
+  ],
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
