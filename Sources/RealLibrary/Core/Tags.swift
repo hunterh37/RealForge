@@ -19,6 +19,8 @@ public enum AssetTag {
         "leather", "workshop", "travel", "antique",
         // RealityHD 4
         "door", "window", "electronics", "book", "building", "articulated",
+        // RealityHD 5: hospital interiors; `handheld` assets are grabbable by default
+        "medical", "surgical", "hospital", "handheld",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

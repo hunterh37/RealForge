@@ -19,10 +19,13 @@ public enum RealityHD {
     }
 
     /// Any catalog asset as an entity with LOD children (ShaderGraph wind/fog materials).
-    public static func entity(_ id: String, seed: UInt64 = 1) async throws -> Entity {
+    /// `grabbable` (default: assets tagged `handheld`) adds hand pick-up on visionOS.
+    public static func entity(_ id: String, seed: UInt64 = 1, grabbable: Bool? = nil) async throws -> Entity {
         guard let t = Catalog.type(id) else { throw RealityHDError.unknown(id) }
         let lod = await Task.detached(priority: .userInitiated) { t.init().build(seed: seed) }.value
-        return try await upload(lod, name: id)
+        let e = try await upload(lod, name: id)
+        if grabbable ?? t.handheld { await MainActor.run { let b = lod.levels[0].bounds; e.makeGrabbable(min: b.min, max: b.max) } }
+        return e
     }
 
     /// Any RealAsset value (custom parameters) as an entity.
@@ -33,10 +36,13 @@ public enum RealityHD {
 
     /// An articulated asset as a live entity: parts move with `entity.setArticulation("open")`,
     /// `nextArticulation()` or, with `interactive`, `realToggle()` from a tap gesture.
-    public static func articulated(_ id: String, seed: UInt64 = 1, state: String? = nil, interactive: Bool = true) async throws -> Entity {
+    /// `grabbable` (default: assets tagged `handheld`) lets a hand pick the whole object up while taps on
+    /// parts still toggle them.
+    public static func articulated(_ id: String, seed: UInt64 = 1, state: String? = nil, interactive: Bool = true,
+                                   grabbable: Bool? = nil) async throws -> Entity {
         guard let t = Catalog.type(id) as? any RealArticulated.Type else { throw RealityHDError.unknown(id) }
         let rig = await Task.detached(priority: .userInitiated) { t.init().rig(seed: seed) }.value
-        return try await rig.entityAsync(name: id, state: state, interactive: interactive)
+        return try await rig.entityAsync(name: id, state: state, interactive: interactive, grabbable: grabbable ?? t.handheld)
     }
 
     /// Lighting rig for a scene: its sky, fog and interior probe hints, with `sky` overriding the hint's sun.

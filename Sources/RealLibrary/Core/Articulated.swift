@@ -26,3 +26,8 @@ public extension Catalog {
     static var articulated: [any RealArticulated.Type] { assets.compactMap { $0 as? any RealArticulated.Type } }
     static func rig(_ id: String, seed: UInt64 = 1) -> Rig? { (type(id) as? any RealArticulated.Type).map { $0.init().rig(seed: seed) } }
 }
+
+public extension RealAsset {
+    /// Small enough to pick up with one hand (tag `handheld`): live entities are grabbable by default.
+    static var handheld: Bool { tags.contains("handheld") }
+}

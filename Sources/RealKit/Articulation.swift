@@ -108,8 +108,11 @@ public extension Rig {
 
     /// Entity with one child entity per part (see the file header), posed in `state`.
     /// - Parameter interactive: add collision boxes and input targets so taps reach parts (`realToggle()`).
+    /// - Parameter grabbable: the whole object can be picked up by hand (`ManipulationComponent` on
+    ///   visionOS); parts keep their tap targets.
     @MainActor
-    func entityAsync(name: String? = nil, state: String? = nil, materials: RealMaterialCache? = nil, interactive: Bool = false) async throws -> Entity {
+    func entityAsync(name: String? = nil, state: String? = nil, materials: RealMaterialCache? = nil, interactive: Bool = false,
+                     grabbable: Bool = false) async throws -> Entity {
         let root = Entity()
         root.name = name ?? self.name
         let start = state ?? initialState
@@ -171,7 +174,10 @@ public extension Rig {
             for p in parts where p.levels[0].triangleCount > 0 { let pb = p.levels[0].bounds; b = (simd_min(b.min, pb.min), simd_max(b.max, pb.max)) }
             root.components.set(RealLODComponent(switchDistances: switchDistances, center: (b.min + b.max) / 2))
         }
-        if interactive, base[0].triangleCount > 0 {
+        if grabbable {
+            let b = restBounds
+            root.makeGrabbable(min: b.min, max: b.max)
+        } else if interactive, base[0].triangleCount > 0 {
             let b = base[0].bounds
             Self.makeTarget(root, min: b.min, max: b.max)
         }
