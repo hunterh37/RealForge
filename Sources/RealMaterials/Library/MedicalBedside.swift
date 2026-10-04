@@ -19,6 +19,19 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xEDEEEA); $0.colorB = linear(0x2A4C8C); $0.colorC = linear(0x16181C)
             $0.knobs = V4(0.3, 0, 3, 0.5); $0.seed = 802; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
         },
+        // Syringe barrel polypropylene: water-clear, glossy, thinner haze than plastic.clear so the stopper reads black.
+        MaterialSpec(key: "plastic.syringe-barrel", program: nil).with {
+            $0.baseColor = V3(0.9, 0.93, 0.95); $0.roughness = 0.06; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.12; $0.twoSided = true
+        },
+        // Drawn saline / drug inside a syringe or line: nearly invisible, a faint meniscus sheen.
+        MaterialSpec(key: "fluid.drawn", program: nil).with {
+            $0.baseColor = V3(0.86, 0.92, 0.96); $0.roughness = 0.02; $0.specular = 0.55; $0.mode = .transparent; $0.opacity = 0.045
+        },
+        // Syringe drug label (white with a colored drug-class band, black text), wrapped on a barrel.
+        MaterialSpec(key: "label.bedside-drug", program: .medLabel).with {
+            $0.colorA = linear(0xF4F3EE); $0.colorB = linear(0xE0C21C); $0.colorC = linear(0x16181C)
+            $0.knobs = V4(0.32, 0, 2, 0.3); $0.seed = 803; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalBedside
     ]
 }

@@ -3,11 +3,12 @@
   "id": "syringe",
   "kind": "prop",
   "materials": [
-    "plastic.clear",
+    "plastic.syringe-barrel",
     "plastic.medical",
-    "rubber",
-    "fluid.saline",
-    "plastic.matte"
+    "rubber.tubing",
+    "fluid.drawn",
+    "plastic.matte",
+    "label.bedside-drug"
   ],
   "name": "Luer-lock syringe 10 ml",
   "notes": "",
@@ -22,8 +23,8 @@
   ],
   "references": [],
   "size": [
-    0.112,
-    0.021,
+    0.101,
+    0.022,
     0.034
   ],
   "style": "Single-use sterile syringe (BD 10 ml Luer-Lok class), new, crisp black print.",
