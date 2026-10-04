@@ -21,6 +21,8 @@ public enum AssetTag {
         "door", "window", "electronics", "book", "building", "articulated",
         // RealityHD 5: hospital interiors; `handheld` assets are grabbable by default
         "medical", "surgical", "hospital", "handheld",
+        // ceiling-mounted: authored in place below a ceiling at y = mount height; y = 0 is the floor under it
+        "ceiling",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

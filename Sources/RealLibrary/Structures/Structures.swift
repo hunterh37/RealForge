@@ -19,6 +19,10 @@ public enum Structures {
         Dugout.self,
         Bleachers.self,
         LightTower.self,
+        HospitalDoors.self,
+        SurgicalLight.self,
+        CeilingBoom.self,
+        ScrubSink.self,
         // realityhd:structure
     ]
 }

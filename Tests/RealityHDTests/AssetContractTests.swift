@@ -47,7 +47,11 @@ import RealMaterials
         }
         // Grounded at y = 0 (trees/rocks sink slightly) and centered on X/Z.
         let bb = lod0.bounds, c = (bb.min + bb.max) / 2, e = bb.max - bb.min
-        #expect(bb.min.y > -0.6 && bb.min.y < 0.2, "\(id): base at y \(bb.min.y), expected ~0")
+        if t.tags.contains("ceiling") {
+            #expect(bb.min.y > -0.02 && bb.max.y > 2.2 && bb.max.y < 4.5, "\(id): ceiling mount top at y \(bb.max.y), expected a ceiling height")
+        } else {
+            #expect(bb.min.y > -0.6 && bb.min.y < 0.2, "\(id): base at y \(bb.min.y), expected ~0")
+        }
         #expect(abs(c.x) <= e.x * 0.2 + 0.05 && abs(c.z) <= e.z * 0.2 + 0.05, "\(id): not centered on X/Z (center \(c.x), \(c.z))")
         // Other seeds build too.
         for seed: UInt64 in [1, 2, 99] { #expect(t.init().build(seed: seed).levels[0].triangleCount > 0) }

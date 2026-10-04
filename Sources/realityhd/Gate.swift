@@ -212,7 +212,7 @@ func gateCommand(_ args: Args) async throws {
     if let threshold { brief?.threshold = threshold }
     let paths = GatePaths(id)
     let lod = t.init().build(seed: seed)
-    let g = GeometryLint.run(lod, budget: t.budget, brief: brief)
+    let g = GeometryLint.run(lod, budget: t.budget, brief: brief, hanging: t.tags.contains("ceiling"))
     var files: [String: String] = [:]
     if !skipSheet || !FileManager.default.fileExists(atPath: paths.sheet) {
         writePNG(try await makeSheet(id, seed: seed, geometry: g, brief: brief), paths.sheet)
@@ -270,7 +270,7 @@ func sheetCommand(_ args: Args) async throws {
     guard let id = args.next(), let t = Catalog.type(id) else { print(usage); return }
     let lod = t.init().build(seed: seed)
     let brief = loadBrief(id)
-    let g = GeometryLint.run(lod, budget: t.budget, brief: brief)
+    let g = GeometryLint.run(lod, budget: t.budget, brief: brief, hanging: t.tags.contains("ceiling"))
     let path = out ?? GatePaths(id).sheet
     writePNG(try await makeSheet(id, seed: seed, geometry: g, brief: brief), path)
     print(path)
@@ -284,7 +284,7 @@ func lintCommand(_ args: Args) {
     var bad = 0
     for id in ids {
         guard let t = Catalog.type(id) else { print("unknown \(id)"); continue }
-        let g = GeometryLint.run(t.init().build(seed: seed), budget: t.budget, brief: loadBrief(id))
+        let g = GeometryLint.run(t.init().build(seed: seed), budget: t.budget, brief: loadBrief(id), hanging: t.tags.contains("ceiling"))
         let shown = g.issues.filter { $0.severity != .info || ids.count == 1 }
         if shown.isEmpty && ids.count > 1 { continue }
         if g.errors > 0 { bad += 1 }
