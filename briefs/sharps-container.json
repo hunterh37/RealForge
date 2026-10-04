@@ -1,0 +1,42 @@
+{
+  "budget": 5200,
+  "id": "sharps-container",
+  "kind": "prop",
+  "materials": [
+    "plastic.sharps-red",
+    "plastic.sharps-lid",
+    "label.hazard",
+    "plastic.medical",
+    "metal.chrome"
+  ],
+  "name": "Sharps container",
+  "notes": "Width includes the bracket side arms; depth 4.75 in body plus the 6 mm bracket plate (first lint measured 0.124 m).",
+  "parts": [
+    "tapered red polypropylene body with moulded ribs",
+    "translucent red lid with fill line",
+    "rotating mail-drop drum opening",
+    "final lock tab that snaps down",
+    "white wall bracket with two screw slots",
+    "biohazard label on the front"
+  ],
+  "references": [],
+  "size": [
+    0.285,
+    0.29,
+    0.124
+  ],
+  "style": "Current BD/Covidien wall sharps pattern, clean in-service, a few syringes visible through the lid",
+  "summary": "Wall-mount 5 qt red sharps container with a translucent rotating mail-drop lid, final lock tab and a white wall bracket.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "hospital",
+    "plastic",
+    "container",
+    "interior"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
