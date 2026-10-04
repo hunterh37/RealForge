@@ -1,5 +1,5 @@
 {
-  "budget": 20000,
+  "budget": 16600,
   "id": "nurse-station",
   "kind": "structure",
   "materials": [
@@ -9,7 +9,8 @@
     "metal.casework",
     "plastic.matte",
     "screen.off",
-    "screen.ui"
+    "screen.ui",
+    "screen.vitals"
   ],
   "name": "Nurse Station",
   "notes": "",
@@ -26,9 +27,9 @@
   ],
   "references": [],
   "size": [
-    3.9,
-    1.07,
-    1.75
+    4.1,
+    1.23,
+    1.74
   ],
   "style": "Busy ward station: kick base scuffed, transaction ledge worn at the front edge, binders not quite aligned.",
   "summary": "L-shaped nurse station: solid-surface transaction ledge, oak fascia, staff work surface with two monitors, keyboard, chart rack and a swing gate.",

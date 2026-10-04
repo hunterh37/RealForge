@@ -60,6 +60,11 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xEEF2F4); $0.colorB = linear(0x2A5FA8); $0.colorC = linear(0x223040)
             $0.knobs = V4(0.1, 0, 8, 0.9); $0.seed = 567; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
         },
+        // Patient chart binder spine insert (room number band); UVs 0...1 across the insert.
+        MaterialSpec(key: "label.binder", program: .medLabel).with {
+            $0.colorA = linear(0xF6F5F0); $0.colorB = linear(0x2A2C30); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.3, 0, 3, 0.3); $0.seed = 568; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalHospitalLobby
     ]
 }
