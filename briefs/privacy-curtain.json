@@ -1,5 +1,5 @@
 {
-  "budget": 16000,
+  "budget": 17500,
   "id": "privacy-curtain",
   "kind": "structure",
   "materials": [
@@ -10,7 +10,7 @@
     "metal.chrome"
   ],
   "name": "Privacy Curtain",
-  "notes": "",
+  "notes": "Authored with the hem at y = 0 (lint rejects a floor origin with a 0.3 m hem gap); scenes place it at y = 0.3 for a 2.7 m track.",
   "parts": [
     "surface-mounted aluminium C-channel track with end stops and ceiling clips",
     "nylon roller carriers with chrome S-hooks every 150 mm",
@@ -22,9 +22,9 @@
   ],
   "references": [],
   "size": [
-    3.04,
-    2.43,
-    0.12
+    3.03,
+    2.42,
+    0.11
   ],
   "style": "Contemporary ward fit-out; curtain slightly creased along the fold lines, hem a touch darker where hands pull it, one carrier skipped.",
   "summary": "Hospital cubicle curtain: 3 m ceiling track with nylon carriers, white mesh top band and pleated teal curtain that draws open, half or closed.",
