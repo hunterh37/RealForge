@@ -1,0 +1,44 @@
+{
+  "budget": 10000,
+  "id": "microscope",
+  "kind": "prop",
+  "materials": [
+    "paint.microscope-ivory",
+    "metal.anodized-black",
+    "metal.chrome",
+    "plastic.matte",
+    "glass.clear",
+    "emissive.surgical",
+    "rubber"
+  ],
+  "name": "Compound microscope",
+  "notes": "Size corrected after first lint: 180 x 250 mm base, 369 mm to the eyecups; head and arm sit within the base depth.",
+  "parts": [
+    "base with LED illuminator and condenser",
+    "curved arm with coarse/fine focus knobs",
+    "mechanical stage with slide holder and X/Y knobs",
+    "quadruple nosepiece with four colour-banded objectives",
+    "binocular head with two eyepieces",
+    "brightness dial and power switch"
+  ],
+  "references": [],
+  "size": [
+    0.187,
+    0.369,
+    0.251
+  ],
+  "style": "Teaching-lab microscope, clean ivory enamel, a glass slide on the stage",
+  "summary": "Compound lab microscope (Olympus CX23 class): LED base, arm, mechanical stage, quadruple nosepiece with four objectives and a binocular head.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "electronics",
+    "metal",
+    "glass",
+    "light"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
