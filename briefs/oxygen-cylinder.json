@@ -1,0 +1,46 @@
+{
+  "budget": 6400,
+  "id": "oxygen-cylinder",
+  "kind": "prop",
+  "materials": [
+    "metal.satin-aluminum",
+    "paint.cylinder-green",
+    "metal.chrome",
+    "metal.anodized",
+    "metal.brass",
+    "plastic.matte",
+    "rubber",
+    "label.oxygen-small"
+  ],
+  "name": "Oxygen cylinder",
+  "notes": "Size corrected after first lint: aluminium E body 0.672 m plus post valve and key gives 0.773 m; the yoke regulator sets width.",
+  "parts": [
+    "aluminium cylinder body",
+    "green painted shoulder",
+    "post valve with pin index yoke",
+    "regulator body with contents gauge",
+    "flowmeter dial and barbed outlet",
+    "T-handle valve key",
+    "black rubber base ring",
+    "USP oxygen label"
+  ],
+  "references": [],
+  "size": [
+    0.125,
+    0.773,
+    0.118
+  ],
+  "style": "In-service cylinder: scuffed shoulder paint, white USP label",
+  "summary": "E-size medical oxygen cylinder: aluminium body, green shoulder, post-valve regulator with flowmeter dial and contents gauge, T-handle key, base ring.",
+  "tags": [
+    "prop",
+    "medical",
+    "articulated",
+    "handheld",
+    "metal",
+    "hospital"
+  ],
+  "theme": "Clinic",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
