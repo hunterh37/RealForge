@@ -1,0 +1,42 @@
+{
+  "budget": 12000,
+  "id": "washing-machine",
+  "kind": "prop",
+  "materials": [
+    "metal.enamel",
+    "glass.clear",
+    "metal.stainless",
+    "rubber.silicone:9AA0A4",
+    "plastic.white",
+    "screen.ui"
+  ],
+  "name": "Front-load washer",
+  "notes": "Rig: door hinge Y -170...0; drawer slide +Z 0...0.2; dial hinge Z 0...330; drum hinge Z (state spin pose only). Option display on. States: closed, door-open, drawer-open, running.",
+  "parts": [
+    "white cabinet",
+    "control panel with dial and display",
+    "detergent drawer",
+    "round door with glass porthole",
+    "rubber boot gasket",
+    "perforated stainless drum",
+    "leveling feet"
+  ],
+  "references": [],
+  "size": [
+    0.69,
+    0.98,
+    0.79
+  ],
+  "style": "27 in front loader",
+  "summary": "Front-load washer, 27 in: white cabinet, dial and display, detergent drawer, porthole door, gasket, steel drum.",
+  "tags": [
+    "prop",
+    "laundry",
+    "metal",
+    "appliance",
+    "articulated"
+  ],
+  "theme": "Laundry",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

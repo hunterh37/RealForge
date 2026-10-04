@@ -1,0 +1,38 @@
+{
+  "budget": 5000,
+  "id": "ironing-board",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:D8D8D4",
+    "fabric.cotton-print",
+    "rubber.tire",
+    "metal.chrome"
+  ],
+  "name": "Folding ironing board",
+  "notes": "Rig: leg-a hinge (scissor) Z 0...62, leg-b mimic -1, top slide Y mimic. Rest pose is open; folding runs through the joints. States: open, folded.",
+  "parts": [
+    "perforated steel top with padded cover",
+    "iron rest",
+    "scissor tube legs",
+    "rubber feet",
+    "height lever"
+  ],
+  "references": [],
+  "size": [
+    1.37,
+    0.91,
+    0.38
+  ],
+  "style": "standard steel board",
+  "summary": "Folding ironing board: covered steel top, iron rest, scissor tube legs with rubber feet; folds flat.",
+  "tags": [
+    "prop",
+    "laundry",
+    "metal",
+    "fabric",
+    "articulated"
+  ],
+  "theme": "Laundry",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,37 @@
+{
+  "budget": 6000,
+  "id": "interior-door",
+  "kind": "structure",
+  "materials": [
+    "wood.trim-white",
+    "metal.brushed-nickel"
+  ],
+  "name": "Interior panel door",
+  "notes": "Width var 0.71-0.91; hand var left/right. Rig: slab hinge Y 0...100; lever hinge Z -45...0 (parent slab). States: closed, ajar, open.",
+  "parts": [
+    "two-panel shaker slab",
+    "split jamb",
+    "casing both sides",
+    "three hinges",
+    "lever with rose",
+    "latch and strike"
+  ],
+  "references": [],
+  "size": [
+    0.94,
+    2.1,
+    0.15
+  ],
+  "style": "painted MDF two-panel door",
+  "summary": "Interior two-panel door in a cased frame: painted slab, three hinges, nickel levers; swings 100 degrees.",
+  "tags": [
+    "structure",
+    "interior",
+    "door",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Interior",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

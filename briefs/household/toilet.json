@@ -1,0 +1,38 @@
+{
+  "budget": 9000,
+  "id": "toilet",
+  "kind": "prop",
+  "materials": [
+    "ceramic.vitreous",
+    "plastic.white",
+    "metal.chrome",
+    "water.puddle"
+  ],
+  "name": "Close-coupled toilet",
+  "notes": "Rig: lid hinge X -105...0; seat hinge X -100...0; lever hinge Z -30...0. States: closed, lid-up, seat-up, flushing.",
+  "parts": [
+    "elongated bowl with skirted trapway",
+    "tank with lid",
+    "chrome flush lever",
+    "seat and lid on hinges",
+    "bolt caps",
+    "water in bowl"
+  ],
+  "references": [],
+  "size": [
+    0.38,
+    0.79,
+    0.7
+  ],
+  "style": "two-piece vitreous china",
+  "summary": "Two-piece elongated toilet: skirted bowl with water, tank and lid, chrome lever, hinged seat and lid.",
+  "tags": [
+    "prop",
+    "bathroom",
+    "ceramic",
+    "articulated"
+  ],
+  "theme": "Bathroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

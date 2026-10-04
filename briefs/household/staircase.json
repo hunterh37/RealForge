@@ -1,0 +1,37 @@
+{
+  "budget": 15000,
+  "id": "staircase",
+  "kind": "structure",
+  "materials": [
+    "wood.oak",
+    "wood.trim-white",
+    "paint.wall",
+    "metal.brushed-nickel"
+  ],
+  "name": "Straight staircase with balustrade",
+  "notes": "Rise var 2.4-3.2 m keeps riser <= 0.19 m and tread 0.25 m. Origin at bottom-front center; runs along -Z. Static (bake: true in the house).",
+  "parts": [
+    "16 risers, oak treads with nosings, white risers",
+    "closed stringer on the wall side",
+    "open side with newel post, balusters and handrail",
+    "wall handrail on brackets",
+    "skirt board"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    3.0,
+    4.0
+  ],
+  "style": "colonial staircase, oak treads, white risers",
+  "summary": "Straight 16-riser staircase, 3 m rise: oak treads, white risers, newel, balusters, handrails both sides.",
+  "tags": [
+    "structure",
+    "interior",
+    "wood",
+    "building"
+  ],
+  "theme": "Interior",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

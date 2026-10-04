@@ -1,0 +1,38 @@
+{
+  "budget": 14000,
+  "id": "recliner-chair",
+  "kind": "prop",
+  "materials": [
+    "leather.tan",
+    "metal.steel",
+    "plastic.black"
+  ],
+  "name": "Leather recliner",
+  "notes": "Rig: handle hinge X 0...35; back hinge X 0...28; footrest hinge X mimic back ratio 3.2 plus slide. States: upright, footrest-up, reclined.",
+  "parts": [
+    "channel-stitched back",
+    "pillow arms",
+    "seat cushion",
+    "fold-out footrest",
+    "side release handle",
+    "scissor linkage under footrest"
+  ],
+  "references": [],
+  "size": [
+    0.92,
+    1.02,
+    0.97
+  ],
+  "style": "wall-hugger recliner",
+  "summary": "Leather recliner: channel-stitched back, pillow arms, fold-out footrest on a linkage, side release handle.",
+  "tags": [
+    "prop",
+    "living",
+    "furniture",
+    "leather",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

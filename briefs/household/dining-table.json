@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "dining-table",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "wood.endgrain"
+  ],
+  "name": "Oak dining table",
+  "notes": "",
+  "parts": [
+    "solid plank top with breadboard ends",
+    "tapered square legs",
+    "aprons",
+    "corner blocks"
+  ],
+  "references": [],
+  "size": [
+    1.8,
+    0.76,
+    0.9
+  ],
+  "style": "farmhouse oak, oiled",
+  "summary": "Oak dining table, 1.8 m: plank top with breadboard ends, tapered legs, aprons.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "wood",
+    "furniture"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

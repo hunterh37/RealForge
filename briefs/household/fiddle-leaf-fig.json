@@ -1,0 +1,38 @@
+{
+  "budget": 12000,
+  "id": "fiddle-leaf-fig",
+  "kind": "prop",
+  "materials": [
+    "leaf.fiddle",
+    "bark.birch:8C7A62",
+    "ceramic.stoneware",
+    "soil.potting"
+  ],
+  "name": "Potted fiddle-leaf fig",
+  "notes": "",
+  "parts": [
+    "ribbed stoneware planter",
+    "potting soil top",
+    "single trunk with branches",
+    "40-60 large violin-shaped leathery leaves"
+  ],
+  "references": [],
+  "size": [
+    0.7,
+    1.75,
+    0.65
+  ],
+  "style": "indoor plant, healthy",
+  "summary": "Fiddle-leaf fig, 1.75 m, in a stoneware planter: slender trunk, large glossy violin-shaped leaves.",
+  "tags": [
+    "prop",
+    "living",
+    "plant",
+    "decor",
+    "interior",
+    "ceramic"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

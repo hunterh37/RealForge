@@ -1,0 +1,36 @@
+{
+  "budget": 6000,
+  "id": "coffee-table",
+  "kind": "prop",
+  "materials": [
+    "wood.veneer-walnut",
+    "metal.powdercoat:1C1C1C"
+  ],
+  "name": "Lift-top coffee table",
+  "notes": "Rig: top slide (+Y 0...0.18 and +Z 0...0.12 via parent chain: arm hinge X then top counter-hinge mimic -1). States: closed, raised.",
+  "parts": [
+    "walnut top",
+    "lift mechanism arms",
+    "storage cavity",
+    "lower shelf",
+    "black steel legs"
+  ],
+  "references": [],
+  "size": [
+    1.1,
+    0.46,
+    0.6
+  ],
+  "style": "mid-century walnut",
+  "summary": "Walnut lift-top coffee table: top rises forward on steel arms over a storage well; lower shelf and black legs.",
+  "tags": [
+    "prop",
+    "living",
+    "furniture",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

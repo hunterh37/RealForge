@@ -1,0 +1,40 @@
+{
+  "budget": 10000,
+  "id": "clothes-dryer",
+  "kind": "prop",
+  "materials": [
+    "metal.enamel",
+    "glass.clear:3A3A3A",
+    "metal.stainless",
+    "plastic.white",
+    "screen.ui",
+    "fabric.mesh"
+  ],
+  "name": "Front-load dryer",
+  "notes": "Rig: door hinge Y -170...0; lint filter slide +Y 0...0.15. States: closed, open, filter-out, running.",
+  "parts": [
+    "matching cabinet",
+    "control panel",
+    "round door with tinted window",
+    "lint filter in the opening",
+    "drum with baffles"
+  ],
+  "references": [],
+  "size": [
+    0.69,
+    0.98,
+    0.79
+  ],
+  "style": "pairs with washing-machine",
+  "summary": "Front-load dryer matching the washer: tinted porthole door, lint filter, drum with baffles, control panel.",
+  "tags": [
+    "prop",
+    "laundry",
+    "metal",
+    "appliance",
+    "articulated"
+  ],
+  "theme": "Laundry",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

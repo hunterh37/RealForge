@@ -1,0 +1,35 @@
+{
+  "budget": 3000,
+  "id": "towel-bar",
+  "kind": "prop",
+  "materials": [
+    "metal.brushed-nickel",
+    "fabric.terry",
+    "fabric.terry:8FA3A8"
+  ],
+  "name": "Towel bar with towel",
+  "notes": "Back face at z = 0; placed at 1.1 m.",
+  "parts": [
+    "two wall posts",
+    "round bar",
+    "folded bath towel draped in thirds",
+    "hand towel"
+  ],
+  "references": [],
+  "size": [
+    0.66,
+    0.2,
+    0.1
+  ],
+  "style": "nickel towel bar",
+  "summary": "Nickel towel bar with a bath towel folded in thirds draped over it.",
+  "tags": [
+    "prop",
+    "bathroom",
+    "metal",
+    "fabric"
+  ],
+  "theme": "Bathroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,39 @@
+{
+  "budget": 4000,
+  "id": "floor-lamp",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "fabric.linen",
+    "stone.marble",
+    "emissive.bulb"
+  ],
+  "name": "Arc floor lamp",
+  "notes": "Rig: chain slide -Y 0...0.01; bulb option + RigLight point warm 2700 K. States: off, on.",
+  "parts": [
+    "round marble base",
+    "brass stem",
+    "drum linen shade",
+    "socket with pull chain",
+    "cord"
+  ],
+  "references": [],
+  "size": [
+    0.45,
+    1.65,
+    0.45
+  ],
+  "style": "brass and linen",
+  "summary": "Brass floor lamp: marble base, slender stem, linen drum shade, pull-chain socket; bulb lights the shade.",
+  "tags": [
+    "prop",
+    "living",
+    "light",
+    "metal",
+    "fabric",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

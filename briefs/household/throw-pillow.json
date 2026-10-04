@@ -1,0 +1,34 @@
+{
+  "budget": 2000,
+  "id": "throw-pillow",
+  "kind": "prop",
+  "materials": [
+    "fabric.linen:B8A890",
+    "fabric.wool"
+  ],
+  "name": "Throw pillow",
+  "notes": "",
+  "parts": [
+    "plump square cushion",
+    "corner points",
+    "piped or knife edge seam",
+    "dent from use"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.16,
+    0.46
+  ],
+  "style": "linen pillow",
+  "summary": "Square linen throw pillow, 45 cm: plump body, pinched corners, edge seam, dented center.",
+  "tags": [
+    "prop",
+    "living",
+    "fabric",
+    "handheld"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

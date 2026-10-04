@@ -1,0 +1,38 @@
+{
+  "budget": 4000,
+  "id": "flat-tv",
+  "kind": "prop",
+  "materials": [
+    "plastic.black",
+    "screen.off",
+    "screen.ui",
+    "metal.anodized-black",
+    "emissive.indicator"
+  ],
+  "name": "55 in flat-screen TV",
+  "notes": "Wall-mount knob drops the feet. Rig: screen option off/on (screen.ui frame), led option. States: off, on.",
+  "parts": [
+    "thin bezel panel",
+    "rear chassis bump with ports",
+    "two foot stands",
+    "standby LED"
+  ],
+  "references": [],
+  "size": [
+    1.23,
+    0.78,
+    0.26
+  ],
+  "style": "2020s 55 in LED TV",
+  "summary": "55 in flat-screen TV on foot stands: thin bezel, rear chassis, standby LED; screen off or showing a picture.",
+  "tags": [
+    "prop",
+    "living",
+    "electronics",
+    "plastic",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

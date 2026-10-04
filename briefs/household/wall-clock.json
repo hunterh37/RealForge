@@ -1,0 +1,38 @@
+{
+  "budget": 2500,
+  "id": "wall-clock",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "paper.sheet",
+    "glass.clear",
+    "metal.powdercoat:1C1C1C"
+  ],
+  "name": "Wall clock",
+  "notes": "Back face at z = 0, centered on X/Y bottom at y = 0. Rig: hour, minute, second hinge Z 0...360 (minute mimic none). States: ten-past-ten, noon, half-past-three.",
+  "parts": [
+    "round oak frame",
+    "printed dial with indices",
+    "hour, minute and second hands",
+    "domed glass"
+  ],
+  "references": [],
+  "size": [
+    0.31,
+    0.31,
+    0.05
+  ],
+  "style": "station clock",
+  "summary": "Round oak wall clock: printed dial, black hands, domed glass; hands set to any time.",
+  "tags": [
+    "prop",
+    "living",
+    "decor",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

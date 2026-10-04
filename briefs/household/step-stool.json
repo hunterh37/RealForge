@@ -1,0 +1,38 @@
+{
+  "budget": 4000,
+  "id": "step-stool",
+  "kind": "prop",
+  "materials": [
+    "metal.aluminum-brushed",
+    "plastic.matte:2A2A2C",
+    "rubber.tire"
+  ],
+  "name": "Folding step stool",
+  "notes": "Rig: rear legs hinge X 0...28; treads hinge X mimic. States: open, folded.",
+  "parts": [
+    "aluminum frame",
+    "two treads with ribbed plastic covers",
+    "top handle bar",
+    "rear legs",
+    "rubber feet"
+  ],
+  "references": [],
+  "size": [
+    0.45,
+    0.82,
+    0.62
+  ],
+  "style": "two-step folding stool",
+  "summary": "Two-step aluminum folding stool: ribbed treads, handle bar, rear legs; folds flat.",
+  "tags": [
+    "prop",
+    "laundry",
+    "metal",
+    "tool",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "Laundry",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

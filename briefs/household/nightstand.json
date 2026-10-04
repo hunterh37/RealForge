@@ -1,0 +1,37 @@
+{
+  "budget": 5000,
+  "id": "nightstand",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "metal.brass",
+    "wood.plywood"
+  ],
+  "name": "Two-drawer nightstand",
+  "notes": "Rig: drawer1, drawer2 slide +Z 0...0.3. States: closed, top-open, bottom-open.",
+  "parts": [
+    "case with top",
+    "two drawers with dovetails",
+    "brass knobs",
+    "short legs"
+  ],
+  "references": [],
+  "size": [
+    0.5,
+    0.6,
+    0.4
+  ],
+  "style": "matches queen-bed oak",
+  "summary": "Oak nightstand: two dovetailed drawers with brass knobs, short legs.",
+  "tags": [
+    "prop",
+    "bedroom",
+    "furniture",
+    "wood",
+    "container",
+    "articulated"
+  ],
+  "theme": "Bedroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

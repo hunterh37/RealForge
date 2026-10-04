@@ -1,0 +1,34 @@
+{
+  "budget": 600,
+  "id": "light-switch",
+  "kind": "prop",
+  "materials": [
+    "plastic.white",
+    "metal.chrome"
+  ],
+  "name": "Light switch plate",
+  "notes": "Back face at z = 0. Rig: paddle hinge X -8...8. States: off, on. Scenes wire on/off to lights through realToggle hooks later.",
+  "parts": [
+    "wall plate",
+    "rocker paddle",
+    "two screws"
+  ],
+  "references": [],
+  "size": [
+    0.08,
+    0.12,
+    0.012
+  ],
+  "style": "decorator rocker",
+  "summary": "Decorator rocker light switch on a white plate.",
+  "tags": [
+    "prop",
+    "home",
+    "plastic",
+    "electronics",
+    "articulated"
+  ],
+  "theme": "Home",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

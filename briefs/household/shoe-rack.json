@@ -1,0 +1,39 @@
+{
+  "budget": 9000,
+  "id": "shoe-rack",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "fabric.canvas",
+    "leather.tan",
+    "rubber.tire",
+    "fabric.mesh"
+  ],
+  "name": "Entry bench with shoes",
+  "notes": "",
+  "parts": [
+    "slatted oak bench",
+    "lower shoe shelf",
+    "two pairs of sneakers",
+    "pair of boots"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    0.48,
+    0.35
+  ],
+  "style": "entry hall",
+  "summary": "Slatted oak entry bench with a lower shelf holding sneakers and boots.",
+  "tags": [
+    "prop",
+    "home",
+    "furniture",
+    "wood",
+    "fabric",
+    "rubber"
+  ],
+  "theme": "Home",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

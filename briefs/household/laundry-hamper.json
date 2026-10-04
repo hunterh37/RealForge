@@ -1,0 +1,38 @@
+{
+  "budget": 7000,
+  "id": "laundry-hamper",
+  "kind": "prop",
+  "materials": [
+    "wicker.willow",
+    "fabric.linen",
+    "fabric.wool"
+  ],
+  "name": "Lidded wicker hamper",
+  "notes": "Rig: lid hinge X -100...0. States: closed, open.",
+  "parts": [
+    "woven willow body",
+    "linen liner",
+    "hinged lid",
+    "side handles",
+    "clothes peeking"
+  ],
+  "references": [],
+  "size": [
+    0.42,
+    0.62,
+    0.36
+  ],
+  "style": "natural willow",
+  "summary": "Lidded willow hamper: woven body, linen liner, hinged lid, side handles, clothes inside.",
+  "tags": [
+    "prop",
+    "bedroom",
+    "wood",
+    "container",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "Bedroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

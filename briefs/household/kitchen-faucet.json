@@ -1,0 +1,37 @@
+{
+  "budget": 5000,
+  "id": "kitchen-faucet",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "metal.chrome",
+    "water.stream",
+    "rubber.silicone"
+  ],
+  "name": "Pull-down kitchen faucet",
+  "notes": "Rig: lever hinge Z 0...60; spout swivel Y -90...90; head slide down along spout 0...0.2 (mimic none). Option: water stream column (water.stream) on when lever > 10. States: off, on, swung-left, pulled-out.",
+  "parts": [
+    "deck escutcheon",
+    "tall arched gooseneck spout",
+    "pull-down spray head with button",
+    "side lever handle",
+    "aerator nozzles"
+  ],
+  "references": [],
+  "size": [
+    0.24,
+    0.42,
+    0.24
+  ],
+  "style": "single-hole high-arc faucet, brushed stainless",
+  "summary": "Pull-down kitchen faucet: high-arc gooseneck spout, spray head, side lever, deck plate; lever opens a water stream.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

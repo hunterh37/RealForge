@@ -1,0 +1,40 @@
+{
+  "budget": 12000,
+  "id": "wardrobe",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-shaker",
+    "metal.brushed-nickel",
+    "wood.plywood",
+    "fabric.linen",
+    "fabric.wool"
+  ],
+  "name": "Two-door wardrobe",
+  "notes": "Rig: left-door, right-door hinge Y +-110; drawer slide +Z 0...0.4. States: closed, open, drawer-open.",
+  "parts": [
+    "tall case with crown",
+    "two paneled doors",
+    "hanging rail with hangers and shirts",
+    "shelf",
+    "bottom drawer"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    2.0,
+    0.6
+  ],
+  "style": "painted wardrobe",
+  "summary": "Painted two-door wardrobe, 2 m: paneled doors, hanging rail with hangers and shirts, shelf, bottom drawer.",
+  "tags": [
+    "prop",
+    "bedroom",
+    "furniture",
+    "wood",
+    "container",
+    "articulated"
+  ],
+  "theme": "Bedroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

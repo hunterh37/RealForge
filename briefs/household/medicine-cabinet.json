@@ -1,0 +1,38 @@
+{
+  "budget": 3000,
+  "id": "medicine-cabinet",
+  "kind": "prop",
+  "materials": [
+    "glass.mirror",
+    "metal.powder-white",
+    "glass.clear",
+    "plastic.white",
+    "plastic.amber"
+  ],
+  "name": "Mirrored medicine cabinet",
+  "notes": "Back face at z = 0, base y = 0. Rig: door hinge Y 0...105. States: closed, open.",
+  "parts": [
+    "polished-edge mirror door",
+    "white steel box",
+    "two glass shelves",
+    "toiletry bottles inside"
+  ],
+  "references": [],
+  "size": [
+    0.6,
+    0.76,
+    0.14
+  ],
+  "style": "surface-mount cabinet",
+  "summary": "Surface-mount medicine cabinet: polished mirror door, white box, glass shelves with toiletries.",
+  "tags": [
+    "prop",
+    "bathroom",
+    "glass",
+    "container",
+    "articulated"
+  ],
+  "theme": "Bathroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,40 @@
+{
+  "budget": 6000,
+  "id": "wall-cabinet",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-shaker",
+    "metal.brushed-nickel",
+    "wood.plywood",
+    "glass.clear",
+    "ceramic.vitreous"
+  ],
+  "name": "Shaker wall cabinet",
+  "notes": "Hung: base at y = 0 of its own frame, placed at 1.45 m in scenes. Rig: two door hinges Y +-110. States: closed, left-open, open.",
+  "parts": [
+    "two shaker doors (glass-panel knob)",
+    "bar pulls",
+    "two adjustable shelves",
+    "light rail",
+    "stacked plates inside"
+  ],
+  "references": [],
+  "size": [
+    0.76,
+    0.76,
+    0.33
+  ],
+  "style": "matches base-cabinet paint",
+  "summary": "Shaker wall cabinet, 76 cm: two doors with optional glass panels, two shelves with plates and glasses inside.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "wood",
+    "furniture",
+    "container",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

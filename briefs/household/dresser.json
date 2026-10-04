@@ -1,0 +1,39 @@
+{
+  "budget": 12000,
+  "id": "dresser",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "metal.brass",
+    "wood.plywood",
+    "fabric.linen"
+  ],
+  "name": "Six-drawer dresser",
+  "notes": "Rig: drawer1-6 slide +Z 0...0.38. States: closed, top-left-open, top-open, all-open.",
+  "parts": [
+    "case with overhanging top",
+    "two columns of three drawers",
+    "brass cup pulls",
+    "plinth base",
+    "folded clothes in drawers"
+  ],
+  "references": [],
+  "size": [
+    1.5,
+    0.8,
+    0.5
+  ],
+  "style": "matches nightstand",
+  "summary": "Oak dresser, 1.5 m: two columns of three drawers with brass cup pulls, folded clothes inside.",
+  "tags": [
+    "prop",
+    "bedroom",
+    "furniture",
+    "wood",
+    "container",
+    "articulated"
+  ],
+  "theme": "Bedroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,33 @@
+{
+  "budget": 1200,
+  "id": "drinking-glass",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "water.stream"
+  ],
+  "name": "Drinking glass",
+  "notes": "",
+  "parts": [
+    "thick heavy base",
+    "thin rim",
+    "optional water fill"
+  ],
+  "references": [],
+  "size": [
+    0.08,
+    0.12,
+    0.08
+  ],
+  "style": "tumbler",
+  "summary": "Clear glass tumbler, 330 ml: thick base, thin rim, optional water fill level knob.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "glass",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

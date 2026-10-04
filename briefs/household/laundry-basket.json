@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "laundry-basket",
+  "kind": "prop",
+  "materials": [
+    "plastic.white",
+    "fabric.linen",
+    "fabric.cotton-print"
+  ],
+  "name": "Plastic laundry basket",
+  "notes": "",
+  "parts": [
+    "ventilated plastic tub with slots",
+    "molded handles",
+    "pile of folded and loose clothes"
+  ],
+  "references": [],
+  "size": [
+    0.6,
+    0.27,
+    0.42
+  ],
+  "style": "white HDPE basket",
+  "summary": "Ventilated plastic laundry basket with molded handles, half full of folded and loose clothes.",
+  "tags": [
+    "prop",
+    "laundry",
+    "plastic",
+    "container",
+    "handheld"
+  ],
+  "theme": "Laundry",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

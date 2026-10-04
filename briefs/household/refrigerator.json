@@ -1,0 +1,42 @@
+{
+  "budget": 14000,
+  "id": "refrigerator",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "plastic.white",
+    "rubber.silicone",
+    "glass.clear",
+    "plastic.matte:2A2A2C",
+    "emissive.panel"
+  ],
+  "name": "French-door refrigerator",
+  "notes": "Rig: left-door, right-door hinge Y 0...110; freezer slide +Z 0...0.45. Option interior light on while either door > 5 deg (RigLight point). States: closed, left-open, right-open, both-open, freezer-open.",
+  "parts": [
+    "brushed stainless doors with rounded edges and bar handles",
+    "pull-out freezer drawer below",
+    "door gaskets",
+    "interior liner with glass shelves, crisper bins and door bins",
+    "toe kick grille",
+    "hinge caps on top"
+  ],
+  "references": [],
+  "size": [
+    0.91,
+    1.78,
+    0.79
+  ],
+  "style": "2020s counter-depth French-door fridge, fingerprint smudges near handles",
+  "summary": "French-door refrigerator, 36 in: stainless doors with bar handles, freezer drawer, lit interior with glass shelves and door bins.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "appliance",
+    "container",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

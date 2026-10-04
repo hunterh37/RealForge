@@ -1,0 +1,34 @@
+{
+  "budget": 2500,
+  "id": "area-rug",
+  "kind": "prop",
+  "materials": [
+    "carpet.rug-wool",
+    "fabric.wool"
+  ],
+  "name": "Wool area rug",
+  "notes": "",
+  "parts": [
+    "flat woven or low pile body",
+    "bound edges",
+    "fringe on short ends",
+    "slight corner curl"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    0.012,
+    1.7
+  ],
+  "style": "neutral wool rug, faint pattern",
+  "summary": "Wool area rug, 2.4 x 1.7 m: low pile with a faint pattern, bound edges, fringed ends, one corner lifting.",
+  "tags": [
+    "prop",
+    "living",
+    "fabric",
+    "decor"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

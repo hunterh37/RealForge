@@ -1,0 +1,40 @@
+{
+  "budget": 3000,
+  "id": "table-lamp",
+  "kind": "prop",
+  "materials": [
+    "ceramic.celadon",
+    "fabric.linen",
+    "metal.brass",
+    "emissive.bulb"
+  ],
+  "name": "Ceramic table lamp",
+  "notes": "Rig: switch hinge Z 0...90; bulb option + RigLight. States: off, on.",
+  "parts": [
+    "gourd ceramic base",
+    "brass neck and harp",
+    "finial",
+    "tapered linen shade",
+    "turn knob switch"
+  ],
+  "references": [],
+  "size": [
+    0.36,
+    0.6,
+    0.36
+  ],
+  "style": "glazed ceramic lamp",
+  "summary": "Ceramic table lamp: glazed gourd base, brass harp and finial, linen shade, turn switch.",
+  "tags": [
+    "prop",
+    "living",
+    "light",
+    "ceramic",
+    "fabric",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

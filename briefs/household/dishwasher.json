@@ -1,0 +1,40 @@
+{
+  "budget": 12000,
+  "id": "dishwasher",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "metal.stainless:B8BCC0",
+    "plastic.matte:3A3C40",
+    "plastic.white",
+    "emissive.indicator"
+  ],
+  "name": "Built-in dishwasher",
+  "notes": "Rig: door hinge X 0...90 (pivot at front bottom); lower-rack slide +Z 0...0.42 (parent none, rails); upper-rack slide +Z 0...0.38. Option: indicator LED. States: closed, open, racks-out, running.",
+  "parts": [
+    "stainless door with top control strip and pocket handle",
+    "tub with spray arms",
+    "lower and upper racks with tines",
+    "cutlery basket",
+    "detergent cup",
+    "kick plate"
+  ],
+  "references": [],
+  "size": [
+    0.6,
+    0.86,
+    0.6
+  ],
+  "style": "under-counter 24 in dishwasher, sized to sit under a 0.9 m counter",
+  "summary": "Built-in 24 in dishwasher: stainless door with top controls, stainless tub, sliding wire racks with tines and cutlery basket.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "appliance",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

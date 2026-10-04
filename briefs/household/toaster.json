@@ -1,0 +1,41 @@
+{
+  "budget": 4000,
+  "id": "toaster",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "plastic.black",
+    "metal.chrome",
+    "emissive.ember",
+    "food.bread"
+  ],
+  "name": "Two-slot toaster",
+  "notes": "Rig: lever slide -Y 0...0.07; bread slide -Y mimic lever ratio 1. Option: element glow. Down shows the glow. States: up, down.",
+  "parts": [
+    "rounded stainless body",
+    "two slots with guards",
+    "carriage lever",
+    "browning knob and buttons",
+    "crumb tray",
+    "two bread slices"
+  ],
+  "references": [],
+  "size": [
+    0.29,
+    0.19,
+    0.17
+  ],
+  "style": "retro-modern 2-slot toaster",
+  "summary": "Two-slot stainless toaster: rounded body, carriage lever, browning dial, crumb tray, two slices that drop with the lever.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "appliance",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

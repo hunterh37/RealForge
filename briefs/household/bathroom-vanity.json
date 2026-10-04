@@ -1,0 +1,40 @@
+{
+  "budget": 11000,
+  "id": "bathroom-vanity",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-shaker:5C6B73",
+    "ceramic.vitreous",
+    "stone.quartz",
+    "metal.brushed-nickel",
+    "water.stream"
+  ],
+  "name": "Vanity with sink",
+  "notes": "Rig: left-door, right-door hinge Y +-105; hot, cold hinge Y 0...90; stream option. States: closed, open, tap-on.",
+  "parts": [
+    "painted cabinet with two doors and false drawer",
+    "quartz top",
+    "undermount oval basin",
+    "widespread faucet with lever handles",
+    "drain"
+  ],
+  "references": [],
+  "size": [
+    0.92,
+    0.88,
+    0.55
+  ],
+  "style": "36 in transitional vanity",
+  "summary": "36 in bathroom vanity: painted doors, quartz top, oval undermount basin, widespread nickel faucet.",
+  "tags": [
+    "prop",
+    "bathroom",
+    "furniture",
+    "ceramic",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Bathroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

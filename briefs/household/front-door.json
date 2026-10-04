@@ -1,0 +1,41 @@
+{
+  "budget": 9000,
+  "id": "front-door",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-door:1F3A4A",
+    "glass.frosted",
+    "metal.brass-aged",
+    "wood.trim-white",
+    "concrete.smooth"
+  ],
+  "name": "Exterior front door with sidelight",
+  "notes": "Rig: slab hinge Y -95...0 (in-swing); handle thumb latch. States: closed, ajar, open.",
+  "parts": [
+    "six-panel or craftsman slab with lite",
+    "one sidelight",
+    "brick-mould casing",
+    "threshold",
+    "handle set with deadbolt",
+    "kick plate"
+  ],
+  "references": [],
+  "size": [
+    1.35,
+    2.25,
+    0.2
+  ],
+  "style": "craftsman entry, painted navy",
+  "summary": "Craftsman front door with a frosted top lite and one sidelight: painted slab, brass handle set, threshold.",
+  "tags": [
+    "structure",
+    "interior",
+    "door",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Interior",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

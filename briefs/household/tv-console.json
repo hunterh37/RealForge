@@ -1,0 +1,39 @@
+{
+  "budget": 8000,
+  "id": "tv-console",
+  "kind": "prop",
+  "materials": [
+    "wood.veneer-oak",
+    "metal.brass",
+    "wood.plywood",
+    "fabric.mesh"
+  ],
+  "name": "Media console",
+  "notes": "Rig: left-door, right-door hinge Y +-105; drawer1, drawer2 slide +Z 0...0.3. States: closed, doors-open, drawers-open.",
+  "parts": [
+    "long low case",
+    "two side doors with cane or slatted fronts",
+    "center open shelf with cable cutout",
+    "two drawers",
+    "tapered legs"
+  ],
+  "references": [],
+  "size": [
+    1.6,
+    0.56,
+    0.42
+  ],
+  "style": "oak media console",
+  "summary": "Oak media console, 1.6 m: slatted side doors, two drawers, open center shelf with cable cutout, tapered legs.",
+  "tags": [
+    "prop",
+    "living",
+    "furniture",
+    "wood",
+    "container",
+    "articulated"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

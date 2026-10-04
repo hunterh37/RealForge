@@ -1,0 +1,36 @@
+{
+  "budget": 3000,
+  "id": "roller-blind",
+  "kind": "prop",
+  "materials": [
+    "fabric.linen:E9E4DA",
+    "metal.powder-white",
+    "plastic.white"
+  ],
+  "name": "Roller blind",
+  "notes": "Fabric length is a part scaled in Y from the cassette (slide joint with geometry authored rolled down). Rig: bar slide +Y 0...1.4, fabric uses option frames (down, half, up). States: down, half, up.",
+  "parts": [
+    "head rail cassette",
+    "fabric panel",
+    "bottom bar",
+    "bead chain"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    1.5,
+    0.08
+  ],
+  "style": "light-filtering linen blind",
+  "summary": "Linen roller blind for a 1.2 m window: cassette, fabric panel, bottom bar, bead chain.",
+  "tags": [
+    "prop",
+    "home",
+    "fabric",
+    "window",
+    "articulated"
+  ],
+  "theme": "Home",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

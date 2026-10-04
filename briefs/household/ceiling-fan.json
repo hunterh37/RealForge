@@ -1,0 +1,40 @@
+{
+  "budget": 8000,
+  "id": "ceiling-fan",
+  "kind": "prop",
+  "materials": [
+    "metal.brushed-nickel",
+    "wood.veneer-walnut",
+    "glass.frosted",
+    "emissive.bulb"
+  ],
+  "name": "Ceiling fan with light",
+  "notes": "Hangs from y = 0.42 top; scenes place the canopy on the ceiling. Rig: blades hinge Y 0...360 (states pose only; spin is a runtime add), light option + RigLight. States: off, light-on.",
+  "parts": [
+    "canopy",
+    "downrod",
+    "motor housing",
+    "five blades on irons",
+    "frosted light bowl",
+    "pull chains"
+  ],
+  "references": [],
+  "size": [
+    1.32,
+    0.42,
+    1.32
+  ],
+  "style": "52 in fan",
+  "summary": "52 in ceiling fan: nickel downrod and motor, five walnut blades, frosted light bowl, pull chains.",
+  "tags": [
+    "prop",
+    "home",
+    "light",
+    "metal",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Home",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

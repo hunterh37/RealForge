@@ -1,0 +1,41 @@
+{
+  "budget": 6000,
+  "id": "coffee-maker",
+  "kind": "prop",
+  "materials": [
+    "plastic.black",
+    "metal.stainless",
+    "glass.clear",
+    "fluid.coffee",
+    "emissive.indicator"
+  ],
+  "name": "Drip coffee maker",
+  "notes": "Rig: lid hinge X -80...0; basket hinge Y 0...90; carafe slide +Z 0...0.25 (also handheld when detached later). Option: power LED. States: idle, lid-open, brewing, carafe-out.",
+  "parts": [
+    "tower body with water tank window",
+    "hinged top lid",
+    "swing-out filter basket",
+    "glass carafe with handle and lid",
+    "warming plate",
+    "control panel"
+  ],
+  "references": [],
+  "size": [
+    0.24,
+    0.36,
+    0.26
+  ],
+  "style": "12-cup drip machine",
+  "summary": "12-cup drip coffee maker: black tower, hinged lid, swing-out filter basket, glass carafe on a warming plate.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "plastic",
+    "appliance",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

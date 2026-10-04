@@ -1,0 +1,35 @@
+{
+  "budget": 1500,
+  "id": "tv-remote",
+  "kind": "prop",
+  "materials": [
+    "plastic.black",
+    "rubber.silicone:2A2A2A"
+  ],
+  "name": "TV remote",
+  "notes": "",
+  "parts": [
+    "slim body with tapered ends",
+    "rubber buttons",
+    "direction ring",
+    "IR window"
+  ],
+  "references": [],
+  "size": [
+    0.045,
+    0.02,
+    0.19
+  ],
+  "style": "generic smart-TV remote",
+  "summary": "Slim TV remote: black body, rubber buttons, direction ring, IR window.",
+  "tags": [
+    "prop",
+    "living",
+    "electronics",
+    "plastic",
+    "handheld"
+  ],
+  "theme": "Living",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

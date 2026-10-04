@@ -15,6 +15,7 @@ Budgets are LOD0 triangle targets. Material keys in *italics* do not exist yet.
 | [Harbor](#harbor) | `Props/Harbor`, `Structures/Harbor` | `harbor-dock` | `rope`, water (engine) |
 | [Campsite](#campsite) | `Props/Camp` | `lakeside-camp` | `fabricWeave`, `charcoal` |
 | [Farm](#farm) | `Props/Farm`, `Structures/Farm` | `farmyard` | `straw`, `paintedWood` |
+| [Household](V6.md) | `Props/Kitchen`, `Living`, `Bedroom`, `Bathroom`, `Laundry`, `Home`; `Structures/Interior` | `two-story-house` | `plankFloor`, `shingles`, `fruitSkin`; `HousePlan`, floor visibility (engine) |
 | [Kitchen](#kitchen) | `Props/Kitchen` | `farmhouse-kitchen` | `ceramic`, `tiles`, `brushedMetal`; indoor lighting, glass (engine) |
 | [Office](#office) | `Props/Office` | `open-office` | `carpet`, `laminate`; indoor lighting (engine) |
 | [Japanese garden](#japanese-garden) | `Props/Garden`, `Structures/Garden` | `zen-garden` | `rakedGravel`, `bamboo` |

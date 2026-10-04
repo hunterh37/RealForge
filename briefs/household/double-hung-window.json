@@ -1,0 +1,39 @@
+{
+  "budget": 6000,
+  "id": "double-hung-window",
+  "kind": "structure",
+  "materials": [
+    "wood.trim-white",
+    "glass.pane",
+    "metal.brass",
+    "fabric.mesh"
+  ],
+  "name": "Double-hung window",
+  "notes": "Opening size matches HousePlan window openings. Rig: lower sash slide +Y 0...0.62; upper slide -Y 0...0.3; lock hinge Y 0...180. States: closed, open, top-down.",
+  "parts": [
+    "frame with jamb liners",
+    "upper and lower sashes with 2-over-2 grilles",
+    "sash lock",
+    "interior casing, stool and apron",
+    "half screen outside"
+  ],
+  "references": [],
+  "size": [
+    0.9,
+    1.4,
+    0.2
+  ],
+  "style": "painted wood double-hung",
+  "summary": "Painted double-hung window, 0.9 x 1.4 m: two sashes with grilles, sash lock, casing, stool and apron.",
+  "tags": [
+    "structure",
+    "interior",
+    "window",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Interior",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

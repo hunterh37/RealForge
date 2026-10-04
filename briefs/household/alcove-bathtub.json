@@ -1,0 +1,40 @@
+{
+  "budget": 12000,
+  "id": "alcove-bathtub",
+  "kind": "prop",
+  "materials": [
+    "metal.enamel:F4F4F2",
+    "metal.chrome",
+    "glass.clear",
+    "water.stream",
+    "tile.subway"
+  ],
+  "name": "Alcove tub with shower",
+  "notes": "Wall tiles come from the house shell. Rig: screen hinge Y 0...90; valve hinge Z 0...180; options: tub stream, shower stream. States: closed, screen-open, shower-on, filling.",
+  "parts": [
+    "enameled steel tub with apron",
+    "overflow and drain",
+    "tub spout and valve trim",
+    "slide-bar shower head",
+    "hinged glass screen"
+  ],
+  "references": [],
+  "size": [
+    1.53,
+    2.05,
+    0.8
+  ],
+  "style": "standard 60 in alcove tub",
+  "summary": "60 in alcove bathtub: enamel apron tub, chrome spout and valve, slide-bar shower head, hinged glass screen.",
+  "tags": [
+    "prop",
+    "bathroom",
+    "ceramic",
+    "metal",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Bathroom",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

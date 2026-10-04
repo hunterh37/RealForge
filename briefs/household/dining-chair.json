@@ -1,0 +1,37 @@
+{
+  "budget": 6000,
+  "id": "dining-chair",
+  "kind": "prop",
+  "materials": [
+    "wood.oak",
+    "fabric.upholstery:C9C2B4",
+    "metal.brass"
+  ],
+  "name": "Upholstered dining chair",
+  "notes": "Scenes place with grabbable: true so chairs slide out. Field-instanced around the table.",
+  "parts": [
+    "curved back rail and slats",
+    "upholstered seat with welt",
+    "splayed legs",
+    "stretchers",
+    "felt pads"
+  ],
+  "references": [],
+  "size": [
+    0.47,
+    0.92,
+    0.55
+  ],
+  "style": "Scandinavian oak chair",
+  "summary": "Oak dining chair: curved top rail, spindle back, upholstered seat with welt, splayed legs and stretchers.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "wood",
+    "furniture",
+    "fabric"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "patio-door",
+  "kind": "structure",
+  "materials": [
+    "metal.anodized-black",
+    "glass.pane",
+    "rubber.silicone"
+  ],
+  "name": "Sliding patio door",
+  "notes": "Rig: slider slide -X 0...0.85; latch hinge. States: closed, open.",
+  "parts": [
+    "aluminum frame",
+    "fixed panel",
+    "sliding panel with handle",
+    "sill track",
+    "screen panel outside"
+  ],
+  "references": [],
+  "size": [
+    1.83,
+    2.1,
+    0.18
+  ],
+  "style": "6 ft black aluminum slider",
+  "summary": "Six-foot sliding patio door: black aluminum frame, fixed and sliding glass panels, sill track, handle.",
+  "tags": [
+    "structure",
+    "interior",
+    "door",
+    "glass",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Interior",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
