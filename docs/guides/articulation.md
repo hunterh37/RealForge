@@ -57,6 +57,22 @@ In scenes: `scene.addLive(asset, at:, seed:, state:, interactive:)` keeps it liv
 `scene.add(asset, at:, seed:, state:)` bakes one state into a static single (batched);
 `scene.field(asset, seed:, state:, transforms:)` instances one baked state (rows of chairs).
 
+## Grab (RealityHD 5)
+
+Assets tagged `handheld` are grabbable by default: `RealityHD.articulated`, `RealityHD.entity` and
+`scene.addLive` put a solid collision box over the whole rest pose and a `ManipulationComponent`
+(visionOS 26) on the root. Pinch the body to pick it up, move and turn it; it stays where it is
+released. Taps on parts still toggle joints. Override with `grabbable: true/false`.
+
+```swift
+let scissors = try await RealityHD.articulated("surgical-scissors")         // handheld: grabbable
+let bed = try await RealityHD.articulated("hospital-bed", grabbable: true)  // force it
+scene.addLive(Syringe(), at: place(0.4, 0.2, y: 0.92), seed: 1, state: "drawn-5ml")
+entity.resetGrab()                                                        // back to its start pose
+```
+
+`Rig.restBounds` gives the box; `Entity.makeGrabbable(min:max:)` works on any entity.
+
 ## Checking
 
 ```sh

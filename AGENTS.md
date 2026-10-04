@@ -21,6 +21,7 @@ await RealViewerTracker.shared.start()                        // head-tracked LO
 
 Interior scenes: `RealityHD.environment(for: scene)` applies the scene's sky, indoor probe and fog.
 Tap gesture for articulated parts: `SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() }`.
+Hand grab: assets tagged `handheld` come back grabbable (`ManipulationComponent`); `grabbable:` overrides.
 
 Mixed reality: skip the skybox, keep `env` for IBL and sun shadows, or skip `env` entirely and let
 the system lighting apply (fog uses `RealAtmosphere`; set `fogDensity = 0` indoors).
@@ -157,6 +158,7 @@ var rig = Rig(name:, lods:, switchDistances:)   rig.base[l].add(s, x)   rig.part
 rig.add(s, x, to: "lid", option:, lods:)   Joint(.revolute, axis:, range:, mimic: .init("pedal", ratio: 6))   RigState("open", ["lid": -95], options: ["bulb": 1])
 RigLight(name:, kind: .spot(inner:, outer:), part:, option:, position:, direction:, intensity:)   rig.posed("open")   rig.validate()
 entity.setArticulation("open")   entity.setJoints(["lid": -40])   entity.nextArticulation()   entity.realToggle()
+entity.makeGrabbable(min:, max:)   entity.resetGrab()   rig.restBounds   scene.addLive(asset, ..., grabbable:)   // RealityHD 5
 Room(size:).with { $0.openings = [.init(.south, offset:, width:, sill:, head:)] }   room.shell()   room.ceilingModel()   room.fixturePattern(every:)
 
 // RealityKit

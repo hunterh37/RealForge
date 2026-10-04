@@ -82,6 +82,19 @@ public struct InteriorLight: Sendable {
         $0.windowWidth = 170; $0.windowElevation = -10...55; $0.exposure = -0.4
     }
 
+    /// Hospital ward, corridor or ER bay: 4000 K troffers, pale walls, light sheet vinyl, small windows.
+    public static let clinical = InteriorLight().with {
+        $0.ceiling = SIMD3(0.7, 0.71, 0.72); $0.walls = SIMD3(0.56, 0.58, 0.57); $0.floor = SIMD3(0.4, 0.39, 0.37)
+        $0.fixtures = SIMD3(6.2, 6.2, 6.0); $0.fixturePitch = 0.34; $0.fixtureSize = SIMD2(0.3, 0.3)
+        $0.windowWidth = 50; $0.windowElevation = 0...28; $0.exposure = -0.5
+    }
+    /// Operating room: no windows, dense 5000 K laminar-flow ceiling, green-grey tile, blue-grey floor.
+    public static let operatingRoom = InteriorLight().with {
+        $0.ceiling = SIMD3(0.8, 0.82, 0.85); $0.walls = SIMD3(0.46, 0.52, 0.5); $0.floor = SIMD3(0.3, 0.34, 0.36)
+        $0.fixtures = SIMD3(7.5, 7.8, 8.2); $0.fixturePitch = 0.3; $0.fixtureSize = SIMD2(0.5, 0.5)
+        $0.windowWidth = 0; $0.windowElevation = 0...0; $0.exposure = -0.55
+    }
+
     public func with(_ edit: (inout InteriorLight) -> Void) -> InteriorLight { var c = self; edit(&c); return c }
 
     /// Radiance seen along a direction (scene space, +Y up).
