@@ -99,7 +99,7 @@ public struct GeometryReport: Codable, Sendable {
 
 public enum GeometryLint {
     /// Lints LOD0 (and LOD ordering) of a built asset.
-    public static func run(_ lod: LODModel, budget: Int, brief: PropBrief? = nil) -> GeometryReport {
+    public static func run(_ lod: LODModel, budget: Int, brief: PropBrief? = nil, hanging: Bool = false) -> GeometryReport {
         let m = lod.levels[0]
         let bb = m.bounds, e = bb.max - bb.min, c = (bb.min + bb.max) / 2
         var issues: [LintIssue] = []
@@ -110,7 +110,7 @@ public enum GeometryLint {
         for i in 1..<max(1, tris.count) where tris[i] > tris[i - 1] { add(.error, "lod-order", "LOD\(i) heavier than LOD\(i - 1)") }
         if tris[0] > 5000 && tris.count == 1 { add(.info, "lod", "single LOD above 5k tris; scenes instancing it want 2-3 levels") }
         if bb.min.y < -0.02 { add(.warn, "sunk", String(format: "base at y %.3f m; props sit on y = 0", bb.min.y)) }
-        if bb.min.y > 0.01 { add(.error, "floating", String(format: "lowest point at y %.3f m; asset floats", bb.min.y)) }
+        if bb.min.y > 0.01 && !hanging { add(.error, "floating", String(format: "lowest point at y %.3f m; asset floats", bb.min.y)) }
         if abs(c.x) > e.x * 0.15 + 0.02 || abs(c.z) > e.z * 0.15 + 0.02 { add(.warn, "center", String(format: "bounds center (%.3f, %.3f) off the origin", c.x, c.z)) }
         var mats: [String: Int] = [:], ratios: [String: Float] = [:]
         var degenerate = 0
