@@ -36,34 +36,34 @@ public extension MaterialLibrary {
         MaterialSpec(key: "film.xray-bone-lit", program: nil).with {
             $0.baseColor = V3(0.4, 0.42, 0.45); $0.mode = .emissive; $0.emissive = V3(0.36, 0.39, 0.42); $0.emissiveIntensity = 1; $0.roughness = 0.25
         },
-        // Printed patient ID flash card on a film and a biomed inspection sticker: label.rx artwork, UVs 0...1 across the label.
+        // Printed patient ID flash card on a film and a biomed inspection sticker: label.rx artwork, UVs span tileSize across the label (one artwork per label).
         MaterialSpec(key: "label.film-id", program: .medLabel).with {
             $0.colorA = linear(0xF2F1EC); $0.colorB = linear(0x3A3A3C); $0.colorC = linear(0x1A1A1C)
-            $0.knobs = V4(0.22, 1, 4, 0.2); $0.seed = 563; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+            $0.knobs = V4(0.22, 1, 4, 0.2); $0.seed = 563; $0.tileSize = 0.044; $0.resolution = 256; $0.normalStrength = 0.1
         },
         MaterialSpec(key: "label.inspection", program: .medLabel).with {
             $0.colorA = linear(0xF4F2E8); $0.colorB = linear(0x2E8A4A); $0.colorC = linear(0x1A1A1C)
-            $0.knobs = V4(0.3, 1, 3, 0.25); $0.seed = 564; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+            $0.knobs = V4(0.3, 1, 3, 0.25); $0.seed = 564; $0.tileSize = 0.037; $0.resolution = 256; $0.normalStrength = 0.1
         },
-        // Self check-in kiosk welcome screen: white page, blue header band, greeked prompt lines (unlit, UVs 0...1).
+        // Self check-in kiosk welcome screen: white page, blue header band, greeked prompt lines (unlit; UVs span tileSize across the screen).
         MaterialSpec(key: "screen.kiosk", program: .medLabel).with {
             $0.colorA = linear(0xF4F7FA); $0.colorB = linear(0x1F64B4); $0.colorC = linear(0x2A3440)
-            $0.knobs = V4(0.16, 0, 5, 0); $0.seed = 565; $0.tileSize = 0; $0.resolution = 1024
+            $0.knobs = V4(0.16, 0, 5, 0); $0.seed = 565; $0.tileSize = 1; $0.resolution = 1024
             $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 0.95
         },
-        // "Oxygen in use" hang tag (green band) and a suction canister graduation label; UVs 0...1 across the label.
+        // "Oxygen in use" hang tag (green band) and a suction canister graduation label; UVs span tileSize across the label (one artwork per label).
         MaterialSpec(key: "label.o2-tag", program: .medLabel).with {
             $0.colorA = linear(0xF4F2EA); $0.colorB = linear(0x2E8B3E); $0.colorC = linear(0x1A1A1C)
-            $0.knobs = V4(0.38, 0, 2, 0.5); $0.seed = 566; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+            $0.knobs = V4(0.38, 0, 2, 0.5); $0.seed = 566; $0.tileSize = 0.056; $0.resolution = 256; $0.normalStrength = 0.1
         },
         MaterialSpec(key: "label.canister", program: .medLabel).with {
             $0.colorA = linear(0xEEF2F4); $0.colorB = linear(0x2A5FA8); $0.colorC = linear(0x223040)
-            $0.knobs = V4(0.1, 0, 8, 0.9); $0.seed = 567; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+            $0.knobs = V4(0.1, 0, 8, 0.9); $0.seed = 567; $0.tileSize = 0.069; $0.resolution = 256; $0.normalStrength = 0.1
         },
-        // Patient chart binder spine insert (room number band); UVs 0...1 across the insert.
+        // Patient chart binder spine insert (room number band); UVs span tileSize across the insert.
         MaterialSpec(key: "label.binder", program: .medLabel).with {
             $0.colorA = linear(0xF6F5F0); $0.colorB = linear(0x2A2C30); $0.colorC = linear(0x1A1A1C)
-            $0.knobs = V4(0.3, 0, 3, 0.3); $0.seed = 568; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+            $0.knobs = V4(0.3, 0, 3, 0.3); $0.seed = 568; $0.tileSize = 0.045; $0.resolution = 256; $0.normalStrength = 0.1
         },
         // realityhd:material.medicalHospitalLobby
     ]

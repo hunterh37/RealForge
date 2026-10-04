@@ -265,10 +265,16 @@ private func ribbon(_ s: inout Surface, _ path: [V2], width: Float, _ world: (V2
 private func labelQuad(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: MaterialKey, meters: Bool = false) -> Surface {
     var s = Surface(material: mat)
     let n = simd_normalize(simd_cross(right, up)), r = right * (w / 2), u = up * (h / 2)
-    let su: Float = meters ? w : 1, sv: Float = meters ? h : 1
+    let su: Float = meters ? w : artSpan(mat), sv: Float = meters ? h : artSpan(mat)
     let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(su, 0))
     let cc = s.add(c + r + u, n, V2(su, sv)), d = s.add(c - r + u, n, V2(0, sv))
     s.quad(a, b, cc, d)
     s.computeTangents()
     return s
+}
+
+/// UV span for one artwork across a label or screen: the material's tileSize (so texel density lints at ~1), else 1.
+private func artSpan(_ mat: MaterialKey) -> Float {
+    let s = MaterialLibrary.spec(for: String(mat.split(separator: ":")[0]))
+    return s.program != nil && s.tileSize > 0 ? s.tileSize : 1
 }

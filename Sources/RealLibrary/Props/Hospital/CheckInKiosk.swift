@@ -163,11 +163,17 @@ private func quad(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: MaterialK
     var s = Surface(material: mat)
     var n = simd_normalize(simd_cross(right, up)), r = right * (w / 2), u = up * (h / 2)
     if flip { n = -n; r = -r }
-    let su: Float = meters ? w : 1, sv: Float = meters ? h : 1
+    let su: Float = meters ? w : artSpan(mat), sv: Float = meters ? h : artSpan(mat)
     let v0: Float = flip ? sv : 0, v1: Float = flip ? 0 : sv
     let a = s.add(c - r - u, n, V2(flip ? su : 0, v0)), b = s.add(c + r - u, n, V2(flip ? 0 : su, v0))
     let cc = s.add(c + r + u, n, V2(flip ? 0 : su, v1)), d = s.add(c - r + u, n, V2(flip ? su : 0, v1))
     s.quad(a, b, cc, d)
     s.computeTangents()
     return s
+}
+
+/// UV span for one artwork across a label or screen: the material's tileSize (so texel density lints at ~1), else 1.
+private func artSpan(_ mat: MaterialKey) -> Float {
+    let s = MaterialLibrary.spec(for: String(mat.split(separator: ":")[0]))
+    return s.program != nil && s.tileSize > 0 ? s.tileSize : 1
 }

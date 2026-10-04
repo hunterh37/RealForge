@@ -249,9 +249,16 @@ public struct Headwall: RealArticulated {
 private func quad(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: MaterialKey) -> Surface {
     var s = Surface(material: mat)
     let n = simd_normalize(simd_cross(right, up)), r = right * (w / 2), u = up * (h / 2)
-    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(1, 0))
-    let cc = s.add(c + r + u, n, V2(1, 1)), d = s.add(c - r + u, n, V2(0, 1))
+    let t = artSpan(mat)
+    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(t, 0))
+    let cc = s.add(c + r + u, n, V2(t, t)), d = s.add(c - r + u, n, V2(0, t))
     s.quad(a, b, cc, d)
     s.computeTangents()
     return s
+}
+
+/// UV span for one artwork across a label or screen: the material's tileSize (so texel density lints at ~1), else 1.
+private func artSpan(_ mat: MaterialKey) -> Float {
+    let s = MaterialLibrary.spec(for: String(mat.split(separator: ":")[0]))
+    return s.program != nil && s.tileSize > 0 ? s.tileSize : 1
 }

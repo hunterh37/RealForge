@@ -2,9 +2,9 @@
   "automated" : 0.99991065,
   "date" : "2026-10-04",
   "final" : 0.85209376,
-  "fingerprint" : "58b57eed6a659508",
+  "fingerprint" : "96fb0984f85242e8",
   "id" : "privacy-curtain",
-  "iterations" : 1,
+  "iterations" : 2,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,

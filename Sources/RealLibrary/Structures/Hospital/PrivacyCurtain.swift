@@ -12,7 +12,7 @@ public struct PrivacyCurtain: RealArticulated {
     public static let id = "privacy-curtain"
     public static let summary = "Hospital cubicle curtain: 3 m ceiling track with nylon carriers, white mesh top band and pleated teal curtain that draws open, half or closed."
     public static let tags = ["structure", "medical", "hospital", "interior", "fabric", "metal", "articulated"]
-    public static let budget = 17_500
+    public static let budget = 15_000
     public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 24, elevation: 10, distance: 1.0, studio: true)
 
@@ -69,7 +69,7 @@ public struct PrivacyCurtain: RealArticulated {
             let s = (xEnd - x0) / Float(waves)
             let a0 = min(0.045 + 0.035 * gathered, 0.5 * sqrt(max(0, fabricHalf * fabricHalf - s * s)) * 0.82)
             let cols = waves * per + 1
-            let ys: [Float] = lod == 0 ? [topY, topY - 0.06, topY - 0.25, meshY, meshY - 0.03, meshY - 0.3, meshY - 0.7, meshY - 1.1, 0.42, 0.18, 0.035, 0]
+            let ys: [Float] = lod == 0 ? [topY, topY - 0.06, topY - 0.25, meshY, meshY - 0.03, meshY - 0.3, meshY - 0.8, 0.5, 0.12, 0.035, 0]
                                        : [topY, meshY + 0.25, meshY, meshY - 0.6, 1.0, 0.5, 0]
             func point(_ ci: Int, _ y: Float) -> V3 {
                 let k = min(waves - 1, ci / per), u = Float(ci - k * per) / Float(per)

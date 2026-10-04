@@ -12,7 +12,7 @@ public struct NurseStation: RealArticulated {
     public static let id = "nurse-station"
     public static let summary = "L-shaped nurse station: solid-surface transaction ledge, oak fascia, staff work surface with two monitors, keyboard, chart rack and a swing gate."
     public static let tags = ["structure", "medical", "hospital", "interior", "furniture", "wood", "electronics", "articulated"]
-    public static let budget = 16_600
+    public static let budget = 15_000
     public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 32, elevation: 18, distance: 1.0, studio: true)
 
@@ -188,8 +188,9 @@ public struct NurseStation: RealArticulated {
 private func screen(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: MaterialKey) -> Surface {
     var s = Surface(material: mat)
     let n = simd_normalize(simd_cross(right, up)), r = right * (w / 2), u = up * (h / 2)
-    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(1, 0))
-    let cc = s.add(c + r + u, n, V2(1, 1)), d = s.add(c - r + u, n, V2(0, 1))
+    let t = artSpan(mat)
+    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(t, 0))
+    let cc = s.add(c + r + u, n, V2(t, t)), d = s.add(c - r + u, n, V2(0, t))
     s.quad(a, b, cc, d)
     s.computeTangents()
     return s
@@ -199,9 +200,16 @@ private func screen(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: Materia
 private func quad(_ c: V3, right: V3, up: V3, w: Float, h: Float, mat: MaterialKey) -> Surface {
     var s = Surface(material: mat)
     let n = simd_normalize(simd_cross(right, up)), r = right * (w / 2), u = up * (h / 2)
-    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(1, 0))
-    let cc = s.add(c + r + u, n, V2(1, 1)), d = s.add(c - r + u, n, V2(0, 1))
+    let t = artSpan(mat)
+    let a = s.add(c - r - u, n, V2(0, 0)), b = s.add(c + r - u, n, V2(t, 0))
+    let cc = s.add(c + r + u, n, V2(t, t)), d = s.add(c - r + u, n, V2(0, t))
     s.quad(a, b, cc, d)
     s.computeTangents()
     return s
+}
+
+/// UV span for one artwork across a label or screen: the material's tileSize (so texel density lints at ~1), else 1.
+private func artSpan(_ mat: MaterialKey) -> Float {
+    let s = MaterialLibrary.spec(for: String(mat.split(separator: ":")[0]))
+    return s.program != nil && s.tileSize > 0 ? s.tileSize : 1
 }
