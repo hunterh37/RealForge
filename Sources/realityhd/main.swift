@@ -8,6 +8,7 @@ func run() async throws {
     case "list": listCommand(args)
     case "stats": statsCommand(args)
     case "render": try await renderCommand(args)
+    case "states": try await statesCommand(args)
     case "thumbs": try await thumbsCommand(args)
     case "textures": try texturesCommand(args)
     case "shaders": try await shadersCommand(args)

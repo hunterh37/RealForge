@@ -7,6 +7,18 @@ public enum Structures {
         ScaffoldBay.self,
         RailFence.self,
         BarnWall.self,
+        OfficeDoor.self,
+        GlassDoor.self,
+        ElevatorDoors.self,
+        OfficeWindow.self,
+        OfficeBlock.self,
+        BaseballDiamond.self,
+        OutfieldWall.self,
+        FoulPole.self,
+        Backstop.self,
+        Dugout.self,
+        Bleachers.self,
+        LightTower.self,
         // realityhd:structure
     ]
 }

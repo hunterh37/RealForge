@@ -13,6 +13,12 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case alpineMeadow = "alpine-meadow"
     case canyonRoad = "canyon-road"
     case winterForest = "winter-forest"
+    case ballpark = "ballpark"
+    case openOffice = "open-office"
+    case executiveOffice = "executive-office"
+    case officeLobby = "office-lobby"
+    case conferenceRoom = "conference-room"
+    case officePlaza = "office-plaza"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -25,6 +31,12 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .alpineMeadow: "Alpine Meadow"
         case .canyonRoad: "Canyon Road"
         case .winterForest: "Winter Forest"
+        case .ballpark: "Ballpark"
+        case .openOffice: "Open Office"
+        case .executiveOffice: "Executive Office"
+        case .officeLobby: "Office Lobby"
+        case .conferenceRoom: "Conference Room"
+        case .officePlaza: "Office Plaza"
         }
     }
     var detail: String {
@@ -38,10 +50,18 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .alpineMeadow: "Flower meadow and pebble stream below a cliff band, conifers and peaks behind."
         case .canyonRoad: "Desert highway between sandstone buttes, saguaro and dunes."
         case .winterForest: "Snowy clearing in spruce and fir, drifts, fallen log and a woodpile."
+        case .ballpark: "Stand in the batter's box: clay infield, striped turf, dugouts, bleachers, light towers."
+        case .openOffice: "Bench desks, task chairs and screens under LED troffers, sun through ribbon windows. Tap doors, drawers, chairs."
+        case .executiveOffice: "Walnut desk, banker's lamp, open book, bookcases, golden sun. Tap the lamp, book, laptop, drawers."
+        case .officeLobby: "Terrazzo lobby, marble reception, elevator bank, glass street front. Tap the elevators and door."
+        case .conferenceRoom: "Boardroom table, mesh chairs, wall display, glass partition and door."
+        case .officePlaza: "Plaza between curtain-wall office blocks, maples in planters, benches and lamps."
         }
     }
     /// Sky picked when the scene is opened from the menu.
     var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
+    /// Interiors and the plaza carry their own sun and probe; the menu sky is ignored for them.
+    var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza].contains(self) }
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {

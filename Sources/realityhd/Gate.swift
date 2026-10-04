@@ -13,7 +13,7 @@ final class Stage {
     let focus: Entity
     let root = Entity()
 
-    init(id: String, seed: UInt64, sky: String = "afternoon", ground: Bool = true, matte: Bool = false, lod: Int = 0) async throws {
+    init(id: String, seed: UInt64, sky: String = "afternoon", ground: Bool = true, matte: Bool = false, lod: Int = 0, state: String? = nil, live: Bool = false) async throws {
         RealKitSetup.register()
         RealMaterialCache.shared.useShaderGraph = true
         let hint = Catalog.type(id)?.preview ?? PreviewHint()
@@ -23,10 +23,17 @@ final class Stage {
         let env = try RealEnvironment(s, skybox: !matte)
         preview = try RealPreview(environment: env)
         if matte { preview.renderer.cameraSettings.colorBackground = .color(CGColor(red: 1, green: 0, blue: 1, alpha: 1)) }
-        guard let asset = Catalog.build(id, seed: seed) else { throw CLIError("unknown asset id \(id) (realityhd list)") }
-        focus = try await asset.levels[min(lod, asset.levels.count - 1)].modelEntityAsync()
+        if live, let rig = Catalog.rig(id, seed: seed) {
+            // Runtime path: part entities driven to the state through the articulation API.
+            focus = try await rig.entityAsync(name: id)
+            if let state { focus.setArticulation(state, animated: false) }
+        } else {
+            let asset = state.flatMap { st in Catalog.rig(id, seed: seed).map { $0.posed(st) } } ?? Catalog.build(id, seed: seed)
+            guard let asset else { throw CLIError("unknown asset id \(id) (realityhd list)") }
+            focus = try await asset.levels[min(lod, asset.levels.count - 1)].modelEntityAsync()
+        }
         root.addChild(focus)
-        let isProp = Catalog.type(id)?.tags.first == "prop"
+        let isProp = Catalog.type(id)?.tags.first == "prop" || hint.studio
         if ground && hint.ground && !matte && isProp {
             // Props: neutral sealed-concrete floor, so the judge sees the object, not giant forest litter.
             var floor = Prim.terrain(size: V2(80, 80), segments: 8, material: "concrete.smooth") { _ in 0 }

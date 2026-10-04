@@ -1,0 +1,37 @@
+{
+  "budget": 7000,
+  "id": "base-bag",
+  "kind": "prop",
+  "materials": [
+    "fabric.base-dusty",
+    "fabric.base",
+    "rubber",
+    "thread.white"
+  ],
+  "name": "Base bag",
+  "notes": "",
+  "parts": [
+    "pillowed white canvas top, crowned in the middle",
+    "straight padded sides with rounded vertical corners",
+    "double-stitched seams around the top edge and down each corner",
+    "dark rubber bottom pad showing as a thin band at the ground",
+    "red-brown clay dust on the lower sides"
+  ],
+  "references": [],
+  "size": [
+    0.457,
+    0.11,
+    0.457
+  ],
+  "style": "2023 MLB base, game-used: bright top, sides dusted and scuffed with infield clay",
+  "summary": "MLB 18 in square base: pillowed white vinyl canvas cover with sewn seams over a dark rubber bottom pad, clay dust on the sides.",
+  "tags": [
+    "prop",
+    "sports",
+    "fabric",
+    "rubber"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

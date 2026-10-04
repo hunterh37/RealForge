@@ -56,3 +56,31 @@ public func catmull(_ p: [V3], per: Int) -> [V3] {
     out.append(p[p.count - 1])
     return out
 }
+
+/// Contact AO for every piece of a rig (base and all part options), measured at rest in asset space.
+public func groundAO(_ rig: inout Rig, height: Float = 0.25, floor: Float = 0.5) {
+    for l in rig.base.indices { groundAO(&rig.base[l], height: height, floor: floor) }
+    for i in rig.parts.indices {
+        for l in rig.parts[i].levels.indices { groundAO(&rig.parts[i].levels[l], height: height, floor: floor) }
+        for o in rig.parts[i].alternates.indices { for l in rig.parts[i].alternates[o].indices { groundAO(&rig.parts[i].alternates[o][l], height: height, floor: floor) } }
+    }
+}
+
+/// Sharp 12-triangle box centered at the origin, planar UVs in meters. For hidden or tiny parts
+/// (drawer contents, file folders, shims) where a bevel would never be seen.
+public func cuboid(_ size: V3, material: MaterialKey) -> Surface {
+    var s = Surface(material: material)
+    let h = size / 2
+    let faces: [(V3, V3, V3)] = [(V3(1, 0, 0), V3(0, 0, -1), V3(0, 1, 0)), (V3(-1, 0, 0), V3(0, 0, 1), V3(0, 1, 0)),
+                                 (V3(0, 1, 0), V3(1, 0, 0), V3(0, 0, -1)), (V3(0, -1, 0), V3(1, 0, 0), V3(0, 0, 1)),
+                                 (V3(0, 0, 1), V3(1, 0, 0), V3(0, 1, 0)), (V3(0, 0, -1), V3(-1, 0, 0), V3(0, 1, 0))]
+    for (n, u, v) in faces {
+        let c = n * h, eu = u * h, ev = v * h
+        let pts = [c - eu - ev, c + eu - ev, c + eu + ev, c - eu + ev]
+        let base = UInt32(s.positions.count)
+        for p in pts { s.add(p, n, V2(simd_dot(p, u), simd_dot(p, v))) }
+        s.quad(base, base + 1, base + 2, base + 3)
+    }
+    s.computeTangents()
+    return s
+}

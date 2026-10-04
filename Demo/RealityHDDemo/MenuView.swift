@@ -51,7 +51,7 @@ struct MenuView: View {
         .glassBackgroundEffect(displayMode: hidden ? .never : .always)
         .persistentSystemOverlays(hidden ? .hidden : .automatic)
         .task {
-            // Launch arguments for captures: -scene forest-glade -sky golden -seed 2 -yaw -30 -hideMenu YES
+            // Launch arguments for captures: -scene forest-glade -sky golden -seed 2 -yaw -30 -hideMenu YES -pan 3 -dolly 0.3
             let d = UserDefaults.standard
             guard let id = d.string(forKey: "scene"), let scene = DemoScene(rawValue: id) else { return }
             if let sky = d.string(forKey: "sky").flatMap(DemoSky.init(rawValue:)) ?? scene.defaultSky { model.sky = sky }

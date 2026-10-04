@@ -1,0 +1,36 @@
+{
+  "budget": 10000,
+  "id": "batting-helmet",
+  "kind": "prop",
+  "materials": [
+    "plastic.helmet",
+    "foam.liner",
+    "rubber"
+  ],
+  "name": "Batting helmet",
+  "notes": "size as it rests on the ground, tilted onto the flap; front (brim) faces +Z",
+  "parts": [
+    "glossy rounded shell dome",
+    "short front bill/visor",
+    "single ear flap with ear hole on the left side",
+    "vent holes on the crown",
+    "rubber edge trim around the opening",
+    "black foam liner visible inside the rim"
+  ],
+  "references": [],
+  "size": [
+    0.245,
+    0.182,
+    0.315
+  ],
+  "style": "current pro helmet, glossy navy, small scuffs from use",
+  "summary": "Modern batting helmet: glossy navy shell with a single left ear flap, vent holes, black foam liner showing at the rim.",
+  "tags": [
+    "prop",
+    "sports",
+    "plastic"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

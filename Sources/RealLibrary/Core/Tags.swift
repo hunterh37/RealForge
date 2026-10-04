@@ -17,6 +17,8 @@ public enum AssetTag {
         "container", "furniture", "light", "sign", "barrier", "fence", "wall", "vehicle", "tool", "food", "decor",
         // RealityHD 3
         "leather", "workshop", "travel", "antique",
+        // RealityHD 4
+        "door", "window", "electronics", "book", "building", "articulated",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

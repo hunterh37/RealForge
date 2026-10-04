@@ -26,6 +26,12 @@ public enum SceneCatalog {
         AlpineMeadow.self,
         CanyonRoad.self,
         WinterForest.self,
+                OpenOffice.self,
+                ExecutiveOffice.self,
+                OfficeLobby.self,
+                ConferenceRoom.self,
+                OfficePlaza.self,
+                Ballpark.self,
                 // realityhd:scene
     ]
 

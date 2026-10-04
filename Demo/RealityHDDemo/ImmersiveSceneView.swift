@@ -9,6 +9,8 @@ import RealLibrary
 struct ImmersiveSceneView: View {
     let config: SpaceConfig
     @Environment(DemoModel.self) private var model
+    /// Scene root. Capture args `-pan <deg/s>` and `-dolly <m/s>` move it for camera-motion footage.
+    @State private var anchor = Entity()
 
     var body: some View {
         RealityView { content in
@@ -16,13 +18,13 @@ struct ImmersiveSceneView: View {
             model.status = "building \(config.scene.rawValue)…"
             let t0 = Date()
             do {
-                let env = try RealityHD.environment(config.sky.sunSky, skybox: true)
                 let id = config.scene.rawValue, seed = config.seed
                 guard let scene = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
                     model.status = "unknown scene \(id)"; model.loading = false; return
                 }
+                // Scene lighting hints (interior probe, fog off, its own sun) unless the menu sky applies.
+                let env = try RealityHD.environment(for: scene, sky: config.scene.usesSceneLighting ? nil : config.sky.sunSky)
                 let world = try await scene.entity()
-                let anchor = Entity()
                 anchor.addChild(world)
                 if let cam = scene.camera { anchor.transform = Self.viewerTransform(eye: cam.eye, target: cam.target, extraYaw: config.yaw) }
                 env.illuminate(world)
@@ -34,8 +36,28 @@ struct ImmersiveSceneView: View {
             }
             model.loading = false
         }
+        // Articulated assets: tap a door, drawer, lid or lamp to toggle it.
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() })
         .task { await RealViewerTracker.shared.start() }
+        .task { await captureMotion() }
         .onDisappear { RealViewerTracker.shared.stop() }
+    }
+
+    /// Slow pan (yaw about the viewer) and dolly (forward along -Z) from launch args, for capture.
+    private func captureMotion() async {
+        let d = UserDefaults.standard
+        let pan = d.float(forKey: "pan"), dolly = d.float(forKey: "dolly")
+        guard pan != 0 || dolly != 0 else { return }
+        while model.loading || anchor.children.isEmpty { try? await Task.sleep(for: .milliseconds(50)) }
+        let base = anchor.transform.matrix
+        let t0 = Date()
+        while !Task.isCancelled {
+            let t = Float(Date().timeIntervalSince(t0))
+            let rot = simd_quatf(angle: -pan * t * .pi / 180, axis: SIMD3(0, 1, 0))
+            let move = Transform(scale: .one, rotation: rot, translation: rot.act(SIMD3(0, 0, dolly * t)))
+            anchor.transform = Transform(matrix: move.matrix * base)
+            try? await Task.sleep(for: .milliseconds(16))
+        }
     }
 
     /// Moves the scene so `eye` (minus standing height) lands at the origin and `target` lies along -Z.

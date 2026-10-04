@@ -31,6 +31,23 @@ public enum RealityHD {
         return try await upload(lod, name: A.id)
     }
 
+    /// An articulated asset as a live entity: parts move with `entity.setArticulation("open")`,
+    /// `nextArticulation()` or, with `interactive`, `realToggle()` from a tap gesture.
+    public static func articulated(_ id: String, seed: UInt64 = 1, state: String? = nil, interactive: Bool = true) async throws -> Entity {
+        guard let t = Catalog.type(id) as? any RealArticulated.Type else { throw RealityHDError.unknown(id) }
+        let rig = await Task.detached(priority: .userInitiated) { t.init().rig(seed: seed) }.value
+        return try await rig.entityAsync(name: id, state: state, interactive: interactive)
+    }
+
+    /// Lighting rig for a scene: its sky, fog and interior probe hints, with `sky` overriding the hint's sun.
+    @MainActor
+    public static func environment(for scene: RealScene, sky: SunSky? = nil, skybox: Bool = true) throws -> RealEnvironment {
+        var s = sky ?? scene.lighting.sky ?? SunSky()
+        if let fog = scene.lighting.fog { s.fogDensity = fog }
+        if let k = scene.lighting.sunScale { s.sunLux *= k }
+        return try RealEnvironment(s, skybox: skybox, interior: scene.lighting.interior)
+    }
+
     /// A composed scene by id (see SceneCatalog.ids).
     public static func scene(_ id: String, seed: UInt64 = 1) async throws -> Entity {
         guard let s = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
