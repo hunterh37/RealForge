@@ -32,6 +32,11 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xF4F3EE); $0.colorB = linear(0xE0C21C); $0.colorC = linear(0x16181C)
             $0.knobs = V4(0.32, 0, 2, 0.3); $0.seed = 803; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
         },
+        // IV bag printed film label (green band, lot block, barcode), UVs 0...1 across the print, v down.
+        MaterialSpec(key: "label.bedside-iv", program: .medLabel).with {
+            $0.colorA = linear(0xE9EEF0); $0.colorB = linear(0x2F7A4A); $0.colorC = linear(0x223040)
+            $0.knobs = V4(0.14, 1, 6, 0.9); $0.seed = 804; $0.tileSize = 0; $0.resolution = 512; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalBedside
     ]
 }

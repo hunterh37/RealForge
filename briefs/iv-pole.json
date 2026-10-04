@@ -1,5 +1,5 @@
 {
-  "budget": 9000,
+  "budget": 10200,
   "id": "iv-pole",
   "kind": "prop",
   "materials": [
@@ -9,7 +9,7 @@
     "plastic.medical-grey",
     "rubber",
     "plastic.frosted",
-    "label.iv",
+    "label.bedside-iv",
     "fluid.saline",
     "plastic.clear"
   ],
@@ -27,9 +27,9 @@
   ],
   "references": [],
   "size": [
-    0.63,
+    0.567,
     1.4,
-    0.6
+    0.604
   ],
   "style": "Hospital ward IV stand (Pryor / Midmark class), chrome base with scuffed casters, fresh saline bag.",
   "summary": "Telescoping IV pole: 5-leg chrome base on casters, powder-coated outer tube, twist lock, stainless 2-hook top and a 1 L IV bag with drip chamber and line.",
