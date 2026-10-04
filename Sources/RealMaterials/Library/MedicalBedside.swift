@@ -50,6 +50,21 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xF2F2EE); $0.colorB = linear(0x2A5DA8); $0.colorC = linear(0x1A1A1C)
             $0.knobs = V4(0.22, 1, 3, 0.4); $0.seed = 805; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
         },
+        // Bedside monitor display (same program and look as screen.vitals, tileSize 0 for a 0.32 m panel).
+        MaterialSpec(key: "screen.bedside-vitals", program: .vitalsUI).with {
+            $0.colorA = linear(0x030405); $0.knobs = V4(72, 98, 0.62, 0); $0.seed = 806; $0.tileSize = 0; $0.resolution = 2048
+            $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 0.95; $0.roughness = 0.3; $0.specular = 0.15
+        },
+        // Same display in alarm: tachycardia, low SpO2, yellow banner.
+        MaterialSpec(key: "screen.bedside-vitals-alarm", program: .vitalsUI).with {
+            $0.colorA = linear(0x030405); $0.knobs = V4(128, 89, 0.35, 1); $0.seed = 807; $0.tileSize = 0; $0.resolution = 2048
+            $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 0.95; $0.roughness = 0.3; $0.specular = 0.15
+        },
+        // Strip of white cloth tape with a handwritten bed number (greeked as print), matte.
+        MaterialSpec(key: "label.bedside-bedtape", program: .medLabel).with {
+            $0.colorA = linear(0xEFEDE4); $0.colorB = linear(0xEFEDE4); $0.colorC = linear(0x1E2A5A)
+            $0.knobs = V4(0, 0, 1, 0); $0.seed = 808; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.3
+        },
         // realityhd:material.medicalBedside
     ]
 }

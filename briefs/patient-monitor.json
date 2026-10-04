@@ -1,19 +1,18 @@
 {
-  "budget": 9000,
+  "budget": 7000,
   "id": "patient-monitor",
   "kind": "prop",
   "materials": [
     "plastic.medical",
-    "plastic.medical-grey",
     "screen.off",
-    "screen.vitals",
-    "screen.vitals-alarm",
+    "screen.bedside-vitals",
+    "screen.bedside-vitals-alarm",
     "emissive.led-red",
     "metal.powder-white",
     "metal.chrome"
   ],
   "name": "Patient monitor",
-  "notes": "",
+  "notes": "Wall-mounted: the channel plate's lower end sits at y = 0; scenes place it on a wall. Width includes the ECG trunk cable plugged into the right side.",
   "parts": [
     "15 in display with vitals screen (off/on/alarm)",
     "molded two-tone housing with rear vents and carry handle",
@@ -25,9 +24,9 @@
   ],
   "references": [],
   "size": [
-    0.37,
-    0.36,
-    0.25
+    0.46,
+    0.381,
+    0.202
   ],
   "style": "Current ICU monitor (Philips IntelliVue MX500 class), clean, light wear on the handle.",
   "summary": "15 in bedside patient monitor on a tilting wall-channel mount: grey bezel, vitals display, alarm light bar, rear handle and tilt bracket.",
