@@ -11,7 +11,7 @@
     "metal.powdercoat:2E7D4F"
   ],
   "name": "Crash cart",
-  "notes": "front faces +Z; O2 holder on -X, push handle on +X.",
+  "notes": "front faces +Z; O2 holder on -X, push handle on +X; height includes the defibrillator on its shelf post (cabinet top 1.09 m).",
   "parts": [
     "red steel cabinet on 125 mm casters with a bumper",
     "five drawers with full-width aluminium pulls",
@@ -24,9 +24,9 @@
   ],
   "references": [],
   "size": [
-    0.98,
-    1.3,
-    0.66
+    0.983,
+    1.378,
+    0.625
   ],
   "style": "Harloff class emergency cart, red powder coat with scuffs on the bumper and drawer edges, a daily check log clipped to the side.",
   "summary": "Emergency crash cart: red powder-coated cabinet with five drawers, breakaway seal, rimmed top, O2 tank holder, CPR board and defib shelf.",
