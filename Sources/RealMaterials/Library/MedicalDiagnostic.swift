@@ -6,8 +6,8 @@ public extension MaterialLibrary {
         // Diamond knurl on chrome instrument handles (otoscope, laryngoscope): crossed V-grooves at about
         // 1.5 mm pitch, bright crowns, darker groove floors. Opaque use of the chain-link diamond pattern.
         MaterialSpec(key: "metal.knurl-chrome", program: .chainLink).with {
-            $0.colorA = linear(0xD2D4D6); $0.colorB = linear(0x55585C)
-            $0.knobs = V4(1, 0.06, 0.22, 0.25); $0.seed = 541; $0.tileSize = 0.003; $0.resolution = 256
+            $0.colorA = linear(0xE2E4E6); $0.colorB = linear(0xA2A5A8)
+            $0.knobs = V4(1, 0.085, 0.2, 0.25); $0.seed = 541; $0.tileSize = 0.003; $0.resolution = 256
             $0.normalStrength = 1.4; $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.22
         },
         // Fingertip oximeter OLED: black panel, SpO2 in cyan and pulse rate in green (crop the numerics
@@ -15,6 +15,13 @@ public extension MaterialLibrary {
         MaterialSpec(key: "screen.oximeter-oled", program: .vitalsUI).with {
             $0.colorA = linear(0x010101); $0.knobs = V4(76, 98, 0.5, 0); $0.seed = 542; $0.tileSize = 1; $0.resolution = 1024
             $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 1.3; $0.roughness = 0.2; $0.specular = 0.2
+        },
+        // Reprocessed stainless (laryngoscope blades, reusable instruments): autoclave-dulled satin with
+        // water-spot smudges and fine scratches from cleaning.
+        MaterialSpec(key: "metal.surgical-autoclaved", program: .brushedMetal).with {
+            $0.colorA = linear(0xA9ABAC); $0.colorB = linear(0x8A8576)
+            $0.knobs = V4(0.6, 0.34, 0.75, 0.55); $0.seed = 543; $0.tileSize = 0.07; $0.normalStrength = 0.3
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.36
         },
         // realityhd:material.medicalDiagnostic
     ]

@@ -4,13 +4,14 @@
   "kind": "prop",
   "materials": [
     "metal.chrome",
-    "metal.surgical",
-    "metal.surgical-mirror",
+    "metal.knurl-chrome",
+    "metal.surgical-autoclaved",
+    "glass.clear",
     "emissive.surgical",
-    "glass.clear"
+    "plastic.matte"
   ],
   "name": "Laryngoscope",
-  "notes": "",
+  "notes": "folded blade rests on the handle about 15 degrees off parallel (its Macintosh curve touches the handle near the foot), so depth is handle plus 16 mm",
   "parts": [
     "knurled chrome handle",
     "end cap",
@@ -21,9 +22,9 @@
   ],
   "references": [],
   "size": [
-    0.032,
-    0.16,
-    0.06
+    0.029,
+    0.153,
+    0.045
   ],
   "style": "reusable stainless anaesthesia set, autoclave-dulled blade",
   "summary": "Macintosh #3 fiber-optic laryngoscope standing on a knurled chrome C-cell handle, blade folded on the hinge bar or locked open and lit.",
