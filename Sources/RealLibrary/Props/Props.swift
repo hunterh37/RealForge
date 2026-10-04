@@ -87,6 +87,12 @@ public enum Props {
         BeamSeating.self,
         CheckInKiosk.self,
         XrayViewer.self,
+        OperatingTable.self,
+        MayoStand.self,
+        AnesthesiaMachine.self,
+        InstrumentContainer.self,
+        CrashCart.self,
+        BiohazardBin.self,
         // realityhd:prop
     ]
 }

@@ -1,0 +1,43 @@
+{
+  "budget": 10000,
+  "id": "mayo-stand",
+  "kind": "prop",
+  "materials": [
+    "metal.casework",
+    "metal.surgical",
+    "metal.surgical-mirror",
+    "drape.surgical",
+    "plastic.black",
+    "rubber"
+  ],
+  "name": "Mayo instrument stand",
+  "notes": "tray cantilevers over the U opening toward +Z; size in the low state (tray rim 0.91 m, Pedigo class range 0.86-1.37 m).",
+  "parts": [
+    "stainless tube U-base with four 50 mm casters",
+    "outer column tube with a black lock knob",
+    "inner telescoping column",
+    "cantilever arm and tray frame",
+    "removable stainless tray with rolled rim",
+    "blue drape over the tray",
+    "instruments on the drape: scissors, hemostats, forceps, scalpel"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.915,
+    0.585
+  ],
+  "style": "hospital stainless Mayo stand (Pedigo / Blickman class), polished tubes, drape crease lines, a towel clip on the drape edge.",
+  "summary": "Mayo instrument stand: stainless U-base on casters, telescoping column with a lock knob, draped stainless tray with instruments.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "articulated",
+    "metal",
+    "furniture"
+  ],
+  "theme": "Theatre",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
