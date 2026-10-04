@@ -24,6 +24,14 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.4, 0.46, 0.55, 0.8); $0.seed = 904; $0.tileSize = 0.25; $0.normalStrength = 0.3
             $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.46
         },
+        // Device housing plastic after years in theatre: wipe marks, fine scratches, grime in low spots. Tint for color.
+        MaterialSpec(key: "plastic.medical-worn", program: .plastic).with {
+            $0.colorA = linear(0xECEAE3); $0.knobs = V4(0.6, 0.3, 0.34, 0); $0.seed = 905; $0.tileSize = 0.35; $0.resolution = 512; $0.normalStrength = 0.45
+        },
+        // Grey bumper / work-surface plastic, scuffed by trolleys and shoes. Tint for color.
+        MaterialSpec(key: "plastic.medical-grey-worn", program: .plastic).with {
+            $0.colorA = linear(0xA4A9AD); $0.knobs = V4(0.9, 0.55, 0.4, 0); $0.seed = 906; $0.tileSize = 0.3; $0.resolution = 512; $0.normalStrength = 0.5
+        },
         // realityhd:material.medicalTheatre
     ]
 }
