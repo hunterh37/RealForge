@@ -5,12 +5,49 @@ import RealKit
 /// One-call entry points. Geometry is generated off the main actor (all generators are pure and
 /// Sendable); GPU upload, texture synthesis and ShaderGraph compilation happen on the main actor.
 public enum RealityHD {
-    /// Register systems/components and pick a quality preset. Call once at app start.
+    /// Register systems/components and apply a performance tier. Call once at app start.
+    /// `adaptive` overrides the tier's governor switch.
     @MainActor
-    public static func setup(_ quality: RealQuality.Preset = .balanced) {
+    public static func setup(_ tier: RealPerformance.Tier = .balanced, adaptive: Bool? = nil) {
+        var s = RealPerformance(tier)
+        if let adaptive { s.adaptive = adaptive }
+        setup(s)
+    }
+
+    /// Register systems/components and apply explicit settings.
+    @MainActor
+    public static func setup(_ settings: RealPerformance) {
+        RealKitSetup.register()
+        RealPerformance.current = settings
+    }
+
+    /// Register systems/components and restore settings saved with `RealPerformance.save()`
+    /// (or `fallback` on first launch). Returns the applied settings.
+    @MainActor @discardableResult
+    public static func setup(restoring key: String = RealPerformance.defaultsKey, fallback: RealPerformance.Tier = .balanced,
+                             defaults: UserDefaults = .standard) -> RealPerformance {
+        let s = RealPerformance.load(from: defaults, key: key) ?? RealPerformance(fallback)
+        setup(s)
+        return s
+    }
+
+    /// Texture-only presets (RealityHD 4 API).
+    @MainActor
+    public static func setup(quality: RealQuality.Preset) {
         RealQuality.apply(quality)
         RealKitSetup.register()
     }
+
+    /// The active performance settings. Assigning applies live settings at once; build-time settings
+    /// reach entities built afterwards (`RealPerformance.needsRebuild(from:)`).
+    @MainActor
+    public static var performance: RealPerformance {
+        get { RealPerformance.current }
+        set { RealPerformance.current = newValue }
+    }
+
+    /// Live frame and scene statistics (fps, triangles, draws, shadow casters, adaptive scale).
+    @MainActor public static var stats: RealStats { RealStats.shared }
 
     /// Outdoor lighting rig. Add `env.root` to the scene and call `env.illuminate(content)`.
     @MainActor
@@ -71,7 +108,11 @@ public enum RealityHD {
 
     @MainActor
     static func upload(_ lod: LODModel, name: String) async throws -> Entity {
-        lod.levels.count == 1 ? try await lod.levels[0].modelEntityAsync() : try await lod.entityAsync(name: name)
+        guard lod.levels.count == 1 else { return try await lod.entityAsync(name: name) }
+        let e = try await lod.levels[0].modelEntityAsync()
+        e.realTagCost(RealRenderCostComponent(triangles: lod.levels[0].triangleCount, drawCalls: lod.levels[0].surfaces.filter { !$0.isEmpty }.count,
+                                              size: simd_length(lod.levels[0].bounds.max - lod.levels[0].bounds.min), lod: 0))
+        return e
     }
 
     public enum RealityHDError: Error { case unknown(String) }

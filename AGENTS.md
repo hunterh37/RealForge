@@ -23,6 +23,10 @@ Interior scenes: `RealityHD.environment(for: scene)` applies the scene's sky, in
 Tap gesture for articulated parts: `SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() }`.
 Hand grab: assets tagged `handheld` come back grabbable (`ManipulationComponent`); `grabbable:` overrides.
 
+Performance: `RealityHD.setup(.performance)` (tiers battery, performance, balanced, ultra, cinematic) or
+`RealityHD.setup(restoring:)` for saved settings; edit `RealityHD.performance` live, read `RealityHD.stats`.
+Guide: `docs/guides/performance.md`. Offline cost per tier: `realityhd perf [scene]`.
+
 Mixed reality: skip the skybox, keep `env` for IBL and sun shadows, or skip `env` entirely and let
 the system lighting apply (fog uses `RealAtmosphere`; set `fogDensity = 0` indoors).
 
@@ -45,7 +49,7 @@ Sources/
     Props/<Theme>/<Type>.swift       registry: Props/Props.swift
     Structures/<Theme>/<Type>.swift  registry: Structures/Structures.swift
     Scenes/<Type>.swift              registry: Scenes/SceneCatalog.swift
-  realityhd/       CLI: list, stats, render, thumbs, textures, shaders, catalog, new, bench,
+  realityhd/       CLI: list, stats, render, thumbs, textures, shaders, catalog, new, bench, perf,
                    context, brief, lint, sheet, gate (Gate.swift, Imaging.swift, Agent.swift)
 briefs/<id>.json, briefs/signoff/<id>.json   prop briefs and gate sign-offs (tests check both)
 .claude/skills/  realityhd-prop, realityhd-brief, realityhd-gate, realityhd-material
@@ -118,6 +122,8 @@ Per-asset defaults: `static let preview = PreviewHint(...)`.
   Trees ~20k, typical props under 10k.
 - Texture V: row 0 = v 0 (RealityKit LowLevelTexture). Atlas content is drawn with v up the card.
 - Material keys are `family.variant`; a `:RRGGBB` suffix tints `colorA`.
+- Scene meshes go through `RealScene.upload`/`LODModel.entityAsync`, which tag `RealRenderCostComponent`; set
+  shadow eligibility through `castsShadow:`, not a raw `DynamicLightShadowComponent` (the policy overwrites it).
 - Never put `\.keypath` on `any RealAsset.Type` (Swift 6.3 SILGen crash); use closures.
 - Ids are permanent once merged. Asset and scene ids share one namespace.
 

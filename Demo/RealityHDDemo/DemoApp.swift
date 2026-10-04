@@ -92,14 +92,51 @@ final class DemoModel {
     var open: SpaceConfig?
     var loading = false
     var status = ""
+
+    /// Package render settings, applied and saved on every edit (`RealityHD.performance`).
+    var perf: RealPerformance = RealityHD.performance {
+        didSet { RealityHD.performance = perf; perf.save() }
+    }
+    /// Settings the open scene was built with.
+    var builtWith: RealPerformance?
+    /// Bumped to rebuild the open scene in place.
+    var rebuildToken = 0
+    var showHUD = UserDefaults.standard.bool(forKey: "demo.hud") {
+        didSet { UserDefaults.standard.set(showHUD, forKey: "demo.hud") }
+    }
+
+    /// Build-time settings changed since the open scene was built.
+    var needsRebuild: Bool { open != nil && builtWith.map { perf.needsRebuild(from: $0) } == true }
+
+    func select(_ tier: RealPerformance.Tier) {
+        let adaptive = perf.adaptive
+        perf = RealPerformance(tier).with { $0.adaptive = adaptive || $0.adaptive }
+    }
+
+    /// Edits one setting; the tier label drops to Custom.
+    func set(_ edit: (inout RealPerformance) -> Void) {
+        var p = perf
+        edit(&p)
+        guard p != perf else { return }
+        p.tier = RealPerformance(p.tier ?? .balanced).with { $0.adaptive = p.adaptive } == p ? p.tier : nil
+        perf = p
+    }
 }
 
 @main
 struct RealityHDDemoApp: App {
-    @State private var model = DemoModel()
+    @State private var model: DemoModel
     @State private var style: ImmersionStyle = .full
 
-    init() { RealityHD.setup(.balanced) }
+    init() {
+        // Saved settings, then launch overrides: -tier battery|performance|balanced|ultra|cinematic -adaptive YES -hud YES
+        RealityHD.setup(restoring: RealPerformance.defaultsKey, fallback: .balanced)
+        let d = UserDefaults.standard
+        if let t = d.string(forKey: "tier").flatMap(RealPerformance.Tier.init(rawValue:)) { RealityHD.performance = RealPerformance(t) }
+        if d.object(forKey: "adaptive") != nil { RealityHD.performance.adaptive = d.bool(forKey: "adaptive") }
+        if d.object(forKey: "hud") != nil { d.set(d.bool(forKey: "hud"), forKey: "demo.hud") }
+        _model = State(initialValue: DemoModel())
+    }
 
     var body: some Scene {
         WindowGroup(id: "menu") {

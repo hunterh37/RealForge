@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased: performance layer
+
+- `RealPerformance`: package-wide render settings with tiers battery, performance, balanced (default,
+  unchanged output), ultra, cinematic; Codable, saved to UserDefaults; `needsRebuild(from:)`.
+- Live: LOD bias, draw distance, small-object culling, ground-cover range, shadow on/off, distance scale,
+  caster LOD limit, minimum caster size. Build-time: texture scale and cap, eight ShaderGraph feature
+  switches, ground-cover density and distant thinning, forced static batching, scene light budget, skybox size.
+- Adaptive governor in `RealPerformanceSystem`: holds `targetFPS` by scaling LOD bias, distances and shadow
+  distance. `RealStats` (`RealityHD.stats`): fps, frame ms, triangles, draws, instances, casters, LOD switches.
+- `RealRenderCostComponent` on every scene mesh; `RealSunComponent` on the sun. `RealScene.estimate` and
+  `realityhd perf` report per-tier cost at the camera; global `--tier` flag for every CLI command.
+- `RealityHD.setup(_ tier:adaptive:)`, `setup(_ settings:)`, `setup(restoring:)`; the texture-only preset
+  moved to `setup(quality:)`.
+- Demo: Performance screen (tiers, every setting, live stats, reload on build-time change), head-locked stats
+  overlay, in-place scene rebuild, launch args `-tier -adaptive -hud`.
+
 ## 4.1.0
 
 Baseball: a regulation ballpark scene with the field, structures, gear and materials to build it.

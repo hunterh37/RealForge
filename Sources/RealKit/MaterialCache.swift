@@ -118,6 +118,9 @@ public final class RealMaterialCache {
         cb.commit(); cb.waitUntilCompleted()
     }
 
+    /// Drops compiled materials but keeps GPU textures (shader feature switches changed).
+    public func invalidateShaders() { pbr.removeAll(); graph.removeAll() }
+
     public func purge() { pbr.removeAll(); graph.removeAll(); tex.removeAll(); alphaViews.removeAll(); alphaBacking.removeAll(); textureBytes = 0 }
 
     // MARK: textures
@@ -267,13 +270,14 @@ public final class RealMaterialCache {
     private func buildGraph(_ s: MaterialSpec, jitter: SIMD2<Float> = .zero) async throws -> any RealityKit.Material {
         guard let t = try textures(s) else { throw TextureSynth.SynthError.encode }
         var o = RealShaderOptions()
+        let perf = RealPerformance.active
         o.cutout = s.mode == .cutout; o.aoMap = t.ao != nil; o.metallicMap = t.metallic != nil
-        o.wind = s.wind > 0; o.translucency = s.translucency > 0; o.antiTile = s.antiTile
-        o.topLayer = s.topAmount > 0; o.fog = RealAtmosphere.fogDensity > 0; o.triplanar = s.triplanar
-        o.instanceJitter = jitter != .zero
+        o.wind = s.wind > 0 && perf.wind; o.translucency = s.translucency > 0 && perf.translucency; o.antiTile = s.antiTile && perf.antiTile
+        o.topLayer = s.topAmount > 0 && perf.snowLayer; o.fog = RealAtmosphere.fogDensity > 0 && perf.fog; o.triplanar = s.triplanar
+        o.instanceJitter = jitter != .zero && perf.instanceVariation
         o.transparent = s.mode == .transparent
-        o.flowNormals = s.mode == .transparent && s.flow > 0
-        let splatSpec = s.splat.map { spec($0) }
+        o.flowNormals = s.mode == .transparent && s.flow > 0 && perf.waterFlow
+        let splatSpec = perf.splat ? s.splat.map { spec($0) } : nil
         let t2 = try splatSpec.flatMap { try textures($0) }
         o.splat = t2 != nil
         var m = try await RealShaderGraph.material(o)

@@ -5,42 +5,67 @@ import RealKit
 import RealLibrary
 
 /// Full-immersion scene: sky dome + IBL + sun, the composed scene placed so its camera hint sits at
-/// the viewer's feet facing -Z, and head-tracked LOD.
+/// the viewer's feet facing -Z, and head-tracked LOD. Rebuilds in place when `model.rebuildToken`
+/// moves (build-time performance settings changed).
 struct ImmersiveSceneView: View {
     let config: SpaceConfig
     @Environment(DemoModel.self) private var model
+    /// Holds the environment and the scene anchor; emptied on rebuild.
+    @State private var root = Entity()
     /// Scene root. Capture args `-pan <deg/s>` and `-dolly <m/s>` move it for camera-motion footage.
     @State private var anchor = Entity()
 
     var body: some View {
-        RealityView { content in
-            model.loading = true
-            model.status = "building \(config.scene.rawValue)…"
-            let t0 = Date()
-            do {
-                let id = config.scene.rawValue, seed = config.seed
-                guard let scene = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
-                    model.status = "unknown scene \(id)"; model.loading = false; return
-                }
-                // Scene lighting hints (interior probe, fog off, its own sun) unless the menu sky applies.
-                let env = try RealityHD.environment(for: scene, sky: config.scene.usesSceneLighting ? nil : config.sky.sunSky)
-                let world = try await scene.entity()
-                anchor.addChild(world)
-                if let cam = scene.camera { anchor.transform = Self.viewerTransform(eye: cam.eye, target: cam.target, extraYaw: config.yaw) }
-                env.illuminate(world)
-                content.add(env.root)
-                content.add(anchor)
-                model.status = "\(id) seed \(seed) \(config.sky.rawValue): \(Int(Date().timeIntervalSince(t0) * 1000)) ms"
-            } catch {
-                model.status = "error: \(error)"
+        RealityView { content, attachments in
+            content.add(root)
+            if let hud = attachments.entity(for: "hud") {
+                let head = AnchorEntity(.head)
+                head.anchoring.trackingMode = .continuous
+                hud.position = SIMD3(0, -0.24, -0.8)
+                head.addChild(hud)
+                content.add(head)
             }
-            model.loading = false
+        } update: { _, attachments in
+            attachments.entity(for: "hud")?.isEnabled = model.showHUD
+        } attachments: {
+            Attachment(id: "hud") { StatsHUD() }
         }
         // Articulated assets: tap a door, drawer, lid or lamp to toggle it.
         .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() })
+        .task(id: model.rebuildToken) { await build() }
         .task { await RealViewerTracker.shared.start() }
         .task { await captureMotion() }
         .onDisappear { RealViewerTracker.shared.stop() }
+    }
+
+    private func build() async {
+        model.loading = true
+        model.status = "building \(config.scene.rawValue)…"
+        let t0 = Date()
+        let perf = RealityHD.performance
+        do {
+            let id = config.scene.rawValue, seed = config.seed
+            guard let scene = await Task.detached(priority: .userInitiated, operation: { SceneCatalog.build(id, seed: seed) }).value else {
+                model.status = "unknown scene \(id)"; model.loading = false; return
+            }
+            // Scene lighting hints (interior probe, fog off, its own sun) unless the menu sky applies.
+            let env = try RealityHD.environment(for: scene, sky: config.scene.usesSceneLighting ? nil : config.sky.sunSky)
+            let world = try await scene.entity()
+            root.children.removeAll()
+            anchor.children.removeAll()
+            anchor.addChild(world)
+            if let cam = scene.camera { anchor.transform = Self.viewerTransform(eye: cam.eye, target: cam.target, extraYaw: config.yaw) }
+            env.illuminate(world)
+            root.addChild(env.root)
+            root.addChild(anchor)
+            model.builtWith = perf
+            let cost = scene.estimate(settings: perf)
+            model.status = "\(id) seed \(seed) \(config.sky.rawValue) \(perf.tier?.rawValue ?? "custom"): "
+                + "\(Int(Date().timeIntervalSince(t0) * 1000)) ms, est \(cost.triangles / 1000)k tris \(cost.drawCalls) draws"
+        } catch {
+            model.status = "error: \(error)"
+        }
+        model.loading = false
     }
 
     /// Slow pan (yaw about the viewer) and dolly (forward along -Z) from launch args, for capture.

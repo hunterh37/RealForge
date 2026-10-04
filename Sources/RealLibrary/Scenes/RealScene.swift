@@ -66,8 +66,11 @@ public struct RealScene {
         }
         var statics = singles
         if let bake { statics = await Self.baked(statics, rigs: rigs, fields: fields, settings: bake) }
-        if batchStatics {
-            for g in Self.batches(statics, cell: batchCell) { root.addChild(try await Self.upload(g.asset, at: .identity, materials: materials)) }
+        let perf = RealPerformance.active
+        if batchStatics || perf.forceBatching {
+            for g in Self.batches(statics, cell: batchCell, detailSize: perf.detailSize) {
+                root.addChild(try await Self.upload(g.asset, at: .identity, materials: materials))
+            }
         } else {
             for s in statics { root.addChild(try await Self.upload(s.asset, at: s.at, materials: materials)) }
         }
@@ -76,7 +79,7 @@ public struct RealScene {
             e.transform = Transform(scale: r.at.scale, rotation: r.at.rotation, translation: r.at.translation)
             root.addChild(e)
         }
-        for l in lights {
+        for l in Self.budgetLights(lights, max: perf.maxSceneLights) {
             let e = Entity()
             e.name = "light:\(l.name)"
             l.configure(e)
@@ -86,24 +89,44 @@ public struct RealScene {
         return root
     }
 
+    /// Every static gets a LOD root (single-level assets too) so draw distance and detail culling reach it,
+    /// and every mesh gets a cost tag so the shadow policy and stats see it.
     @MainActor
     static func upload(_ asset: LODModel, at: Xform, materials: RealMaterialCache?) async throws -> Entity {
-        let e: Entity
-        if asset.levels.count == 1 { e = try await asset.levels[0].modelEntityAsync(materials: materials) }
-        else { e = try await asset.entityAsync(materials: materials) }
-        e.transform = Transform(scale: at.scale, rotation: at.rotation, translation: at.translation)
         // Water and glass sheets: no sun shadow on the bed below.
         let surfaces = asset.levels[0].surfaces
-        if !surfaces.isEmpty && surfaces.allSatisfy({ MaterialLibrary.spec(for: $0.material).mode == .transparent }) {
-            e.components.set(DynamicLightShadowComponent(castsShadow: false))
+        let glass = !surfaces.isEmpty && surfaces.allSatisfy({ MaterialLibrary.spec(for: $0.material).mode == .transparent })
+        let e: Entity
+        if asset.levels.count == 1 {
+            e = Entity()
+            e.name = asset.levels[0].name
+            let m = try await asset.levels[0].modelEntityAsync(materials: materials)
+            m.name = "lod0"
+            let size = asset.levels[0].boundsDiagonal
+            m.realTagCost(asset.levels[0].cost(lod: 0, size: size * at.scale.max(), shadowEligible: !glass))
+            e.addChild(m)
+            let b = asset.levels[0].bounds
+            e.components.set(RealLODComponent(switchDistances: [], center: (b.min + b.max) / 2, size: size))
+        } else {
+            e = try await asset.entityAsync(materials: materials, castsShadow: !glass)
         }
+        e.transform = Transform(scale: at.scale, rotation: at.rotation, translation: at.translation)
         return e
+    }
+
+    /// Brightest lights first, up to `max`.
+    static func budgetLights(_ lights: [RigLight], max n: Int) -> [RigLight] {
+        guard lights.count > n else { return lights }
+        return Array(lights.enumerated().sorted { a, b in a.element.intensity != b.element.intensity ? a.element.intensity > b.element.intensity : a.offset < b.offset }
+            .prefix(Swift.max(0, n)).map(\.element))
     }
 
     /// Static batching: singles grouped by cell and LOD layout, merged per material; transparent
     /// surfaces split into their own batch.
-    static func batches(_ singles: [Single], cell: Float) -> [Single] {
-        struct Key: Hashable { var cx: Int32; var cz: Int32; var distances: [Float]; var glass: Bool }
+    /// `detailSize` > 0 keeps objects smaller than it in their own batches so detail culling and the
+    /// shadow size rule still reach them.
+    static func batches(_ singles: [Single], cell: Float, detailSize: Float = 0) -> [Single] {
+        struct Key: Hashable { var cx: Int32; var cz: Int32; var distances: [Float]; var glass: Bool; var small: Bool }
         var groups: [Key: [Model]] = [:]
         var order: [Key] = []
         for s in singles {
@@ -115,10 +138,11 @@ public struct RealScene {
                     return o
                 }
                 guard levels[0].triangleCount > 0 else { continue }
-                let k = Key(cx: Int32(c.x.rounded(.down)), cz: Int32(c.z.rounded(.down)), distances: s.asset.switchDistances, glass: glass)
-                if var g = groups[k] {
-                    for i in g.indices { g[i].add(levels[min(i, levels.count - 1)]) }
-                    groups[k] = g
+                let small = detailSize > 0 && s.asset.levels[0].boundsDiagonal * s.at.scale.max() < detailSize
+                let k = Key(cx: Int32(c.x.rounded(.down)), cz: Int32(c.z.rounded(.down)), distances: s.asset.switchDistances, glass: glass, small: small)
+                // Mutate in place: copying the group out and back duplicated every merged vertex array per add.
+                if groups[k] != nil {
+                    for i in groups[k]!.indices { groups[k]![i].add(levels[min(i, levels.count - 1)]) }
                 } else { groups[k] = levels; order.append(k) }
             }
         }
@@ -201,6 +225,11 @@ public struct RealScene {
 
     /// Entities created for the static part (draw-call estimate): singles or batches, plus field cells.
     public var staticEntityEstimate: Int { batchStatics ? Self.batches(singles, cell: batchCell).count : singles.count }
+
+    /// Statics as they will be uploaded under `settings` (batched when the scene or the settings ask).
+    public func uploadedStatics(_ settings: RealPerformance = .active) -> [Single] {
+        batchStatics || settings.forceBatching ? Self.batches(singles, cell: batchCell, detailSize: settings.detailSize) : singles
+    }
 }
 
 public extension Xform {

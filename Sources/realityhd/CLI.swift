@@ -58,6 +58,9 @@ realityhd sheet <id> [--seed n]            out/gate/<id>/sheet.png: six views + 
 realityhd gate <id> [--ref img] [--view az,el] [--fit-view] [--verdict file] [--signoff] [--no-sheet] [--threshold t]
                                           vision gate: lint, sheet, reference compare, score, sign-off
 realityhd bench                           release timing (swift run -c release realityhd bench)
+realityhd perf [scene...] [--seed n]      tris, shadow tris, draws, instances at the camera hint per tier
+
+Global: --tier battery|performance|balanced|ultra|cinematic   RealPerformance tier (default balanced).
 
 REALITYHD_NO_DISK_CACHE=1 skips the texture disk cache (~/Library/Caches/RealityHD/textures).
 """

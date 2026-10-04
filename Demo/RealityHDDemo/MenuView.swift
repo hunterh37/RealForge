@@ -1,4 +1,6 @@
 import SwiftUI
+import RealKit
+import RealLibrary
 
 struct MenuView: View {
     @Environment(DemoModel.self) private var model
@@ -27,6 +29,21 @@ struct MenuView: View {
                             }
                         }
                         .disabled(model.loading)
+                    }
+                }
+                Section("Performance") {
+                    NavigationLink {
+                        PerformanceView().environment(model)
+                    } label: {
+                        HStack {
+                            Text((model.perf.tier?.rawValue ?? "custom").capitalized)
+                            if model.perf.adaptive { Text("adaptive").font(.caption).foregroundStyle(.secondary) }
+                            Spacer()
+                            if model.open != nil { FPSBadge() }
+                        }
+                    }
+                    if model.needsRebuild {
+                        Button("Reload scene to apply build settings") { model.builtWith = nil; model.rebuildToken += 1 }
                     }
                 }
                 Section("Lighting") {
@@ -75,5 +92,13 @@ struct MenuView: View {
     private func exit() async {
         await dismissSpace()
         model.open = nil
+    }
+}
+
+struct FPSBadge: View {
+    var stats = RealityHD.stats
+    var body: some View {
+        Text(String(format: "%.0f fps  %dk tris", stats.fps, stats.triangles / 1000))
+            .font(.callout.monospacedDigit()).foregroundStyle(stats.fps > 0 && stats.fps < 80 ? .orange : .secondary)
     }
 }

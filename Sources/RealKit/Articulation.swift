@@ -124,7 +124,7 @@ public extension Rig {
                 let e = try await m.modelEntityAsync(materials: materials)
                 e.name = "lod\(i)"
                 e.isEnabled = i == 0
-                if i >= 2 { e.components.set(DynamicLightShadowComponent(castsShadow: false)) }
+                e.realTagCost(m.cost(lod: i, size: models[0].boundsDiagonal))
                 parent.addChild(e)
             }
         }

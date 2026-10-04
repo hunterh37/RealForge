@@ -197,13 +197,17 @@ public final class RealEnvironment {
         var shadow = DirectionalLightComponent.Shadow()
         shadow.shadowProjection = .automatic(maximumDistance: p.shadowDistance)
         shadow.depthBias = 1.5
-        sun.components.set(shadow)
+        let perf = RealPerformance.active
+        shadow.shadowProjection = .automatic(maximumDistance: max(2, p.shadowDistance * perf.shadowDistanceScale * RealPerformance.adaptiveScale))
+        if perf.shadows { sun.components.set(shadow) }
+        sun.components.set(RealSunComponent(baseShadowDistance: p.shadowDistance))
         sun.look(at: .zero, from: p.sunDirection * 50, relativeTo: nil)
         RealWind.sunTravel = -p.sunDirection
         root.addChild(sun)
 
         if skybox {
-            let skyTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: p.skyResolution * 2, drawSun: true, exposure: 1.25))
+            let skyWidth = min(8192, max(512, Int(Float(p.skyResolution * 2) * RealPerformance.active.skyboxScale)))
+            let skyTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: skyWidth, drawSun: true, exposure: 1.25))
             if let img = synth.cgImage(skyTex) {
                 let tr = try TextureResource(image: img, withName: "realityhd.skybox", options: .init(semantic: .hdrColor, mipmapsMode: .none))
                 var m = UnlitMaterial()

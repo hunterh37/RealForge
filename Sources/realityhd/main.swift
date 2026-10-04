@@ -4,7 +4,13 @@ import RealKit
 @MainActor
 func run() async throws {
     let args = Args(Array(CommandLine.arguments.dropFirst()))
+    // Global: --tier battery|performance|balanced|ultra|cinematic (default balanced).
+    let tierArg = args.opt("--tier")
+    let tier = tierArg.flatMap(RealPerformance.Tier.init(rawValue:))
+    if let tierArg, tier == nil { throw CLIError("unknown tier \(tierArg)") }
+    if let tier { RealPerformance.current = RealPerformance(tier) }
     switch args.next() ?? "help" {
+    case "perf": perfCommand(args, tier: tier)
     case "list": listCommand(args)
     case "stats": statsCommand(args)
     case "render": try await renderCommand(args)

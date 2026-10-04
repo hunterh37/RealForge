@@ -22,6 +22,9 @@ public enum RealInstancing {
         /// Extra uniform scale variation applied on top of the given transforms (0.15 = 0.85...1.15),
         /// hashed from each instance position so it is deterministic.
         public var scaleJitter: Float = 0
+        /// Ground cover: `RealPerformance.fieldDensity` and `distantThinning` drop instances, and the
+        /// cull distance follows `groundCoverDistance`.
+        public var thinnable = false
         public init() {}
 
         public func with(_ edit: (inout Options) -> Void) -> Options { var c = self; edit(&c); return c }
@@ -30,7 +33,7 @@ public enum RealInstancing {
         public static var trees: Options { Options().with { $0.cellSize = 18; $0.tintJitter = 0.12; $0.hueJitter = 0.014 } }
         /// Grass and ground cover: 8 m cells, culled past `cull` meters, no shadows.
         public static func groundCover(cull: Float = 30) -> Options {
-            Options().with { $0.cellSize = 8; $0.cullDistance = cull; $0.shadowCasterMaxLOD = -1; $0.tintJitter = 0.16; $0.hueJitter = 0.02 }
+            Options().with { $0.cellSize = 8; $0.cullDistance = cull; $0.shadowCasterMaxLOD = -1; $0.tintJitter = 0.16; $0.hueJitter = 0.02; $0.thinnable = true }
         }
         /// Manufactured repeats (fence posts, bollards): no color drift.
         public static var props: Options { Options().with { $0.tintJitter = 0; $0.hueJitter = 0 } }
@@ -42,11 +45,13 @@ public enum RealInstancing {
         let cache = materials ?? .shared
         let root = Entity()
         root.name = name
-        guard !transforms.isEmpty else { return root }
+        let perf = RealPerformance.active
+        let kept = options.thinnable ? perf.thinned(transforms) : transforms
+        guard !kept.isEmpty else { return root }
 
         // Shared GPU resources per LOD. `mats[lod][bucket]`: one bucket when the shader varies each
         // instance (or jitter is off), three brightness buckets on the PhysicallyBasedMaterial path.
-        let jitter = options.tintJitter > 0 || options.hueJitter > 0
+        let jitter = (options.tintJitter > 0 || options.hueJitter > 0) && perf.instanceVariation
         var meshes: [MeshResource] = []
         var mats: [[[any RealityKit.Material]]] = []
         var lodBounds: [BoundingBox] = []
@@ -76,10 +81,10 @@ public enum RealInstancing {
                 }
             }
         }
-        let transforms = options.scaleJitter > 0 ? transforms.map { t in
+        let transforms = options.scaleJitter > 0 ? kept.map { t in
             let s = 1 + options.scaleJitter * (instanceHash(SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z), salt: 7) * 2 - 1)
             return t * simd_float4x4(diagonal: SIMD4(s, s, s, 1))
-        } : transforms
+        } : kept
 
         var cells: [SIMD2<Int32>: [simd_float4x4]] = [:]
         for t in transforms {
@@ -98,7 +103,9 @@ public enum RealInstancing {
                 let b = buckets == 1 ? 0 : min(buckets - 1, Int(instanceHash(SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z), salt: 3) * Float(buckets)))
                 groups[b].append(t)
             }
-            for (li, mesh) in meshes.enumerated() { for (bi, list) in groups.enumerated() where !list.isEmpty {
+            for (li, mesh) in meshes.enumerated() { for (bi, full) in groups.enumerated() where !full.isEmpty {
+                let list = options.thinnable ? perf.instances(full, level: li, levels: meshes.count) : full
+                guard !list.isEmpty else { continue }
                 let e = Entity()
                 e.name = "lod\(li)"
                 e.isEnabled = li == 0
@@ -115,11 +122,13 @@ public enum RealInstancing {
                     }
                 }
                 e.components.set(try MeshInstancesComponent(mesh: mesh, instances: data, bounds: BoundingBox(min: lo, max: hi)))
-                if li > options.shadowCasterMaxLOD { e.components.set(DynamicLightShadowComponent(castsShadow: false)) }
+                e.realTagCost(asset.levels[li].cost(lod: li, size: asset.levels[0].boundsDiagonal, instances: list.count,
+                                                    shadowEligible: options.shadowCasterMaxLOD >= 0, lodShift: options.shadowCasterMaxLOD - 1))
                 cell.addChild(e)
             }}
             if meshes.count > 1 || options.cullDistance > 0 {
-                cell.components.set(RealLODComponent(switchDistances: asset.switchDistances, cullDistance: options.cullDistance, center: center))
+                cell.components.set(RealLODComponent(switchDistances: asset.switchDistances, cullDistance: options.cullDistance, center: center,
+                                                     groundCover: options.thinnable))
             }
             root.addChild(cell)
         }
