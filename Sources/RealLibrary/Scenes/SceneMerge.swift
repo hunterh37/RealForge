@@ -4,7 +4,7 @@ import RealKit
 
 public extension RealScene {
     /// Adds every field, single, live rig and light of `other`, moved by `at` (rooms composed into a
-    /// floor plan). Camera, lighting and far ground stay this scene's.
+    /// floor plan). Camera, lighting and far ground stay this scene's; spots (or the camera) become spots.
     mutating func merge(_ other: RealScene, at: Xform) {
         let m = at.matrix
         for f in other.fields { fields.append(.init(asset: f.asset, transforms: f.transforms.map { m * $0 }, options: f.options)) }
@@ -16,6 +16,9 @@ public extension RealScene {
             c.direction = at.direction(l.direction)
             lights.append(c)
         }
+        var named = other.spots
+        if named.isEmpty, let cam = other.camera { named = [.init(other.name, eye: cam.eye, target: cam.target)] }
+        for sp in named { spots.append(.init(sp.name, eye: at.point(sp.eye), target: at.point(sp.target))) }
     }
 }
 

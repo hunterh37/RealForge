@@ -9,7 +9,7 @@ import RealKit
 /// pole, crash cart and sanitizer stations along the corridor walls.
 public struct HospitalFloor: RealSceneBuilder {
     public static let id = "hospital"
-    public static let summary = "Full ER floor: waiting lobby, treatment corridor with scrub sink and parked equipment, ER treatment room and operating room, all doors and devices live."
+    public static let summary = "Full ER floor: waiting lobby, treatment corridor with scrub sink and parked equipment, ER treatment room and operating room, parked bed and oxygen, all doors and devices live."
     public static let tags = ["hospital", "medical", "interior", "showcase"]
     public static let author = "realityhd"
 
@@ -61,6 +61,9 @@ public struct HospitalFloor: RealSceneBuilder {
         scene.addLive(Wheelchair(), at: place(-cW / 2 + 0.45, cz - 3.2, yaw: 90), seed: seed &+ 3, state: "brakes-on")
         scene.addLive(IvPole(), at: place(cW / 2 - 0.4, cz + 5.2), seed: seed &+ 4, state: "low")
         scene.addLive(CrashCart(), at: place(cW / 2 - 0.36, cz + 3.8, yaw: -90), seed: seed &+ 5, state: "sealed")
+        // Parked bed and oxygen cylinder on the free stretch of the east wall.
+        scene.addLive(HospitalBed(), at: place(cW / 2 - 0.55, cz - 5.6, yaw: 90), seed: seed &+ 8, state: "flat")
+        scene.addLive(OxygenCylinder(), at: place(cW / 2 - 0.12, cz - 3.9), seed: seed &+ 9, state: "closed")
         for (i, z) in [cz + 6.5, cz - 1.0].enumerated() {
             scene.addLive(SanitizerDispenser(), at: place(-cW / 2 + 0.051, z, y: 1.0, yaw: 90), seed: seed &+ UInt64(6 + i), state: "idle")
         }
@@ -70,6 +73,8 @@ public struct HospitalFloor: RealSceneBuilder {
         scene.bake = .interior
         scene.batchStatics = true
         scene.camera = .init(eye: V3(0.4, 1.65, cz + 7.0), target: V3(-0.2, 1.3, cz - 4), fov: 68)
+        scene.spots.insert(.init("corridor", eye: V3(0, 1.65, cz + 1.0), target: V3(0, 1.3, cz - 6)), at: 0)
+        scene.spots.insert(.init("start", eye: scene.camera!.eye, target: scene.camera!.target), at: 0)
         return scene
     }
 }

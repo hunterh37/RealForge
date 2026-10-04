@@ -28,6 +28,7 @@ func run() async throws {
     case "lint": lintCommand(args)
     case "context": contextCommand(args)
     case "brief": try briefCommand(args)
+    case "anatomy": try await anatomyCommand(args)
     default: print(usage)
     }
 }

@@ -64,7 +64,7 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .officeLobby: "Terrazzo lobby, marble reception, elevator bank, glass street front. Tap the elevators and door."
         case .conferenceRoom: "Boardroom table, mesh chairs, wall display, glass partition and door."
         case .officePlaza: "Plaza between curtain-wall office blocks, maples in planters, benches and lamps."
-        case .hospital: "ER floor: waiting lobby, treatment corridor, ER room and operating room. Pinch instruments to pick them up."
+        case .hospital: "ER floor: lobby, corridor, ER room and OR. Tap devices, pinch instruments, tap the floor to move."
         case .hospitalLobby: "Waiting and intake lobby: kiosks, nurse station, beam seating, doors to treatment. Tap doors and kiosks."
         case .erRoom: "ER treatment room: stretcher, vitals monitor, IV pump, exam table, instrument counter. Grab the stethoscope."
         case .operatingRoom: "Operating room: surgical table under LED lights, anesthesia boom, draped back table with instruments."
@@ -113,6 +113,16 @@ final class DemoModel {
     var builtWith: RealPerformance?
     /// Bumped to rebuild the open scene in place.
     var rebuildToken = 0
+    /// Teleport destinations of the open scene (`RealScene.spots`, or "start" from its camera).
+    var spots: [String] = []
+    /// Spot the immersive view should move the viewer to; it clears this after moving.
+    var teleportTo: String?
+    /// Tap the floor to walk there.
+    var tapTeleport = UserDefaults.standard.object(forKey: "demo.tapTeleport") as? Bool ?? true {
+        didSet { UserDefaults.standard.set(tapTeleport, forKey: "demo.tapTeleport") }
+    }
+    /// Bumped to put every grabbed object back.
+    var resetGrabsToken = 0
     var showHUD = UserDefaults.standard.bool(forKey: "demo.hud") {
         didSet { UserDefaults.standard.set(showHUD, forKey: "demo.hud") }
     }

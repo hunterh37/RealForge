@@ -20,6 +20,11 @@ public struct RealScene {
         public var grabbable = false
     }
     public struct Camera { public var eye: V3; public var target: V3; public var fov: Float }
+    /// Named standing point (teleport destination in the demo): eye at standing height, looking at `target`.
+    public struct Spot {
+        public var name: String; public var eye: V3; public var target: V3
+        public init(_ name: String, eye: V3, target: V3) { self.name = name; self.eye = eye; self.target = target }
+    }
     /// How the scene wants to be lit. `RealityHD.environment(for:)` and `realityhd render` apply it.
     public struct Lighting {
         /// Sun and sky (nil = the caller's choice).
@@ -42,6 +47,8 @@ public struct RealScene {
     /// Scene lights (lamps, spots). Keep it to a handful: every light costs every lit pixel.
     public var lights: [RigLight] = []
     public var camera: Camera?
+    /// Teleport destinations. `merge` adds each merged scene's spots, or its camera when it has none.
+    public var spots: [Spot] = []
     public var lighting = Lighting()
     /// Huge flat ground under everything so the horizon is land fading into aerial haze.
     public var farGround: MaterialKey? = "ground.meadow"
