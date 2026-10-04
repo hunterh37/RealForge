@@ -7,10 +7,11 @@
     "metal.surgical",
     "rubber.tubing",
     "rubber.silicone",
-    "plastic.matte"
+    "plastic.matte",
+    "label.biomed"
   ],
   "name": "Stethoscope",
-  "notes": "",
+  "notes": "posable: footprint of the 69 cm tube laid in a loose loop, headset closed; height is the chestpiece (22 mm) on its rim",
   "parts": [
     "dual-sided stainless chestpiece: 43 mm diaphragm with silicone rim, 33 mm bell side",
     "chestpiece stem with the tube pushed over it",
@@ -22,9 +23,9 @@
   ],
   "references": [],
   "size": [
-    0.3,
-    0.03,
-    0.25
+    0.221,
+    0.024,
+    0.357
   ],
   "style": "current clinical stethoscope, black tube, satin stainless headset, polished chestpiece; tube slightly kinked from coat pocket storage",
   "summary": "Littmann Classic III class stethoscope lying in a loose loop: dual-head chestpiece, Y-split PVC tube, stainless headset with ear tips.",
