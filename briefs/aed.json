@@ -1,18 +1,18 @@
 {
-  "budget": 5500,
+  "budget": 6700,
   "id": "aed",
   "kind": "prop",
   "materials": [
     "plastic.medical",
     "plastic.medical-grey",
-    "rubber",
+    "rubber.tubing",
     "screen.off",
     "screen.lcd",
-    "emissive.led-red",
-    "label.hazard"
+    "emissive.indicator",
+    "label.bedside-aed"
   ],
   "name": "Automated external defibrillator",
-  "notes": "",
+  "notes": "Default state is open (lid up): closed the case is 247 x 135 x 316 mm including handle and bumper. Depth includes the inspection tag lying behind the handle.",
   "parts": [
     "two-shell green case with rubber bumpers",
     "molded carry handle at the back",
@@ -24,9 +24,9 @@
   ],
   "references": [],
   "size": [
-    0.241,
-    0.133,
-    0.292
+    0.257,
+    0.372,
+    0.388
   ],
   "style": "Public-access AED (ZOLL AED Plus / Philips HeartStart class), lightly worn bumpers.",
   "summary": "Automated external defibrillator: molded green case with carry handle, flip-up lid stowing electrode pads, status LCD, shock button and speaker.",

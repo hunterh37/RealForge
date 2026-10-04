@@ -65,6 +65,30 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xEFEDE4); $0.colorB = linear(0xEFEDE4); $0.colorC = linear(0x1E2A5A)
             $0.knobs = V4(0, 0, 1, 0); $0.seed = 808; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.3
         },
+        // AED deck instruction strip: white with a red band, black text.
+        MaterialSpec(key: "label.bedside-aed", program: .medLabel).with {
+            $0.colorA = linear(0xF1F0EA); $0.colorB = linear(0xC8281E); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.4, 0, 1, 0.5); $0.seed = 809; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
+        // CPR instruction panel on the AED lid underside: white, green band, step text.
+        MaterialSpec(key: "label.bedside-aed-cpr", program: .medLabel).with {
+            $0.colorA = linear(0xF3F3EE); $0.colorB = linear(0x2F7A4A); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.16, 0, 7, 0.4); $0.seed = 810; $0.tileSize = 0; $0.resolution = 512; $0.normalStrength = 0.1
+        },
+        // Electrode pad backing print: white foam, blue band, placement text.
+        MaterialSpec(key: "label.bedside-pads", program: .medLabel).with {
+            $0.colorA = linear(0xEEF0F0); $0.colorB = linear(0x2A5DA8); $0.colorC = linear(0x223040)
+            $0.knobs = V4(0.25, 0, 4, 0.2); $0.seed = 811; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
+        // Lit AED shock button: saturated orange lamp behind a translucent cap.
+        MaterialSpec(key: "emissive.bedside-shock", program: nil).with {
+            $0.baseColor = V3(1, 0.42, 0.08); $0.mode = .emissive; $0.emissive = V3(1, 0.32, 0.04); $0.emissiveIntensity = 2.2
+        },
+        // Equipment inspection tag: buff card, red band, check-off grid text.
+        MaterialSpec(key: "label.bedside-tag", program: .medLabel).with {
+            $0.colorA = linear(0xF1EEDC); $0.colorB = linear(0xB8352A); $0.colorC = linear(0x1E2A5A)
+            $0.knobs = V4(0.15, 0, 8, 0); $0.seed = 812; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.2
+        },
         // realityhd:material.medicalBedside
     ]
 }
