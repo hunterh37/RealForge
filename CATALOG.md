@@ -308,7 +308,8 @@ Live with `RealityHD.articulated(id)` or `scene.addLive`; bake one state with `b
 | [`hospital-lobby`](docs/scenes/hospital-lobby.png) | hospital, medical, interior, showcase | realityhd | ER waiting and intake lobby: glazed entrance, intake nurse station, check-in kiosks, beam seating rows, wheelchair, sanitizer stations and doors to treatment. |
 | [`er-room`](docs/scenes/er-room.png) | hospital, medical, interior, showcase | realityhd | ER treatment room: stretcher under a lit headwall, vitals monitor, IV pump, exam table and stool, counter with diagnostic instruments, crash cart, privacy curtain. |
 | [`operating-room`](docs/scenes/operating-room.png) | hospital, medical, interior, showcase | realityhd | Operating room: surgical table under a dual-head LED light, anesthesia boom and workstation, draped Mayo stand and back table with instruments, doors. |
-| [`hospital`](docs/scenes/hospital.png) | hospital, medical, interior, showcase | realityhd | Full ER floor: waiting lobby, treatment corridor with scrub sink and parked equipment, ER treatment room and operating room, all doors and devices live. |
+| [`hospital`](docs/scenes/hospital.png) | hospital, medical, interior, showcase | realityhd | Full ER floor: waiting lobby, treatment corridor with scrub sink and parked equipment, ER treatment room and operating room, parked bed and oxygen, all doors and devices live. |
+| [`rooftop-plank`](docs/scenes/rooftop-plank.png) | urban, outdoor, showcase | hunter | Scaffold board across the gap between two 40-storey glass towers, steel decks on both roofs, a downtown grid and traffic 150 m below. |
 
 ## Materials
 
@@ -650,7 +651,19 @@ Keys accept a hex tint suffix, e.g. `metal.painted:1F4E8C`.
 | `label.o2-tag` | medLabel | 0.056 | 256 | opaque | - |  |
 | `label.canister` | medLabel | 0.069 | 256 | opaque | - |  |
 | `label.binder` | medLabel | 0.045 | 256 | opaque | - |  |
+| `anatomy.bone` | boneCortical | 0.04 | 1024 | opaque | - |  |
+| `anatomy.cartilage` | cartilageHyaline | 0.03 | 512 | opaque | - |  |
+| `anatomy.muscle` | muscleFiber | 0.03 | 1024 | opaque | - |  |
+| `anatomy.tendon` | tendonFiber | 0.02 | 1024 | opaque | - |  |
+| `anatomy.vein` | vesselWall | 0.02 | 512 | opaque | - |  |
+| `anatomy.artery` | vesselWall | 0.02 | 512 | opaque | - |  |
+| `anatomy.nerve` | nerveFascicle | 0.02 | 512 | opaque | - |  |
+| `anatomy.muscle-glass` | muscleFiber | 0.03 | 1024 | transparent | - |  |
+| `anatomy.tendon-glass` | tendonFiber | 0.02 | 1024 | transparent | - |  |
+| `anatomy.vein-glass` | vesselWall | 0.02 | 512 | transparent | - |  |
+| `anatomy.artery-glass` | vesselWall | 0.02 | 512 | transparent | - |  |
+| `anatomy.nerve-glass` | nerveFascicle | 0.02 | 512 | transparent | - |  |
 
 ## Texture programs
 
-`barkOak` `barkBirch` `barkPine` `leafBroad` `leafNeedle` `grassBlades` `rockGranite` `forestFloor` `woodPlank` `paintedMetal` `rustMetal` `concrete` `asphalt` `plastic` `brick` `grassBlade` `grassCard` `flowers` `fernFrond` `leafLitter` `moss` `fungus` `plantStem` `barkSmooth` `barkAspen` `barkDead` `leafPalmate` `leafLanceolate` `plywood` `galvanized` `straw` `paintedWood` `jute` `gravel` `sand` `mud` `snow` `cobblestone` `dirtPath` `barkScotsPine` `leafPine` `leafFir` `leafCypress` `barkPalm` `leafPalm` `cactusRibs` `leafAgave` `strataRock` `rockSlate` `rockRiver` `fabricWeave` `woodEndGrain` `charcoal` `water` `leather` `brushedMetal` `polishedMetal` `ceramicGlaze` `caneWeave` `carpetTile` `carpetPile` `acousticTile` `paintedWall` `woodVeneer` `screenUI` `pageEdge` `marble` `terrazzo` `pavers` `sansevieria` `laminate` `chairMesh` `pottingSoil` `turf` `infieldClay` `chainLink` `sheetVinyl` `nonwoven` `wallTile` `vitalsUI` `medLabel`
+`barkOak` `barkBirch` `barkPine` `leafBroad` `leafNeedle` `grassBlades` `rockGranite` `forestFloor` `woodPlank` `paintedMetal` `rustMetal` `concrete` `asphalt` `plastic` `brick` `grassBlade` `grassCard` `flowers` `fernFrond` `leafLitter` `moss` `fungus` `plantStem` `barkSmooth` `barkAspen` `barkDead` `leafPalmate` `leafLanceolate` `plywood` `galvanized` `straw` `paintedWood` `jute` `gravel` `sand` `mud` `snow` `cobblestone` `dirtPath` `barkScotsPine` `leafPine` `leafFir` `leafCypress` `barkPalm` `leafPalm` `cactusRibs` `leafAgave` `strataRock` `rockSlate` `rockRiver` `fabricWeave` `woodEndGrain` `charcoal` `water` `leather` `brushedMetal` `polishedMetal` `ceramicGlaze` `caneWeave` `carpetTile` `carpetPile` `acousticTile` `paintedWall` `woodVeneer` `screenUI` `pageEdge` `marble` `terrazzo` `pavers` `sansevieria` `laminate` `chairMesh` `pottingSoil` `turf` `infieldClay` `chainLink` `sheetVinyl` `nonwoven` `wallTile` `vitalsUI` `medLabel` `boneCortical` `cartilageHyaline` `muscleFiber` `tendonFiber` `vesselWall` `nerveFascicle`

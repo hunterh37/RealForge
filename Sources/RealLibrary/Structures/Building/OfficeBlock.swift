@@ -22,6 +22,10 @@ public struct OfficeBlock: RealAsset {
     public var bay: Float = 1.5
     /// Lit ceilings behind the glass (office lights on).
     public var lit = true
+    /// Vision glass, mullions/parapet, and spandrel bands. Tint suffixes (`glass.curtain:2B2A26`) vary a skyline.
+    public var glassMaterial: MaterialKey = "glass.curtain"
+    public var frameMaterial: MaterialKey = "metal.anodized-black"
+    public var spandrelMaterial: MaterialKey = "metal.anodized-black"
     public init() {}
 
     public var height: Float { groundHeight + Float(floors - 1) * floorHeight + 1.2 }
@@ -34,7 +38,7 @@ public struct OfficeBlock: RealAsset {
         var rng = SeededRNG(seed: seed)
         var m = Model(name: Self.id)
         let W = width, D = depth
-        let mull: MaterialKey = "metal.anodized-black", glass: MaterialKey = "glass.curtain", slabMat: MaterialKey = "concrete.smooth"
+        let mull = frameMaterial, glass = glassMaterial, slabMat: MaterialKey = "concrete.smooth"
         let levels = (0..<floors).map { $0 == 0 ? 0 : groundHeight + Float($0 - 1) * floorHeight }   // floor levels
         let roofY = groundHeight + Float(floors - 1) * floorHeight
         let plinth: Float = 0.6
@@ -71,7 +75,7 @@ public struct OfficeBlock: RealAsset {
             }
             // Spandrel bands behind the glass at each upper slab (opaque, dark).
             for y in levels.dropFirst() {
-                quad(o + V3(0, y + 0.25, 0) - n * 0.12, t * L, V3(0, 1.3, 0), "metal.anodized-black")
+                quad(o + V3(0, y + 0.25, 0) - n * 0.12, t * L, V3(0, 1.3, 0), spandrelMaterial)
             }
             // Mullions.
             let bays = Int((L / bay).rounded())

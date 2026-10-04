@@ -84,6 +84,8 @@ public struct RealScene {
         for r in rigs {
             let e = try await r.rig.entityAsync(state: r.state, materials: materials, interactive: r.interactive, grabbable: r.grabbable)
             e.transform = Transform(scale: r.at.scale, rotation: r.at.rotation, translation: r.at.translation)
+            // Grab home is the placed pose, so `resetGrab()` returns the object to its spot in the scene.
+            if var g = e.components[RealGrabComponent.self] { g.home = e.transform; e.components.set(g) }
             root.addChild(e)
         }
         for l in Self.budgetLights(lights, max: perf.maxSceneLights) {

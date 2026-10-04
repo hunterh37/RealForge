@@ -54,6 +54,17 @@ struct MenuView: View {
                     Stepper("Seed \(model.seed)", value: $model.seed, in: 1...99)
                 }
                 if model.open != nil {
+                    Section("Move") {
+                        Toggle("Tap floor to teleport", isOn: $model.tapTeleport)
+                        ForEach(model.spots, id: \.self) { name in
+                            Button {
+                                model.teleportTo = name
+                            } label: {
+                                Label(name.replacingOccurrences(of: "-", with: " ").capitalized, systemImage: "figure.walk")
+                            }
+                        }
+                        Button("Put back grabbed objects") { model.resetGrabsToken += 1 }
+                    }
                     Section {
                         Button("Exit Scene", role: .destructive) { Task { await exit() } }
                     }
@@ -92,6 +103,7 @@ struct MenuView: View {
     private func exit() async {
         await dismissSpace()
         model.open = nil
+        model.spots = []
     }
 }
 

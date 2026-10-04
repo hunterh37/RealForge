@@ -61,9 +61,9 @@ public struct HospitalFloor: RealSceneBuilder {
         scene.addLive(Wheelchair(), at: place(-cW / 2 + 0.45, cz - 3.2, yaw: 90), seed: seed &+ 3, state: "brakes-on")
         scene.addLive(IvPole(), at: place(cW / 2 - 0.4, cz + 5.2), seed: seed &+ 4, state: "low")
         scene.addLive(CrashCart(), at: place(cW / 2 - 0.36, cz + 3.8, yaw: -90), seed: seed &+ 5, state: "sealed")
-        // Parked bed and oxygen cylinder on the free stretch of the east wall.
+        // Parked bed on the east wall; oxygen cylinder between the stretcher and wheelchair.
         scene.addLive(HospitalBed(), at: place(cW / 2 - 0.55, cz - 5.6, yaw: 90), seed: seed &+ 8, state: "flat")
-        scene.addLive(OxygenCylinder(), at: place(cW / 2 - 0.12, cz - 3.9), seed: seed &+ 9, state: "closed")
+        scene.addLive(OxygenCylinder(), at: place(-cW / 2 + 0.12, cz - 4.6), seed: seed &+ 9, state: "closed")
         for (i, z) in [cz + 6.5, cz - 1.0].enumerated() {
             scene.addLive(SanitizerDispenser(), at: place(-cW / 2 + 0.051, z, y: 1.0, yaw: 90), seed: seed &+ UInt64(6 + i), state: "idle")
         }

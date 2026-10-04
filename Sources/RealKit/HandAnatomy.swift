@@ -174,7 +174,7 @@ final class DynamicMesh {
     func update(_ model: Model, materials: [any RealityKit.Material], materialSignature: Int) {
         let surfaces = model.surfaces.filter { !$0.isEmpty }
         let vCount = surfaces.reduce(0) { $0 + $1.vertexCount }, iCount = surfaces.reduce(0) { $0 + $1.indices.count }
-        guard vCount > 0 else { entity.model = nil; return }
+        guard vCount > 0 else { entity.model = nil; mesh = nil; return }
         let sig = surfaces.map(\.material) + ["\(materialSignature)"]
         let rebuild = mesh == nil || vCount > vCap || iCount > iCap || sig != signature
         if rebuild {
