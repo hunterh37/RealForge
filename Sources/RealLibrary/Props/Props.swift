@@ -93,6 +93,13 @@ public enum Props {
         InstrumentContainer.self,
         CrashCart.self,
         BiohazardBin.self,
+        Stethoscope.self,
+        Otoscope.self,
+        Penlight.self,
+        ReflexHammer.self,
+        TympanicThermometer.self,
+        PulseOximeter.self,
+        Laryngoscope.self,
         // realityhd:prop
     ]
 }

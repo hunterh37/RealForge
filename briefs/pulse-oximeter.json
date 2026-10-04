@@ -1,0 +1,46 @@
+{
+  "budget": 5150,
+  "id": "pulse-oximeter",
+  "kind": "prop",
+  "materials": [
+    "plastic.gloss",
+    "plastic.matte",
+    "rubber.silicone",
+    "screen.off",
+    "screen.oximeter-oled",
+    "fabric.nylon",
+    "label.biomed",
+    "metal.stainless"
+  ],
+  "name": "Pulse oximeter",
+  "notes": "width includes the lanyard loop lying behind the 58 mm body",
+  "parts": [
+    "top shell with OLED window",
+    "bottom shell",
+    "rear spring hinge",
+    "silicone finger pads",
+    "power button",
+    "lanyard loop",
+    "label on the underside"
+  ],
+  "references": [],
+  "size": [
+    0.1,
+    0.035,
+    0.032
+  ],
+  "style": "consumer/clinic fingertip oximeter, blue gloss top over grey base",
+  "summary": "Fingertip pulse oximeter, 58 x 32 x 34 mm: spring clamshell with silicone finger pads, OLED SpO2 display, power button and lanyard.",
+  "tags": [
+    "prop",
+    "medical",
+    "handheld",
+    "articulated",
+    "electronics",
+    "plastic",
+    "rubber"
+  ],
+  "theme": "Diagnostic",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
