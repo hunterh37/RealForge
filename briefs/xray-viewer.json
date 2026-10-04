@@ -1,0 +1,46 @@
+{
+  "budget": 7200,
+  "id": "xray-viewer",
+  "kind": "prop",
+  "materials": [
+    "metal.powder-white",
+    "plastic.diffuser",
+    "emissive.panel",
+    "metal.chrome",
+    "film.xray-chest",
+    "film.xray-bone",
+    "plastic.black"
+  ],
+  "name": "X-ray Viewer",
+  "notes": "",
+  "parts": [
+    "powder-coated steel housing with rounded corners",
+    "front bezel with centre mullion",
+    "two opal diffuser panels that switch on",
+    "chrome spring film clip bars along the top",
+    "two chest radiographs held in the clips",
+    "rocker power switches per panel",
+    "inspection sticker and film ID label"
+  ],
+  "references": [],
+  "size": [
+    0.86,
+    0.5,
+    0.105
+  ],
+  "style": "Hospital radiology era viewer still in use on a ward: paint slightly yellowed, inspection sticker on the side.",
+  "summary": "Wall-mounted two-panel X-ray film illuminator: white steel housing, opal diffusers that light per panel, spring film clips, chest films.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "interior",
+    "light",
+    "metal",
+    "electronics",
+    "articulated"
+  ],
+  "theme": "Hospital",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

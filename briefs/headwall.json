@@ -1,0 +1,49 @@
+{
+  "budget": 20000,
+  "id": "headwall",
+  "kind": "structure",
+  "materials": [
+    "metal.anodized",
+    "metal.powder-white",
+    "plastic.medical",
+    "plastic.diffuser",
+    "emissive.panel",
+    "metal.chrome",
+    "plastic.clear",
+    "label.hazard"
+  ],
+  "name": "Patient Headwall",
+  "notes": "",
+  "parts": [
+    "clear anodized horizontal extrusion with end caps",
+    "integrated overbed luminaire with up-light slot and reading and exam down-light lenses",
+    "medical gas outlets O2 (green), air (yellow), vacuum (white) with ID plates",
+    "hospital-grade duplex receptacles on red (emergency) and white plates",
+    "nurse call station with call and cancel buttons, pillow speaker jack and hook",
+    "equipment rail along the bottom",
+    "wall suction regulator with gauge plugged into the vacuum outlet",
+    "1200 cc suction canister with blue lid on a rail bracket and tubing",
+    "light rocker switches"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    0.72,
+    0.2
+  ],
+  "style": "In-service ward headwall: clean anodized finish, a fresh O2-in-use tag, canister slightly fogged.",
+  "summary": "Patient-room headwall: 2.4 m aluminium extrusion with O2, air and vacuum outlets, outlets, nurse call, overbed up/down light and suction canister.",
+  "tags": [
+    "structure",
+    "medical",
+    "hospital",
+    "interior",
+    "metal",
+    "electronics",
+    "light",
+    "articulated"
+  ],
+  "theme": "Hospital",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
