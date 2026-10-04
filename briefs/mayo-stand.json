@@ -1,5 +1,5 @@
 {
-  "budget": 8000,
+  "budget": 10000,
   "id": "mayo-stand",
   "kind": "prop",
   "materials": [
@@ -11,7 +11,7 @@
     "rubber"
   ],
   "name": "Mayo instrument stand",
-  "notes": "tray cantilevers over the U opening toward +Z; size in the low state.",
+  "notes": "tray cantilevers over the U opening toward +Z; size in the low state (tray rim 0.91 m, Pedigo class range 0.86-1.37 m).",
   "parts": [
     "stainless tube U-base with four 50 mm casters",
     "outer column tube with a black lock knob",
@@ -23,9 +23,9 @@
   ],
   "references": [],
   "size": [
-    0.48,
-    0.96,
-    0.62
+    0.46,
+    0.915,
+    0.585
   ],
   "style": "hospital stainless Mayo stand (Pedigo / Blickman class), polished tubes, drape crease lines, a towel clip on the drape edge.",
   "summary": "Mayo instrument stand: stainless U-base on casters, telescoping column with a lock knob, draped stainless tray with instruments.",
