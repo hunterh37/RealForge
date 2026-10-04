@@ -1,0 +1,33 @@
+{
+  "budget": 6000,
+  "id": "baseball",
+  "kind": "prop",
+  "materials": [
+    "leather.baseball",
+    "thread.red"
+  ],
+  "name": "Baseball",
+  "notes": "",
+  "parts": [
+    "white cowhide sphere, 7.4 cm",
+    "seam groove along the classic figure-8 curve",
+    "108 double red stitches in a V pattern across the seam",
+    "faint mud rub on the hide"
+  ],
+  "references": [],
+  "size": [
+    0.074,
+    0.074,
+    0.074
+  ],
+  "style": "MLB game ball, rubbed with mud, lightly scuffed",
+  "summary": "Regulation baseball, 9 in around: two figure-8 white cowhide panels joined by 108 raised double red stitches; count knob for a small cluster.",
+  "tags": [
+    "prop",
+    "sports",
+    "leather"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

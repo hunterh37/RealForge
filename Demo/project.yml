@@ -1,6 +1,6 @@
 name: RealityHDDemo
 options:
-  bundleIdPrefix: io.medvr.realityhd
+  bundleIdPrefix: com.dicyaninlabs.realityhd
   deploymentTarget:
     visionOS: "26.0"
   createIntermediateGroups: true
@@ -17,12 +17,13 @@ targets:
         product: RealityHD
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: io.medvr.realityhd.demo
+        PRODUCT_BUNDLE_IDENTIFIER: com.dicyaninlabs.realityhd.demo
         SWIFT_VERSION: "5.0"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: RealityHD
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: NWR2UZ4V67
         TARGETED_DEVICE_FAMILY: "7"
     info:
       path: RealityHDDemo/Info.plist

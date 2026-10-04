@@ -1,0 +1,41 @@
+{
+  "budget": 14000,
+  "id": "ball-bucket",
+  "kind": "prop",
+  "materials": [
+    "plastic.bucket",
+    "metal.steel",
+    "plastic.black",
+    "leather.baseball",
+    "leather.baseball-dirty",
+    "thread.red"
+  ],
+  "name": "Ball bucket",
+  "notes": "height includes the balls heaped above the rim; footprint includes the loose balls",
+  "parts": [
+    "tapered white bucket body, 30 cm top",
+    "ribbed reinforcing rim bands below the lip",
+    "stacking foot ring at the base",
+    "wire bail handle in ear lugs, resting down",
+    "black plastic grip on the bail",
+    "heaped baseballs filling to the rim",
+    "three loose balls on the ground beside it"
+  ],
+  "references": [],
+  "size": [
+    0.465,
+    0.414,
+    0.428
+  ],
+  "style": "practice bucket, scuffed and clay-dirty at the base, balls mixed clean and dirty",
+  "summary": "5-gallon white plastic bucket filled with baseballs: ribbed rim, wire bail handle with a black grip, a few balls on the ground beside it.",
+  "tags": [
+    "prop",
+    "sports",
+    "plastic",
+    "container"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

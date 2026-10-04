@@ -1,0 +1,37 @@
+{
+  "budget": 5000,
+  "id": "baseball-bat",
+  "kind": "prop",
+  "materials": [
+    "wood.ash-bat",
+    "wood.maple-natural",
+    "wood.maple-bat",
+    "tar.pine"
+  ],
+  "name": "Baseball bat",
+  "notes": "",
+  "parts": [
+    "flared knob at the handle end",
+    "thin 0.95 in handle",
+    "smooth taper from handle to barrel",
+    "2.6 in barrel",
+    "cupped (hollowed) barrel end",
+    "pine tar band on the upper handle"
+  ],
+  "references": [],
+  "size": [
+    0.864,
+    0.066,
+    0.066
+  ],
+  "style": "pro wood bat, lacquered; ash natural or two-tone maple with black barrel; tar smudged handle",
+  "summary": "34 in wooden baseball bat lying on the ground: flared knob, thin handle with a pine-tar band, long taper to a 2.6 in cupped barrel.",
+  "tags": [
+    "prop",
+    "sports",
+    "wood"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

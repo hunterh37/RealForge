@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.1.0
+
+Baseball: a regulation ballpark scene with the field, structures, gear and materials to build it.
+
+- Scene `ballpark`: home plate at the origin, center field along -Z; padded walls (8 ft fair, 4 ft foul),
+  foul poles, backstop with hood, dugouts, bleachers behind the foul walls and the plate, six light towers,
+  oaks and maples past the outfield. Camera in the right-handed batter's box. Demo case "Ballpark".
+- Structures: baseball-diamond (90 ft paths, 10 in mound with rubber, 95 ft arc, home circle, clay
+  batter's boxes, chalked boxes, foul lines, runner's lane and coach's boxes, warning track; exposes
+  `bases`, `foulPoles`, `wallLine()`, `wallDistance`, `inside`), outfield-wall, foul-pole, backstop,
+  dugout, bleachers, light-tower. Off-center structures expose `anchor(seed:)` for their design origin.
+- Props (gated, signed off): home-plate, base-bag, baseball-bat (ash or two-tone maple), baseball,
+  ball-bucket, batting-helmet.
+- Texture programs `turf` (mowing stripes or checkerboard), `infieldClay` (drag lines, granules, cleat
+  prints), `chainLink` (cutout woven mesh). Keys: turf.ballpark, turf.ballpark-stripe, turf.worn,
+  ground.infield, ground.mound-clay, ground.warning-track, paint.field-white, fence.chainlink,
+  fence.chainlink-vinyl, fence.chainlink-veil (+ -light, -yellow), padding.vinyl, masonry.cmu,
+  masonry.cmu-green, plus gear keys in SportsGear.swift.
+
 ## 4.0.0
 
 Articulated multi-state assets, building interiors, and the engine work that keeps them cheap

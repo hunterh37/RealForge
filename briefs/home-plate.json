@@ -1,0 +1,34 @@
+{
+  "budget": 4500,
+  "id": "home-plate",
+  "kind": "prop",
+  "materials": [
+    "rubber.plate",
+    "rubber.plate-body"
+  ],
+  "name": "Home plate",
+  "notes": "size includes the 12 mm black bevel rim around the 17 in white top and the clay berm (clay knob 0 removes it, 0.459 m); only the above-grade part is modelled",
+  "parts": [
+    "white rubber pentagon top, 17 in front edge, 8.5 in sides, 12 in rear edges meeting at the apex",
+    "black beveled rubber rim around the white top",
+    "sharp rear apex pointing at the catcher",
+    "clay dust drifted onto the bevel and corners",
+    "slightly crowned top edge with a soft fillet"
+  ],
+  "references": [],
+  "size": [
+    0.49,
+    0.007,
+    0.49
+  ],
+  "style": "current MLB in-ground plate, game-used: white top scuffed by cleats and swept clay, black bevel dusty",
+  "summary": "MLB home plate, 17 in pentagon: whitened rubber slab flush with grade inside a black beveled rubber rim, dusted with infield clay.",
+  "tags": [
+    "prop",
+    "sports",
+    "rubber"
+  ],
+  "theme": "Sports",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}
