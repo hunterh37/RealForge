@@ -1,10 +1,10 @@
 {
-  "automated" : 0.99999154,
+  "automated" : 0.999989,
   "date" : "2026-10-04",
-  "final" : 0.865122,
-  "fingerprint" : "1cb841f690da3148",
-  "id" : "er-stretcher",
-  "iterations" : 3,
+  "final" : 0.8651211,
+  "fingerprint" : "13c67e344a9dae32",
+  "id" : "hospital-bed",
+  "iterations" : 2,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 7,

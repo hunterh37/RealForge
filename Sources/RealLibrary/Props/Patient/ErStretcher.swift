@@ -11,7 +11,7 @@ public struct ErStretcher: RealArticulated {
     public static let id = "er-stretcher"
     public static let summary = "Emergency stretcher: shrouded base on four braked casters, twin lift columns, vinyl pad with linen sheet, Fowler backrest, fold-down side rails and IV pole."
     public static let tags = ["prop", "medical", "hospital", "furniture", "metal", "plastic", "articulated"]
-    public static let budget = 15_000
+    public static let budget = 14_000
     public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 32, elevation: 18, distance: 1.0, studio: true)
 
@@ -91,8 +91,10 @@ public struct ErStretcher: RealArticulated {
                 Xform(translation: V3(strapX, deck + padH + 0.01, 0.08)), to: "lift", lods: 0...0)
         // Corner bumpers.
         for sx: Float in [-1, 1] { for sz: Float in [-1, 1] {
-            rig.add(Prim.cylinder(radius: 0.038, height: 0.06, bevel: 0.01, segments: 12, bevelSegments: 1, material: "rubber:5A5C5F"),
-                    Xform(translation: V3(sx * (L + 0.005), frameY - 0.03, sz * 0.27)), to: "lift")
+            for (l, n) in [(0, 12), (1, 6)] {
+                rig.add(Prim.cylinder(radius: 0.038, height: 0.06, bevel: 0.01, segments: n, bevelSegments: 1, material: "rubber:5A5C5F"),
+                        Xform(translation: V3(sx * (L + 0.005), frameY - 0.03, sz * 0.27)), to: "lift", lods: l...l)
+            }
         }}
         // Push handles at the head end.
         for sz: Float in [-1, 1] {

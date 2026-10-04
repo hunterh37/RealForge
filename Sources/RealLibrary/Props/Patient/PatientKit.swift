@@ -93,14 +93,13 @@ enum PatientKit {
     /// fitted sheet over its top and upper sides with a few soft wrinkles.
     static func pad(_ x0: Float, _ x1: Float, y0: Float, h: Float, w: Float, material: MaterialKey, sheet: MaterialKey?, sub: Int, seed: UInt64) -> [Surface] {
         let cx = (x0 + x1) / 2, L = x1 - x0
-        var out = [Prim.superellipsoid(V3(L, h, w), exponent: 8, subdivisions: sub, material: material).transformed(Xform(translation: V3(cx, y0 + h / 2, 0)))]
+        var out = [sheet == nil ? Prim.superellipsoid(V3(L, h, w), exponent: 8, subdivisions: sub, material: material).transformed(Xform(translation: V3(cx, y0 + h / 2, 0)))
+                                : Prim.roundedBox(V3(L, h, w), radius: min(0.03, h * 0.3), bevelSegments: 1, material: material).transformed(Xform(translation: V3(cx, y0 + h / 2, 0)))]
         if let sheet {
-            let ph = Float(seed % 5) * 0.7
-            var s = Prim.superellipsoid(V3(L + 0.006, h * 0.8, w + 0.006), exponent: 8, subdivisions: sub, material: sheet) { d in
-                1 + 0.012 * sin(d.x * 9 + ph) * sin(d.z * 7) * max(0, d.y)
-            }
-            s = s.transformed(Xform(translation: V3(cx, y0 + h * 0.6 + 0.0015, 0)))
-            out.append(s)
+            // Fitted sheet: a slightly larger shell over the top and the upper three quarters of the sides.
+            let r = min(0.03, h * 0.3) + 0.003
+            out.append(Prim.roundedBox(V3(L + 0.006, h * 0.75, w + 0.006), radius: r, bevelSegments: sub > 4 ? 2 : 1, material: sheet)
+                .transformed(Xform(translation: V3(cx, y0 + h * 0.625 + 0.002, 0))))
         }
         return out
     }

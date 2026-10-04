@@ -1,29 +1,49 @@
 {
-  "budget" : 10000,
-  "id" : "hospital-bed",
-  "kind" : "prop",
-  "materials" : [
-
+  "budget": 15000,
+  "id": "hospital-bed",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "metal.powder-white",
+    "vinyl.medical",
+    "fabric.linen",
+    "screen.lcd",
+    "rubber",
+    "rubber.tubing"
   ],
-  "name" : "Hospital bed",
-  "notes" : "",
-  "parts" : [
-
+  "name": "Hospital bed",
+  "notes": "",
+  "parts": [
+    "base frame with grey shroud and four 125 mm casters with brake pedals",
+    "two telescoping lift columns",
+    "steel deck frame with four deck sections (head, seat, thigh, foot)",
+    "navy vinyl mattress in four segments with fitted linen sheet",
+    "pillow on the head section",
+    "two head rails riding the head section and two foot rails",
+    "molded headboard and footboard with grey inserts",
+    "caregiver control panel on the footboard and a hanging control pendant with cord",
+    "folded blanket at the foot",
+    "wall bumper rollers at the head end"
   ],
-  "references" : [
-
+  "references": [],
+  "size": [
+    2.29,
+    0.96,
+    0.99
   ],
-  "size" : [
-    0,
-    0,
-    0
+  "style": "Contemporary med-surg bed (Hill-Rom Centrella / Stryker S3 class), 89 x 203 cm mattress, deck 40-76 cm; warm white plastics, navy mattress, made-up linen with a dented pillow and a folded blanket.",
+  "summary": "Med-surg hospital bed: four-section deck on lift columns and braked casters, split side rails, head and footboards, pendant, sheeted mattress and pillow.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "plastic",
+    "metal",
+    "articulated"
   ],
-  "style" : "TODO: era, condition, finish",
-  "summary" : "TODO: one sentence, what it is and how it's built.",
-  "tags" : [
-    "prop"
-  ],
-  "theme" : "Patient",
-  "threshold" : 0.85,
-  "tolerance" : 0.08
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
 }
