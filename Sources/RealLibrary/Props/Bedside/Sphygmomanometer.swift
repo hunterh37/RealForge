@@ -10,7 +10,7 @@ import Foundation
 /// 300 mmHg); the thumbscrew turns about the valve axis.
 public struct Sphygmomanometer: RealArticulated {
     public static let id = "sphygmomanometer"
-    public static let summary = "Handheld aneroid sphygmomanometer: 2.25 in chrome gauge with printed mmHg dial and needle, rolled nylon adult cuff, coiled tubing, rubber bulb with release valve."
+    public static let summary = "Aneroid sphygmomanometer kit: 2.25 in chrome gauge with mmHg dial and needle, rolled nylon cuff, coiled tubing, rubber bulb and release valve."
     public static let tags = ["prop", "medical", "articulated", "handheld", "hospital", "fabric", "rubber", "metal"]
     public static let budget = 5200
     public static let author = "realityhd"

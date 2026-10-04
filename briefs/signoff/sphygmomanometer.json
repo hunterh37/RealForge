@@ -4,7 +4,7 @@
   "final" : 0.8634225,
   "fingerprint" : "e2c7ddb6575dab35",
   "id" : "sphygmomanometer",
-  "iterations" : 3,
+  "iterations" : 4,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,
