@@ -51,6 +51,15 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.16, 0, 5, 0); $0.seed = 565; $0.tileSize = 0; $0.resolution = 1024
             $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 0.95
         },
+        // "Oxygen in use" hang tag (green band) and a suction canister graduation label; UVs 0...1 across the label.
+        MaterialSpec(key: "label.o2-tag", program: .medLabel).with {
+            $0.colorA = linear(0xF4F2EA); $0.colorB = linear(0x2E8B3E); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.38, 0, 2, 0.5); $0.seed = 566; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
+        MaterialSpec(key: "label.canister", program: .medLabel).with {
+            $0.colorA = linear(0xEEF2F4); $0.colorB = linear(0x2A5FA8); $0.colorC = linear(0x223040)
+            $0.knobs = V4(0.1, 0, 8, 0.9); $0.seed = 567; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalHospitalLobby
     ]
 }
