@@ -89,6 +89,23 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xF1EEDC); $0.colorB = linear(0xB8352A); $0.colorC = linear(0x1E2A5A)
             $0.knobs = V4(0.15, 0, 8, 0); $0.seed = 812; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.2
         },
+        // Unlit reflective segment LCD (glucometers, thermometers): grey-green, matte polarizer.
+        MaterialSpec(key: "screen.bedside-lcd-off", program: nil).with {
+            $0.baseColor = V3(0.36, 0.4, 0.37); $0.roughness = 0.35; $0.specular = 0.4
+        },
+        // Fresh capillary blood drop: deep red, glossy.
+        MaterialSpec(key: "fluid.bedside-blood", program: nil).with {
+            $0.baseColor = V3(0.32, 0.01, 0.02); $0.roughness = 0.08; $0.specular = 0.6; $0.clearcoat = 1
+        },
+        // Backlit segment LCD: pale grey-green, soft glow (darker than screen.lcd so black segments read).
+        MaterialSpec(key: "screen.bedside-lcd-on", program: nil).with {
+            $0.baseColor = V3(0.52, 0.62, 0.55); $0.mode = .emissive; $0.emissive = V3(0.42, 0.62, 0.5); $0.emissiveIntensity = 0.32; $0.roughness = 0.3
+        },
+        // Test strip vial label: white, blue band, lot/expiry lines.
+        MaterialSpec(key: "label.bedside-strips", program: .medLabel).with {
+            $0.colorA = linear(0xF3F4F2); $0.colorB = linear(0x2A6CC0); $0.colorC = linear(0x1A1A1C)
+            $0.knobs = V4(0.35, 0, 2, 0.6); $0.seed = 813; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
+        },
         // realityhd:material.medicalBedside
     ]
 }
