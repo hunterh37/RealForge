@@ -1,0 +1,46 @@
+{
+  "budget": 6000,
+  "id": "otoscope",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "metal.surgical",
+    "plastic.matte",
+    "plastic.clear",
+    "emissive.bulb",
+    "label.rx"
+  ],
+  "name": "Otoscope",
+  "notes": "",
+  "parts": [
+    "knurled chrome C-cell handle with smooth bands",
+    "rheostat collar with red index dot",
+    "bayonet neck",
+    "black MacroView head housing",
+    "rear magnifier window on a hinge",
+    "front nose cone with fiber-optic ring",
+    "black disposable speculum",
+    "insufflation port"
+  ],
+  "references": [],
+  "size": [
+    0.036,
+    0.205,
+    0.105
+  ],
+  "style": "clinic wall-set handle, chrome knurl worn bright where held, matte black head",
+  "summary": "Welch Allyn MacroView class otoscope standing on a knurled C-cell handle with rheostat collar, magnifier window and black disposable speculum.",
+  "tags": [
+    "prop",
+    "medical",
+    "handheld",
+    "articulated",
+    "tool",
+    "electronics",
+    "metal",
+    "plastic"
+  ],
+  "theme": "Diagnostic",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

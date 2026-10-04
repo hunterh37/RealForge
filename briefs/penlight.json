@@ -1,0 +1,43 @@
+{
+  "budget": 3450,
+  "id": "penlight",
+  "kind": "prop",
+  "materials": [
+    "metal.anodized",
+    "metal.chrome",
+    "metal.surgical",
+    "glass.clear",
+    "emissive.bulb",
+    "rubber"
+  ],
+  "name": "Penlight",
+  "notes": "height is the 12 mm barrel on its clip ring plus the clip standing 2 mm proud on top",
+  "parts": [
+    "anodized aluminium barrel",
+    "two rolled grip grooves behind the bezel",
+    "steel pocket clip on a ring",
+    "push-button tail cap",
+    "chrome bezel with lens and bulb",
+    "printed pupil gauge, 1-6 mm dots"
+  ],
+  "references": [],
+  "size": [
+    0.132,
+    0.0148,
+    0.0127
+  ],
+  "style": "hospital-issue penlight, navy anodizing, clip edge scuffed to bare aluminium",
+  "summary": "Aluminium medical penlight, 13 cm: anodized barrel, pocket clip, push-button tail cap and a lensed bulb end.",
+  "tags": [
+    "prop",
+    "medical",
+    "handheld",
+    "articulated",
+    "tool",
+    "light",
+    "metal"
+  ],
+  "theme": "Diagnostic",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

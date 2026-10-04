@@ -1,0 +1,44 @@
+{
+  "budget": 5000,
+  "id": "tympanic-thermometer",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "plastic.frosted",
+    "screen.off",
+    "screen.lcd",
+    "rubber.silicone"
+  ],
+  "name": "Tympanic thermometer",
+  "notes": "",
+  "parts": [
+    "curved white handle body",
+    "grey side grip insets",
+    "angled probe tip with lens",
+    "disposable probe cover",
+    "LCD window",
+    "power button",
+    "measure button",
+    "cover eject button"
+  ],
+  "references": [],
+  "size": [
+    0.044,
+    0.04,
+    0.15
+  ],
+  "style": "current home/clinic ear thermometer, gloss white, soft grey grips",
+  "summary": "Braun ThermoScan class ear thermometer lying on its back: curved white body, probe with cover, LCD, power, measure and eject buttons.",
+  "tags": [
+    "prop",
+    "medical",
+    "handheld",
+    "articulated",
+    "electronics",
+    "plastic"
+  ],
+  "theme": "Diagnostic",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
