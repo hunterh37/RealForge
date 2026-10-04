@@ -119,11 +119,6 @@ public extension MaterialLibrary {
         MaterialSpec(key: "rubber.silicone", program: .plastic).with {
             $0.colorA = linear(0x5A5D60); $0.knobs = V4(0.1, 0.1, 0.62, 0); $0.seed = 519; $0.tileSize = 0.1; $0.resolution = 256; $0.normalStrength = 0.2
         },
-        // Nylon cuff / strap fabric (BP cuffs, restraint straps). Tint for color.
-        MaterialSpec(key: "fabric.nylon", program: .fabricWeave).with {
-            $0.colorA = linear(0x1F3A66); $0.colorB = linear(0x182E52, 0.4); $0.colorC = linear(0x2A2620, 0.03)
-            $0.knobs = V4(120, 0.15, 0.7, 0); $0.seed = 520; $0.tileSize = 0.04; $0.normalStrength = 1.6; $0.roughness = 0.7
-        },
         // Cubicle privacy curtain: dense polyester weave, pale teal. Tint for color.
         MaterialSpec(key: "fabric.curtain", program: .fabricWeave).with {
             $0.colorA = linear(0x8CB4B0); $0.colorB = linear(0x7AA29E, 0.5); $0.colorC = linear(0x5A5248, 0.02)
