@@ -40,6 +40,13 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xF5F5F1); $0.colorB = linear(0x1F7A3A); $0.colorC = linear(0x1A1A1C)
             $0.knobs = V4(0.3, 0, 4, 0.5); $0.seed = 807; $0.tileSize = 0.08; $0.resolution = 512; $0.normalStrength = 0.1
         },
+        // Satin mill-finish aluminium (chart holders, cylinder bodies): rougher than brushed so it holds its
+        // grey under an open sky instead of mirroring it.
+        MaterialSpec(key: "metal.satin-aluminum", program: .brushedMetal).with {
+            $0.colorA = linear(0xC6C8CA); $0.colorB = linear(0x8E8D88)
+            $0.knobs = V4(0.35, 0.45, 0.2, 0.25); $0.seed = 808; $0.tileSize = 0.3; $0.normalStrength = 0.3
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.52
+        },
         // realityhd:material.medicalClinic
     ]
 }
