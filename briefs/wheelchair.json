@@ -1,29 +1,45 @@
 {
-  "budget" : 10000,
-  "id" : "wheelchair",
-  "kind" : "prop",
-  "materials" : [
-
+  "budget": 15000,
+  "id": "wheelchair",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "vinyl.medical-black",
+    "rubber",
+    "metal.aluminum-brushed",
+    "metal.stainless",
+    "plastic.matte"
   ],
-  "name" : "Wheelchair",
-  "notes" : "",
-  "parts" : [
-
+  "name": "Wheelchair",
+  "notes": "",
+  "parts": [
+    "chrome steel side frames with fixed armrests and padded arm rests",
+    "folding X cross brace with center pivot bolt",
+    "black vinyl seat and back slings on the seat rails and back canes",
+    "24 inch rear wheels: solid tires, aluminum rims, 36 spokes, hubs",
+    "chrome push rims on standoff tabs",
+    "8 inch front casters in chrome forks",
+    "swing-away footrest hangers with flip-up composite footplates",
+    "toggle wheel locks with rubber tips",
+    "push handles with black grips"
   ],
-  "references" : [
-
+  "references": [],
+  "size": [
+    0.7,
+    0.92,
+    1.0
   ],
-  "size" : [
-    0,
-    0,
-    0
+  "style": "Standard hospital transport wheelchair (Invacare Tracer / Drive Silver Sport class), 18 in seat at 49.5 cm; scuffed grips, worn tire tread, a ward property tag on the back sling.",
+  "summary": "Folding hospital wheelchair: chrome tube frame with X-brace, 24-inch spoked wheels and push rims, 8-inch casters, swing-away footrests, black vinyl slings.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "metal",
+    "articulated"
   ],
-  "style" : "TODO: era, condition, finish",
-  "summary" : "TODO: one sentence, what it is and how it's built.",
-  "tags" : [
-    "prop"
-  ],
-  "theme" : "Patient",
-  "threshold" : 0.85,
-  "tolerance" : 0.08
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
 }
