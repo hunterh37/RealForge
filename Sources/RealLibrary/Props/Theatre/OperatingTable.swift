@@ -14,7 +14,7 @@ public struct OperatingTable: RealArticulated {
     public static let tags = ["prop", "medical", "surgical", "articulated", "furniture", "metal", "hospital"]
     public static let budget = 14000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 40, elevation: 20, distance: 2.3, studio: true)
+    public static let preview = PreviewHint(azimuth: 40, elevation: 20, distance: 1.0, studio: true)
 
     /// Pad width and thickness (m).
     public var padWidth: Float = 0.5

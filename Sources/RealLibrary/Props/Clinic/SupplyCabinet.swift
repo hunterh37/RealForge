@@ -12,7 +12,7 @@ public struct SupplyCabinet: RealArticulated {
     public static let tags = ["prop", "medical", "articulated", "furniture", "hospital", "interior", "glass", "container"]
     public static let budget = 11_400
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 24, elevation: 10, distance: 2.4, studio: true)
+    public static let preview = PreviewHint(azimuth: 24, elevation: 10, distance: 0.95, studio: true)
 
     public var width: Float = 0.914
     public var height: Float = 0.9

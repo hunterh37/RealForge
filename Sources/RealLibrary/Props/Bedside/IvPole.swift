@@ -13,7 +13,7 @@ public struct IvPole: RealArticulated {
     public static let tags = ["prop", "medical", "articulated", "hospital", "metal", "plastic"]
     public static let budget = 10200
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 24, elevation: 14)
+    public static let preview = PreviewHint(azimuth: 24, elevation: 14, distance: 1.0, studio: true)
 
     /// Base radius to the caster centers (m).
     public var baseRadius: Float = 0.27

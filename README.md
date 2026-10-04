@@ -24,6 +24,7 @@ every PBR texture is synthesized on the GPU.
 - [Command-line tool](#command-line-tool) (3.0 agent loop)
 - [Interiors and articulated assets](#interiors-and-articulated-assets-40) (4.0)
 - [Ballpark](#ballpark-41) (4.1)
+- [Hospital](#hospital-50) (5.0)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -307,6 +308,45 @@ Props, gated and signed off: `home-plate`, `base-bag`, `baseball-bat`, `baseball
 
 New texture programs `turf` (mowing stripes or checkerboard), `infieldClay` (drag lines, conditioner
 granules, cleat prints) and `chainLink` (woven cutout mesh with a distance veil).
+
+### Hospital (5.0)
+
+An emergency department built from code: a waiting and intake lobby, a treatment corridor, an ER
+treatment room and an operating room, furnished with 50 articulated medical assets. Instruments and
+handheld devices can be picked up by hand in the Demo app (`ManipulationComponent`), and every
+door, drawer, rail, lid, screen and lamp has named states. See docs/V5.md.
+
+![hospital corridor with the ER room and OR doors](docs/scenes/hospital.png)
+
+| | |
+|---|---|
+| ![er-room](docs/scenes/er-room.png)<br>`er-room` | ![operating-room](docs/scenes/operating-room.png)<br>`operating-room` |
+| ![hospital-lobby](docs/scenes/hospital-lobby.png)<br>`hospital-lobby` | ![intake](docs/v5/lobby-intake.png)<br>Intake desk, kiosks and treatment doors |
+| ![back table](docs/v5/or-back-table.png)<br>Back table: opened container and instrument set | ![ER counter](docs/v5/er-counter.png)<br>ER counter: stethoscope, BP set, otoscope, oximeter, glucometer |
+| ![OR from the head](docs/v5/or-head.png)<br>Anesthesia boom, workstation and the table | ![monitor](docs/v5/vitals.png)<br>`patient-monitor` state `alarm` |
+
+All 50 medical assets (43 props, 7 structures), gated and signed off:
+
+![medical assets](docs/v5/medical-gallery.jpg)
+
+States through the live rig:
+
+![hospital-bed states](docs/states/hospital-bed.png)
+![operating-table states](docs/states/operating-table.png)
+![surgical-light states](docs/states/surgical-light.png)
+![exam-table states](docs/states/exam-table.png)
+![anesthesia-machine states](docs/states/anesthesia-machine.png)
+![crash-cart states](docs/states/crash-cart.png)
+![wheelchair states](docs/states/wheelchair.png)
+![privacy-curtain states](docs/states/privacy-curtain.png)
+![patient-monitor states](docs/states/patient-monitor.png)
+![laryngoscope states](docs/states/laryngoscope.png)
+![syringe states](docs/states/syringe.png)
+![hemostat states](docs/states/hemostat.png)
+
+New texture programs `sheetVinyl` (chip sheet flooring with welded seams), `nonwoven` (SMS drapes and
+crepe exam paper), `wallTile`, `vitalsUI` (ECG, pleth, arterial and respiration traces with numerics)
+and `medLabel` (pharmacy and hazard labels with barcodes).
 
 ## Performance
 

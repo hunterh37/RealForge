@@ -1,6 +1,40 @@
 # Changelog
 
-## Unreleased: performance layer
+## 5.0.0
+
+Hospital: an emergency department floor, its rooms, 50 articulated medical assets and hand grab
+(see docs/V5.md).
+
+- Scenes: `hospital` (lobby, treatment corridor, ER room and operating room composed on one floor),
+  `hospital-lobby` (ER waiting and intake), `er-room` (treatment room with stretcher, exam table and
+  instrument counter), `operating-room` (surgical table, LED light, anesthesia boom and workstation,
+  draped back table). `RealScene.merge(_:at:)` composes rooms into floor plans. Demo cases for all four.
+- 43 articulated props, every one gated and signed off, 2 to 5 states each:
+  surgical (surgical-scissors, hemostat, needle-holder, tissue-forceps, scalpel, weitlaner-retractor),
+  diagnostic (stethoscope, otoscope, penlight, reflex-hammer, tympanic-thermometer, pulse-oximeter,
+  laryngoscope), bedside (sphygmomanometer, syringe, iv-pole, infusion-pump, patient-monitor, aed,
+  glucometer), patient (exam-table, er-stretcher, hospital-bed, overbed-table, doctor-stool, wheelchair),
+  theatre (operating-table, mayo-stand, anesthesia-machine, instrument-container, crash-cart,
+  biohazard-bin), clinic (sharps-container, sanitizer-dispenser, pill-bottle, medical-scale,
+  supply-cabinet, oxygen-cylinder, clipboard-chart, microscope), lobby (beam-seating, check-in-kiosk,
+  xray-viewer).
+- 7 articulated structures: hospital-doors (double acting), surgical-light (dual-head LED, lit spots),
+  ceiling-boom (gas outlets, monitor), scrub-sink (running water), privacy-curtain, headwall, nurse-station.
+- Hand grab: assets tagged `handheld` (21 instruments and devices) are grabbable by default through
+  `ManipulationComponent` on visionOS 26 (`RealityHD.articulated`, `RealityHD.entity`, `scene.addLive`;
+  `grabbable:` overrides). Taps on parts still toggle joints. `Entity.makeGrabbable`, `resetGrab`,
+  `Rig.restBounds`, `RealGrabComponent`.
+- Texture programs `sheetVinyl` (chip sheet flooring with welded seams), `nonwoven` (SMS drapes, crepe
+  exam paper), `wallTile`, `vitalsUI` (ECG, pleth, arterial and respiration traces with numerics),
+  `medLabel` (pharmacy and hazard labels with barcodes). 109 material keys (floors, wall tile, drapes,
+  medical vinyl, surgical stainless, device plastics, clear plastics and fluids, monitor screens,
+  labels, X-ray films, LEDs).
+- Indoor probes `InteriorLight.clinical` and `.operatingRoom`.
+- Tags `medical`, `surgical`, `hospital`, `handheld`, `ceiling` (ceiling-mounted structures skip the
+  floating lint); texel lint skips label and screen programs.
+- Performance layer (below) ships in this release.
+
+### Performance layer (5.0.0)
 
 - `RealPerformance`: package-wide render settings with tiers battery, performance, balanced (default,
   unchanged output), ultra, cinematic; Codable, saved to UserDefaults; `needsRebuild(from:)`.

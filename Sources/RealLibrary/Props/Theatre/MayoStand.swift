@@ -13,7 +13,7 @@ public struct MayoStand: RealArticulated {
     public static let tags = ["prop", "medical", "surgical", "articulated", "metal", "furniture"]
     public static let budget = 10000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 35, elevation: 22, distance: 1.6, studio: true)
+    public static let preview = PreviewHint(azimuth: 35, elevation: 22, distance: 1.0, studio: true)
 
     /// Tray size (x width, z length) and depth (m).
     public var tray = V2(0.32, 0.49)

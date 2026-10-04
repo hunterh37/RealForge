@@ -13,7 +13,7 @@ public struct CrashCart: RealArticulated {
     public static let tags = ["prop", "medical", "hospital", "articulated", "furniture", "container", "metal"]
     public static let budget = 14000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 30, elevation: 14, distance: 1.9, studio: true)
+    public static let preview = PreviewHint(azimuth: 30, elevation: 14, distance: 1.0, studio: true)
 
     /// Powder coat color (sRGB hex).
     public var color: UInt32 = 0xB3201C

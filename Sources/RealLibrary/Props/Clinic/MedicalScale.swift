@@ -12,7 +12,7 @@ public struct MedicalScale: RealArticulated {
     public static let tags = ["prop", "medical", "articulated", "metal", "rubber", "interior", "hospital"]
     public static let budget = 5_800
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 32, elevation: 14, distance: 2.6, studio: true)
+    public static let preview = PreviewHint(azimuth: 32, elevation: 12, distance: 0.95, studio: true)
 
     public var enamel: MaterialKey = "metal.powder-white"
     public var beam: MaterialKey = "metal.stainless"

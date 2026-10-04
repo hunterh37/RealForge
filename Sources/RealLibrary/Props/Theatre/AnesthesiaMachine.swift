@@ -14,7 +14,7 @@ public struct AnesthesiaMachine: RealArticulated {
     public static let tags = ["prop", "medical", "surgical", "articulated", "electronics", "plastic", "metal"]
     public static let budget = 15000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 28, elevation: 12, distance: 2.1, studio: true)
+    public static let preview = PreviewHint(azimuth: 28, elevation: 12, distance: 1.0, studio: true)
 
     /// Vaporizer agent color (sRGB hex): sevoflurane E2B637, isoflurane 8A5AA8, desflurane 3A74B8.
     public var agent: UInt32 = 0xE2B637

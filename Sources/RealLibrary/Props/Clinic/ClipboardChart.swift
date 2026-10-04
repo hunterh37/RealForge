@@ -12,7 +12,7 @@ public struct ClipboardChart: RealArticulated {
     public static let tags = ["prop", "medical", "articulated", "handheld", "metal", "paper", "hospital"]
     public static let budget = 4_200
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 20, elevation: 40, distance: 0.75, studio: true)
+    public static let preview = PreviewHint(azimuth: 20, elevation: 40, distance: 1.25, studio: true)
 
     public var width: Float = 0.25
     public var depth: Float = 0.325

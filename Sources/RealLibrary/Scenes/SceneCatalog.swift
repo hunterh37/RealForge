@@ -32,6 +32,10 @@ public enum SceneCatalog {
                 ConferenceRoom.self,
                 OfficePlaza.self,
                 Ballpark.self,
+                HospitalLobby.self,
+                ErRoom.self,
+                OperatingRoom.self,
+                HospitalFloor.self,
                 // realityhd:scene
     ]
 

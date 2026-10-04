@@ -13,7 +13,7 @@ public struct OverbedTable: RealArticulated {
     public static let tags = ["prop", "medical", "hospital", "furniture", "metal", "wood", "articulated"]
     public static let budget = 11_000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 35, elevation: 18, distance: 1.4, studio: true)
+    public static let preview = PreviewHint(azimuth: 35, elevation: 18, distance: 1.05, studio: true)
 
     /// Frame powder coat.
     public var frame: MaterialKey = "metal.powder-white:D9D6CE"

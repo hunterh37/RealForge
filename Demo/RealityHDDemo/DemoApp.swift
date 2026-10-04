@@ -19,6 +19,10 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case officeLobby = "office-lobby"
     case conferenceRoom = "conference-room"
     case officePlaza = "office-plaza"
+    case hospital = "hospital"
+    case hospitalLobby = "hospital-lobby"
+    case erRoom = "er-room"
+    case operatingRoom = "operating-room"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -37,6 +41,10 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .officeLobby: "Office Lobby"
         case .conferenceRoom: "Conference Room"
         case .officePlaza: "Office Plaza"
+        case .hospital: "Hospital"
+        case .hospitalLobby: "Hospital Lobby"
+        case .erRoom: "ER Room"
+        case .operatingRoom: "Operating Room"
         }
     }
     var detail: String {
@@ -56,12 +64,16 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .officeLobby: "Terrazzo lobby, marble reception, elevator bank, glass street front. Tap the elevators and door."
         case .conferenceRoom: "Boardroom table, mesh chairs, wall display, glass partition and door."
         case .officePlaza: "Plaza between curtain-wall office blocks, maples in planters, benches and lamps."
+        case .hospital: "ER floor: waiting lobby, treatment corridor, ER room and operating room. Pinch instruments to pick them up."
+        case .hospitalLobby: "Waiting and intake lobby: kiosks, nurse station, beam seating, doors to treatment. Tap doors and kiosks."
+        case .erRoom: "ER treatment room: stretcher, vitals monitor, IV pump, exam table, instrument counter. Grab the stethoscope."
+        case .operatingRoom: "Operating room: surgical table under LED lights, anesthesia boom, draped back table with instruments."
         }
     }
     /// Sky picked when the scene is opened from the menu.
     var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
     /// Interiors and the plaza carry their own sun and probe; the menu sky is ignored for them.
-    var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza].contains(self) }
+    var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza, .hospital, .hospitalLobby, .erRoom, .operatingRoom].contains(self) }
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {
