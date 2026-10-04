@@ -7,8 +7,7 @@
     "vinyl.medical",
     "plastic.black",
     "plastic.matte",
-    "laminate.white",
-    "metal.chrome"
+    "laminate.white"
   ],
   "name": "Beam Seating",
   "notes": "",
@@ -23,9 +22,9 @@
   ],
   "references": [],
   "size": [
-    2.5,
-    0.82,
-    0.68
+    2.53,
+    0.86,
+    0.61
   ],
   "style": "Clinic waiting room, a few years in service: seat fronts slightly worn, arm pads scuffed.",
   "summary": "Four-seat waiting-room beam seating: steel beam on T-legs, teal vinyl seats and backs on black shells, lift-up end arms and a fold-down tablet.",
