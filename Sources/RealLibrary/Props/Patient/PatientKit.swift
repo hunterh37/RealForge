@@ -46,6 +46,13 @@ enum PatientKit {
             .transformed(Xform(translation: (a + b) / 2, rotation: simd_quatf(simd_float3x3(x, y, z))))
     }
 
+    /// Bent-rod pull handle: bar along X at `standoff` in +Z, posts back to z = 0.
+    static func pull(length: Float, standoff: Float, r: Float, sides: Int = 8, material: MaterialKey) -> Surface {
+        let h = length / 2
+        return tube(bend([V3(-h, 0, -0.002), V3(-h, 0, standoff), V3(h, 0, standoff), V3(h, 0, -0.002)], radius: min(0.012, standoff * 0.6), seg: 3),
+                    r: r, sides: sides, material: material)
+    }
+
     /// Fillet weld bead ringing a tube of radius `r` at `p` (tube axis `axis`).
     static func weld(at p: V3, axis: V3, r: Float, bead: Float = 0.0016, material: MaterialKey) -> Surface {
         Prim.torus(major: r + bead * 0.3, minor: bead, segments: 12, sides: 4, material: material)
@@ -78,6 +85,31 @@ enum PatientKit {
         let a = s.add(c - r - u, n, V2(0, 1)), b = s.add(c + r - u, n, V2(1, 1))
         let d = s.add(c + r + u, n, V2(1, 0)), e = s.add(c - r + u, n, V2(0, 0))
         s.quad(a, b, d, e)
+        s.computeTangents()
+        return s
+    }
+
+    /// Thin sheet (paper, linen) following a path, `width` across `across`; faces cross(across, tangent).
+    /// UVs in meters. `offset(i, j)` moves vertex (path i, across j) for wrinkles and torn edges.
+    static func ribbon(_ path: [V3], across: V3, width: Float, steps: Int, material: MaterialKey,
+                       offset: ((Int, Int) -> V3)? = nil) -> Surface {
+        var s = Surface(material: material)
+        var v: Float = 0
+        for i in path.indices {
+            if i > 0 { v += simd_distance(path[i], path[i - 1]) }
+            let t = simd_normalize(path[min(i + 1, path.count - 1)] - path[max(i - 1, 0)])
+            let n = simd_normalize(simd_cross(across, t))
+            for j in 0...steps {
+                let u = (Float(j) / Float(steps) - 0.5) * width
+                _ = s.add(path[i] + across * u + (offset?(i, j) ?? .zero), n, V2(v, u))
+            }
+        }
+        let row = UInt32(steps + 1)
+        for i in 0..<UInt32(path.count - 1) { for j in 0..<UInt32(steps) {
+            let a = i * row + j
+            s.quad(a, a + 1, a + row + 1, a + row)
+        }}
+        s.recomputeNormals(weldSeams: true)
         s.computeTangents()
         return s
     }

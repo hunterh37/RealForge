@@ -1,29 +1,46 @@
 {
-  "budget" : 10000,
-  "id" : "exam-table",
-  "kind" : "prop",
-  "materials" : [
-
+  "budget": 15000,
+  "id": "exam-table",
+  "kind": "prop",
+  "materials": [
+    "metal.powder-white",
+    "vinyl.medical",
+    "paper.exam",
+    "metal.chrome",
+    "plastic.medical-grey",
+    "plastic.matte",
+    "rubber"
   ],
-  "name" : "Exam table",
-  "notes" : "",
-  "parts" : [
-
+  "name": "Exam table",
+  "notes": "",
+  "parts": [
+    "powder-coated casework base with recessed toe kick",
+    "two front drawers with bar pulls",
+    "pull-out step with rubber tread at the foot end",
+    "upholstered seat cushion in medical vinyl with stitched side seams",
+    "adjustable back section on a hinge with steel underframe",
+    "paper roll holder with roll at the head",
+    "exam paper sheet over the top with a torn end",
+    "stirrups stowed under the foot end of the top",
+    "duplex outlet on the casework"
   ],
-  "references" : [
-
+  "references": [],
+  "size": [
+    1.58,
+    0.8,
+    0.69
   ],
-  "size" : [
-    0,
-    0,
-    0
+  "style": "Contemporary clinic exam table (Midmark Ritter 204 / 625 class), 69 cm wide top at 81 cm; teal vinyl, warm white casework, toe kick scuffed, paper torn off at the foot end.",
+  "summary": "Medical exam table: powder-coated casework with two drawers and a pull-out step, vinyl top with a raising back, paper roll and stowed stirrups.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "furniture",
+    "metal",
+    "articulated"
   ],
-  "style" : "TODO: era, condition, finish",
-  "summary" : "TODO: one sentence, what it is and how it's built.",
-  "tags" : [
-    "prop"
-  ],
-  "theme" : "Patient",
-  "threshold" : 0.85,
-  "tolerance" : 0.08
+  "theme": "Patient",
+  "threshold": 0.85,
+  "tolerance": 0.1
 }
