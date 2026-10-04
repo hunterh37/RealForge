@@ -1,0 +1,41 @@
+{
+  "budget": 5000,
+  "id": "needle-holder",
+  "kind": "prop",
+  "materials": [
+    "metal.surgical",
+    "metal.surgical-mirror",
+    "metal.surgical-gold",
+    "metal.tungsten-carbide"
+  ],
+  "name": "Mayo-Hegar needle holder",
+  "notes": "Size is the default open state (26 degrees between members); closed it is 178 x 56 mm.",
+  "parts": [
+    "short heavy jaws with dark tungsten-carbide crosshatched inserts",
+    "box-lock joint with flush screw heads",
+    "satin shanks",
+    "four-tooth ratchet bosses",
+    "gold-plated finger rings marking the carbide inserts",
+    "curved 3/8 circle suture needle with violet suture (option)"
+  ],
+  "references": [],
+  "size": [
+    0.17,
+    0.0052,
+    0.112
+  ],
+  "style": "Stainless with gold-plated TC rings, satin finish, sterile and clean.",
+  "summary": "Mayo-Hegar needle holder, 7 in: tungsten-carbide crosshatched jaws, box lock, ratchet, gold rings and an optional clamped needle.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
