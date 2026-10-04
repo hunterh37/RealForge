@@ -45,6 +45,12 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xF4F2E8); $0.colorB = linear(0x2E8A4A); $0.colorC = linear(0x1A1A1C)
             $0.knobs = V4(0.3, 1, 3, 0.25); $0.seed = 564; $0.tileSize = 0; $0.resolution = 256; $0.normalStrength = 0.1
         },
+        // Self check-in kiosk welcome screen: white page, blue header band, greeked prompt lines (unlit, UVs 0...1).
+        MaterialSpec(key: "screen.kiosk", program: .medLabel).with {
+            $0.colorA = linear(0xF4F7FA); $0.colorB = linear(0x1F64B4); $0.colorC = linear(0x2A3440)
+            $0.knobs = V4(0.16, 0, 5, 0); $0.seed = 565; $0.tileSize = 0; $0.resolution = 1024
+            $0.mode = .emissive; $0.emissive = V3(1, 1, 1); $0.emissiveIntensity = 0.95
+        },
         // realityhd:material.medicalHospitalLobby
     ]
 }
