@@ -1,0 +1,49 @@
+{
+  "budget": 15000,
+  "id": "nurse-station",
+  "kind": "structure",
+  "materials": [
+    "stone.solid-surface",
+    "wood.veneer-oak",
+    "laminate.white",
+    "metal.casework",
+    "plastic.matte",
+    "screen.off",
+    "screen.ui",
+    "screen.vitals"
+  ],
+  "name": "Nurse Station",
+  "notes": "",
+  "parts": [
+    "1070 mm transaction ledge in solid surface with eased edges",
+    "oak veneer fascia panels with reveals and a stainless kick base",
+    "staff work surface at 740 mm with grommets",
+    "L return wing at desk height",
+    "two 24-inch monitors on stands with off and on screens",
+    "keyboard and mouse",
+    "steel chart rack holding coloured binders",
+    "pass-through swing gate on pivot hinges with push plate",
+    "lowered accessible end"
+  ],
+  "references": [],
+  "size": [
+    4.1,
+    1.23,
+    1.74
+  ],
+  "style": "Busy ward station: kick base scuffed, transaction ledge worn at the front edge, binders not quite aligned.",
+  "summary": "L-shaped nurse station: solid-surface transaction ledge, oak fascia, staff work surface with two monitors, keyboard, chart rack and a swing gate.",
+  "tags": [
+    "structure",
+    "medical",
+    "hospital",
+    "interior",
+    "furniture",
+    "wood",
+    "electronics",
+    "articulated"
+  ],
+  "theme": "Hospital",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

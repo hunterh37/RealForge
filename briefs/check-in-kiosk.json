@@ -1,0 +1,46 @@
+{
+  "budget": 6600,
+  "id": "check-in-kiosk",
+  "kind": "prop",
+  "materials": [
+    "metal.powder-white",
+    "plastic.medical-grey",
+    "screen.off",
+    "screen.ui",
+    "plastic.black",
+    "paper.sheet"
+  ],
+  "name": "Check-in Kiosk",
+  "notes": "",
+  "parts": [
+    "weighted oval steel base plate",
+    "slim column with cable cover",
+    "angled head housing with 21.5-inch touchscreen",
+    "EMV card reader with contactless pad",
+    "receipt printer slot with paper that slides out",
+    "flatbed ID scanner under a hinged lid",
+    "privacy hood and logo strip",
+    "speaker grille and status LED"
+  ],
+  "references": [],
+  "size": [
+    0.56,
+    1.518,
+    0.46
+  ],
+  "style": "New hospital lobby kiosk: clean white, the card reader bezel worn grey by fingers.",
+  "summary": "Freestanding patient check-in kiosk: oval base, slim column, angled 21.5-inch touchscreen, card reader, receipt printer and ID scanner.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "interior",
+    "electronics",
+    "metal",
+    "plastic",
+    "articulated"
+  ],
+  "theme": "Hospital",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

@@ -1,0 +1,44 @@
+{
+  "budget": 15000,
+  "id": "beam-seating",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat",
+    "vinyl.medical",
+    "plastic.black",
+    "plastic.matte",
+    "laminate.white"
+  ],
+  "name": "Beam Seating",
+  "notes": "",
+  "parts": [
+    "80 x 40 mm powder-coated steel beam",
+    "two T-legs with foot bars and floor glides",
+    "four upholstered vinyl seat pads on molded shells",
+    "four upholstered backs on shells with steel spines",
+    "three fixed armrests between seats with polyurethane pads",
+    "two hinged end arms that swing up",
+    "fold-down laminate tablet arm on the right end"
+  ],
+  "references": [],
+  "size": [
+    2.53,
+    0.86,
+    0.61
+  ],
+  "style": "Clinic waiting room, a few years in service: seat fronts slightly worn, arm pads scuffed.",
+  "summary": "Four-seat waiting-room beam seating: steel beam on T-legs, teal vinyl seats and backs on black shells, lift-up end arms and a fold-down tablet.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "interior",
+    "furniture",
+    "metal",
+    "plastic",
+    "articulated"
+  ],
+  "theme": "Hospital",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

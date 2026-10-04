@@ -84,6 +84,9 @@ public enum Props {
         OxygenCylinder.self,
         ClipboardChart.self,
         Microscope.self,
+        BeamSeating.self,
+        CheckInKiosk.self,
+        XrayViewer.self,
         // realityhd:prop
     ]
 }

@@ -23,6 +23,9 @@ public enum Structures {
         SurgicalLight.self,
         CeilingBoom.self,
         ScrubSink.self,
+        PrivacyCurtain.self,
+        Headwall.self,
+        NurseStation.self,
         // realityhd:structure
     ]
 }
