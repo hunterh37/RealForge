@@ -23,6 +23,7 @@ every PBR texture is synthesized on the GPU.
 - [Performance](#performance)
 - [Command-line tool](#command-line-tool) (3.0 agent loop)
 - [Interiors and articulated assets](#interiors-and-articulated-assets-40) (4.0)
+- [Ballpark](#ballpark-41) (4.1)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -280,6 +281,32 @@ cabinet.setArticulation("drawer2-open")          // eased animation
 Albedo channel of the GPU-generated texture sets.
 
 ![Material swatches](docs/materials/swatches.png)
+
+### Ballpark (4.1)
+
+A regulation baseball field built from code: 90 ft base paths, a 10 in mound with the rubber at
+60 ft 6 in, a 95 ft infield arc, chalked boxes and foul lines, checkerboard-mowed turf, a red warning
+track, padded walls, foul poles, a hooded backstop, block dugouts, aluminum bleachers and six light
+towers. The `ballpark` camera, and the Demo app viewer, stand in the right-handed batter's box.
+
+![ballpark from the batter's box](docs/scenes/ballpark.png)
+
+| | |
+|---|---|
+| ![aerial](docs/v41/ballpark-aerial.png)<br>Aerial from behind first base | ![backstop](docs/v41/ballpark-backstop.png)<br>Home plate and the backstop from the infield |
+| ![plate](docs/v41/ballpark-plate.png)<br>Batter's boxes, catcher's box, `home-plate` | ![first base](docs/v41/ballpark-first-base.png)<br>`base-bag` at first, runner's lane |
+| ![mound](docs/v41/ballpark-mound-golden.png)<br>Mound at golden hour | ![stands](docs/v41/ballpark-stands.png)<br>Bleachers, backstop and dugout from foul ground |
+
+Structures: `baseball-diamond`, `outfield-wall`, `foul-pole`, `backstop`, `dugout`, `bleachers`, `light-tower`.
+
+![ballpark structures](docs/v41/ballpark-structures.png)
+
+Props, gated and signed off: `home-plate`, `base-bag`, `baseball-bat`, `baseball`, `ball-bucket`, `batting-helmet`.
+
+![ballpark props](docs/v41/ballpark-props.png)
+
+New texture programs `turf` (mowing stripes or checkerboard), `infieldClay` (drag lines, conditioner
+granules, cleat prints) and `chainLink` (woven cutout mesh with a distance veil).
 
 ## Performance
 
