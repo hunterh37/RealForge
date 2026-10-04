@@ -232,14 +232,41 @@ Office scenes lit by the sun through real openings plus an indoor probe, with ba
 static batching. Doors, drawers, lids, chairs, lamps and screens have named states and animate live
 (`docs/V4.md`, `docs/guides/articulation.md`).
 
+![open-office in the Apple Vision Pro simulator](docs/demo/open-office-sim.png)
+`open-office` in the RealityHDDemo app, Apple Vision Pro simulator (visionOS 26.4): tilted window live,
+monitors showing the `screen.ui` display material, sun through the ribbon windows.
+
 | | |
 |---|---|
-| ![open-office](docs/scenes/open-office.png)<br>`open-office` | ![executive-office](docs/scenes/executive-office.png)<br>`executive-office` |
+| ![open-office](docs/v4/open-office.png)<br>`open-office` | ![executive-office](docs/scenes/executive-office.png)<br>`executive-office` |
 | ![office-lobby](docs/scenes/office-lobby.png)<br>`office-lobby` | ![conference-room](docs/scenes/conference-room.png)<br>`conference-room` |
+| ![office-plaza](docs/scenes/office-plaza.png)<br>`office-plaza` | ![laptop on](docs/v4/laptop-on.png)<br>`laptop` state `on` |
+
+Every state of every articulated asset, rendered through the live rig (`realityhd states`):
 
 ![office-door states](docs/states/office-door.png)
+![office-window states](docs/states/office-window.png)
+![elevator-doors states](docs/states/elevator-doors.png)
+![glass-door states](docs/states/glass-door.png)
 ![filing-cabinet states](docs/states/filing-cabinet.png)
+![desk-pedestal states](docs/states/desk-pedestal.png)
+![storage-cabinet states](docs/states/storage-cabinet.png)
+![executive-desk states](docs/states/executive-desk.png)
+![office-chair states](docs/states/office-chair.png)
+![laptop states](docs/states/laptop.png)
+![desktop-monitor states](docs/states/desktop-monitor.png)
 ![hardcover-book states](docs/states/hardcover-book.png)
+![banker-lamp states](docs/states/banker-lamp.png)
+![pedal-bin states](docs/states/pedal-bin.png)
+![ceiling-light states](docs/states/ceiling-light.png)
+
+Static office props:
+
+| | | | |
+|---|---|---|---|
+| ![office-desk](docs/assets/office-desk.png)<br>`office-desk` | ![bookshelf](docs/assets/bookshelf.png)<br>`bookshelf` | ![conference-table](docs/assets/conference-table.png)<br>`conference-table` | ![lobby-sofa](docs/assets/lobby-sofa.png)<br>`lobby-sofa` |
+| ![reception-desk](docs/assets/reception-desk.png)<br>`reception-desk` | ![whiteboard](docs/assets/whiteboard.png)<br>`whiteboard` | ![water-cooler](docs/assets/water-cooler.png)<br>`water-cooler` | ![snake-plant](docs/assets/snake-plant.png)<br>`snake-plant` |
+| ![keyboard-mouse](docs/assets/keyboard-mouse.png)<br>`keyboard-mouse` | ![coffee-mug](docs/assets/coffee-mug.png)<br>`coffee-mug` | ![paper-stack](docs/assets/paper-stack.png)<br>`paper-stack` | ![office-block](docs/assets/office-block.png)<br>`office-block` |
 
 ```swift
 let cabinet = try await RealityHD.articulated("filing-cabinet")
