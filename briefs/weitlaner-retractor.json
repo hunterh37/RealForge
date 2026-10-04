@@ -7,7 +7,7 @@
     "metal.surgical-mirror"
   ],
   "name": "Weitlaner self-retaining retractor",
-  "notes": "",
+  "notes": "Size is the closed state lying tipped onto its prongs and rings; the handles stand apart in a V when the rakes are closed.",
   "parts": [
     "3-prong and 4-prong blunt rakes curving downward",
     "straight arms",
@@ -18,9 +18,9 @@
   ],
   "references": [],
   "size": [
-    0.165,
-    0.014,
-    0.06
+    0.1631,
+    0.0237,
+    0.0945
   ],
   "style": "Satin stainless, reprocessed hospital instrument, clean.",
   "summary": "Weitlaner self-retaining retractor, 6.5 in: 3x4 blunt rake prongs, pivot screw, curved ratchet bar with thumb release and finger rings.",

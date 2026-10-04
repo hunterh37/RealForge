@@ -17,7 +17,7 @@ public extension MaterialLibrary {
         },
         // Translucent blue polycarbonate safety-scalpel shield: glossy, fairly saturated.
         MaterialSpec(key: "plastic.scalpel-shield", program: nil).with {
-            $0.baseColor = V3(0.12, 0.36, 0.78); $0.roughness = 0.12; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.5; $0.twoSided = true
+            $0.baseColor = V3(0.05, 0.25, 0.7); $0.roughness = 0.1; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.62; $0.twoSided = true
         },
         // realityhd:material.medicalSurgical
     ]

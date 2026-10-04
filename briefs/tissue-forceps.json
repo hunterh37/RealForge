@@ -1,5 +1,5 @@
 {
-  "budget": 3000,
+  "budget": 3700,
   "id": "tissue-forceps",
   "kind": "prop",
   "materials": [
@@ -18,9 +18,9 @@
   ],
   "references": [],
   "size": [
-    0.12,
-    0.0125,
-    0.0105
+    0.1201,
+    0.0137,
+    0.0094
   ],
   "style": "Satin stainless with mirror tips, reprocessed hospital instrument.",
   "summary": "Adson tissue forceps, 4.75 in, 1x2 teeth: two spring tines welded at the back, broad serrated grips and fine toothed tips.",

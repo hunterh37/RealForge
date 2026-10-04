@@ -188,6 +188,17 @@ enum SurgKit {
         groundAO(&rig, height: aoHeight, floor: aoFloor)
     }
 
+    /// Tilt about Z that sets the default state down on its lowest point ahead of `frontX` and its
+    /// lowest point behind `backX` together (an object resting on two feet).
+    static func restTilt(_ rig: Rig, frontX: Float, backX: Float) -> Xform {
+        var f = V3(0, .greatestFiniteMagnitude, 0), b = V3(0, .greatestFiniteMagnitude, 0)
+        for s in rig.posed().levels[0].surfaces { for p in s.positions {
+            if p.x > frontX && p.y < f.y { f = p }
+            if p.x < backX && p.y < b.y { b = p }
+        }}
+        return Xform(rotation: simd_quatf(angle: atan2(b.y - f.y, f.x - b.x), axis: V3(0, 0, 1)))
+    }
+
     /// Asymmetric ratchet sawtooth: height in 0...1 at lateral position `u` for tooth pitch `p`.
     static func saw(_ u: Float, pitch p: Float) -> Float {
         let f = u / p - floor(u / p)
