@@ -1,0 +1,42 @@
+{
+  "budget": 7000,
+  "id": "biohazard-bin",
+  "kind": "prop",
+  "materials": [
+    "plastic.resin-red",
+    "label.hazard",
+    "plastic.gloss:C2241F",
+    "rubber",
+    "metal.stainless"
+  ],
+  "name": "Biohazard step-on bin",
+  "notes": "front faces +Z; size with the lid closed.",
+  "parts": [
+    "tapered rectangular red resin body with rounded corners",
+    "hinged lid with a rear hinge",
+    "foot pedal at the front base",
+    "red bag liner folded over the rim",
+    "biohazard label with symbol on the front",
+    "rear lift rod channel"
+  ],
+  "references": [],
+  "size": [
+    0.42,
+    0.83,
+    0.53
+  ],
+  "style": "Rubbermaid class 23 gal step-on medical waste can, molded red resin, scuffed foot pedal.",
+  "summary": "23 gallon red step-on biohazard waste can: molded resin body, hinged lid lifted by a foot pedal, red liner rim and a biohazard label.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "surgical",
+    "articulated",
+    "container",
+    "plastic"
+  ],
+  "theme": "Theatre",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

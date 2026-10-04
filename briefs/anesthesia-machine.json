@@ -1,0 +1,48 @@
+{
+  "budget": 15000,
+  "id": "anesthesia-machine",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "plastic.medical-grey",
+    "metal.casework",
+    "plastic.clear",
+    "rubber.tubing",
+    "screen.off",
+    "screen.vitals",
+    "emissive.led-green"
+  ],
+  "name": "Anesthesia machine",
+  "notes": "front faces +Z; size in the parked state.",
+  "parts": [
+    "off-white cart body on four casters with a work surface",
+    "three drawers under the work surface",
+    "ventilator bellows in a transparent dome",
+    "flowmeter bank with glass tubes and knobs",
+    "vaporizer on a mount bar with a concentration dial",
+    "CO2 absorber, inspiratory and expiratory valves, APL valve",
+    "corrugated breathing hose loop with Y-piece and reservoir bag",
+    "monitor on an arm with an off / vitals screen",
+    "gas cylinders on the back"
+  ],
+  "references": [],
+  "size": [
+    0.86,
+    1.72,
+    0.8
+  ],
+  "style": "current Draeger Fabius / GE Aisys class workstation, warm off-white housings, grey trim, purple absorber granules, a strip of tape on the vaporizer.",
+  "summary": "Anesthesia workstation: cart body with three drawers, flowmeters, vaporizer, bellows in a clear dome, breathing circuit and a monitor arm.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "articulated",
+    "electronics",
+    "plastic",
+    "metal"
+  ],
+  "theme": "Theatre",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

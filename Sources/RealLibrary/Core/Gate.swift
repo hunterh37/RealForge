@@ -131,7 +131,9 @@ public enum GeometryLint {
             let ratio = r.isEmpty ? 1 : r[r.count / 2]
             ratios[s.material] = ratio
             let spec = MaterialLibrary.spec(for: base)
-            let atlas = spec.tileSize == 0 || spec.program == nil
+            // Labels and screens map 0...1 across the panel, like atlases.
+            let panel: [TextureProgram] = [.medLabel, .vitalsUI, .screenUI]
+            let atlas = spec.tileSize == 0 || spec.program == nil || spec.program.map(panel.contains) == true
             if !atlas && !base.contains("endgrain") && (ratio > 2.5 || ratio < 0.4) {
                 add(.warn, "texel", String(format: "%@: UVs at %.2f m per unit (expected ~1); texture scale will look wrong", s.material, ratio))
             }

@@ -1,0 +1,45 @@
+{
+  "budget": 14000,
+  "id": "crash-cart",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:B3201C",
+    "metal.aluminum-brushed",
+    "plastic.matte",
+    "plastic.medical-grey",
+    "rubber",
+    "metal.powdercoat:2E7D4F"
+  ],
+  "name": "Crash cart",
+  "notes": "front faces +Z; O2 holder on -X, push handle on +X.",
+  "parts": [
+    "red steel cabinet on 125 mm casters with a bumper",
+    "five drawers with full-width aluminium pulls",
+    "breakaway lock with a numbered plastic seal",
+    "top with a raised rim",
+    "defibrillator shelf on a post",
+    "O2 cylinder holder with a green cylinder on the side",
+    "CPR board on the back",
+    "push handle"
+  ],
+  "references": [],
+  "size": [
+    0.98,
+    1.3,
+    0.66
+  ],
+  "style": "Harloff class emergency cart, red powder coat with scuffs on the bumper and drawer edges, a daily check log clipped to the side.",
+  "summary": "Emergency crash cart: red powder-coated cabinet with five drawers, breakaway seal, rimmed top, O2 tank holder, CPR board and defib shelf.",
+  "tags": [
+    "prop",
+    "medical",
+    "hospital",
+    "articulated",
+    "furniture",
+    "container",
+    "metal"
+  ],
+  "theme": "Theatre",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
