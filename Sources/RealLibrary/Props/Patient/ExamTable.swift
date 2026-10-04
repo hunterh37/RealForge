@@ -14,7 +14,7 @@ public struct ExamTable: RealArticulated {
     public static let tags = ["prop", "medical", "hospital", "furniture", "metal", "articulated"]
     public static let budget = 15_000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 30, elevation: 16, distance: 2.4, studio: true)
+    public static let preview = PreviewHint(azimuth: 30, elevation: 16, distance: 1.0, studio: true)
 
     /// Upholstery vinyl (tint for color).
     public var upholstery: MaterialKey = "vinyl.medical"

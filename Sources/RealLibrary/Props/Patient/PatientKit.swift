@@ -89,6 +89,22 @@ enum PatientKit {
         return s
     }
 
+    /// Mattress segment along X (x0...x1, base at y0, height h, width w) and, when `sheet` is given, a
+    /// fitted sheet over its top and upper sides with a few soft wrinkles.
+    static func pad(_ x0: Float, _ x1: Float, y0: Float, h: Float, w: Float, material: MaterialKey, sheet: MaterialKey?, sub: Int, seed: UInt64) -> [Surface] {
+        let cx = (x0 + x1) / 2, L = x1 - x0
+        var out = [Prim.superellipsoid(V3(L, h, w), exponent: 8, subdivisions: sub, material: material).transformed(Xform(translation: V3(cx, y0 + h / 2, 0)))]
+        if let sheet {
+            let ph = Float(seed % 5) * 0.7
+            var s = Prim.superellipsoid(V3(L + 0.006, h * 0.8, w + 0.006), exponent: 8, subdivisions: sub, material: sheet) { d in
+                1 + 0.012 * sin(d.x * 9 + ph) * sin(d.z * 7) * max(0, d.y)
+            }
+            s = s.transformed(Xform(translation: V3(cx, y0 + h * 0.6 + 0.0015, 0)))
+            out.append(s)
+        }
+        return out
+    }
+
     /// Thin sheet (paper, linen) following a path, `width` across `across`; faces cross(across, tangent).
     /// UVs in meters. `offset(i, j)` moves vertex (path i, across j) for wrinkles and torn edges.
     static func ribbon(_ path: [V3], across: V3, width: Float, steps: Int, material: MaterialKey,

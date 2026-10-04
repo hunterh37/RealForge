@@ -14,7 +14,7 @@ public struct Wheelchair: RealArticulated {
     public static let tags = ["prop", "medical", "hospital", "furniture", "metal", "articulated"]
     public static let budget = 15_000
     public static let author = "realityhd"
-    public static let preview = PreviewHint(azimuth: 35, elevation: 14, distance: 1.9, studio: true)
+    public static let preview = PreviewHint(azimuth: 35, elevation: 14, distance: 1.0, studio: true)
 
     /// Sling vinyl.
     public var sling: MaterialKey = "vinyl.medical-black"

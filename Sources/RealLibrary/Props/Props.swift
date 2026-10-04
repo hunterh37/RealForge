@@ -68,6 +68,7 @@ public enum Props {
         OverbedTable.self,
         ExamTable.self,
         Wheelchair.self,
+        ErStretcher.self,
         // realityhd:prop
     ]
 }
