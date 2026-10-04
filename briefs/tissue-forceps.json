@@ -1,0 +1,39 @@
+{
+  "budget": 3000,
+  "id": "tissue-forceps",
+  "kind": "prop",
+  "materials": [
+    "metal.surgical",
+    "metal.surgical-mirror"
+  ],
+  "name": "Adson tissue forceps",
+  "notes": "",
+  "parts": [
+    "two leaf-spring tines",
+    "welded rounded back end",
+    "broad thumb grips with transverse serrations",
+    "narrow shouldered tips",
+    "1x2 interlocking teeth at the tips",
+    "green ID tape band"
+  ],
+  "references": [],
+  "size": [
+    0.12,
+    0.0125,
+    0.0105
+  ],
+  "style": "Satin stainless with mirror tips, reprocessed hospital instrument.",
+  "summary": "Adson tissue forceps, 4.75 in, 1x2 teeth: two spring tines welded at the back, broad serrated grips and fine toothed tips.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

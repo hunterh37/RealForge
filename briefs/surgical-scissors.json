@@ -1,0 +1,39 @@
+{
+  "budget": 4900,
+  "id": "surgical-scissors",
+  "kind": "prop",
+  "materials": [
+    "metal.surgical",
+    "metal.surgical-mirror"
+  ],
+  "name": "Mayo dissecting scissors",
+  "notes": "",
+  "parts": [
+    "two curved mirror-finish blades with ground cutting edges and blunt tips",
+    "slotted pivot screw with domed head",
+    "round joint bosses around the screw",
+    "offset satin shanks",
+    "oval finger rings, 20 mm inner diameter",
+    "blue instrument ID tape band on one shank"
+  ],
+  "references": [],
+  "size": [
+    0.171,
+    0.0052,
+    0.056
+  ],
+  "style": "Modern German-pattern stainless, satin handles, mirror blades, sterile-processed and clean; ID tape slightly lifted at its seam.",
+  "summary": "Mayo dissecting scissors, 6.75 in curved: mirror blades on a slotted pivot screw, satin shanks and oval finger rings.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

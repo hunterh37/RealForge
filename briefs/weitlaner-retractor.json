@@ -1,0 +1,39 @@
+{
+  "budget": 5000,
+  "id": "weitlaner-retractor",
+  "kind": "prop",
+  "materials": [
+    "metal.surgical",
+    "metal.surgical-mirror"
+  ],
+  "name": "Weitlaner self-retaining retractor",
+  "notes": "",
+  "parts": [
+    "3-prong and 4-prong blunt rakes curving downward",
+    "straight arms",
+    "pivot screw joint",
+    "curved toothed ratchet bar on one handle",
+    "catch block with thumb release latch on the other",
+    "oval finger rings"
+  ],
+  "references": [],
+  "size": [
+    0.165,
+    0.014,
+    0.06
+  ],
+  "style": "Satin stainless, reprocessed hospital instrument, clean.",
+  "summary": "Weitlaner self-retaining retractor, 6.5 in: 3x4 blunt rake prongs, pivot screw, curved ratchet bar with thumb release and finger rings.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

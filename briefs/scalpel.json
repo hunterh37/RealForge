@@ -1,0 +1,40 @@
+{
+  "budget": 3500,
+  "id": "scalpel",
+  "kind": "prop",
+  "materials": [
+    "plastic.medical",
+    "metal.surgical-mirror",
+    "plastic.scalpel-shield"
+  ],
+  "name": "Disposable safety scalpel",
+  "notes": "",
+  "parts": [
+    "molded white handle with scale-pattern grip ribs",
+    "#10 carbon-steel blade with curved belly",
+    "translucent blue sliding shield with thumb tab",
+    "blade guard detent and lock notch",
+    "blade size mark"
+  ],
+  "references": [],
+  "size": [
+    0.156,
+    0.011,
+    0.017
+  ],
+  "style": "Single-use sterile scalpel, new, clean molded plastic.",
+  "summary": "Disposable safety scalpel with a #10 blade: ribbed molded handle and a translucent blue shield that slides over the blade.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "plastic",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

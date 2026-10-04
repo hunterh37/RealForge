@@ -1,0 +1,39 @@
+{
+  "budget": 4800,
+  "id": "hemostat",
+  "kind": "prop",
+  "materials": [
+    "metal.surgical",
+    "metal.surgical-mirror"
+  ],
+  "name": "Kelly hemostatic forceps",
+  "notes": "Size is the default open state (30 degrees between members); closed it is 140 x 54 mm.",
+  "parts": [
+    "curved jaws with transverse serrations on the gripping faces",
+    "box-lock joint with flush screw heads",
+    "satin shanks",
+    "three-tooth interlocking ratchet bosses",
+    "oval finger rings, 20 mm inner diameter",
+    "yellow instrument ID tape on one shank"
+  ],
+  "references": [],
+  "size": [
+    0.133,
+    0.005,
+    0.095
+  ],
+  "style": "Stainless, satin body, polished jaws, reprocessed instrument with ID tape.",
+  "summary": "Kelly hemostatic forceps, 5.5 in curved: box-lock joint, serrated curved jaws, three-tooth ratchet and satin finger rings.",
+  "tags": [
+    "prop",
+    "medical",
+    "surgical",
+    "handheld",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Surgical",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
