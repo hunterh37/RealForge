@@ -93,3 +93,28 @@ change, `swift run -q realityhd shaders` must report 0 failures, and `--pbr` ren
 | `caneWeave` | cane / shadow | cells per tile, strand width, roughness, aging (cutout) | `cane.woven` |
 
 Feature size = tileSize / count: leather pebbles 1.5-3 mm, hammer dents 10-15 mm, cane holes 8-12 mm.
+
+## RealityHD 4 office programs
+
+Source: `Shaders/OfficeShaders.swift`; specs: `Library/Office.swift`.
+
+| program | colorA / B / C | knobs x y z w | keys |
+|---|---|---|---|
+| `carpetTile` | yarn / second yarn (a share) / fleck (a share) | rows per 50 cm tile, pattern, roughness, wear. 2 x 2 quarter-turn tiles per repeat with seams | `carpet.tile` |
+| `carpetPile` | pile / heather (a share) / border | tufts per tile, pile shading, roughness, border width (tile fraction; map one tile over the rug) | `carpet.rug` |
+| `acousticTile` | face / fissure shadow | fissures, pinholes, roughness, aging | `ceiling.acoustic` |
+| `paintedWall` | paint | stipple, roller laps, roughness | `paint.wall` |
+| `woodVeneer` | earlywood / latewood / pores (a ray flecks) | ring density, cathedral arches per tile, pores, book-matched leaves per tile (even). Grain along U | `wood.veneer-oak` `wood.veneer-walnut` |
+| `screenUI` | wallpaper deep / light / glow | ribbon glow, dim. Atlas: UV 0...1 across a 16:10 screen, v up; emissive | `screen.ui` |
+| `pageEdge` | paper / gap shadow / dirt | sheets per V tile, dirt, waviness, signature gaps. Lines along U | `paper.pages` |
+| `marble` | ground / vein / cloud (a amount) | vein frequency, warp, vein width, roughness | `stone.marble` `stone.marble-dark` |
+| `terrazzo` | matrix / chip / chip 2 (a share) | large chips per tile, coverage, roughness, white-chip share | `stone.terrazzo` |
+| `pavers` | concrete / stain / joint sand | slabs per tile, tone variation, weathering, joint width (slab fraction) | `paving.slab` |
+| `sansevieria` | leaf / cross bands / margin | bands per leaf, zigzag, roughness, margin width. u 0...1 across the leaf, v base to tip | `leaf.sansevieria` |
+| `laminate` | color | emboss, paper flocs, roughness, speckle | `laminate.white` `paper.sheet` |
+| `chairMesh` | monofilament / weft / gap | strands per tile, openness, roughness, weft picks per strand (opaque) | `fabric.mesh` |
+| `pottingSoil` | peat / bark / perlite | perlite, bark, moisture, crumbs per tile | `soil.potting` |
+
+`screen.ui` uses tileSize 1 (one image per UV unit; tests require tileSize > 0). `paving.slab` keeps
+`antiTile` off: the second sample would misalign the joints. Feature sizes: carpet loops ~4 mm,
+pavers 60 cm with 6 mm joints, terrazzo chips 5-20 mm, veneer leaves 15 cm.

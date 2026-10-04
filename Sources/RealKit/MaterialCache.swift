@@ -52,6 +52,8 @@ public final class RealMaterialCache {
     /// Approximate GPU bytes held by generated textures (mips included).
     public private(set) var textureBytes: Int = 0
     public var overrides: [MaterialKey: MaterialSpec] = [:]
+    /// Keys with GPU texture sets, and each set's side in pixels.
+    public var textureSizes: [MaterialKey: Int] { tex.mapValues { $0.albedo.width } }
     /// Texture sets loaded from `RealTextureDiskCache` vs generated on the GPU (since launch).
     public private(set) var diskHits = 0, synthesized = 0
     /// Set false to force PhysicallyBasedMaterial everywhere (no wind, no translucency).
@@ -132,6 +134,27 @@ public final class RealMaterialCache {
         if let t = tex[s.key] { return t }
         guard let synth = TextureSynth.shared, s.program != nil else { return nil }
         let n = RealQuality.pixels(for: s)
+        // Tinted keys (`paper.sheet:5E7A3E`) only change the albedo: synthesize a new albedo and share the
+        // base key's normal, roughness, AO and metallic maps (about 55 % less memory per tint).
+        if let colon = s.key.firstIndex(of: ":"), overrides[s.key] == nil {
+            let baseKey = String(s.key[..<colon])
+            if let base = try textures(spec(baseKey)), RealQuality.pixels(for: spec(baseKey)) == n {
+                // Color is low-frequency next to the shared normal map: half-resolution albedo.
+                let na = max(256, n / 2)
+                let albedo = try lowLevel(.rgba8Unorm_srgb, na)
+                guard let cb = synth.queue.makeCommandBuffer() else { throw TextureSynth.SynthError.encode }
+                let set = TextureSet(albedo: albedo.replace(using: cb), normal: synth.makeTexture(.rg8Unorm, na), roughness: synth.makeTexture(.r8Unorm, na),
+                                     ao: s.hasAOMap ? synth.makeTexture(.r8Unorm, na) : nil, metallic: s.hasMetallicMap ? synth.makeTexture(.r8Unorm, na) : nil)
+                try synth.encode(s, into: set, commandBuffer: cb)
+                cb.commit()
+                synthesized += 1
+                textureBytes += na * na * 4 * 4 / 3
+                let t = RealTextures(albedo: try TextureResource(from: albedo), normal: base.normal, roughness: base.roughness, ao: base.ao,
+                                     metallic: base.metallic, backing: base.backing + [albedo])
+                tex[s.key] = t
+                return t
+            }
+        }
         // Normals stored as RG8 (half the memory of RGBA8); blue reads as 1 and shaders renormalize.
         let albedo = try lowLevel(.rgba8Unorm_srgb, n), normal = try lowLevel(.rg8Unorm, n, swizzle: .init(red: .red, green: .green, blue: .one, alpha: .one)), rough = try lowLevel(.r8Unorm, n)
         let ao = s.hasAOMap ? try lowLevel(.r8Unorm, n) : nil
@@ -199,6 +222,13 @@ public final class RealMaterialCache {
     // MARK: builders
 
     private func buildPBR(_ s: MaterialSpec) throws -> any RealityKit.Material {
+        // Textured emitters (displays): unlit, the image is what you see; brightness from emissiveIntensity.
+        if s.mode == .emissive, s.program != nil, let t = try textures(s) {
+            var u = UnlitMaterial()
+            let k = min(1, s.emissiveIntensity)
+            u.color = .init(tint: .init(white: CGFloat(k), alpha: 1), texture: .init(t.albedo))
+            return u
+        }
         var m = PhysicallyBasedMaterial()
         m.baseColor = .init(tint: .init(s.baseColor))
         m.roughness = .init(floatLiteral: s.roughness)
@@ -217,6 +247,8 @@ public final class RealMaterialCache {
             m.roughness = .init(scale: 1, texture: .init(t.roughness))
             if let ao = t.ao { m.ambientOcclusion = .init(texture: .init(ao)) }
             if let mt = t.metallic { m.metallic = .init(scale: 1, texture: .init(mt)) }
+            // Textured emitters (screens): the albedo is the emitted image.
+
             if s.mode == .cutout {
                 // PhysicallyBasedMaterial reads opacity from the red channel: give it a copy of the albedo
                 // whose swizzle routes alpha to every channel.

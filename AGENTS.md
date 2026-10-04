@@ -14,9 +14,13 @@ import RealKit; import RealLibrary
 RealityHD.setup(.balanced)                                   // once, App.init
 let env = try RealityHD.environment(.afternoon, skybox: true) // ImmersiveSpace: skybox true; mixed: false
 let e = try await RealityHD.entity("oak-tree", seed: 3)       // or .scene("forest-glade")
+let d = try await RealityHD.articulated("office-door")        // live parts: d.setArticulation("open")
 env.illuminate(e); content.add(env.root); content.add(e)
 await RealViewerTracker.shared.start()                        // head-tracked LOD (ImmersiveSpace only)
 ```
+
+Interior scenes: `RealityHD.environment(for: scene)` applies the scene's sky, indoor probe and fog.
+Tap gesture for articulated parts: `SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() }`.
 
 Mixed reality: skip the skybox, keep `env` for IBL and sun shadows, or skip `env` entirely and let
 the system lighting apply (fog uses `RealAtmosphere`; set `fogDensity = 0` indoors).
@@ -25,16 +29,17 @@ the system lighting apply (fog uses `RealAtmosphere`; set `fogDensity = 0` indoo
 
 ```
 Sources/
-  RealCore/        geometry: Surface, Model, LODModel, Prim, TreeGenerator, Noise, Scatter (no RealityKit)
+  RealCore/        geometry: Surface, Model, LODModel, Prim, TreeGenerator, Noise, Scatter, Rig, AOBake/BVH (no RealityKit)
   RealMaterials/
     MaterialSpec.swift          MaterialSpec, TextureProgram, MaterialLibrary.all
     Library/<Family>.swift      material specs by family (bark, wood, metal, ...)
     Shaders/<Family>Shaders.swift  Metal texture programs; ShaderSource.swift assembles them
     TextureSynth.swift          GPU synthesis
-  RealKit/         RealityKit bridge: mesh upload, material cache, ShaderGraph, sky, LOD, instancing, preview
+  RealKit/         RealityKit bridge: mesh upload, material cache, ShaderGraph, sky + InteriorLight, LOD, instancing,
+                   articulation runtime, preview
   RealLibrary/
     Core/          RealAsset, AssetTag vocabulary, Catalog, RealityHD facade
-    Building/      plank, board, turned, groundAO, jittered, catmull (public helpers)
+    Building/      plank, board, turned, groundAO, jittered, catmull, cuboid, Room (public helpers)
     Nature/<Group>/<Type>.swift      registry: Nature/Nature.swift
     Props/<Theme>/<Type>.swift       registry: Props/Props.swift
     Structures/<Theme>/<Type>.swift  registry: Structures/Structures.swift
@@ -67,12 +72,23 @@ Props: use the `realityhd-prop` skill (`.claude/skills/realityhd-prop/SKILL.md`)
 6. `swift run -q realityhd thumbs <id>`, `swift run -q realityhd catalog`, `swift test`. Commit sources, brief,
    sign-off, thumbnail, CATALOG.md.
 
+## Workflow: add an articulated asset
+
+Guide: `docs/guides/articulation.md`. Conform to `RealArticulated`, implement `rig(seed:)` (geometry in
+asset space at rest, parts with pivots and joints, states; `build(seed:)` is provided). Tag `articulated`.
+Check every state with `swift run -q realityhd states <id>` (live rig) and `swift test --filter ArticulationTests`.
+
 ## Workflow: add a scene
 
 1. `swift run -q realityhd new scene <id> --author <handle>`.
 2. Compose with `scene.add(asset, at:, seed:)` for heroes and `scene.field(asset, seed:, transforms:, options: .trees)`
    for anything repeated. Set `scene.camera`.
-3. `swift test`, `swift run -q realityhd render <id>`, Read the PNG, iterate.
+   Interiors: `Room(size:)` with openings for doors and windows, `scene.add(room.shell(), bake: true)`,
+   `scene.add(room.ceilingModel())`, `scene.lighting = .init(sky:, interior: .office, fog: 0)`,
+   `scene.bake = .interior`, `scene.batchStatics = true`. Live parts: `scene.addLive(asset, ..., state:)`;
+   baked: `scene.add(asset, ..., state:)` or `scene.field(asset, seed:, state:, transforms:)`.
+3. `swift test`, `swift run -q realityhd render <id>`, Read the PNG, iterate. Scenes with a bake render
+   in seconds with `swift build -c release` and `.build/release/realityhd render <id>` (debug is ~40x slower).
 4. `swift run -q realityhd thumbs <id>`, `swift run -q realityhd catalog`. Demo app: add a case to `DemoScene`
    in `Demo/RealityHDDemo/DemoApp.swift`.
 
@@ -135,6 +151,13 @@ place(x, z, y:, yaw:, scale:) -> Xform
 var scene = RealScene(name: Self.id)
 scene.add(asset, at: place(...), seed:)   scene.add(model)   scene.field(asset, seed:, transforms:, options: .trees)
 RealInstancing.Options.trees   .groundCover(cull: 30)   scene.camera = .init(eye:, target:, fov:)
+
+// Articulation (RealityHD 4)
+var rig = Rig(name:, lods:, switchDistances:)   rig.base[l].add(s, x)   rig.part("lid", parent:, pivot:, joint: .hinge(axis:, -95...0) | .slide(axis:, 0...0.4), options:)
+rig.add(s, x, to: "lid", option:, lods:)   Joint(.revolute, axis:, range:, mimic: .init("pedal", ratio: 6))   RigState("open", ["lid": -95], options: ["bulb": 1])
+RigLight(name:, kind: .spot(inner:, outer:), part:, option:, position:, direction:, intensity:)   rig.posed("open")   rig.validate()
+entity.setArticulation("open")   entity.setJoints(["lid": -40])   entity.nextArticulation()   entity.realToggle()
+Room(size:).with { $0.openings = [.init(.south, offset:, width:, sill:, head:)] }   room.shell()   room.ceilingModel()   room.fixturePattern(every:)
 
 // RealityKit
 model.modelEntityAsync()   lod.entityAsync()   RealInstancing.field(lod, transforms:, options:)

@@ -49,12 +49,23 @@ public struct RealLODSystem: System {
             }
             let culled = lod.cullDistance > 0 && d > lod.cullDistance
             if level != lod.current || culled {
-                for c in e.children where c.name.hasPrefix("lod") {
-                    let i = Int(c.name.dropFirst(3)) ?? 0
-                    c.isEnabled = !culled && i == level
-                }
+                Self.apply(level: level, culled: culled, under: e)
                 lod.current = level
                 e.components.set(lod)
+            }
+        }
+    }
+}
+
+extension RealLODSystem {
+    /// Enables `lod<level>` children of `e` and of its descendants (articulated parts, option groups),
+    /// without crossing into entities that run their own LOD.
+    static func apply(level: Int, culled: Bool, under e: Entity) {
+        for c in e.children {
+            if c.name.hasPrefix("lod"), let i = Int(c.name.dropFirst(3)) {
+                c.isEnabled = !culled && i == level
+            } else if !c.components.has(RealLODComponent.self) {
+                apply(level: level, culled: culled, under: c)
             }
         }
     }
@@ -68,6 +79,9 @@ public enum RealKitSetup {
         registered = true
         RealLODComponent.registerComponent()
         RealLODSystem.registerSystem()
+        RealJointComponent.registerComponent()
+        RealArticulationComponent.registerComponent()
+        RealArticulationSystem.registerSystem()
     }
 }
 

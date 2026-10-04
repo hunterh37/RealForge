@@ -19,6 +19,17 @@ func catalogCommand() throws {
             md += "| [`\(t.id)`](docs/assets/\(t.id).png) | \(t.tags.joined(separator: ", ")) | \(tris) | \(t.budget) | \(mats) | \(t.author) | \(t.summary) |\n"
         }
     }
+    md += "\n## Articulated\n\nLive with `RealityHD.articulated(id)` or `scene.addLive`; bake one state with `build(seed:state:)`. `realityhd states <id>` renders every state.\n\n"
+    md += "| id | states | joints | LOD0 tris (min-max over states) |\n|---|---|---|---|\n"
+    for t in Catalog.articulated {
+        let rig = t.init().rig(seed: 1)
+        let joints = rig.parts.filter { $0.joint.kind != .fixed && $0.joint.mimic == nil }.map { p -> String in
+            let unit = p.joint.kind == .revolute ? "°" : " m"
+            return "`\(p.name)` \(fmtRange(p.joint.range))\(unit)"
+        }
+        let tris = rig.stateNames.map { rig.posed($0).levels[0].triangleCount }
+        md += "| [`\(t.id)`](docs/assets/\(t.id).png) | \(rig.stateNames.joined(separator: ", ")) | \(joints.joined(separator: ", ")) | \(tris.min() ?? 0)-\(tris.max() ?? 0) |\n"
+    }
     md += "\n## Scenes\n\n| id | tags | author | summary |\n|---|---|---|---|\n"
     for s in SceneCatalog.all {
         md += "| [`\(s.id)`](docs/scenes/\(s.id).png) | \(s.tags.joined(separator: ", ")) | \(s.author) | \(s.summary) |\n"
@@ -39,4 +50,9 @@ func catalogCommand() throws {
     md += "\n## Texture programs\n\n" + TextureProgram.allCases.map { "`\($0)`" }.joined(separator: " ") + "\n"
     try md.write(to: root.appendingPathComponent("CATALOG.md"), atomically: true, encoding: .utf8)
     print("CATALOG.md")
+}
+
+func fmtRange(_ r: ClosedRange<Float>) -> String {
+    func f(_ v: Float) -> String { v == v.rounded() ? String(Int(v)) : String(format: "%.2g", v) }
+    return "\(f(r.lowerBound))...\(f(r.upperBound))"
 }

@@ -41,7 +41,8 @@ realityhd list [tag]                      assets and scenes (filter by tag)
 realityhd stats [id...] [--seed n]        triangles per LOD, materials, generation time
 realityhd render <id|scene> [options]     out/<id>.png via RealityRenderer
     --seed n --out path --w 1280 --h 800 --sky morning|midday|afternoon|golden --fog d --dt s
-    --az deg --el deg --dist k --lod n --pbr --no-ground --eye x,y,z --at x,y,z --sun lux --ibl ev
+    --az deg --el deg --dist k --lod n --pbr --no-ground --eye x,y,z --at x,y,z --sun lux --ibl ev --state name
+realityhd states [id...] [--seed n]       out/states/<id>.png: every state of an articulated asset (live rig)
 realityhd thumbs [id...] [--missing]      docs/assets/<id>.png (640x480), docs/scenes/<id>.png (1280x800)
 realityhd textures [key...] [--size 512] [--out out/tex]
 realityhd shaders [--dump]                load every ShaderGraph variant

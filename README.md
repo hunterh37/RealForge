@@ -22,6 +22,7 @@ every PBR texture is synthesized on the GPU.
 - [Gallery](#gallery)
 - [Performance](#performance)
 - [Command-line tool](#command-line-tool) (3.0 agent loop)
+- [Interiors and articulated assets](#interiors-and-articulated-assets-40) (4.0)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -224,6 +225,28 @@ Material keys accept a hex tint: `"metal.painted:1F4E8C"`. All keys are listed i
 Built and signed off through the vision gate (`docs/V3.md`).
 
 ![RealityHD 3 props](docs/props-hd-gallery.png)
+
+### Interiors and articulated assets (4.0)
+
+Office scenes lit by the sun through real openings plus an indoor probe, with baked scene AO and
+static batching. Doors, drawers, lids, chairs, lamps and screens have named states and animate live
+(`docs/V4.md`, `docs/guides/articulation.md`).
+
+| | |
+|---|---|
+| ![open-office](docs/scenes/open-office.png)<br>`open-office` | ![executive-office](docs/scenes/executive-office.png)<br>`executive-office` |
+| ![office-lobby](docs/scenes/office-lobby.png)<br>`office-lobby` | ![conference-room](docs/scenes/conference-room.png)<br>`conference-room` |
+
+![office-door states](docs/states/office-door.png)
+![filing-cabinet states](docs/states/filing-cabinet.png)
+![hardcover-book states](docs/states/hardcover-book.png)
+
+```swift
+let cabinet = try await RealityHD.articulated("filing-cabinet")
+cabinet.setArticulation("drawer2-open")          // eased animation
+// tap a part to toggle it
+.gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { $0.entity.realToggle() })
+```
 
 ### Materials
 

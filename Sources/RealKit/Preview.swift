@@ -23,7 +23,7 @@ public final class RealPreview {
         renderer.cameraSettings.isToneMappingEnabled = true
         if let environment {
             renderer.lighting.resource = environment.resource
-            renderer.lighting.intensityExponent = environment.params.iblExposure
+            renderer.lighting.intensityExponent = environment.iblExposure
             renderer.entities.append(environment.root)
         }
     }

@@ -1,5 +1,34 @@
 # Changelog
 
+## 4.0.0
+
+Articulated multi-state assets, building interiors, and the engine work that keeps them cheap
+(see docs/V4.md and docs/guides/articulation.md).
+
+- Articulation: `Rig`, `RigPart`, `Joint` (revolute, prismatic, fixed, mimic), `RigState`, part options,
+  `RigLight`; `RealArticulated` protocol (`rig(seed:)`, `build(seed:state:)`); `Rig.validate()`.
+- Runtime: `RealJointComponent`, `RealArticulationComponent`, `RealArticulationSystem`; `Entity`
+  `setArticulation`, `setJoints`, `nextArticulation`, `realToggle` (tap a part); `RealityHD.articulated`;
+  LOD switching across part hierarchies.
+- 15 articulated assets: office-door, glass-door, elevator-doors, office-window, filing-cabinet,
+  desk-pedestal, storage-cabinet, executive-desk, office-chair, pedal-bin, laptop, desktop-monitor,
+  hardcover-book, banker-lamp, ceiling-light.
+- 11 static office props: office-desk, bookshelf, conference-table, lobby-sofa, reception-desk,
+  whiteboard, water-cooler, snake-plant, keyboard-mouse, coffee-mug, paper-stack. Structure office-block.
+- Scenes: open-office, executive-office, office-lobby, conference-room, office-plaza.
+- Interiors: `Room` shell builder (openings, columns, skirting, T-bar or plaster ceiling, slab);
+  `InteriorLight` indoor probe (`.office`, `.warm`, `.lobby`); `RealScene.lighting` hints applied by
+  `RealityHD.environment(for:)` and `realityhd render`; `RealScene.lights`.
+- Optimization: `RealScene.batchStatics` (cell/material/LOD merge), `AOBake` + `BVH` scene AO bake,
+  `scene.field(asset, state:)` instanced baked states, tint keys share normal/roughness/AO/metallic maps
+  with a half-resolution albedo (open-office 574 MB to 308 MB), unlit textured displays.
+- 14 texture programs and 31 keys for offices (carpet, acoustic tile, wall paint, veneers, marble,
+  terrazzo, pavers, laminate, chair mesh, page edges, screen UI, snake plant, potting soil).
+- CLI: `states`, `render --state`, scene lighting hints, `REALITYHD_TEX_REPORT`; CATALOG.md Articulated section.
+- Helpers: `cuboid`, `groundAO(&rig)`, `Xform.inverse/then`, `Xform(matrix:)`.
+- Tags `door`, `window`, `electronics`, `book`, `building`, `articulated`.
+- Demo: five new scenes, tap-to-toggle articulated parts, scene-driven lighting.
+
 ## 3.0.0
 
 Agent pipeline and photoreal props (see docs/V3.md).

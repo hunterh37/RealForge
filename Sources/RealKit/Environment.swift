@@ -1,5 +1,6 @@
 import Foundation
 import Metal
+import CoreGraphics
 import RealityKit
 import RealCore
 import RealMaterials
@@ -41,6 +42,96 @@ public struct SunSky: Sendable {
     }
 }
 
+/// Procedural indoor light probe: what a point in the middle of a lit room sees. Ceiling with a grid of
+/// bright luminaires, walls, floor, and a band of windows showing the sky on one side. Used as the IBL
+/// (diffuse fill and glossy reflections) of interior scenes, while the sun still enters through real
+/// window openings as the shadowed directional light.
+public struct InteriorLight: Sendable {
+    /// Linear RGB radiance of surfaces (relative units; 1 = diffuse white under ~500 lux).
+    public var ceiling: SIMD3<Float> = SIMD3(0.62, 0.61, 0.6)
+    public var walls: SIMD3<Float> = SIMD3(0.5, 0.48, 0.45)
+    public var floor: SIMD3<Float> = SIMD3(0.34, 0.33, 0.31)
+    /// Luminaire radiance and color (LED panels about 4000 K).
+    public var fixtures: SIMD3<Float> = SIMD3(5.5, 5.3, 5.0)
+    /// Luminaire grid pitch and panel size as fractions of the pitch (x across, y along).
+    public var fixturePitch: Float = 0.38
+    public var fixtureSize: SIMD2<Float> = SIMD2(0.32, 0.32)
+    /// Windows: heading (degrees clockwise from -Z, matching `SunSky.azimuth`), angular width, sill and
+    /// head elevations in degrees, and sky radiance through them.
+    public var windowAzimuth: Float = 90
+    public var windowWidth: Float = 150
+    public var windowElevation: ClosedRange<Float> = -8...32
+    public var windowSky: SIMD3<Float> = SIMD3(2.4, 2.7, 3.2)
+    /// Ground seen through the windows (below the horizon).
+    public var windowGround: SIMD3<Float> = SIMD3(0.5, 0.48, 0.42)
+    /// IBL exposure (EV) for this probe.
+    public var exposure: Float = -0.6
+    public init() {}
+
+    /// Open-plan office: LED troffers, light walls, carpet.
+    public static let office = InteriorLight()
+    /// Wood-panelled private office: warmer, darker, fewer fixtures.
+    public static let warm = InteriorLight().with {
+        $0.ceiling = SIMD3(0.55, 0.5, 0.44); $0.walls = SIMD3(0.42, 0.34, 0.26); $0.floor = SIMD3(0.16, 0.11, 0.08)
+        $0.fixtures = SIMD3(4.2, 3.4, 2.4); $0.fixturePitch = 0.6; $0.fixtureSize = SIMD2(0.14, 0.14); $0.windowWidth = 70
+    }
+    /// Stone lobby: tall, bright, glazed front.
+    public static let lobby = InteriorLight().with {
+        $0.ceiling = SIMD3(0.7, 0.69, 0.67); $0.walls = SIMD3(0.55, 0.53, 0.5); $0.floor = SIMD3(0.42, 0.41, 0.4)
+        $0.fixtures = SIMD3(6, 5.6, 5); $0.fixturePitch = 0.5; $0.fixtureSize = SIMD2(0.12, 0.12)
+        $0.windowWidth = 170; $0.windowElevation = -10...55; $0.exposure = -0.4
+    }
+
+    public func with(_ edit: (inout InteriorLight) -> Void) -> InteriorLight { var c = self; edit(&c); return c }
+
+    /// Radiance seen along a direction (scene space, +Y up).
+    public func radiance(_ d: SIMD3<Float>) -> SIMD3<Float> {
+        let el = asin(max(-1, min(1, d.y))) * 180 / .pi
+        var az = atan2(d.x, -d.z) * 180 / .pi
+        az = (az - windowAzimuth + 540).truncatingRemainder(dividingBy: 360) - 180
+        if abs(az) < windowWidth / 2, windowElevation.contains(el) {
+            // Mullions every ~12 degrees.
+            let m = abs((az / 12).rounded() * 12 - az)
+            if m > 0.6 { return el > 0 ? windowSky * (0.75 + 0.25 * min(1, el / 25)) : windowGround }
+            return walls * 0.6
+        }
+        if d.y > 0.25 {
+            // Ceiling plane at unit height: grid of panels in plane coordinates.
+            let p = SIMD2(d.x, d.z) / d.y
+            let c = p / fixturePitch
+            let f = c - c.rounded(.down) - 0.5
+            let lit = abs(f.x) < fixtureSize.x * 0.5 / fixturePitch * fixturePitch && abs(f.y) < fixtureSize.y * 0.5 / fixturePitch * fixturePitch
+            let falloff = min(1, d.y * 1.6)
+            return lit ? fixtures * falloff + ceiling * (1 - falloff) : ceiling * (0.85 + 0.15 * d.y)
+        }
+        if d.y < -0.2 { return floor * (0.9 + 0.1 * -d.y) }
+        let t = (d.y + 0.2) / 0.45
+        return walls * (0.9 + 0.2 * t)
+    }
+
+    /// Equirect HDR image (same layout as the GPU sky: u = 0.5 looks down -Z).
+    public func image(width: Int = 512) -> CGImage? {
+        let h = width / 2
+        var px = [Float](repeating: 1, count: width * h * 4)
+        for j in 0..<h {
+            // Row 0 is the top of the image (zenith) in CGImage order.
+            let elev = (0.5 - (Float(j) + 0.5) / Float(h)) * .pi
+            for i in 0..<width {
+                let phi = ((Float(i) + 0.5) / Float(width) - 0.5) * 2 * .pi
+                let d = SIMD3(sin(phi) * cos(elev), sin(elev), -cos(phi) * cos(elev))
+                let r = radiance(d)
+                let k = (j * width + i) * 4
+                px[k] = r.x; px[k + 1] = r.y; px[k + 2] = r.z
+            }
+        }
+        let cs = CGColorSpace(name: CGColorSpace.extendedLinearSRGB)!
+        let info = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.floatComponents.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
+        guard let prov = CGDataProvider(data: Data(bytes: px, count: px.count * 4) as CFData) else { return nil }
+        return CGImage(width: width, height: h, bitsPerComponent: 32, bitsPerPixel: 128, bytesPerRow: width * 16, space: cs,
+                       bitmapInfo: info, provider: prov, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+    }
+}
+
 @MainActor
 public final class RealEnvironment {
     public let root = Entity()
@@ -49,9 +140,14 @@ public final class RealEnvironment {
     public private(set) var skybox: ModelEntity?
     public let resource: EnvironmentResource
     public let params: SunSky
+    /// Exposure (EV) of the active probe (sky or interior).
+    public let iblExposure: Float
 
-    /// - Parameter skybox: add a visible sky dome (full immersion). Leave off in mixed reality.
-    public init(_ p: SunSky = SunSky(), skybox: Bool = false, skyboxRadius: Float = 900) throws {
+    /// - Parameters:
+    ///   - skybox: add a visible sky dome (full immersion). Leave off in mixed reality.
+    ///   - interior: light the scene with an indoor probe instead of the sky (the sun and skybox stay,
+    ///     seen through window openings).
+    public init(_ p: SunSky = SunSky(), skybox: Bool = false, skyboxRadius: Float = 900, interior: InteriorLight? = nil) throws {
         guard let synth = TextureSynth.shared else { throw TextureSynth.SynthError.noMetal }
         params = p
         root.name = "RealEnvironment"
@@ -68,9 +164,15 @@ public final class RealEnvironment {
             RealAtmosphere.fogColor = acc / Float(w) * p.fogBrightness
             RealAtmosphere.fogDensity = p.fogDensity
         }
-        resource = try EnvironmentResource(equirectangular: iblImage, withName: "realityhd.sky")
+        if let interior, let img = interior.image() {
+            resource = try EnvironmentResource(equirectangular: img, withName: "realityhd.interior")
+            iblExposure = interior.exposure
+        } else {
+            resource = try EnvironmentResource(equirectangular: iblImage, withName: "realityhd.sky")
+            iblExposure = p.iblExposure
+        }
         ibl.name = "IBL"
-        ibl.components.set(ImageBasedLightComponent(source: .single(resource), intensityExponent: p.iblExposure))
+        ibl.components.set(ImageBasedLightComponent(source: .single(resource), intensityExponent: iblExposure))
         root.addChild(ibl)
 
         sun.name = "Sun"
