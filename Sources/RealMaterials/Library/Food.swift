@@ -86,7 +86,7 @@ public extension MaterialLibrary {
                         knobs: V4(9, 0.4, 0.4, 7), tile: 0.058, rough: 0.4, seed: 1603, normal: 0.6))
         // Lemon: rind, white pith (rind cut face), segmented flesh.
         out.append(spec("food.lemon", .fruitSkin, 0xF0CB12, 0xE2B000, 0xB89A0E, ca: 0.6,
-                        knobs: V4(70, 0.3, 0.32, 2), tile: 0.05, rough: 0.32, seed: 1701, normal: 1.5, clearcoat: 0.4))
+                        knobs: V4(90, 0.3, 0.32, 2), tile: 0.05, rough: 0.32, seed: 1701, normal: 1.0, clearcoat: 0.4))
         out.append(spec("food.lemon-pith", .foodSmooth, 0xF7F1DA, 0xEDE2B4, 0xF2E6B8,
                         knobs: V4(50, 0.5, 0.6, 6), tile: 0.03, rough: 0.6, seed: 1702, normal: 0.6))
         out.append(spec("food.lemon-flesh", .radialFlesh, 0xF2D648, 0xE2BA2C, 0xF8F2D6,
