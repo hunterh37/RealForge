@@ -112,8 +112,8 @@ S papery(float2 uv, constant RFParams &P) {
     c *= 1.0 + 0.08 * smoothstep(0.3, 0.6, fineV);
     if (int(P.f.w + 0.5) == 1) {
         // Garlic: ivory paper with fine purple-brown streaks fanning along v.
-        float purple = smoothstep(0.15, 0.45, fbm(float2(x, uv.y), int2(9, 1), 4, sd + 6u));
-        c = mix(P.colorA.rgb * (0.95 + 0.08 * fineV), P.colorB.rgb, purple * 0.55 + vline * 0.12);
+        float purple = smoothstep(0.05, 0.4, fbm(float2(x, uv.y), int2(9, 1), 4, sd + 6u)) * (0.6 + 0.4 * smoothstep(0.0, 0.3, macro));
+        c = mix(P.colorA.rgb * (0.92 + 0.1 * fineV + 0.08 * macro), P.colorB.rgb, purple * 0.7 + (1.0 - vline) * 0.15);
     }
     // Flaking: torn patches where the outer layer is gone and the paler inner layer shows.
     float flakeN = fbm(float2(x, uv.y), int2(6, 2), 4, sd + 7u) + 0.08 * fineV;
@@ -464,6 +464,18 @@ S foodSmooth(float2 uv, constant RFParams &P) {
         c = mix(c, P.colorC.rgb, strand * 0.3 * P.f.y);
         h += -pore * 0.1;
         ao -= pore * 0.2;
+    } else if (mode == 8) {
+        // Garlic clove (one tile along the clove): lengthwise veins along v, a dried amber tip at
+        // v > 0.85, a faint bruise, waxy sheen.
+        float vein = 1.0 - smoothstep(0.0, 0.05, abs(gnoise(float2(uv.x * 14.0, uv.y * 2.0), int2(14, 2), sd + 18u)));
+        c = P.colorA.rgb * (0.95 + 0.05 * mid + 0.03 * fine);
+        c = mix(c, P.colorB.rgb, vein * 0.35 * P.f.y);
+        float tip = smoothstep(0.66, 0.92, uv.y);
+        c = mix(c, P.colorC.rgb, tip * 0.75);
+        float bruise = smoothstep(0.25, 0.45, fbm(uv, int2(3, 3), 3, sd + 19u)) * (1.0 - tip);
+        c = mix(c, P.colorB.rgb * float3(0.95, 0.88, 0.7), bruise * 0.3);
+        h += vein * 0.03 - tip * 0.05;
+        rough = P.f.z * (1.0 + tip * 0.8);
     } else {
         float4 w = worley(uv, int2(F, F), sd + 16u, 1.0);
         float bub = (1.0 - smoothstep(0.05 + 0.08 * w.w, 0.1 + 0.1 * w.w, w.x)) * step(0.55, w.z);

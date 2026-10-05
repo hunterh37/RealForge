@@ -326,4 +326,16 @@ public enum FoodMesh {
         }
         return leaf
     }
+
+    /// Scales every surface of a model by one shared factor per axis so the model's bounds match `size`,
+    /// base at y = 0 and centered on X/Z.
+    public static func fit(_ m: Model, size: V3) -> Model {
+        let bb = m.bounds
+        let k = size / simd_max(bb.max - bb.min, V3(repeating: 1e-6)), c = (bb.min + bb.max) / 2
+        var o = m
+        for i in o.surfaces.indices {
+            o.surfaces[i].deform { p in V3((p.x - c.x) * k.x, (p.y - bb.min.y) * k.y, (p.z - c.z) * k.z) }
+        }
+        return o
+    }
 }

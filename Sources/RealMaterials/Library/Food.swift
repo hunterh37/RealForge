@@ -74,16 +74,16 @@ public extension MaterialLibrary {
         out.append(spec("food.tomato-flesh-cooked", .radialFlesh, 0xB2200E, 0xC0602A, 0xE2C888,
                         knobs: V4(3, 0.5, 0.25, 3), tile: 0.052, rough: 0.25, seed: 1503, normal: 0.6, clearcoat: 0.5))
         // Garlic: papery skin, clove flesh, bulb cross section.
-        out.append(spec("food.garlic-skin", .papery, 0xEFE7D7, 0x9A6274, 0xF8F3EA, ca: 0.35,
+        out.append(spec("food.garlic-skin", .papery, 0xDAD0BE, 0x8A4E64, 0xEDE6D8, ca: 0.35,
                         knobs: V4(90, 0.4, 0.5, 1), tile: 0.05, rough: 0.5, seed: 1601, normal: 1.2))
-        out.append(spec("food.garlic-clove", .foodSmooth, 0xF1E7C6, 0xE4D4A2, 0xFAF4E0,
-                        knobs: V4(60, 0.5, 0.34, 0), tile: 0.03, rough: 0.34, seed: 1602, normal: 0.5, clearcoat: 0.3, cooked: "food.garlic-clove-cooked"))
-        out.append(spec("food.garlic-clove-cooked", .foodSmooth, 0xE2B866, 0xC48C3A, 0xF0D08C,
-                        knobs: V4(60, 0.4, 0.4, 0), tile: 0.03, rough: 0.4, seed: 1602, normal: 0.5, clearcoat: 0.2))
+        out.append(spec("food.garlic-clove", .foodSmooth, 0xF1E7C6, 0xDCC994, 0xC9A060,
+                        knobs: V4(60, 0.8, 0.34, 8), tile: 0.03, rough: 0.34, seed: 1602, normal: 0.5, clearcoat: 0.3, cooked: "food.garlic-clove-cooked"))
+        out.append(spec("food.garlic-clove-cooked", .foodSmooth, 0xE2B866, 0xC48C3A, 0xA8702E,
+                        knobs: V4(60, 0.4, 0.4, 8), tile: 0.03, rough: 0.4, seed: 1602, normal: 0.5, clearcoat: 0.2))
         out.append(spec("food.garlic-section", .radialFlesh, 0xF0E5C2, 0xD3D08E, 0xB89A86,
-                        knobs: V4(9, 0.5, 0.34, 7), tile: 0.06, rough: 0.34, seed: 1603, normal: 0.6, clearcoat: 0.3, cooked: "food.garlic-section-cooked"))
+                        knobs: V4(9, 0.5, 0.34, 7), tile: 0.058, rough: 0.34, seed: 1603, normal: 0.6, clearcoat: 0.3, cooked: "food.garlic-section-cooked"))
         out.append(spec("food.garlic-section-cooked", .radialFlesh, 0xE0B464, 0xC09440, 0x9A7656,
-                        knobs: V4(9, 0.4, 0.4, 7), tile: 0.06, rough: 0.4, seed: 1603, normal: 0.6))
+                        knobs: V4(9, 0.4, 0.4, 7), tile: 0.058, rough: 0.4, seed: 1603, normal: 0.6))
         // Lemon: rind, white pith (rind cut face), segmented flesh.
         out.append(spec("food.lemon", .fruitSkin, 0xF0CB12, 0xE2B000, 0xB89A0E, ca: 0.6,
                         knobs: V4(70, 0.3, 0.32, 2), tile: 0.05, rough: 0.32, seed: 1701, normal: 1.5, clearcoat: 0.4))
