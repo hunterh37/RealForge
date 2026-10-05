@@ -21,6 +21,18 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x5A3C28); $0.colorB = linear(0x24160E); $0.knobs = V4(0, 0.55, 0, 0); $0.seed = 1214
             $0.tileSize = 0.35; $0.normalStrength = 1.2; $0.roughness = 0.55
         },
+        // Beech for wooden spoons: pale, matte, fine flecks of ray along the grain.
+        MaterialSpec(key: "wood.beech-spoon", program: .woodPlank).with {
+            $0.colorA = linear(0xD8B88A); $0.colorB = linear(0xA07A4E); $0.knobs = V4(0, 0.62, 0, 0); $0.seed = 1215
+            $0.tileSize = 0.16; $0.normalStrength = 0.9; $0.roughness = 0.62
+            $0.splat = "wood.beech-spoon-stained"; $0.splatSoftness = 0.35; $0.splatHeight = 0.6
+        },
+        // The same beech where it meets food: darkened and warmed by oil and tomato (splat layer of
+        // `wood.beech-spoon`, painted by per-vertex weight).
+        MaterialSpec(key: "wood.beech-spoon-stained", program: .woodPlank).with {
+            $0.colorA = linear(0xA97C50); $0.colorB = linear(0x6E4628); $0.knobs = V4(0.15, 0.55, 0, 0); $0.seed = 1216
+            $0.tileSize = 0.16; $0.normalStrength = 0.9; $0.roughness = 0.55
+        },
         // Tri-ply exterior: brushed 18/10 stainless, spin streaks along U (circumferential on a lathe).
         MaterialSpec(key: "metal.tri-ply", program: .brushedMetal).with {
             $0.colorA = linear(0xB4B6B8); $0.colorB = linear(0x7E786E)

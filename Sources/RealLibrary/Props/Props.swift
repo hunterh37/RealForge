@@ -116,6 +116,7 @@ public enum Props {
         MixingBowl.self,
         BalloonWhisk.self,
         FishTurner.self,
+        WoodenSpoon.self,
         // realityhd:prop
     ]
 }

@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "wooden-spoon",
+  "kind": "prop",
+  "materials": [
+    "wood.beech-spoon"
+  ],
+  "name": "Wooden spoon",
+  "notes": "Lies on the counter: handle toward -X, bowl toward +X. Knobs: length, bowlLength, bowlWidth, workPoint, gripPoint.",
+  "parts": [
+    "shallow carved bowl with a thin rounded rim",
+    "tapered neck",
+    "oval handle swelling toward a rounded end",
+    "food-stained bowl"
+  ],
+  "references": [],
+  "size": [
+    0.3,
+    0.017,
+    0.058
+  ],
+  "style": "12 in beech cooking spoon, used, bowl darkened by sauces",
+  "summary": "12 in beech wooden spoon: carved shallow bowl, tapered neck, oval handle, stained bowl.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "cookware",
+    "wood",
+    "tool",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
