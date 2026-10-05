@@ -109,6 +109,7 @@ public enum Props {
         Glucometer.self,
         BaseCabinet.self,
         KitchenRange.self,
+        WallCabinet.self,
         // realityhd:prop
     ]
 }

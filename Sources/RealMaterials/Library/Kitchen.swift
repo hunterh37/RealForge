@@ -74,6 +74,11 @@ public extension MaterialLibrary {
         MaterialSpec(key: "glass.oven", program: nil).with {
             $0.baseColor = V3(0.02, 0.02, 0.022); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.62; $0.twoSided = true
         },
+        // Vitreous china / porcelain tableware: bright white glaze, glossy, no crackle.
+        MaterialSpec(key: "ceramic.vitreous", program: .ceramicGlaze).with {
+            $0.colorA = linear(0xF4F3EF); $0.colorB = linear(0xE6E5E0); $0.colorC = linear(0xC9C6BE, 0.1)
+            $0.knobs = V4(0.05, 0.15, 0, 0.05); $0.seed = 612; $0.tileSize = 0.3; $0.normalStrength = 0.3; $0.roughness = 0.05; $0.clearcoat = 0.8
+        },
         // realityhd:material.kitchen
     ]
 }

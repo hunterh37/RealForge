@@ -120,7 +120,7 @@ public enum KitchenFit {
     /// stiles full height, rails between them (hairline joints), a recessed flat center panel.
     /// `frame` stile/rail width, `t` thickness. Stile grain runs vertical (rotated boards).
     public static func shakerFront(_ m: inout Model, width w: Float, height h: Float, t: Float = 0.019, frame: Float = 0.07,
-                                   railFrame: Float? = nil, at c: V3, material: MaterialKey, bottomRail: MaterialKey? = nil, lite: Bool = false) {
+                                   railFrame: Float? = nil, at c: V3, material: MaterialKey, bottomRail: MaterialKey? = nil, panel: MaterialKey? = nil, lite: Bool = false) {
         let rf = railFrame ?? frame
         let fz = c.z - t / 2
         let edge: Float = 0.0028
@@ -139,8 +139,12 @@ public enum KitchenFit {
         }
         // Recessed flat panel, 9 mm back from the frame face.
         let pw = w - 2 * frame + 0.004, ph = h - 2 * rf + 0.004
-        m.add(Prim.roundedBox(V3(pw, ph, 0.007), radius: 0.001, bevelSegments: 1, material: material),
-              Xform(translation: V3(c.x, c.y, c.z - 0.009 - 0.0035)))
+        if let glass = panel {
+            m.add(cuboid(V3(pw, ph, 0.004), material: glass), Xform(translation: V3(c.x, c.y, c.z - 0.012)))
+        } else {
+            m.add(Prim.roundedBox(V3(pw, ph, 0.007), radius: 0.001, bevelSegments: 1, material: material),
+                  Xform(translation: V3(c.x, c.y, c.z - 0.009 - 0.0035)))
+        }
         // Inner square edge of the frame: thin fillet strips where the panel meets the frame (shadow line).
         _ = rf
     }
