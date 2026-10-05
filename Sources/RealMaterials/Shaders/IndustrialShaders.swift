@@ -169,12 +169,15 @@ S paintedWood(float2 uv, constant RFParams &P) {
     paint = mix(paint, paint * 1.45 + float3(0.035), chalk * 0.6);
     chk *= 1.0 - clean;
     paint *= 1.0 - chk * 0.35;
+    // Factory finish only: handling grime from colorC (a = amount) in soft patches.
+    float grime = clean * P.colorC.a * smoothstep(-0.15, 0.45, fbm(uv, int2(5, 5), 4, sd + 8u) + 0.3 * fbm(uv, int2(24, 24), 2, sd + 9u));
+    paint = mix(paint, paint * P.colorC.rgb * 1.6, grime);
     paint = mix(paint, paint * 0.75, lip * 0.5);
     s.albedo = mix(paint, wood, bare);
     float hp = 0.62 - late * 0.03 + streak * 0.03 + brush * 0.02 + lip * 0.06 - chk * 0.12;
     float hw = 0.42 - late * 0.06 + streak * 0.07 - chk * 0.25;
     s.height = mix(hp, hw, bare);
-    s.rough = mix(P.f.z + chalk * 0.12 + brush * 0.04, 0.88, bare);
+    s.rough = mix(P.f.z + chalk * 0.12 + brush * 0.04 - grime * 0.08, 0.88, bare);
     s.ao = 1.0 - chk * 0.4 - bare * late * 0.15;
     s.alpha = 1.0; s.metal = 0.0;
     return s;

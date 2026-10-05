@@ -132,9 +132,19 @@ S quartzSlab(float2 uv, constant RFParams &P) {
     c = mix(c, P.colorC.rgb, sat(grain1 * 0.8 + grain2 * 0.5) * P.colorC.a);
     c = mix(c, P.colorB.rgb, vein * P.colorB.a);
     c = mix(c, c * 1.06 + float3(0.02), glassy);
+    // Fine use scratches: thin straight hairlines in three directions, patchy.
+    float scr = 0.0;
+    for (int i = 0; i < 3; i++) {
+        float a = h01u(sd + uint(i) * 17u) * 3.14159;
+        int2 fr = int2(3 * (i + 2), 700);
+        float2 r = rot2(uv - 0.5, a) + 0.5;
+        float sn = gnoise(fract(r) * float2(fr), fr, sd + 40u + uint(i));
+        scr = max(scr, (1.0 - smoothstep(0.0, 0.035, abs(sn))) * smoothstep(0.15, 0.45, fbm(uv, int2(4, 4), 3, sd + 50u + uint(i))));
+    }
+    c = mix(c, c * 1.04 + float3(0.015), scr * 0.5);
     s.albedo = c;
-    s.height = 0.5 + glassy * 0.01;
-    s.rough = sat(P.f.w - glassy * 0.06 + grain1 * 0.02);
+    s.height = 0.5 + glassy * 0.01 - scr * 0.01;
+    s.rough = sat(P.f.w - glassy * 0.06 + grain1 * 0.02 + scr * 0.22);
     s.ao = 1.0; s.metal = 0.0;
     return s;
 }

@@ -18,8 +18,15 @@ public extension MaterialLibrary {
         // Satin painted shaker cabinetry (sprayed lacquer over MDF/maple): no grain telegraph, light
         // brush texture only. Tint for color: `wood.painted-shaker:9AA58E` (sage).
         MaterialSpec(key: "wood.painted-shaker", program: .paintedWood).with {
-            $0.colorA = linear(0xEEECE6); $0.colorB = linear(0xC9B79A); $0.colorC = linear(0xB09A7C)
+            $0.colorA = linear(0xEEECE6); $0.colorB = linear(0xC9B79A); $0.colorC = linear(0x8C8172, 0.05)
             $0.knobs = V4(0, 0.02, 0.36, 1); $0.seed = 603; $0.tileSize = 1.0; $0.normalStrength = 0.25; $0.roughness = 0.36
+            $0.clearcoat = 0.15
+        },
+        // Handled shaker paint (drawer fronts, toe kicks): same finish with soft handling grime and a
+        // little more sheen where hands polish it. Tint like `wood.painted-shaker`.
+        MaterialSpec(key: "wood.painted-shaker-worn", program: .paintedWood).with {
+            $0.colorA = linear(0xEEECE6); $0.colorB = linear(0xC9B79A); $0.colorC = linear(0x8C8172, 0.12)
+            $0.knobs = V4(0, 0.02, 0.33, 1); $0.seed = 607; $0.tileSize = 0.6; $0.normalStrength = 0.25; $0.roughness = 0.33
             $0.clearcoat = 0.15
         },
         // Brushed nickel: warm grey satin, fine grain along U, faint fingerprints.

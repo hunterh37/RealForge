@@ -107,6 +107,7 @@ public enum Props {
         PatientMonitor.self,
         Aed.self,
         Glucometer.self,
+        BaseCabinet.self,
         // realityhd:prop
     ]
 }
