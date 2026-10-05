@@ -1,0 +1,32 @@
+{
+  "budget": 2500,
+  "id": "garlic-clove",
+  "kind": "prop",
+  "materials": [
+    "food.garlic-clove"
+  ],
+  "name": "Garlic clove",
+  "notes": "",
+  "parts": [
+    "single peeled clove, curved crescent with a flat inner face",
+    "basal plate at the root end",
+    "pointed tip"
+  ],
+  "references": [],
+  "size": [
+    0.03,
+    0.018,
+    0.016
+  ],
+  "style": "freshly peeled garlic clove",
+  "summary": "Peeled garlic clove, 3 cm: curved crescent with flat inner face, brown basal plate and pointed tip.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -119,6 +119,19 @@ public enum Props {
         ChefKnife.self,
         Saucepan.self,
         StockPot.self,
+        ChickenBreast.self,
+        YellowOnion.self,
+        Carrot.self,
+        RedBellPepper.self,
+        RomaTomato.self,
+        GarlicBulb.self,
+        GarlicClove.self,
+        Lemon.self,
+        Egg.self,
+        ButterBlock.self,
+        RussetPotato.self,
+        Strawberry.self,
+        ChocolateBar.self,
         // realityhd:prop
     ]
 }

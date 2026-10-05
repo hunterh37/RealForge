@@ -1,0 +1,36 @@
+{
+  "budget": 6000,
+  "id": "carrot",
+  "kind": "prop",
+  "materials": [
+    "food.carrot",
+    "food.carrot-cortex",
+    "food.carrot-core",
+    "food.stem-green"
+  ],
+  "name": "Carrot",
+  "notes": "",
+  "parts": [
+    "tapered orange root lying along X",
+    "transverse lenticel rings and root-hair scars",
+    "cut crown with green stem stubs",
+    "pale core and orange cortex in cross section"
+  ],
+  "references": [],
+  "size": [
+    0.19,
+    0.032,
+    0.032
+  ],
+  "style": "fresh washed carrot, tops trimmed",
+  "summary": "Fresh carrot, 18 cm: tapered orange root with lenticel rings and root-hair scars, trimmed green crown, core and cortex shells.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

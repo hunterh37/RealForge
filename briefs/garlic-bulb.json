@@ -1,0 +1,36 @@
+{
+  "budget": 7000,
+  "id": "garlic-bulb",
+  "kind": "prop",
+  "materials": [
+    "food.garlic-skin",
+    "food.garlic-clove",
+    "food.garlic-section"
+  ],
+  "name": "Garlic bulb",
+  "notes": "",
+  "parts": [
+    "segmented bulb with clove bulges",
+    "papery white skin with purple streaks",
+    "flat root plate with dry roots",
+    "short cut stem neck",
+    "clove cross section inside"
+  ],
+  "references": [],
+  "size": [
+    0.06,
+    0.055,
+    0.06
+  ],
+  "style": "softneck white garlic head",
+  "summary": "Garlic bulb, 6 cm: papery purple-streaked skin over segmented cloves, root plate with dry roots, cut stem neck.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

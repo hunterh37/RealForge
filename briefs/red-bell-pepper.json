@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "red-bell-pepper",
+  "kind": "prop",
+  "materials": [
+    "food.pepper-red",
+    "food.pepper-flesh",
+    "food.pepper-pith",
+    "food.stem-green"
+  ],
+  "name": "Red bell pepper",
+  "notes": "",
+  "parts": [
+    "blocky four-lobed glossy body with shoulders and a lobed base",
+    "thick fleshy wall around a hollow cavity",
+    "white placenta and pith with seeds under the stem",
+    "curved green stem on a calyx cap"
+  ],
+  "references": [],
+  "size": [
+    0.09,
+    0.1,
+    0.09
+  ],
+  "style": "ripe glossy red bell pepper",
+  "summary": "Red bell pepper, 9 cm: four-lobed glossy skin over a thick hollow wall, seeded white placenta, green stem and calyx.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
