@@ -1,0 +1,32 @@
+{
+  "budget": 5000,
+  "id": "chocolate-bar",
+  "kind": "prop",
+  "materials": [
+    "food.chocolate"
+  ],
+  "name": "Chocolate bar",
+  "notes": "",
+  "parts": [
+    "dark chocolate tablet with a 3 x 6 grid of scored squares",
+    "beveled V grooves between pieces",
+    "flat back, glossy face"
+  ],
+  "references": [],
+  "size": [
+    0.155,
+    0.009,
+    0.075
+  ],
+  "style": "70 percent dark chocolate bar, unwrapped",
+  "summary": "Dark chocolate bar, 15.5 x 7.5 cm: scored 3 x 6 tablet with beveled V grooves, glossy face and flat back.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "egg",
+  "kind": "prop",
+  "materials": [
+    "food.egg-shell",
+    "food.egg-white",
+    "food.egg-yolk"
+  ],
+  "name": "Egg",
+  "notes": "",
+  "parts": [
+    "brown hen egg lying on its side",
+    "matte speckled shell",
+    "albumen and yolk inside"
+  ],
+  "references": [],
+  "size": [
+    0.058,
+    0.044,
+    0.044
+  ],
+  "style": "large brown hen egg",
+  "summary": "Large brown hen egg, 5.8 cm: speckled matte shell over raw albumen and a centered yolk.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
