@@ -4,7 +4,7 @@ let metalCookware = #"""
 // ---------------------------------------------------------------- cookware
 // End-grain butcher block: a checker of glued end-grain blocks, each with ring arcs from a pith outside
 // the block, open pores, dark glue lines and knife scoring. colorA light blocks (maple), colorB dark
-// blocks (walnut), colorC glue line. f.x blocks per tile (integer), f.y rings per block, f.z knife
+// blocks (walnut), colorC glue line (a > 0.5: side faces, long grain along V). f.x blocks per tile (integer), f.y rings per block, f.z knife
 // marks, f.w base roughness.
 S butcherBlock(float2 uv, constant RFParams &P) {
     S s = defaults(); uint sd = P.seed;
@@ -19,6 +19,7 @@ S butcherBlock(float2 uv, constant RFParams &P) {
     float2 wq = f + float2(fbm(uv, int2(N * 3, N * 3), 2, sd + 7u), fbm(uv, int2(N * 3, N * 3), 2, sd + 8u)) * 0.06;
     float r = length(wq - pith);
     float phase = r * max(P.f.y, 2.0) * (0.8 + 0.4 * id);
+    if (P.colorC.a > 0.5) phase = (wq.x + 0.15 * id) * max(P.f.y, 2.0) * 0.6 * (0.8 + 0.4 * id2);   // side grain along V
     float fr = fract(phase);
     float late = smoothstep(0.55, 0.85, fr) * (1.0 - smoothstep(0.9, 1.0, fr));
     float pores = fbm(uv, int2(N * 40, N * 40), 2, sd + 9u);
@@ -27,12 +28,12 @@ S butcherBlock(float2 uv, constant RFParams &P) {
     base *= 0.78 + 0.44 * id;
     base = mix(base, base * float3(1.08, 0.94, 0.8), id2 * 0.5);              // warm/cool block shift
     float3 lateC = dark ? base * 0.55 : base * float3(0.78, 0.7, 0.6);
-    float3 c = mix(base, lateC, late * 0.75);
+    float3 c = mix(base, lateC, late * 0.9);
     c *= 0.94 + pores * 0.16 + rays * 0.04;
     // Glue lines.
     float2 e = min(f, 1.0 - f);
-    float glue = 1.0 - smoothstep(0.0, 0.012, min(e.x, e.y));
-    c = mix(c, P.colorC.rgb, glue * 0.85);
+    float glue = 1.0 - smoothstep(0.0, 0.008, min(e.x, e.y));
+    c = mix(c, P.colorC.rgb, glue * 0.6);
     // Knife scoring: thin cuts at a few dominant angles, lighter fibers raised on one side.
     float cut = 0.0;
     for (int i = 0; i < 6; i++) {
@@ -43,12 +44,15 @@ S butcherBlock(float2 uv, constant RFParams &P) {
         float mask = smoothstep(0.05, 0.4, fbm(uv, int2(3, 3), 3, sd + 60u + uint(i)) + 0.15);
         cut = max(cut, (1.0 - smoothstep(0.0, 0.025, abs(n))) * mask);
     }
-    cut *= P.f.z;
-    c = mix(c, c * 0.55, cut * 0.6);
+    // Use zone: cutting concentrates in the middle of the tile (assets center the board on one tile).
+    float use = 0.25 * (1.0 - cos(6.2831853 * uv.x)) * (1.0 - cos(6.2831853 * uv.y));
+    cut *= P.f.z * (0.35 + 1.3 * use);
+    c = mix(c, c * 0.55, sat(cut) * 0.6);
+    c *= 1.0 - use * use * 0.14 * P.f.z;                                      // juice and oil darkening
     float wet = smoothstep(0.1, 0.55, fbm(uv, int2(2, 2), 4, sd + 70u));     // oiled patches
     c *= 1.0 - wet * 0.08;
     s.albedo = c;
-    s.height = 0.55 + late * 0.03 + pores * 0.05 - glue * 0.25 - cut * 0.35;
+    s.height = 0.55 + late * 0.03 + pores * 0.04 - glue * 0.12 - cut * 0.3;
     s.rough = sat(P.f.w + pores * 0.08 + cut * 0.1 - wet * 0.15 + glue * 0.05);
     s.ao = 1.0 - glue * 0.4 - cut * 0.3;
     s.metal = 0.0;
