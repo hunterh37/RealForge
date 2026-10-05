@@ -16,6 +16,11 @@ public extension MaterialLibrary {
             $0.knobs = V4(8, 40, 0.1, 0.6); $0.seed = 1201; $0.tileSize = 0.3; $0.resolution = 1024; $0.normalStrength = 1
             $0.roughness = 0.6
         },
+        // Oiled walnut for tool handles: matte, darker, tight grain.
+        MaterialSpec(key: "wood.walnut-oiled", program: .woodPlank).with {
+            $0.colorA = linear(0x5A3C28); $0.colorB = linear(0x24160E); $0.knobs = V4(0, 0.55, 0, 0); $0.seed = 1214
+            $0.tileSize = 0.35; $0.normalStrength = 1.2; $0.roughness = 0.55
+        },
         // Tri-ply exterior: brushed 18/10 stainless, spin streaks along U (circumferential on a lathe).
         MaterialSpec(key: "metal.tri-ply", program: .brushedMetal).with {
             $0.colorA = linear(0xB4B6B8); $0.colorB = linear(0x7E786E)
