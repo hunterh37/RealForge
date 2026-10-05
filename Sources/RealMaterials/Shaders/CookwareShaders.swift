@@ -130,4 +130,39 @@ S heatTint(float2 uv, constant RFParams &P) {
     s.ao = 1.0;
     return s;
 }
+
+// Baked-on patina over mill-finish aluminum (sheet pans): polymerized oil film in amber-to-brown
+// pools, carbon specks, bright knife and spatula scratches cut through the film.
+// colorA aluminum, colorB amber film, colorC carbon. f.x film amount, f.y specks, f.z scratches,
+// f.w bare-metal roughness.
+S bakedPatina(float2 uv, constant RFParams &P) {
+    S s = defaults(); uint sd = P.seed;
+    float st = gnoise(uv * float2(4, 700), int2(4, 700), sd + 1u);
+    float n = fbm(uv, int2(3, 3), 6, sd + 2u) + 0.35 * fbm(uv, int2(11, 11), 4, sd + 3u);
+    float film = smoothstep(-0.15, 0.25, n + (P.f.x - 0.5) * 0.9) * P.f.x;
+    float pool = smoothstep(0.1, 0.45, n + (P.f.x - 0.5) * 0.6) * (0.6 + 0.4 * fbm(uv, int2(24, 24), 3, sd + 6u) * 2.0);                 // darker where oil pooled
+    float4 w = worley(uv, int2(70, 70), sd + 4u, 1.0);
+    float speck = smoothstep(0.16, 0.06, w.x) * step(0.82, w.z) * smoothstep(0.0, 0.3, fbm(uv, int2(5, 5), 3, sd + 5u) + 0.1) * P.f.y;
+    float scratch = 0.0;
+    for (int i = 0; i < 5; i++) {
+        float a = h01u(sd + uint(i) * 29u) * 3.14159;
+        int2 fr = int2(3 + i * 2, 180);
+        float2 r = rot2(uv - 0.5, a) + 0.5;
+        float sn = gnoise(fract(r) * float2(fr), fr, sd + 30u + uint(i));
+        scratch = max(scratch, (1.0 - smoothstep(0.0, 0.012, abs(sn))) * smoothstep(0.2, 0.55, fbm(uv, int2(3, 3), 3, sd + 60u + uint(i))));
+    }
+    scratch *= P.f.z;
+    float3 alu = P.colorA.rgb * (0.95 + st * 0.05);
+    float3 amber = mix(P.colorB.rgb, P.colorB.rgb * 0.3, sat(pool));
+    float3 c = mix(alu, amber, film * 0.8);
+    c = mix(c, P.colorC.rgb, speck);
+    c = mix(c, alu * 1.05, scratch * 0.8);
+    float filmNow = film * (1.0 - scratch * 0.8);
+    s.albedo = c;
+    s.metal = sat(1.0 - filmNow * 0.85 - speck);
+    s.rough = sat(mix(P.f.w, 0.32, filmNow) + speck * 0.3 + st * 0.03 - scratch * 0.1);
+    s.height = 0.5 + filmNow * 0.04 + speck * 0.08 - scratch * 0.08 + st * 0.005;
+    s.ao = 1.0 - speck * 0.2;
+    return s;
+}
 """#

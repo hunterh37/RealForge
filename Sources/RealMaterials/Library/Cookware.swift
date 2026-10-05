@@ -100,11 +100,17 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x1C1B1A); $0.knobs = V4(0.25, 0.12, 0.36, 0); $0.seed = 1207; $0.tileSize = 0.1
             $0.resolution = 512; $0.normalStrength = 0.6; $0.roughness = 0.36
         },
-        // Half-sheet aluminum: mill finish under amber baked-on oil film with darker carbon spots.
-        MaterialSpec(key: "metal.sheet-pan", program: .polishedMetal).with {
-            $0.colorA = linear(0xC6C5C0); $0.colorB = linear(0x9C6C32); $0.colorC = linear(0x3E2716)
-            $0.knobs = V4(0.6, 0.3, 0, 0.34); $0.seed = 1208; $0.tileSize = 0.35; $0.normalStrength = 0.6
-            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.34
+        // Half-sheet aluminum: mill finish under amber baked-on oil film, carbon specks, scratches.
+        MaterialSpec(key: "metal.sheet-pan", program: .bakedPatina).with {
+            $0.colorA = linear(0xC4C3BE); $0.colorB = linear(0x8E6634); $0.colorC = linear(0x2A1C12)
+            $0.knobs = V4(0.75, 0.6, 0.7, 0.5); $0.seed = 1208; $0.tileSize = 0.4; $0.normalStrength = 0.6
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.45
+        },
+        // Sheet-pan walls and rim: the same aluminum with a lighter film.
+        MaterialSpec(key: "metal.sheet-pan-light", program: .bakedPatina).with {
+            $0.colorA = linear(0xC6C5C0); $0.colorB = linear(0xA06A2A); $0.colorC = linear(0x2A1C12)
+            $0.knobs = V4(0.35, 0.15, 0.2, 0.45); $0.seed = 1217; $0.tileSize = 0.3; $0.normalStrength = 0.5
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.45
         },
         // Borosilicate measuring glass: faint blue-green edge tint, high gloss.
         MaterialSpec(key: "glass.measuring", program: nil).with {

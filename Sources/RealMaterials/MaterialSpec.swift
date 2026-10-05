@@ -19,7 +19,7 @@ public enum TextureProgram: Int32, Sendable, CaseIterable {
     case turf, infieldClay, chainLink
     case sheetVinyl, nonwoven, wallTile, vitalsUI, medLabel
     case boneCortical, cartilageHyaline, muscleFiber, tendonFiber, vesselWall, nerveFascicle
-    case butcherBlock, seasonedIron, heatTint
+    case butcherBlock, seasonedIron, heatTint, bakedPatina
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
