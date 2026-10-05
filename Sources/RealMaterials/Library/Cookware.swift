@@ -112,9 +112,10 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.35, 0.15, 0.2, 0.45); $0.seed = 1217; $0.tileSize = 0.3; $0.normalStrength = 0.5
             $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.45
         },
-        // Borosilicate measuring glass: faint blue-green edge tint, high gloss.
+        // Borosilicate measuring glass: faint blue-green edge tint, high gloss. One-sided: assets model
+        // both glass surfaces.
         MaterialSpec(key: "glass.measuring", program: nil).with {
-            $0.baseColor = V3(0.82, 0.9, 0.9); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.16; $0.twoSided = true
+            $0.baseColor = V3(0.82, 0.9, 0.9); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.06; $0.twoSided = false
         },
         // Fired-on red enamel for measuring marks.
         MaterialSpec(key: "paint.measure-red", program: nil).with {
