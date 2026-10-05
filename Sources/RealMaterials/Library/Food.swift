@@ -52,7 +52,7 @@ public extension MaterialLibrary {
         out.append(spec("food.carrot-core-cooked", .radialFlesh, 0xE68A2A, 0xEDB060, 0xD8681A,
                         knobs: V4(12, 0.6, 0.3, 1), tile: 0.014, rough: 0.3, seed: 1303, normal: 0.5, clearcoat: 0.4))
         // Red bell pepper: glossy skin, wall flesh, white pith with seeds.
-        out.append(spec("food.pepper-red", .fruitSkin, 0xB0120D, 0x6E0808, 0xD4503A, ca: 0.25,
+        out.append(spec("food.pepper-red", .fruitSkin, 0xB0120D, 0x6E0808, 0xD4503A, ca: 0.1,
                         knobs: V4(30, 0.35, 0.14, 0), tile: 0.08, rough: 0.14, seed: 1401, normal: 0.8, clearcoat: 1, cooked: "food.pepper-red-cooked"))
         out.append(spec("food.pepper-red-cooked", .foodCrumb, 0x92180E, 0x3A1408, 0xC04A30, ca: 0.3,
                         knobs: V4(24, 0.5, 0.3, 4), tile: 0.08, rough: 0.3, seed: 1402, normal: 1.0, clearcoat: 0.4))
