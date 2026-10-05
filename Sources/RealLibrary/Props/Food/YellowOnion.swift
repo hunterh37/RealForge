@@ -32,7 +32,9 @@ public struct YellowOnion: RealFood {
     public var flapKey: MaterialKey = "food.onion-skin:C99A62"
     public init() {}
 
-    public var coreCenter: V3 { V3(0, bulbHeight * 0.48, 0) }
+    public var coreCenter: V3 { V3(0, bulbHeight * 0.48 - Self.plate, 0) }
+    /// Lowest point of the skin (root plate rim) before grounding.
+    static let plate: Float = 0.0014
 
     public func capMaterial(for key: MaterialKey) -> MaterialKey? { key == flesh ? rings : nil }
 
@@ -116,13 +118,14 @@ public struct YellowOnion: RealFood {
             let pts = (0...4).map { k -> V3 in
                 let t = Float(k) / 4
                 let side = simd_cross(out, .up) * curl * 0.003 * t * t
-                return base + out * (len * t) + V3(0, -droop * 0.005 * t * t - 0.001 * t, 0) + side
+                var q = base + out * (len * t) + V3(0, -droop * 0.005 * t * t - 0.001 * t, 0) + side
+                q.y = max(q.y, Self.plate + 0.0007)
+                return q
             }
             let rad = r.float(0.0004...0.00065)
             m.add(FoodMesh.tube(pts, radii: pts.indices.map { rad * (1 - 0.5 * Float($0) / 4) }, sides: 5, endBulge: 0.3, material: root))
         }
-        let bb = m.bounds
-        m = m.transformed(Xform(translation: V3(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2)))
+        m = m.transformed(Xform(translation: V3(0, -Self.plate, 0)))
         groundAO(&m, height: 0.02, floor: 0.55)
         return LODModel(m)
     }

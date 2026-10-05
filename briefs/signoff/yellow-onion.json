@@ -1,10 +1,10 @@
 {
-  "automated" : 0.99728864,
+  "automated" : 0.9824849,
   "date" : "2026-10-05",
-  "final" : 0.86092603,
-  "fingerprint" : "6615e90b62c99199",
+  "final" : 0.8557447,
+  "fingerprint" : "5bfb4ec48dce4a82",
   "id" : "yellow-onion",
-  "iterations" : 3,
+  "iterations" : 4,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 7,

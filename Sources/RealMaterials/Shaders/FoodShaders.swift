@@ -149,20 +149,23 @@ S rootSkin(float2 uv, constant RFParams &P) {
     float h = 0.5, rough = P.f.z, ao = 1.0;
     if (int(P.f.w + 0.5) == 0) {
         float grain = gnoise(float2(uv.x * 60.0, uv.y * 3.0), int2(60, 3), sd + 3u);
-        c *= 0.97 + 0.06 * grain;
+        c *= 0.95 + 0.1 * grain;
+        float band = fbm(uv, int2(9, 1), 3, sd + 11u);
+        c *= 0.93 + 0.14 * smoothstep(-0.3, 0.3, band);
+        c = mix(c, c * float3(1.0, 0.86, 0.75), smoothstep(0.1, 0.4, macro) * 0.5);
         // Lenticels: short pale-edged transverse dashes in loose rows along the root.
         float cid = 0.0, cid2 = 0.0;
         float2 off = cellLocal(uv, int2(max(4, F / 3), F), sd + 4u, cid, cid2);
         float2 q = off * float2(1.0, 3.2);
         q.y += q.x * q.x * (cid2 - 0.5) * 1.2;
         float L = 0.35 + 0.4 * cid;
-        float dash = (1.0 - smoothstep(L * 0.6, L, abs(q.x))) * (1.0 - smoothstep(0.08, 0.2, abs(q.y)));
+        float dash = (1.0 - smoothstep(L * 0.4, L, abs(q.x))) * (1.0 - smoothstep(0.04, 0.28, abs(q.y)));
         dash *= step(0.25, cid2);
-        float lip = (1.0 - smoothstep(L * 0.7, L * 1.1, abs(q.x))) * (smoothstep(0.12, 0.2, abs(q.y)) - smoothstep(0.2, 0.32, abs(q.y))) * step(0.25, cid2);
-        c = mix(c, P.colorB.rgb, dash * 0.3 * P.colorC.a);
-        c = mix(c, P.colorC.rgb, lip * 0.5 * P.colorC.a);
-        h += -dash * 0.3 + lip * 0.12 + grain * 0.03;
-        ao -= dash * 0.35;
+        float lip = (1.0 - smoothstep(L * 0.5, L * 1.1, abs(q.x))) * (smoothstep(0.1, 0.25, abs(q.y)) - smoothstep(0.25, 0.45, abs(q.y))) * step(0.25, cid2);
+        c = mix(c, P.colorB.rgb, dash * 0.22 * P.colorC.a);
+        c = mix(c, P.colorC.rgb, lip * 0.3 * P.colorC.a);
+        h += -dash * 0.16 + lip * 0.08 + grain * 0.03;
+        ao -= dash * 0.2;
         // Root-hair scars: tiny dark pits, mostly sitting on lenticel rows.
         float4 w = worley(uv, int2(F, F * 2), sd + 5u, 1.0);
         float scar = (1.0 - smoothstep(0.03, 0.08, w.x)) * step(0.7, w.z);
