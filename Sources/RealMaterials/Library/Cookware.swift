@@ -42,6 +42,12 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.75, 0.2, 1, 0.24); $0.seed = 1204; $0.tileSize = 0.5; $0.normalStrength = 0.35
             $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.24
         },
+        // Light heat tint for tall pots: a narrow straw-to-violet ring 8 cm along V (base edge, lower wall).
+        MaterialSpec(key: "metal.heat-tint-light", program: .heatTint).with {
+            $0.colorA = linear(0xB2B4B6); $0.colorB = linear(0x6E665A)
+            $0.knobs = V4(0.45, 0.24, 1, 0.24); $0.seed = 1212; $0.tileSize = 0.35; $0.normalStrength = 0.35
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.24
+        },
         // Seasoned cast iron: black satin polymerized oil over 1.8 mm sand-cast pebble, rubbed spots, carbon.
         MaterialSpec(key: "metal.cast-iron-seasoned", program: .seasonedIron).with {
             $0.colorA = linear(0x181716); $0.colorB = linear(0x4A4440); $0.colorC = linear(0x2C1E14)

@@ -111,6 +111,7 @@ public enum Props {
         CastIronSkillet.self,
         CuttingBoard.self,
         ChefKnife.self,
+        Saucepan.self,
         // realityhd:prop
     ]
 }
