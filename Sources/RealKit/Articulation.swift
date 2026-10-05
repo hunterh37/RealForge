@@ -251,6 +251,24 @@ public extension Entity {
         root.applyJoints(a.rig.values(current), rig: a.rig, animated: animated)
     }
 
+    /// Switches part options directly (flame rings, lamp bulbs, screens) and the lights they drive;
+    /// parts not named keep their current option.
+    func setOptions(_ values: [String: Int]) {
+        guard let root = articulationRoot, let a = root.components[RealArticulationComponent.self] else { return }
+        var current: [String: Int] = [:]
+        for p in a.rig.parts where p.optionCount > 1 {
+            guard let e = root.findEntity(named: "joint:\(p.name)") else { continue }
+            current[p.name] = e.children.first { $0.name.hasPrefix("opt") && $0.isEnabled }.flatMap { Int($0.name.dropFirst(3)) } ?? 0
+        }
+        for (k, v) in values { current[k] = v }
+        root.applyOptions(current, rig: a.rig)
+    }
+
+    /// The entity holding option `index` of part `part` (scale or tint it for intensity).
+    func optionEntity(part: String, index: Int = 1) -> Entity? {
+        articulationRoot?.findEntity(named: "joint:\(part)")?.children.first { $0.name == "opt\(index)" }
+    }
+
     /// Cycles to the next state.
     func nextArticulation(animated: Bool = true) {
         guard let root = articulationRoot, let a = root.components[RealArticulationComponent.self] else { return }

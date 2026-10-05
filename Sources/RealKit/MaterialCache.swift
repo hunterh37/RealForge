@@ -101,6 +101,23 @@ public final class RealMaterialCache {
         }
     }
 
+    /// Cookable variant of a food material (`MaterialSpec.cooked`): ShaderGraph with the cook layer.
+    /// Each call returns a copy, so every food piece can carry its own doneness. Falls back to the
+    /// plain material when ShaderGraph is off or the spec has no cooked look.
+    public func cookMaterialAsync(_ key: MaterialKey) async -> any RealityKit.Material {
+        let vk = "\(key)#cook"
+        if let m = graph[vk] { return m }
+        let s = spec(key)
+        guard useShaderGraph, s.program != nil, s.mode != .emissive, s.cooked != nil else { return await materialAsync(key) }
+        do {
+            let m = try await buildGraph(s, cook: true)
+            graph[vk] = m
+            return m
+        } catch {
+            return await materialAsync(key)
+        }
+    }
+
     /// PhysicallyBasedMaterial copies with the base color scaled by `value` (PBR fallback for jitter).
     public func material(_ key: MaterialKey, brightness value: Float) -> any RealityKit.Material {
         let base = material(key)
@@ -267,7 +284,7 @@ public final class RealMaterialCache {
         return m
     }
 
-    private func buildGraph(_ s: MaterialSpec, jitter: SIMD2<Float> = .zero) async throws -> any RealityKit.Material {
+    private func buildGraph(_ s: MaterialSpec, jitter: SIMD2<Float> = .zero, cook: Bool = false) async throws -> any RealityKit.Material {
         guard let t = try textures(s) else { throw TextureSynth.SynthError.encode }
         var o = RealShaderOptions()
         let perf = RealPerformance.active
@@ -277,7 +294,10 @@ public final class RealMaterialCache {
         o.instanceJitter = jitter != .zero && perf.instanceVariation
         o.transparent = s.mode == .transparent
         o.flowNormals = s.mode == .transparent && s.flow > 0 && perf.waterFlow
-        let splatSpec = perf.splat ? s.splat.map { spec($0) } : nil
+        let cookSpec = cook ? s.cooked.map { spec($0) } : nil
+        let tc = try cookSpec.flatMap { try textures($0) }
+        o.cook = tc != nil
+        let splatSpec = perf.splat && !o.cook ? s.splat.map { spec($0) } : nil
         let t2 = try splatSpec.flatMap { try textures($0) }
         o.splat = t2 != nil
         var m = try await RealShaderGraph.material(o)
@@ -314,6 +334,12 @@ public final class RealMaterialCache {
             try m.setParameter(name: "UVScale2", value: .float(splatSpec.tileSize > 0 ? 1 / splatSpec.tileSize : 1))
             try m.setParameter(name: "SplatSoftness", value: .float(max(0.01, s.splatSoftness)))
             try m.setParameter(name: "SplatHeight", value: .float(s.splatHeight))
+        }
+        if let tc, let cookSpec {
+            try m.setParameter(name: "BaseColor2", value: .textureResource(tc.albedo))
+            try m.setParameter(name: "Normal2", value: .textureResource(tc.normal))
+            try m.setParameter(name: "Roughness2", value: .textureResource(tc.roughness))
+            try m.setParameter(name: "UVScale2", value: .float(cookSpec.tileSize > 0 ? 1 / cookSpec.tileSize : 1))
         }
         if o.instanceJitter {
             try m.setParameter(name: "HueJitter", value: .float(jitter.x))
