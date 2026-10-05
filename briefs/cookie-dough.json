@@ -1,0 +1,33 @@
+{
+  "budget": 6000,
+  "id": "cookie-dough",
+  "kind": "prop",
+  "materials": [
+    "food.cookie-dough",
+    "food.chocolate-chunk"
+  ],
+  "name": "Cookie dough",
+  "notes": "",
+  "parts": [
+    "scooped lumpy dough ball, flattened base",
+    "chocolate chunks seated on the surface",
+    "chunks buried inside for the cut face"
+  ],
+  "references": [],
+  "size": [
+    0.045,
+    0.038,
+    0.045
+  ],
+  "style": "chocolate chunk cookie dough scoop",
+  "summary": "Chocolate chunk cookie dough scoop, 4.5 cm: lumpy ball with flattened base, surface and buried chocolate chunks.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

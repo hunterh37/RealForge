@@ -1,0 +1,32 @@
+{
+  "budget": 5000,
+  "id": "pancake",
+  "kind": "prop",
+  "materials": [
+    "food.batter"
+  ],
+  "name": "Pancake",
+  "notes": "",
+  "parts": [
+    "poured round disk with a slightly irregular edge",
+    "domed top with bubble pits",
+    "flat bottom, rounded rim"
+  ],
+  "references": [],
+  "size": [
+    0.11,
+    0.011,
+    0.11
+  ],
+  "style": "raw poured pancake batter, ready to cook",
+  "summary": "Poured pancake, 11 cm: irregular round batter disk with domed bubbly top and rounded rim; cooks to golden crumb.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

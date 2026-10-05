@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "fried-egg",
+  "kind": "prop",
+  "materials": [
+    "food.egg-white",
+    "food.egg-yolk"
+  ],
+  "name": "Fried egg",
+  "notes": "",
+  "parts": [
+    "thin irregular spread of white with a thicker ring around the yolk",
+    "domed yolk sitting on the white",
+    "thin lacy rim"
+  ],
+  "references": [],
+  "size": [
+    0.125,
+    0.022,
+    0.12
+  ],
+  "style": "egg just cracked into a pan, raw",
+  "summary": "Egg cracked into a pan, 13 cm: irregular thin white with thick ring and domed yolk; cooks from clear to set white.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

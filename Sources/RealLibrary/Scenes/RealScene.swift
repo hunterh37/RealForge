@@ -18,6 +18,8 @@ public struct RealScene {
         public var rig: Rig; public var at: Xform; public var state: String?; public var interactive: Bool
         /// Can be picked up by hand (visionOS).
         public var grabbable = false
+        /// Entity name (default: the asset id), for `findEntity(named:)` in apps.
+        public var name: String? = nil
     }
     public struct Camera { public var eye: V3; public var target: V3; public var fov: Float }
     /// Named standing point (teleport destination in the demo): eye at standing height, looking at `target`.
@@ -82,7 +84,7 @@ public struct RealScene {
             for s in statics { root.addChild(try await Self.upload(s.asset, at: s.at, materials: materials)) }
         }
         for r in rigs {
-            let e = try await r.rig.entityAsync(state: r.state, materials: materials, interactive: r.interactive, grabbable: r.grabbable)
+            let e = try await r.rig.entityAsync(name: r.name, state: r.state, materials: materials, interactive: r.interactive, grabbable: r.grabbable)
             e.transform = Transform(scale: r.at.scale, rotation: r.at.rotation, translation: r.at.translation)
             // Grab home is the placed pose, so `resetGrab()` returns the object to its spot in the scene.
             if var g = e.components[RealGrabComponent.self] { g.home = e.transform; e.components.set(g) }
@@ -200,10 +202,10 @@ public struct RealScene {
     }
 
     /// An articulated asset kept live (animates on `setArticulation`, taps with `interactive`).
-    /// `grabbable` (default: assets tagged `handheld`) lets a hand pick the whole object up.
+    /// `name` names the root entity (default: the asset id). `grabbable` (default: assets tagged `handheld`) lets a hand pick the whole object up.
     public mutating func addLive<A: RealArticulated>(_ asset: A, at: Xform = .identity, seed: UInt64, state: String? = nil, interactive: Bool = true,
-                                                     grabbable: Bool? = nil) {
-        rigs.append(.init(rig: asset.rig(seed: seed), at: at, state: state, interactive: interactive, grabbable: grabbable ?? A.handheld))
+                                                     grabbable: Bool? = nil, name: String? = nil) {
+        rigs.append(.init(rig: asset.rig(seed: seed), at: at, state: state, interactive: interactive, grabbable: grabbable ?? A.handheld, name: name))
     }
 
     /// A one-off model (paths, pads, walls) that is not a catalog asset. `bake`: receive scene AO.

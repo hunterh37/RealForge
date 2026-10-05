@@ -1,0 +1,39 @@
+{
+  "budget" : 10000,
+  "id" : "mixing-bowl",
+  "kind" : "prop",
+  "materials" : [
+    "metal.pan-interior",
+    "metal.mirror-polish"
+  ],
+  "name" : "Stainless mixing bowl",
+  "notes" : "Simulator knobs: floorY, innerRadius, rimY, rimRadius, floorCenter. Inner floor is its own Surface.",
+  "parts" : [
+    "spun bowl 0.8 mm thick with a small flat floor",
+    "rolled rim bead",
+    "satin spin-finished interior with utensil scratches",
+    "mirror-polished exterior",
+    "flat stand base"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.245,
+    0.098,
+    0.245
+  ],
+  "style" : "3 qt spun stainless mixing bowl, kitchen-used",
+  "summary" : "3 qt stainless mixing bowl: spun 0.8 mm wall, rolled rim, satin interior, mirror exterior.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "container",
+    "handheld"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.08
+}

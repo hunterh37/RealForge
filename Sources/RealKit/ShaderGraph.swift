@@ -111,6 +111,10 @@ public struct RealShaderOptions: Hashable, Sendable {
     public var transparent = false
     /// Two normal-map samples scrolling over time at `Flow` tiles per second (water ripples).
     public var flowNormals = false
+    /// Food cooking (RealCook): blend to the cooked texture set (BaseColor2/Normal2/Roughness2) by
+    /// `Doneness`, then Maillard browning and char per object-space face direction (`BrownPos`,
+    /// `BrownNeg`: 0 raw, 1 deep golden brown, 2 burnt), plus an `Oil` sheen.
+    public var cook = false
     public init() {}
 }
 
@@ -153,6 +157,44 @@ public enum RealShaderGraph {
             let mask = g.node("ND_smoothstep_float", [("float", "in", t), ("float", "low", g.mul(soft, "-1")), ("float", "high", soft)], out: "float")
             splatMask = mask
             rgb = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", mask)], out: "color3f")
+        }
+        var cookMask: String?, cookRough: String?, uvC: String?, charMask: String?
+        if o.cook {
+            let uc = g.node("ND_multiply_vector2FA", [("float2", "in1", uv0), ("float", "in2", g.param("UVScale2"))], out: "float2")
+            uvC = uc
+            let c2 = g.separate("ND_separate4_color4", "color4f", g.texture("BaseColor2", uc, color: true), ["outr", "outg", "outb", "outa"])
+            let rgb2 = g.node("ND_combine3_color3", [("float", "in1", c2[0]), ("float", "in2", c2[1]), ("float", "in3", c2[2])], out: "color3f")
+            // Patchy, position-locked variation so proteins set and brown unevenly like real food.
+            let op = g.node("ND_position_vector3", [("string", "space", "\"object\"")], out: "float3")
+            let p1 = g.node("ND_multiply_vector3FA", [("float3", "in1", op), ("float", "in2", "38")], out: "float3")
+            let p2 = g.node("ND_multiply_vector3FA", [("float3", "in1", op), ("float", "in2", "140")], out: "float3")
+            let nLo = g.node("ND_noise3d_float", [("float", "amplitude", "1"), ("float", "pivot", "0"), ("float3", "position", p1)], out: "float")
+            let nHi = g.node("ND_noise3d_float", [("float", "amplitude", "1"), ("float", "pivot", "0"), ("float3", "position", p2)], out: "float")
+            let d0 = g.add(g.mul(g.param("Doneness"), "1.25"), g.add(g.mul(nLo, "0.3"), "-0.12"))
+            let dm = g.node("ND_smoothstep_float", [("float", "in", d0), ("float", "low", "0.05"), ("float", "high", "0.95")], out: "float")
+            cookMask = dm
+            rgb = g.node("ND_mix_color3", [("color3f", "fg", rgb2), ("color3f", "bg", rgb), ("float", "mix", dm)], out: "color3f")
+            // Browning by object-space face direction: weights n^2 per signed axis sum to 1.
+            let on = g.node("ND_normal_vector3", [("string", "space", "\"object\"")], out: "float3")
+            let pos = g.node("ND_max_vector3FA", [("float3", "in1", on), ("float", "in2", "0")], out: "float3")
+            let neg = g.node("ND_max_vector3FA", [("float3", "in1", g.node("ND_multiply_vector3FA", [("float3", "in1", on), ("float", "in2", "-1")], out: "float3")), ("float", "in2", "0")], out: "float3")
+            let pos2 = g.node("ND_multiply_vector3", [("float3", "in1", pos), ("float3", "in2", pos)], out: "float3")
+            let neg2 = g.node("ND_multiply_vector3", [("float3", "in1", neg), ("float3", "in2", neg)], out: "float3")
+            let bP = g.node("ND_dotproduct_vector3", [("float3", "in1", pos2), ("float3", "in2", g.param("BrownPos"))], out: "float")
+            let bN = g.node("ND_dotproduct_vector3", [("float3", "in1", neg2), ("float3", "in2", g.param("BrownNeg"))], out: "float")
+            let b0 = g.add(bP, bN)
+            // Raised texels (bright fibers, ridges) brown first; fine noise breaks up the front.
+            let lum = g.add(g.mul(bc[0], "0.5"), g.mul(bc[1], "0.5"))
+            let b = g.mul(b0, g.add("1", g.add(g.mul(nLo, "0.55"), g.add(g.mul(nHi, "0.3"), g.mul(g.add(lum, "-0.45"), "0.6")))))
+            let maillard = g.node("ND_smoothstep_float", [("float", "in", b), ("float", "low", "0.08"), ("float", "high", "0.95")], out: "float")
+            let deep = g.node("ND_smoothstep_float", [("float", "in", b), ("float", "low", "0.55"), ("float", "high", "1.25")], out: "float")
+            let ch = g.node("ND_smoothstep_float", [("float", "in", b), ("float", "low", "1.15"), ("float", "high", "1.85")], out: "float")
+            charMask = ch
+            let browns = g.node("ND_mix_color3", [("color3f", "fg", g.param("DeepColor")), ("color3f", "bg", g.param("BrownColor")), ("float", "mix", deep)], out: "color3f")
+            let browned = g.node("ND_multiply_color3FA", [("color3f", "in1", browns), ("float", "in2", g.add("0.78", g.mul(lum, "0.45")))], out: "color3f")
+            rgb = g.node("ND_mix_color3", [("color3f", "fg", browned), ("color3f", "bg", rgb), ("float", "mix", g.mul(maillard, "0.93"))], out: "color3f")
+            rgb = g.node("ND_mix_color3", [("color3f", "fg", g.param("CharColor")), ("color3f", "bg", rgb), ("float", "mix", ch)], out: "color3f")
+            cookRough = maillard
         }
         if o.instanceJitter {
             let org = g.node("ND_transformpoint_vector3", [("float3", "in", "(0, 0, 0)"), ("string", "fromspace", "\"object\""), ("string", "tospace", "\"world\"")], out: "float3")
@@ -232,6 +274,9 @@ public enum RealShaderGraph {
         if let splatMask, let uvS {
             nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal2", uvS, color: false)), ("float4", "bg", nt), ("float", "mix", splatMask)], out: "float4")
         }
+        if let cookMask, let uvC {
+            nt = g.node("ND_mix_vector4", [("float4", "fg", g.texture("Normal2", uvC, color: false)), ("float4", "bg", nt), ("float", "mix", cookMask)], out: "float4")
+        }
         // RG8 normal: reconstruct z = sqrt(1 - x^2 - y^2) in tangent space.
         let nc = g.separate("ND_separate4_vector4", "float4", nt, ["outx", "outy", "outz", "outw"])
         let nx = g.add(g.mul(nc[0], "2"), "-1"), ny = g.add(g.mul(nc[1], "2"), "-1")
@@ -245,6 +290,14 @@ public enum RealShaderGraph {
             rough = g.node("ND_mix_float", [("float", "fg", r2), ("float", "bg", rough), ("float", "mix", splatMask)], out: "float")
         }
         if let topMask { rough = g.node("ND_mix_float", [("float", "fg", "0.95"), ("float", "bg", rough), ("float", "mix", topMask)], out: "float") }
+        if let cookMask, let uvC, let cookRough, let charMask {
+            let r2 = g.separate("ND_separate4_vector4", "float4", g.texture("Roughness2", uvC, color: false), ["outx", "outy", "outz", "outw"])[0]
+            rough = g.node("ND_mix_float", [("float", "fg", r2), ("float", "bg", rough), ("float", "mix", cookMask)], out: "float")
+            // Seared crust is drier and matte; char is chalky; fat in the pan glosses it back up.
+            rough = g.node("ND_mix_float", [("float", "fg", "0.62"), ("float", "bg", rough), ("float", "mix", g.mul(cookRough, "0.6"))], out: "float")
+            rough = g.node("ND_mix_float", [("float", "fg", "0.92"), ("float", "bg", rough), ("float", "mix", charMask)], out: "float")
+            rough = g.node("ND_mix_float", [("float", "fg", "0.12"), ("float", "bg", rough), ("float", "mix", g.mul(g.param("Oil"), "0.85"))], out: "float")
+        }
         var surfaceInputs: [(String, String, String)] = [
             ("color3f", "baseColor", tint), ("float3", "normal", normal), ("float", "roughness", rough),
             ("float", "specular", g.param("Specular")),
@@ -362,6 +415,13 @@ public enum RealShaderGraph {
                 color3f inputs:TopColor = (0.05, 0.09, 0.02)
                 float inputs:TopAmount = 1
                 float inputs:TopLow = 0.55
+                float inputs:Doneness = 0
+                float3 inputs:BrownPos = (0, 0, 0)
+                float3 inputs:BrownNeg = (0, 0, 0)
+                float inputs:Oil = 0
+                color3f inputs:BrownColor = (0.53, 0.27, 0.07)
+                color3f inputs:DeepColor = (0.2, 0.08, 0.025)
+                color3f inputs:CharColor = (0.018, 0.014, 0.011)
                 float inputs:HueJitter = 0
                 float inputs:ValueJitter = 0
                 token outputs:mtlx:surface.connect = \(surface)

@@ -1,0 +1,33 @@
+{
+  "budget": 6000,
+  "id": "chicken-breast",
+  "kind": "prop",
+  "materials": [
+    "food.chicken-raw"
+  ],
+  "name": "Chicken breast",
+  "notes": "",
+  "parts": [
+    "boneless skinless breast lobe, teardrop plan, thick rounded end tapering to a thin tip",
+    "tenderloin lobe along the underside edge with a shallow seam",
+    "silverskin streaks and white fat striations along the fiber direction",
+    "wet sheen, slightly translucent pink"
+  ],
+  "references": [],
+  "size": [
+    0.2,
+    0.03,
+    0.1
+  ],
+  "style": "raw supermarket chicken breast, trimmed, wet",
+  "summary": "Raw boneless skinless chicken breast, 20 x 10 x 3 cm: teardrop lobe with tenderloin, fiber grain, fat striations, silverskin, wet sheen.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

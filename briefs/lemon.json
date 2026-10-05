@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "lemon",
+  "kind": "prop",
+  "materials": [
+    "food.lemon",
+    "food.lemon-pith",
+    "food.lemon-flesh"
+  ],
+  "name": "Lemon",
+  "notes": "",
+  "parts": [
+    "ovoid fruit lying on its side with a nipple tip",
+    "pitted oil-gland rind",
+    "stem end button",
+    "thick white pith around segmented flesh in cross section"
+  ],
+  "references": [],
+  "size": [
+    0.085,
+    0.06,
+    0.06
+  ],
+  "style": "fresh Eureka lemon",
+  "summary": "Eureka lemon, 8.5 cm: pitted waxy rind shell with stem button and nipple, white pith, segmented juicy flesh.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

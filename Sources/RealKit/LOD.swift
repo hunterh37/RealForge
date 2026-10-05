@@ -103,6 +103,7 @@ public enum RealKitSetup {
         RealRenderCostComponent.registerComponent()
         RealSunComponent.registerComponent()
         RealPerformanceSystem.registerSystem()
+        RealCook.register()
     }
 }
 
