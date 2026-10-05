@@ -120,6 +120,9 @@ public enum Props {
         RussetPotato.self,
         Strawberry.self,
         ChocolateBar.self,
+        Pancake.self,
+        CookieDough.self,
+        FriedEgg.self,
         // realityhd:prop
     ]
 }
