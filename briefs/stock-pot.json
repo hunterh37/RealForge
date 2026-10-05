@@ -1,30 +1,36 @@
 {
-  "budget": 4000,
+  "budget": 15000,
   "id": "stock-pot",
   "kind": "prop",
   "materials": [
-    "metal.stainless",
-    "glass.clear"
+    "metal.tri-ply",
+    "metal.pan-interior",
+    "metal.pan-floor",
+    "metal.heat-tint-light",
+    "glass.clear",
+    "metal.stainless"
   ],
   "name": "Stainless stock pot",
-  "notes": "Rig: lid slide +Y 0...0.12 then hinge (parent chain) X 0...30 for ajar. States: covered, ajar, open.",
+  "notes": "Rig: lid-lift slide +Y 0...0.12, then lid hinge (child) about X 0...30 at the +Z edge. States: covered, ajar, open. Simulator knobs: floorY, innerRadius, rimY, rimRadius, floorCenter.",
   "parts": [
-    "straight-wall pot with encapsulated base",
-    "riveted loop handles",
+    "straight-wall pot with a rolled rim",
+    "encapsulated base disc",
+    "riveted loop handles on both sides",
     "tempered glass lid with steel rim and knob",
-    "vent hole"
+    "steel vent grommet"
   ],
   "references": [],
   "size": [
     0.36,
-    0.27,
-    0.27
+    0.235,
+    0.255
   ],
   "style": "8 qt tri-ply stock pot",
   "summary": "8 qt stainless stock pot: encapsulated base, riveted loop handles, glass lid with steel rim and knob.",
   "tags": [
     "prop",
     "kitchen",
+    "cookware",
     "metal",
     "container",
     "handheld",

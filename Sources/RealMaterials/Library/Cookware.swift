@@ -22,6 +22,12 @@ public extension MaterialLibrary {
             $0.knobs = V4(1, 0.2, 0.3, 0.3); $0.seed = 1202; $0.tileSize = 0.25; $0.normalStrength = 0.4
             $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.2
         },
+        // Mirror-polished stainless exterior (stock pots, bowls): faint polishing swirl and smudges.
+        MaterialSpec(key: "metal.mirror-polish", program: .brushedMetal).with {
+            $0.colorA = linear(0xC6C8CA); $0.colorB = linear(0x8A847A)
+            $0.knobs = V4(0.25, 0.07, 0.4, 0.25); $0.seed = 1213; $0.tileSize = 0.25; $0.normalStrength = 0.15
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.07
+        },
         // Pan interior: polished stainless with a fine satin spin swirl (lathe U runs around the pan),
         // utensil scratches and cooking smudges.
         MaterialSpec(key: "metal.pan-interior", program: .brushedMetal).with {
