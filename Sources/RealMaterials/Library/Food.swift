@@ -104,8 +104,8 @@ public extension MaterialLibrary {
         out.append(spec("food.egg-yolk-cooked", .foodSmooth, 0xF2C24C, 0xE6AE38, 0xF8DA80, ca: 0.5,
                         knobs: V4(20, 0.3, 0.72, 3), tile: 0.03, rough: 0.72, seed: 1805, normal: 0.6, res: 512))
         // Butter block and browned butter.
-        out.append(spec("food.butter", .foodSmooth, 0xF4E0A0, 0xEDD48E, 0xE2CA82,
-                        knobs: V4(50, 0.4, 0.4, 1), tile: 0.06, rough: 0.4, seed: 1901, normal: 0.6, clearcoat: 0.2, cooked: "food.butter-cooked"))
+        out.append(spec("food.butter", .foodSmooth, 0xF2E4B4, 0xE9D7A0, 0xDCC68C,
+                        knobs: V4(50, 0.4, 0.58, 1), tile: 0.06, rough: 0.58, seed: 1901, normal: 0.8, clearcoat: 0, cooked: "food.butter-cooked"))
         out.append(spec("food.butter-cooked", .foodCrumb, 0xC88A3C, 0x6A3812, 0xE8B866, ca: 0.3,
                         knobs: V4(60, 0.4, 0.15, 5), tile: 0.06, rough: 0.15, seed: 1902, normal: 0.4, clearcoat: 0.6))
         // Russet potato: netted skin and cut face.

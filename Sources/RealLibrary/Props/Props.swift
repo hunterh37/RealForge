@@ -116,6 +116,7 @@ public enum Props {
         GarlicClove.self,
         Lemon.self,
         Egg.self,
+        ButterBlock.self,
         // realityhd:prop
     ]
 }
