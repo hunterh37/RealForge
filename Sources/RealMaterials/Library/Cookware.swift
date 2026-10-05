@@ -63,8 +63,8 @@ public extension MaterialLibrary {
         // Knife blade: satin stainless with grind lines along U (blade length).
         MaterialSpec(key: "metal.knife-blade", program: .brushedMetal).with {
             $0.colorA = linear(0xBEC1C4); $0.colorB = linear(0x8A8780)
-            $0.knobs = V4(1.4, 0.2, 0.15, 0.35); $0.seed = 1206; $0.tileSize = 0.1; $0.normalStrength = 0.5
-            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.2
+            $0.knobs = V4(1.6, 0.28, 0.2, 0.4); $0.seed = 1206; $0.tileSize = 0.1; $0.normalStrength = 0.5
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.28
         },
         // Black POM (acetal) knife handle: fine satin, faint handling scuffs.
         MaterialSpec(key: "plastic.pom", program: .plastic).with {
