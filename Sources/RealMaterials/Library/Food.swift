@@ -123,7 +123,7 @@ public extension MaterialLibrary {
         out.append(spec("food.strawberry-flesh", .radialFlesh, 0xE8434A, 0xBE0E1E, 0xF8E2DE,
                         knobs: V4(14, 0.6, 0.22, 6), tile: 0.0335, rough: 0.22, seed: 2102, normal: 0.6, clearcoat: 0.6))
         // Dark chocolate bar.
-        out.append(spec("food.chocolate", .foodSmooth, 0x3B1F13, 0x2C160D, 0x7C5C4A, ca: 0.3,
+        out.append(spec("food.chocolate", .foodSmooth, 0x2E170E, 0x24120A, 0x7C5C4A, ca: 0.3,
                         knobs: V4(20, 0.3, 0.22, 2), tile: 0.08, rough: 0.22, seed: 2201, normal: 0.4, clearcoat: 0.3))
         // Pancake or cake batter and its baked crumb.
         out.append(spec("food.batter", .foodSmooth, 0xF0DCA4, 0xE2C886, 0xC4A26A, ca: 0.5,
