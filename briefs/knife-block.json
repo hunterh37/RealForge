@@ -1,32 +1,34 @@
 {
-  "budget": 6000,
+  "budget": 14000,
   "id": "knife-block",
   "kind": "prop",
   "materials": [
-    "wood.walnut",
-    "metal.stainless",
-    "plastic.black"
+    "wood.walnut-oiled",
+    "plastic.pom",
+    "metal.stainless"
   ],
   "name": "Knife block set",
-  "notes": "",
+  "notes": "Knives are fixed in this asset; the standalone knife is chef-knife.",
   "parts": [
-    "angled walnut block with slots",
-    "chef, bread, utility and paring knives seated",
-    "riveted black handles",
-    "steel bolsters",
-    "sharpening steel"
+    "angled walnut block with a raked top and slots",
+    "five forged knives seated, handles out",
+    "riveted black POM handles",
+    "steel half bolsters at the slot mouths",
+    "honing steel with a ring guard",
+    "felt feet"
   ],
   "references": [],
   "size": [
     0.15,
-    0.36,
-    0.23
+    0.39,
+    0.27
   ],
   "style": "German-style forged set",
   "summary": "Walnut knife block with six forged knives and a honing steel: riveted handles, steel bolsters, angled slots.",
   "tags": [
     "prop",
     "kitchen",
+    "cookware",
     "wood",
     "metal",
     "tool"

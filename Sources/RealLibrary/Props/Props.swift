@@ -119,6 +119,7 @@ public enum Props {
         WoodenSpoon.self,
         BakingSheet.self,
         MeasuringCup.self,
+        KnifeBlock.self,
         // realityhd:prop
     ]
 }
