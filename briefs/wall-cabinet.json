@@ -1,5 +1,5 @@
 {
-  "budget": 6000,
+  "budget": 14000,
   "id": "wall-cabinet",
   "kind": "prop",
   "materials": [
@@ -10,19 +10,19 @@
     "ceramic.vitreous"
   ],
   "name": "Shaker wall cabinet",
-  "notes": "Hung: base at y = 0 of its own frame, placed at 1.45 m in scenes. Rig: two door hinges Y +-110. States: closed, left-open, open.",
+  "notes": "Hung: base at y = 0 of its own frame (light rail at the bottom), placed with its bottom at 1.4-1.45 m. Width knob 0.3-1.2 m (one door under 0.5 m); glassDoors knob. Rig: two door hinges Y +-110. States: closed, left-open, open.",
   "parts": [
     "two shaker doors (glass-panel knob)",
-    "bar pulls",
+    "bar pulls at the lower corners",
     "two adjustable shelves",
-    "light rail",
-    "stacked plates inside"
+    "light rail moulding",
+    "stacked plates and glasses inside"
   ],
   "references": [],
   "size": [
+    0.768,
     0.76,
-    0.76,
-    0.33
+    0.36
   ],
   "style": "matches base-cabinet paint",
   "summary": "Shaker wall cabinet, 76 cm: two doors with optional glass panels, two shelves with plates and glasses inside.",

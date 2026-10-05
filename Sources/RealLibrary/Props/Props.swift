@@ -107,6 +107,12 @@ public enum Props {
         PatientMonitor.self,
         Aed.self,
         Glucometer.self,
+        BaseCabinet.self,
+        KitchenRange.self,
+        WallCabinet.self,
+        RangeHood.self,
+        KitchenFaucet.self,
+        KitchenSink.self,
         // realityhd:prop
     ]
 }

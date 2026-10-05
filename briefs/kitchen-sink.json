@@ -1,0 +1,35 @@
+{
+  "budget": 5000,
+  "id": "kitchen-sink",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "metal.chrome",
+    "metal.basket-mesh",
+    "plastic.black"
+  ],
+  "name": "Undermount stainless sink",
+  "notes": "Static. Origin: flange top center at y = tailpiece bottom; flange top sits under the counter. Opening matches base-cabinet sinkSize 0.74 x 0.42 with a 5 mm reveal.",
+  "parts": [
+    "single deep bowl with coved corners",
+    "mounting flange under the counter",
+    "basket strainer drain with stopper",
+    "tailpiece below"
+  ],
+  "references": [],
+  "size": [
+    0.77,
+    0.31,
+    0.45
+  ],
+  "style": "18-gauge satin stainless undermount single bowl, 30 in class, fits base-cabinet sinkCutout",
+  "summary": "Undermount stainless single-bowl sink, 73 x 41 cm opening: coved bowl, flange, basket strainer.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
