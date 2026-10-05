@@ -79,6 +79,10 @@ public struct MaterialSpec: Sendable, Hashable {
     public var flow: Float = 0
     /// How much the layers' texture brightness pushes the boundary (stones poke through mud).
     public var splatHeight: Float = 1.5
+    /// Cooked look of this material (food). The cook shader blends base -> `cooked` by the
+    /// `Doneness` parameter, then layers Maillard browning and char by `BrownTop`/`BrownBottom`
+    /// (RealKit `RealCookMaterial`). nil = not cookable.
+    public var cooked: MaterialKey? = nil
 
     public init(key: MaterialKey, program: TextureProgram?) { self.key = key; self.program = program }
 
