@@ -1,0 +1,40 @@
+{
+  "budget": 8000,
+  "id": "range-hood",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "metal.stainless-smudged",
+    "emissive.bulb",
+    "emissive.indicator",
+    "plastic.black"
+  ],
+  "name": "Wall-mount chimney range hood",
+  "notes": "Hung: base (visor bottom) at y = 0, mounted 0.75 m above the cooktop. chimneyHeight knob. Rig: fixed parts with options: lamps (0 off, 1 on, two spot RigLights), fan (0 off, 1 LED on). States: off, lights-on, fan-on, all-on.",
+  "parts": [
+    "stainless visor with front control buttons and fan LED",
+    "sloped pyramid canopy",
+    "telescoping rectangular chimney cover",
+    "three stainless baffle filters underneath",
+    "two round LED task lamps",
+    "wall bracket line at the back"
+  ],
+  "references": [],
+  "size": [
+    0.76,
+    0.92,
+    0.5
+  ],
+  "style": "30 in pro-style chimney hood, brushed stainless, light grease film on the visor",
+  "summary": "Wall-mount chimney range hood, 76 cm: stainless pyramid canopy and chimney, baffle filters, two LED lamps, fan control.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "metal",
+    "appliance",
+    "articulated"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

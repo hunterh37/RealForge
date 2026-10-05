@@ -110,6 +110,7 @@ public enum Props {
         BaseCabinet.self,
         KitchenRange.self,
         WallCabinet.self,
+        RangeHood.self,
         // realityhd:prop
     ]
 }
