@@ -108,6 +108,7 @@ public enum Props {
         Aed.self,
         Glucometer.self,
         ChickenBreast.self,
+        YellowOnion.self,
         // realityhd:prop
     ]
 }

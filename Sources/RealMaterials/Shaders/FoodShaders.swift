@@ -32,7 +32,7 @@ S fruitSkin(float2 uv, constant RFParams &P) {
     float ao = 1.0;
     if (mode == 0) {
         // Pepper: glassy cuticle with long gentle ripples along v and tiny stomata.
-        float ripple = fbm(float2(uv.x, uv.y * 0.25), int2(10, 1), 3, sd + 4u);
+        float ripple = fbm(uv, int2(10, 1), 3, sd + 4u);
         c *= 0.96 + 0.08 * ripple;
         h += ripple * 0.08;
         float4 w = worley(uv, int2(F, F), sd + 5u, 0.9);
@@ -102,14 +102,17 @@ S papery(float2 uv, constant RFParams &P) {
     float veins = gnoise(float2(x * float(F), uv.y * 2.0), int2(F, 2), sd + 2u);
     float vline = smoothstep(0.25, 0.55, abs(veins));
     float fineV = gnoise(float2(x * float(F) * 5.0, uv.y * 3.0), int2(F * 5, 3), sd + 3u);
-    float streak = smoothstep(0.0, 0.5, fbm(float2(x, uv.y * 0.2), int2(14, 1), 3, sd + 4u));
+    float streak = smoothstep(-0.1, 0.45, fbm(float2(x, uv.y), int2(14, 1), 3, sd + 4u)) * 0.8 + 0.3 * smoothstep(0.0, 0.4, fbm(float2(x, uv.y), int2(5, 1), 3, sd + 10u));
     float macro = fbm(uv, int2(4, 4), 4, sd + 5u);
-    float3 c = P.colorA.rgb * (0.9 + 0.12 * macro + 0.05 * fineV);
+    float tone = fbm(float2(x, uv.y), int2(6, 2), 4, sd + 12u);
+    float3 c = P.colorA.rgb * (0.84 + 0.22 * macro + 0.05 * fineV);
+    c = mix(c, P.colorB.rgb * float3(1.15, 0.95, 0.85), smoothstep(0.0, 0.45, tone) * 0.45);
+    c = mix(c, P.colorC.rgb, smoothstep(-0.05, -0.4, tone) * 0.25);
     c = mix(c, P.colorB.rgb, sat((1.0 - vline) * 0.22 + streak * 0.3));
     c *= 1.0 + 0.08 * smoothstep(0.3, 0.6, fineV);
     if (int(P.f.w + 0.5) == 1) {
         // Garlic: ivory paper with fine purple-brown streaks fanning along v.
-        float purple = smoothstep(0.15, 0.45, fbm(float2(x, uv.y * 0.3), int2(9, 1), 4, sd + 6u));
+        float purple = smoothstep(0.15, 0.45, fbm(float2(x, uv.y), int2(9, 1), 4, sd + 6u));
         c = mix(P.colorA.rgb * (0.95 + 0.08 * fineV), P.colorB.rgb, purple * 0.55 + vline * 0.12);
     }
     // Flaking: torn patches where the outer layer is gone and the paler inner layer shows.
@@ -119,15 +122,16 @@ S papery(float2 uv, constant RFParams &P) {
     c = mix(c, P.colorC.rgb * (0.95 + 0.1 * fineV), flake);
     c *= 1.0 - edge * 0.25 * P.colorC.a;
     // Creases and tears: thin dark lines across the veins.
-    float crease = smoothstep(0.9, 0.97, ridged(uv, int2(4, 6), 3, sd + 8u)) * P.f.y;
-    c *= 1.0 - crease * 0.35;
+    float crease = smoothstep(0.82, 0.96, ridged(uv, int2(5, 7), 3, sd + 8u)) * P.f.y;
+    c *= 1.0 - crease * 0.3;
     // Soil blemishes.
     float4 w = worley(uv, int2(9, 9), sd + 9u, 1.0);
     float soil = (1.0 - smoothstep(0.02, 0.12, w.x)) * step(0.93, w.z);
     c = mix(c, P.colorB.rgb * 0.5, soil * 0.45);
     s.albedo = c;
     s.height = 0.5 + 0.05 * fineV + 0.04 * (1.0 - vline) - flake * 0.04 + edge * 0.06 - crease * 0.05;
-    s.rough = clamp(P.f.z * (0.9 + 0.2 * streak) - (1.0 - vline) * 0.05, 0.2, 1.0);
+    float sheen = smoothstep(-0.2, 0.3, fbm(float2(x, uv.y), int2(4, 1), 3, sd + 11u));
+    s.rough = clamp(P.f.z * (0.7 + 0.45 * sheen + 0.15 * streak) - (1.0 - vline) * 0.05, 0.2, 1.0);
     s.ao = 1.0 - crease * 0.3 - edge * 0.15;
     return s;
 }
@@ -363,11 +367,11 @@ S poultryFlesh(float2 uv, constant RFParams &P) {
     c *= 0.93 + 0.07 * fib2 + 0.06 * fl;
     // Fat striation: thin white lines along fibers, broken.
     float fatL = 1.0 - smoothstep(0.0, 0.06, abs(gnoise(float2(r.x * float(F) * 0.5, r.y * 1.0), int2(max(1, F / 2), 1), sd + 5u)));
-    float fatGate = smoothstep(0.05, 0.3, fbm(float2(r.x, r.y * 0.5), int2(6, 3), 3, sd + 6u));
+    float fatGate = smoothstep(0.05, 0.3, fbm(r, int2(6, 2), 3, sd + 6u));
     float fat = fatL * fatGate * P.f.y;
     c = mix(c, P.colorC.rgb, fat * 0.55);
     // Silverskin: pearly translucent film in streaks along the fibers.
-    float film = smoothstep(0.15, 0.35, fbm(float2(r.x * 2.0, r.y * 0.5), int2(8, 1), 4, sd + 7u)) * P.colorC.a;
+    float film = smoothstep(0.15, 0.35, fbm(r, int2(16, 1), 4, sd + 7u)) * P.colorC.a;
     float wav = gnoise(float2(r.x * float(F) * 2.0, r.y * 3.0), int2(F * 2, 3), sd + 8u);
     c = mix(c, P.colorC.rgb * (0.9 + 0.12 * wav), film * 0.4);
     // Small vessels: thin dark-red branching lines.
@@ -422,7 +426,7 @@ S foodSmooth(float2 uv, constant RFParams &P) {
         c *= 0.97 + 0.05 * mid;
         float bloom = smoothstep(0.2, 0.5, fbm(uv, int2(4, 4), 4, sd + 8u)) * P.colorC.a;
         c = mix(c, P.colorC.rgb, bloom * 0.3);
-        float scratch = smoothstep(0.93, 0.99, ridged(rot2(uv, 0.4), int2(2, 9), 2, sd + 9u)) * P.f.y;
+        float scratch = smoothstep(0.93, 0.99, ridged(uv, int2(2, 9), 2, sd + 9u)) * P.f.y;
         c = mix(c, P.colorC.rgb, scratch * 0.2);
         h += fine * 0.01 - scratch * 0.03;
         rough = P.f.z * (1.0 + bloom * 1.5 + scratch);

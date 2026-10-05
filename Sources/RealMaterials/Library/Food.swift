@@ -20,7 +20,7 @@ public extension MaterialLibrary {
         var out: [MaterialSpec] = []
         // Chicken breast: raw surface (wet pink, fat striations, silverskin) and cut face (end grain).
         out.append(spec("food.chicken-raw", .poultryFlesh, 0xEDB3A6, 0xD98F86, 0xF4E8E2, ca: 0.7,
-                        knobs: V4(44, 0.85, 0.34, 0.22), tile: 0.06, rough: 0.34, seed: 1101, normal: 0.7, clearcoat: 0.7, cooked: "food.chicken-cooked"))
+                        knobs: V4(44, 0.85, 0.34, 0), tile: 0.06, rough: 0.34, seed: 1101, normal: 0.7, clearcoat: 0.7, cooked: "food.chicken-cooked"))
         out.append(spec("food.chicken-cooked", .foodCrumb, 0xEADCC6, 0xC2965C, 0xFFFFFF, ca: 0.3,
                         knobs: V4(44, 0.35, 0.62, 0), tile: 0.06, rough: 0.62, seed: 1102, normal: 1.4))
         out.append(spec("food.chicken-flesh", .foodSmooth, 0xEFB1A3, 0xE0978B, 0xF5E4DE,
@@ -28,8 +28,8 @@ public extension MaterialLibrary {
         out.append(spec("food.chicken-flesh-cooked", .foodCrumb, 0xF0E6D6, 0xD7C2A0, 0xFFFFFF, ca: 0.6,
                         knobs: V4(36, 0, 0.68, 1), tile: 0.04, rough: 0.68, seed: 1104, normal: 1.0))
         // Yellow onion: papery skin, white fleshy scale, cut rings.
-        out.append(spec("food.onion-skin", .papery, 0xBE7A3A, 0x8A4A20, 0xE0BC88, ca: 0.45,
-                        knobs: V4(180, 0.5, 0.55, 0), tile: 0.08, rough: 0.55, seed: 1201, normal: 1.4))
+        out.append(spec("food.onion-skin", .papery, 0xB27C46, 0x6E4220, 0xDDBF92, ca: 0.4,
+                        knobs: V4(180, 0.5, 0.66, 0), tile: 0.08, rough: 0.66, seed: 1201, normal: 0.9))
         out.append(spec("food.onion", .foodSmooth, 0xEDE6C6, 0xDAD3A2, 0xF7F4E4,
                         knobs: V4(70, 0.5, 0.3, 0), tile: 0.06, rough: 0.3, seed: 1202, normal: 0.6, clearcoat: 0.4, cooked: "food.onion-cooked"))
         out.append(spec("food.onion-cooked", .foodCrumb, 0xD6A15A, 0xA0642A, 0xF2D49A, ca: 0.4,

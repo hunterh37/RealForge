@@ -270,4 +270,15 @@ public enum FoodMesh {
         o.deform { p in V3((p.x - c.x) * k.x, (p.y - bb.min.y) * k.y, (p.z - c.z) * k.z) }
         return o
     }
+
+    /// Catmull-Rom smoothed profile through (radius, y) control points as a curve for `revolve`
+    /// (t = 0 first point, t = 1 last point; first and last radius should be 0).
+    public static func profile(_ pts: [V2], per: Int = 8) -> (Float) -> V2 {
+        let sm = catmull(pts.map { V3($0.x, $0.y, 0) }, per: per).map { V2(max(0, $0.x), $0.y) }
+        return { t in
+            let f = min(max(t, 0), 1) * Float(sm.count - 1)
+            let i = min(Int(f), sm.count - 2)
+            return sm[i] + (sm[i + 1] - sm[i]) * (f - Float(i))
+        }
+    }
 }
