@@ -23,6 +23,7 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case hospitalLobby = "hospital-lobby"
     case erRoom = "er-room"
     case operatingRoom = "operating-room"
+    case cookingCounter = "cooking-counter"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -45,6 +46,7 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .hospitalLobby: "Hospital Lobby"
         case .erRoom: "ER Room"
         case .operatingRoom: "Operating Room"
+        case .cookingCounter: "Cooking Counter"
         }
     }
     var detail: String {
@@ -68,12 +70,13 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .hospitalLobby: "Waiting and intake lobby: kiosks, nurse station, beam seating, doors to treatment. Tap doors and kiosks."
         case .erRoom: "ER treatment room: stretcher, vitals monitor, IV pump, exam table, instrument counter. Grab the stethoscope."
         case .operatingRoom: "Operating room: surgical table under LED lights, anesthesia boom, draped back table with instruments."
+        case .cookingCounter: "Kitchen run: clear quartz prep counter, gas range with live knobs and flames, sink, hood, shaker cabinets."
         }
     }
     /// Sky picked when the scene is opened from the menu.
     var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
     /// Interiors and the plaza carry their own sun and probe; the menu sky is ignored for them.
-    var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza, .hospital, .hospitalLobby, .erRoom, .operatingRoom].contains(self) }
+    var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza, .hospital, .hospitalLobby, .erRoom, .operatingRoom, .cookingCounter].contains(self) }
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {

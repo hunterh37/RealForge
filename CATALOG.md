@@ -329,6 +329,7 @@ Live with `RealityHD.articulated(id)` or `scene.addLive`; bake one state with `b
 | [`operating-room`](docs/scenes/operating-room.png) | hospital, medical, interior, showcase | realityhd | Operating room: surgical table under a dual-head LED light, anesthesia boom and workstation, draped Mayo stand and back table with instruments, doors. |
 | [`hospital`](docs/scenes/hospital.png) | hospital, medical, interior, showcase | realityhd | Full ER floor: waiting lobby, treatment corridor with scrub sink and parked equipment, ER treatment room and operating room, parked bed and oxygen, all doors and devices live. |
 | [`rooftop-plank`](docs/scenes/rooftop-plank.png) | urban, outdoor, showcase | hunter | Scaffold board across the gap between two 40-storey glass towers, steel decks on both roofs, a downtown grid and traffic 150 m below. |
+| [`cooking-counter`](docs/scenes/cooking-counter.png) | kitchen, interior, showcase | realityhd | Kitchen wall run for a cooking sim: quartz counters, sink under a window, clear prep area, gas range and hood, shaker cabinets, subway tile. |
 
 ## Materials
 
