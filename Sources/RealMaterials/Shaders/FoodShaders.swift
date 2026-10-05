@@ -176,12 +176,13 @@ S rootSkin(float2 uv, constant RFParams &P) {
         // Russet: raised corky net over a smoother tan skin, lenticel dots, scuffs.
         float net = ridged(uv, int2(F * 2, F * 2), 3, sd + 6u);
         float cork = smoothstep(0.6, 0.85, net);
-        c = mix(c, P.colorB.rgb * 1.1, cork * 0.25);
+        c = mix(c, P.colorB.rgb * 1.1, cork * 0.18);
+        c *= 0.9 + 0.18 * fbm(uv, int2(6, 6), 3, sd + 12u);
         c *= 0.95 + 0.08 * fbm(uv, int2(48, 48), 2, sd + 7u);
         float4 w = worley(uv, int2(F * 2, F * 2), sd + 8u, 1.0);
         float dot_ = (1.0 - smoothstep(0.04, 0.12, w.x)) * step(0.6, w.z);
         c = mix(c, P.colorC.rgb, dot_ * 0.6 * P.colorC.a);
-        h += cork * 0.12 + dot_ * 0.05 + mid * 0.04;
+        h += cork * 0.07 + dot_ * 0.05 + mid * 0.04;
         ao -= (1.0 - cork) * 0.08;
         float scuff = smoothstep(0.3, 0.42, fbm(uv, int2(6, 6), 3, sd + 9u));
         c = mix(c, P.colorA.rgb * float3(1.15, 1.08, 0.95), scuff * 0.35);

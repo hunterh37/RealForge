@@ -109,8 +109,8 @@ public extension MaterialLibrary {
         out.append(spec("food.butter-cooked", .foodCrumb, 0xC88A3C, 0x6A3812, 0xE8B866, ca: 0.3,
                         knobs: V4(60, 0.4, 0.15, 5), tile: 0.06, rough: 0.15, seed: 1902, normal: 0.4, clearcoat: 0.6))
         // Russet potato: netted skin and cut face.
-        out.append(spec("food.potato", .rootSkin, 0xA67A50, 0x6A4628, 0xD4B48A, ca: 0.7,
-                        knobs: V4(10, 0.25, 0.85, 1), tile: 0.06, rough: 0.85, seed: 2001, normal: 1.8, cooked: "food.potato-cooked"))
+        out.append(spec("food.potato", .rootSkin, 0x7A6450, 0x4E4234, 0xB0987C, ca: 0.7,
+                        knobs: V4(18, 0.55, 0.85, 1), tile: 0.06, rough: 0.85, seed: 2001, normal: 1.8, cooked: "food.potato-cooked"))
         out.append(spec("food.potato-cooked", .foodCrumb, 0x9C6A3A, 0x56361A, 0xC89A60, ca: 0.3,
                         knobs: V4(14, 0.35, 0.7, 4), tile: 0.06, rough: 0.7, seed: 2002, normal: 1.6))
         out.append(spec("food.potato-flesh", .radialFlesh, 0xF1E2B0, 0xE6DCAC, 0xD4C48C,
