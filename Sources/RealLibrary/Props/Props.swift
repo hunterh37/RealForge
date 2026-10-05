@@ -111,6 +111,8 @@ public enum Props {
         KitchenRange.self,
         WallCabinet.self,
         RangeHood.self,
+        KitchenFaucet.self,
+        KitchenSink.self,
         // realityhd:prop
     ]
 }

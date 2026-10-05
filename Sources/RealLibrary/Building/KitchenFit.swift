@@ -160,4 +160,16 @@ public enum KitchenFit {
         m.add(Prim.roundedBox(V3(0.004, 0.05, 0.03), radius: 0.001, bevelSegments: 1, material: material),
               Xform(translation: p + V3(-side * 0.0185, 0, -0.04)))
     }
+
+    /// Moves a whole rig (base, parts, pivots, lights) by `o` in asset space.
+    public static func shift(_ rig: inout Rig, by o: V3) {
+        let x = Xform(translation: o)
+        rig.base = rig.base.map { $0.transformed(x) }
+        for i in rig.parts.indices {
+            rig.parts[i].levels = rig.parts[i].levels.map { $0.transformed(x) }
+            rig.parts[i].alternates = rig.parts[i].alternates.map { $0.map { $0.transformed(x) } }
+            rig.parts[i].pivot.translation += o
+        }
+        for i in rig.lights.indices { rig.lights[i].position += o }
+    }
 }
