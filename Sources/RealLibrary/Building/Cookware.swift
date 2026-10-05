@@ -102,10 +102,11 @@ public struct Vessel: Sendable {
 
     /// Lathe surfaces for the whole vessel. `baseUpTo` splits the outer surface: below it `base`
     /// material (heat tint, seasoning), above it `exterior`. `edge` colors the middle of a cut lip
-    /// (tri-ply core); nil keeps it `exterior`.
+    /// (tri-ply core); nil keeps it `exterior`. `planarFloor` maps the floor with planar UVs (cast
+    /// patterns); the default lathe UVs run around the floor (spin finish).
     public func surfaces(segments: Int = 96, interior: MaterialKey, exterior: MaterialKey, base: MaterialKey? = nil,
                          baseUpTo: Float = 0, edge: MaterialKey? = nil, floorMaterial: MaterialKey? = nil,
-                         seamTile: Float = 0.3) -> [(Role, Surface)] {
+                         seamTile: Float = 0.3, planarFloor: Bool = false) -> [(Role, Surface)] {
         var runs: [(Role, [V2])] = []
         let out = outer
         let lip = lipPoints()
@@ -160,7 +161,13 @@ public struct Vessel: Sendable {
             case .lipInner, .innerWall: mat = interior
             case .floor: mat = floorMaterial ?? interior
             }
-            return (role, Prim.lathe(p, segments: segments, seamTile: seamTile, material: mat))
+            var s = Prim.lathe(p, segments: segments, seamTile: seamTile, material: mat)
+            if planarFloor && role == .floor {
+                // Planar meters instead of lathe UVs, so cell patterns do not pinch toward the axis.
+                s.uvs = s.positions.map { V2($0.x + 0.5, -$0.z + 0.5) }
+                s.computeTangents()
+            }
+            return (role, s)
         }
     }
 }

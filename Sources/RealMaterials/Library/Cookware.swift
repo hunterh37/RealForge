@@ -38,9 +38,21 @@ public extension MaterialLibrary {
         },
         // Seasoned cast iron: black satin polymerized oil over 1.8 mm sand-cast pebble, rubbed spots, carbon.
         MaterialSpec(key: "metal.cast-iron-seasoned", program: .seasonedIron).with {
-            $0.colorA = linear(0x1E1D1C); $0.colorB = linear(0x5E5650); $0.colorC = linear(0x2C1E14)
-            $0.knobs = V4(110, 0.5, 0.35, 0.42); $0.seed = 1205; $0.tileSize = 0.2; $0.resolution = 2048; $0.normalStrength = 1.4
+            $0.colorA = linear(0x181716); $0.colorB = linear(0x4A4440); $0.colorC = linear(0x2C1E14)
+            $0.knobs = V4(150, 0.4, 0.35, 0.48); $0.seed = 1205; $0.tileSize = 0.2; $0.resolution = 2048; $0.normalStrength = 0.9
             $0.hasMetallicMap = true; $0.metallic = 0.2; $0.roughness = 0.42
+        },
+        // Seasoned cast-iron cooking floor: years of use flatten the pebble and build a glossier film.
+        MaterialSpec(key: "metal.cast-iron-floor", program: .seasonedIron).with {
+            $0.colorA = linear(0x1C1B1A); $0.colorB = linear(0x4A433E); $0.colorC = linear(0x2E2015)
+            $0.knobs = V4(160, 0.4, 0.45, 0.32); $0.seed = 1210; $0.tileSize = 0.2; $0.resolution = 2048; $0.normalStrength = 0.8
+            $0.hasMetallicMap = true; $0.metallic = 0.2; $0.roughness = 0.32
+        },
+        // Rubbed cast iron (rim, handle top): seasoning worn thin, grey iron sheen through it.
+        MaterialSpec(key: "metal.cast-iron-worn", program: .seasonedIron).with {
+            $0.colorA = linear(0x262423); $0.colorB = linear(0x6A625C); $0.colorC = linear(0x2C1E14)
+            $0.knobs = V4(110, 0.85, 0.1, 0.36); $0.seed = 1211; $0.tileSize = 0.2; $0.resolution = 1024; $0.normalStrength = 1.2
+            $0.hasMetallicMap = true; $0.metallic = 0.3; $0.roughness = 0.36
         },
         // Knife blade: satin stainless with grind lines along U (blade length).
         MaterialSpec(key: "metal.knife-blade", program: .brushedMetal).with {

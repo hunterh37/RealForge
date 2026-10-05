@@ -71,7 +71,7 @@ S seasonedIron(float2 uv, constant RFParams &P) {
     float cn = fbm(uv, int2(5, 5), 5, sd + 4u) + 0.3 * fbm(uv, int2(20, 20), 3, sd + 5u);
     float crust = smoothstep(0.18, 0.4, cn + (P.f.z - 0.5) * 0.5) * P.f.z;
     float mott = fbm(uv, int2(12, 12), 3, sd + 6u);
-    float3 c = P.colorA.rgb * (0.85 + 0.4 * mott + peb * 0.35);
+    float3 c = P.colorA.rgb * (0.9 + 0.22 * mott + peb * 0.3);
     c = mix(c, P.colorB.rgb * (0.85 + 0.3 * mott), thin * 0.8);
     c = mix(c, P.colorC.rgb * (0.8 + 0.4 * w2.z), crust * 0.85);
     s.albedo = c;

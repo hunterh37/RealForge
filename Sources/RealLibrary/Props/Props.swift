@@ -108,6 +108,7 @@ public enum Props {
         Aed.self,
         Glucometer.self,
         StainlessSkillet.self,
+        CastIronSkillet.self,
         // realityhd:prop
     ]
 }
