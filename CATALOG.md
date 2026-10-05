@@ -277,7 +277,7 @@ Live with `RealityHD.articulated(id)` or `scene.addLive`; bake one state with `b
 | [`aed`](docs/assets/aed.png) | closed, open, pads-out, analyzing | `lid` -105...0° | 5802-6408 |
 | [`glucometer`](docs/assets/glucometer.png) | off, strip-in, reading | `strip` 0...0.012 m, `cap` 0...0.022 m | 3134-3390 |
 | [`base-cabinet`](docs/assets/base-cabinet.png) | closed, drawer-open, doors-open, all-open | `drawer` 0...0.45 m, `left` -110...0°, `right` 0...110° | 10852-10852 |
-| [`kitchen-range`](docs/assets/kitchen-range.png) | off, oven-open, front-burner-on, all-on, simmer, baking | `knob1` 0...270°, `knob2` 0...270°, `knob3` 0...270°, `knob4` 0...270°, `knob5` 0...270°, `oven` 0...270°, `door` -90...0°, `drawer` 0...0.35 m | 13818-14858 |
+| [`kitchen-range`](docs/assets/kitchen-range.png) | off, oven-open, front-burner-on, all-on, simmer, baking | `knob1` 0...270°, `knob2` 0...270°, `knob3` 0...270°, `knob4` 0...270°, `knob5` 0...270°, `oven` 0...270°, `oven-door` -90...0°, `drawer` 0...0.35 m | 13818-14858 |
 | [`wall-cabinet`](docs/assets/wall-cabinet.png) | closed, left-open, open | `left` -110...0°, `right` 0...110° | 13504-13504 |
 | [`office-door`](docs/assets/office-door.png) | closed, ajar, open, unlatched | `leaf` -100...0°, `handle` -45...0° | 12760-12760 |
 | [`glass-door`](docs/assets/glass-door.png) | closed, ajar, open, open-in | `leaf` -95...95° | 6228-6228 |

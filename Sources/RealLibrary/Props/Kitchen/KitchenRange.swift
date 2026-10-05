@@ -61,6 +61,20 @@ public struct KitchenRange: RealArticulated {
     }
     /// Where a pan sits on each burner (asset space, grate top), knob order.
     public var burnerCenters: [V3] { burnerXZ.map { V3($0.x, grateTopY, $0.y) } }
+    /// Knob joint names, same order as `burnerCenters`.
+    public var knobNames: [String] { Self.knobNames }
+    /// Flame parts (option 1 = lit ring on high, 2 = low), same order. Each ring is centered on its burner
+    /// (part pivot at the burner center on the cooktop), so scaling the option entity keeps it in place.
+    public var flameParts: [String] { Self.flameNames }
+    /// Knob angle at high flame (degrees).
+    public var knobMaxAngle: Float { Self.knobHigh }
+    /// Rated input per burner in watts, same order (front-right power burner 5.3 kW, rear-left simmer 1.5 kW).
+    public var burnerWatts: [Float] = [1500, 2900, 2300, 5300, 2900]
+    /// Middle oven rack center (asset space, top of the rack wires).
+    public var ovenRackCenter: V3 { V3(0, Self.rackYs[1] + 0.002, (backZ + 0.06 + frontZ - 0.05) / 2) }
+    /// Oven door part (hinge 0 closed, -90 open).
+    public static let ovenDoor = "oven-door"
+    static let rackYs: [Float] = [0.33, 0.46]
 
     /// Flame crown: a ring of tongues leaving the ports at radius `r0`, height `y0`, curling up and out.
     static func flameCrown(r0: Float, y0: Float, length L: Float, segments n: Int = 26) -> Surface {
@@ -144,7 +158,7 @@ public struct KitchenRange: RealArticulated {
                 add(rbox(V3(W / 2 - cavX - 0.008, ovenHi - ovenLo, 0.008), V3(sx * (cavX + (W / 2 - cavX - 0.008) / 2), (ovenLo + ovenHi) / 2, faceZ), "metal.oven-enamel", r: 0.002))
             }
             if l == 0 {
-                for ry: Float in [0.36, 0.52] {
+                for ry in Self.rackYs {
                     let rz0 = cavBack + 0.03, rz1 = cavFront - 0.03, rx = cavX - 0.012
                     let loop = [V3(-rx, ry, rz0), V3(rx, ry, rz0), V3(rx, ry, rz1), V3(-rx, ry, rz1)]
                     m.add(Prim.sweep(Shape2D.circle(0.003, segments: 5), along: loop, up: .up, closedPath: true, caps: false, material: "metal.chrome"))
@@ -266,9 +280,9 @@ public struct KitchenRange: RealArticulated {
                                color: V3(1, 0.82, 0.6), intensity: 600, attenuationRadius: 0.9)]
 
         // Oven door: stainless skin around a smoked window, inner glass and liner, bar handle.
-        rig.part("door", pivot: V3(0, doorLo, fz), joint: .hinge(axis: V3(-1, 0, 0), -90...0, duration: 0.9))
+        rig.part(Self.ovenDoor, pivot: V3(0, doorLo, fz), joint: .hinge(axis: V3(-1, 0, 0), -90...0, duration: 0.9))
         for l in 0..<2 {
-            var m = Model(name: "door")
+            var m = Model(name: Self.ovenDoor)
             let dw = W - 0.004, top: Float = 0.125, bot: Float = 0.075, sideW: Float = 0.065
             let winLo = doorLo + bot, winHi = doorHi - top
             func add(_ b: (Surface, Xform)) { m.add(b.0, b.1) }
@@ -299,7 +313,7 @@ public struct KitchenRange: RealArticulated {
                 let gpath = [V3(-0.29, doorLo + 0.05, lz - 0.006), V3(0.29, doorLo + 0.05, lz - 0.006), V3(0.29, doorHi - 0.07, lz - 0.006), V3(-0.29, doorHi - 0.07, lz - 0.006)]
                 m.add(Prim.sweep(Shape2D.circle(0.005, segments: 6), along: gpath, up: V3(0, 0, 1), closedPath: true, caps: false, material: "fabric.wool:5A5650"))
             }
-            rig.set(m, part: "door", lod: l)
+            rig.set(m, part: Self.ovenDoor, lod: l)
         }
 
         // Storage drawer: stainless front with a finger pull, black enamel tub.
@@ -323,7 +337,7 @@ public struct KitchenRange: RealArticulated {
         let allFlames = Dictionary(uniqueKeysWithValues: Self.flameNames.map { ($0, Self.flameHigh) })
         rig.states = [
             RigState("off"),
-            RigState("oven-open", ["door": -88]),
+            RigState("oven-open", [Self.ovenDoor: -88]),
             RigState("front-burner-on", ["knob4": Self.knobHigh], options: ["flame4": Self.flameHigh]),
             RigState("all-on", allOn, options: allFlames),
             RigState("simmer", ["knob1": Self.knobLow, "knob4": Self.knobLow], options: ["flame1": Self.flameLow, "flame4": Self.flameLow]),

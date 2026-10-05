@@ -13,7 +13,7 @@
     "emissive.bulb"
   ],
   "name": "Freestanding gas range",
-  "notes": "Rig: oven-door hinge X -90...0; drawer slide +Z 0...0.35; knob1-5 hinge Z 0...270 (knob1 left-rear, knob2 left-front, knob3 center, knob4 right-front, knob5 right-rear), oven knob 0...270. Options: flame1-5 (0 off, 1 high, 2 low) linked to knob1-5 (>= 10 high, >= 200 low); ovenlight linked to the oven knob. States: off, oven-open, front-burner-on, all-on, baking.",
+  "notes": "Rig: oven-door hinge X -90...0 (part oven-door); drawer slide +Z 0...0.35; knob1-5 hinge Z 0...270 (knob1 left-rear, knob2 left-front, knob3 center, knob4 right-front, knob5 right-rear), oven knob 0...270. Options: flame1-5 (0 off, 1 high, 2 low) linked to knob1-5 (>= 10 high, >= 200 low); ovenlight linked to the oven knob. States: off, oven-open, front-burner-on, all-on, baking.",
   "parts": [
     "stainless body and front",
     "five sealed burners with cast-iron grates",
