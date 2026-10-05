@@ -118,6 +118,7 @@ public enum Props {
         Egg.self,
         ButterBlock.self,
         RussetPotato.self,
+        Strawberry.self,
         // realityhd:prop
     ]
 }

@@ -119,9 +119,9 @@ public extension MaterialLibrary {
                         knobs: V4(5, 0.4, 0.5, 5), tile: 0.06, rough: 0.5, seed: 2003, normal: 0.6))
         // Strawberry: seeded skin and cut face.
         out.append(spec("food.strawberry", .fruitSkin, 0xC40C18, 0x8E0610, 0xE6C25A,
-                        knobs: V4(13, 0.25, 0.16, 3), tile: 0.04, rough: 0.16, seed: 2101, normal: 1.6, clearcoat: 1))
+                        knobs: V4(16, 0.25, 0.16, 3), tile: 0.04, rough: 0.16, seed: 2101, normal: 1.6, clearcoat: 1))
         out.append(spec("food.strawberry-flesh", .radialFlesh, 0xE8434A, 0xBE0E1E, 0xF8E2DE,
-                        knobs: V4(14, 0.6, 0.22, 6), tile: 0.034, rough: 0.22, seed: 2102, normal: 0.6, clearcoat: 0.6))
+                        knobs: V4(14, 0.6, 0.22, 6), tile: 0.0335, rough: 0.22, seed: 2102, normal: 0.6, clearcoat: 0.6))
         // Dark chocolate bar.
         out.append(spec("food.chocolate", .foodSmooth, 0x3B1F13, 0x2C160D, 0x7C5C4A, ca: 0.3,
                         knobs: V4(20, 0.3, 0.22, 2), tile: 0.08, rough: 0.22, seed: 2201, normal: 0.4, clearcoat: 0.3))
