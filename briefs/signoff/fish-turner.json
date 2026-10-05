@@ -1,16 +1,16 @@
 {
-  "automated" : 0.98903114,
+  "automated" : 0.9729806,
   "date" : "2026-10-05",
-  "final" : 0.86941093,
-  "fingerprint" : "ff050dc6e44fdb61",
-  "id" : "chef-knife",
-  "iterations" : 3,
+  "final" : 0.8597307,
+  "fingerprint" : "86cd320a1c97c127",
+  "id" : "fish-turner",
+  "iterations" : 1,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,
     "construction" : 8,
     "edges" : 8,
-    "grounding" : 8,
+    "grounding" : 7,
     "materials" : 8,
     "proportion" : 8,
     "silhouette" : 9,
@@ -18,5 +18,5 @@
   },
   "seed" : 1,
   "threshold" : 0.85,
-  "vision" : 0.80500007
+  "vision" : 0.79875004
 }

@@ -1,0 +1,38 @@
+{
+  "budget" : 8000,
+  "id" : "baking-sheet",
+  "kind" : "prop",
+  "materials" : [
+    "metal.sheet-pan",
+    "metal.sheet-pan-light"
+  ],
+  "name" : "Half sheet pan",
+  "notes" : "Long side along X. Simulator knobs: floorY, innerRadius (half the short inner side), rimY, rimRadius (half the short inner side at the rim), floorSize. Inner floor is its own Surface.",
+  "parts" : [
+    "flat 18-gauge aluminum floor",
+    "flared walls with folded rounded corners",
+    "rolled rim around a steel wire",
+    "amber baked-on patina, heaviest on the floor"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.457,
+    0.026,
+    0.33
+  ],
+  "style" : "Commercial half sheet pan, years of baking",
+  "summary" : "Half sheet pan, 18 x 13 in: aluminum floor, flared walls, rolled wire rim, baked-on amber patina.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "container",
+    "handheld"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.08
+}

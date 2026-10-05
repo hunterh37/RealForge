@@ -1,0 +1,39 @@
+{
+  "budget" : 9000,
+  "id" : "balloon-whisk",
+  "kind" : "prop",
+  "materials" : [
+    "metal.surgical",
+    "metal.stainless"
+  ],
+  "name" : "Balloon whisk",
+  "notes" : "Lies on its side: handle toward -X, balloon toward +X. Knobs: balloonLength, balloonRadius, loops, workPoint, gripPoint.",
+  "parts" : [
+    "eight stainless wires bent into four nested loops",
+    "wires crossing at the rounded balloon tip",
+    "ferrule where the wires enter the handle",
+    "hollow stainless handle swelling in the middle",
+    "end cap with hanging ring"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.29,
+    0.07,
+    0.066
+  ],
+  "style" : "11 in French balloon whisk, brushed handle, bright wires",
+  "summary" : "11 in balloon whisk: four nested stainless wire loops, ferrule, brushed stainless handle with hanging ring.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "tool",
+    "handheld"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.1
+}

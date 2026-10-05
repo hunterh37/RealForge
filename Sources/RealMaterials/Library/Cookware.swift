@@ -16,6 +16,23 @@ public extension MaterialLibrary {
             $0.knobs = V4(8, 40, 0.1, 0.6); $0.seed = 1201; $0.tileSize = 0.3; $0.resolution = 1024; $0.normalStrength = 1
             $0.roughness = 0.6
         },
+        // Oiled walnut for tool handles: matte, darker, tight grain.
+        MaterialSpec(key: "wood.walnut-oiled", program: .woodPlank).with {
+            $0.colorA = linear(0x5A3C28); $0.colorB = linear(0x24160E); $0.knobs = V4(0, 0.55, 0, 0); $0.seed = 1214
+            $0.tileSize = 0.35; $0.normalStrength = 1.2; $0.roughness = 0.55
+        },
+        // Beech for wooden spoons: pale, matte, fine flecks of ray along the grain.
+        MaterialSpec(key: "wood.beech-spoon", program: .woodPlank).with {
+            $0.colorA = linear(0xD8B88A); $0.colorB = linear(0xA07A4E); $0.knobs = V4(0, 0.62, 0, 0); $0.seed = 1215
+            $0.tileSize = 0.16; $0.normalStrength = 0.9; $0.roughness = 0.62
+            $0.splat = "wood.beech-spoon-stained"; $0.splatSoftness = 0.35; $0.splatHeight = 0.6
+        },
+        // The same beech where it meets food: darkened and warmed by oil and tomato (splat layer of
+        // `wood.beech-spoon`, painted by per-vertex weight).
+        MaterialSpec(key: "wood.beech-spoon-stained", program: .woodPlank).with {
+            $0.colorA = linear(0xA97C50); $0.colorB = linear(0x6E4628); $0.knobs = V4(0.15, 0.55, 0, 0); $0.seed = 1216
+            $0.tileSize = 0.16; $0.normalStrength = 0.9; $0.roughness = 0.55
+        },
         // Tri-ply exterior: brushed 18/10 stainless, spin streaks along U (circumferential on a lathe).
         MaterialSpec(key: "metal.tri-ply", program: .brushedMetal).with {
             $0.colorA = linear(0xB4B6B8); $0.colorB = linear(0x7E786E)
@@ -83,15 +100,22 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x1C1B1A); $0.knobs = V4(0.25, 0.12, 0.36, 0); $0.seed = 1207; $0.tileSize = 0.1
             $0.resolution = 512; $0.normalStrength = 0.6; $0.roughness = 0.36
         },
-        // Half-sheet aluminum: mill finish under amber baked-on oil film with darker carbon spots.
-        MaterialSpec(key: "metal.sheet-pan", program: .polishedMetal).with {
-            $0.colorA = linear(0xC6C5C0); $0.colorB = linear(0x9C6C32); $0.colorC = linear(0x3E2716)
-            $0.knobs = V4(0.6, 0.3, 0, 0.34); $0.seed = 1208; $0.tileSize = 0.35; $0.normalStrength = 0.6
-            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.34
+        // Half-sheet aluminum: mill finish under amber baked-on oil film, carbon specks, scratches.
+        MaterialSpec(key: "metal.sheet-pan", program: .bakedPatina).with {
+            $0.colorA = linear(0xC4C3BE); $0.colorB = linear(0x8E6634); $0.colorC = linear(0x2A1C12)
+            $0.knobs = V4(0.75, 0.6, 0.7, 0.5); $0.seed = 1208; $0.tileSize = 0.4; $0.normalStrength = 0.6
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.45
         },
-        // Borosilicate measuring glass: faint blue-green edge tint, high gloss.
+        // Sheet-pan walls and rim: the same aluminum with a lighter film.
+        MaterialSpec(key: "metal.sheet-pan-light", program: .bakedPatina).with {
+            $0.colorA = linear(0xC6C5C0); $0.colorB = linear(0xA06A2A); $0.colorC = linear(0x2A1C12)
+            $0.knobs = V4(0.35, 0.15, 0.2, 0.45); $0.seed = 1217; $0.tileSize = 0.3; $0.normalStrength = 0.5
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.45
+        },
+        // Borosilicate measuring glass: faint blue-green edge tint, high gloss. One-sided: assets model
+        // both glass surfaces.
         MaterialSpec(key: "glass.measuring", program: nil).with {
-            $0.baseColor = V3(0.82, 0.9, 0.9); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.16; $0.twoSided = true
+            $0.baseColor = V3(0.82, 0.9, 0.9); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.06; $0.twoSided = false
         },
         // Fired-on red enamel for measuring marks.
         MaterialSpec(key: "paint.measure-red", program: nil).with {

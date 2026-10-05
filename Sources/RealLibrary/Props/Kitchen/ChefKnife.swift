@@ -97,7 +97,19 @@ public struct ChefKnife: RealAsset {
     func model(stations: Int, across: Int, detail: Bool) -> Model {
         var m = Model(name: Self.id)
         for s in bladeSurfaces(stations: stations, across: across) { m.add(s) }
-        // Handle: extrusions along local Y (outline x, z -> rotate +90 about X maps outline y to z).
+        m.add(handleParts(detail: detail))
+        var out = Model(name: Self.id)
+        let p = placement()
+        for s in m.surfaces { out.surfaces.append(s.transformed(p)) }
+        groundAO(&out, height: 0.01, floor: 0.6)
+        return out
+    }
+
+    /// Tang, POM scales, half bolster and rivets in the knife frame (handle toward -X, spine at z = 0,
+    /// edge toward -Z, scales facing +-Y). The knife block reuses it for seated knives.
+    public func handleParts(detail: Bool) -> Model {
+        var m = Model(name: "handle")
+        // Extrusions along local Y (outline x, z -> rotate +90 about X maps outline y to z).
         let toY = simd_quatf(degrees: 90, axis: V3(1, 0, 0))
         let o = handleOutline()
         m.add(Prim.extrude(Shape2D.offset(o, 0.0003), depth: spineThickness, bevel: 0.0003, bevelSegments: 1, material: steel),
@@ -118,11 +130,7 @@ public struct ChefKnife: RealAsset {
                 }
             }
         }
-        var out = Model(name: Self.id)
-        let p = placement()
-        for s in m.surfaces { out.surfaces.append(s.transformed(p)) }
-        groundAO(&out, height: 0.01, floor: 0.6)
-        return out
+        return m
     }
 
     public func build(seed: UInt64) -> LODModel {

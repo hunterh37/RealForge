@@ -135,6 +135,13 @@ public enum Props {
         Pancake.self,
         CookieDough.self,
         FriedEgg.self,
+        MixingBowl.self,
+        BalloonWhisk.self,
+        FishTurner.self,
+        WoodenSpoon.self,
+        BakingSheet.self,
+        MeasuringCup.self,
+        KnifeBlock.self,
         // realityhd:prop
     ]
 }
