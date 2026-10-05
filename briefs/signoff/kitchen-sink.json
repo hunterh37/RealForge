@@ -4,7 +4,7 @@
   "final" : 0.8545625,
   "fingerprint" : "8ac90fa705cf9db6",
   "id" : "kitchen-sink",
-  "iterations" : 2,
+  "iterations" : 3,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,

@@ -89,7 +89,7 @@ public struct BaseCabinet: RealArticulated {
             add(rbox(V3(inW - 0.001, side, carcassDepth - back), V3(0, kick + side / 2, bz + back + (carcassDepth - back) / 2), ply, r: 0.001))
             add(rbox(V3(inW - 0.001, 0.0012, side), V3(0, kick + side / 2, cf + 0.0006), plyEdge, r: 0.0004))
             add(rbox(V3(inW - 0.001, H - kick - side, back), V3(0, kick + side + (H - kick - side) / 2, bz + back / 2), "laminate.white:A58C6C", r: 0.0005))
-            for (z, d) in [(cf - 0.05, Float(0.1)), (bz + back + 0.05, Float(0.1))] {
+            for (z, d) in sinkCutout ? [(bz + back + 0.05, Float(0.1))] : [(cf - 0.05, Float(0.1)), (bz + back + 0.05, Float(0.1))] {
                 add(rbox(V3(inW - 0.001, side, d), V3(0, H - side / 2, z), ply, r: 0.001))
             }
             // Plywood liner on the inside faces of the sides (the outside is painted).
@@ -126,8 +126,9 @@ public struct BaseCabinet: RealArticulated {
                     m.add(Prim.cylinder(radius: 0.004, height: H - kick - 0.32, bevel: 0.001, segments: 8, material: "metal.chrome"),
                           Xform(translation: V3(sx * 0.09, kick + 0.18, bz + back + 0.1)))
                 }
-                let trap = [V3(0, H - 0.02, sinkCenter.z), V3(0, H - 0.2, sinkCenter.z), V3(0, H - 0.3, sinkCenter.z + 0.03), V3(0, H - 0.33, sinkCenter.z - 0.05),
-                            V3(0, H - 0.28, bz + back + 0.12), V3(0, H - 0.28, bz + back)]
+                let dz = sinkCenter.z - 0.06
+                let trap = [V3(0, H - 0.33, dz), V3(0, H - 0.4, dz), V3(0, H - 0.47, dz + 0.03), V3(0, H - 0.5, dz - 0.04),
+                            V3(0, H - 0.45, bz + back + 0.12), V3(0, H - 0.45, bz + back)]
                 let trapPath = catmull(trap, per: 4)
                 m.add(Prim.tube(trapPath, radii: Array(repeating: 0.02, count: trapPath.count), sides: 12, seamTile: 0.1, material: "plastic.white"))
             }

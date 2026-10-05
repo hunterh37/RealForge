@@ -38,9 +38,7 @@ public struct KitchenSink: RealAsset {
         let rings: [(V2, Float, Float)] = [(opening, 0.02, H), (opening - V2(0.004, 0.004), 0.022, H - 0.03), (opening - V2(0.02, 0.02), 0.03, y0 + 0.03),
                                             (opening - V2(0.034, 0.034), 0.04, y0 + 0.008), (opening - V2(0.05, 0.05), 0.045, y0 + 0.0012)]
         let loops = rings.map { r in KitchenFit.rrect(center: .zero, size: r.0, radius: r.1, n: n).map { V3($0.p.x, r.2, $0.p.y) } }
-        var wall = Prim.loft(loops.map { $0.reversed() }, material: material)
-        wall.recomputeNormals()
-        m.add(wall)
+        m.add(Prim.loft(loops, material: material).flipped())
         // Outside skin (seen under the counter).
         let outer = rings.map { r in KitchenFit.rrect(center: .zero, size: r.0 + V2(0.0024, 0.0024), radius: r.1 + 0.0012, n: n).map { V3($0.p.x, r.2 - 0.0012, $0.p.y) } }
         m.add(Prim.loft(outer, material: material))
