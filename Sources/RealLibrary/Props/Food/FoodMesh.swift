@@ -281,4 +281,49 @@ public enum FoodMesh {
             return sm[i] + (sm[i + 1] - sm[i]) * (f - Float(i))
         }
     }
+
+    /// Arc-length lookup along a revolve profile (radius, y), measured from the top pole (or the bottom
+    /// with `fromTop: false`): point and outward 2D normal. Used to lay sepals and flaps on a body.
+    public struct Meridian {
+        var pts: [V2] = [], cum: [Float] = []
+        public init(_ curve: (Float) -> V2, fromTop: Bool = true) {
+            pts = (0...800).map { curve(fromTop ? 1 - Float($0) / 800 : Float($0) / 800) }
+            cum = [0]
+            for i in 1..<pts.count { cum.append(cum[i - 1] + simd_distance(pts[i], pts[i - 1])) }
+            self.fromTop = fromTop
+        }
+        let fromTop: Bool
+        public var length: Float { cum.last ?? 0 }
+        public func at(_ s: Float) -> (p: V2, n: V2) {
+            let s = min(max(s, 0), length)
+            var i = 0
+            while i < cum.count - 2 && cum[i + 1] < s { i += 1 }
+            let f = (s - cum[i]) / max(cum[i + 1] - cum[i], 1e-9)
+            let p = pts[i] + (pts[i + 1] - pts[i]) * f
+            let t = simd_normalize(pts[i + 1] - pts[i])
+            // Walking down from the top pole the outward normal is the tangent turned clockwise.
+            let n = fromTop ? V2(-t.y, t.x) : V2(t.y, -t.x)
+            return (p, simd_normalize(n))
+        }
+    }
+
+    /// A leaf-like closed sliver (sepal, flap) built along +Y with half-width `width(t)` and half
+    /// thickness `thickness`, then laid on a revolve body: local y runs `length` down the meridian from
+    /// arc `start`, local x wraps around at `angle`, and `lift(t, across)` raises it off the surface.
+    public static func sepal(length: Float, thickness: Float, edge: Float, angle: Float, start: Float, meridian: Meridian,
+                             material: MaterialKey, width: (Float) -> Float, lift: (Float, Float) -> Float) -> Surface {
+        var leaf = sections(edge: edge, length: length, seamTile: 0.02, material: material) { t in
+            (max(1e-4, width(t)), thickness, 4, .zero)
+        }
+        leaf.deform { q in
+            let t = q.y / length
+            let m = meridian.at(start + q.y)
+            let r = max(m.p.x, 0.002)
+            let a = angle - q.x / r
+            let off = lift(t, q.x / max(width(t), 1e-4)) + q.z
+            let p2 = m.p + m.n * off
+            return V3(p2.x * cos(a), p2.y, -p2.x * sin(a))
+        }
+        return leaf
+    }
 }

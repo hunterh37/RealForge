@@ -65,14 +65,14 @@ public extension MaterialLibrary {
         out.append(spec("food.stem-green", .fruitSkin, 0x55702E, 0x2E4416, 0xA2AE62, ca: 0.35,
                         knobs: V4(40, 0.5, 0.42, 0), tile: 0.03, rough: 0.42, seed: 1405, normal: 1.2))
         // Roma tomato: skin and locular cut face.
-        out.append(spec("food.tomato", .fruitSkin, 0xC0180D, 0xC8401A, 0xF08A68, ca: 0.3,
+        out.append(spec("food.tomato", .fruitSkin, 0xC0180D, 0xC8401A, 0xF08A68, ca: 0.12,
                         knobs: V4(60, 0.25, 0.12, 1), tile: 0.06, rough: 0.12, seed: 1501, normal: 0.6, clearcoat: 1, cooked: "food.tomato-cooked"))
         out.append(spec("food.tomato-cooked", .foodCrumb, 0xA61C0E, 0x46120A, 0xD05A3A, ca: 0.3,
                         knobs: V4(26, 0.45, 0.3, 4), tile: 0.06, rough: 0.3, seed: 1502, normal: 1.0, clearcoat: 0.4))
         out.append(spec("food.tomato-flesh", .radialFlesh, 0xD62C18, 0xE2813A, 0xF2E2A2,
-                        knobs: V4(3, 0.6, 0.22, 3), tile: 0.05, rough: 0.22, seed: 1503, normal: 0.8, clearcoat: 0.6, cooked: "food.tomato-flesh-cooked"))
+                        knobs: V4(3, 0.6, 0.22, 3), tile: 0.052, rough: 0.22, seed: 1503, normal: 0.8, clearcoat: 0.6, cooked: "food.tomato-flesh-cooked"))
         out.append(spec("food.tomato-flesh-cooked", .radialFlesh, 0xB2200E, 0xC0602A, 0xE2C888,
-                        knobs: V4(3, 0.5, 0.25, 3), tile: 0.05, rough: 0.25, seed: 1503, normal: 0.6, clearcoat: 0.5))
+                        knobs: V4(3, 0.5, 0.25, 3), tile: 0.052, rough: 0.25, seed: 1503, normal: 0.6, clearcoat: 0.5))
         // Garlic: papery skin, clove flesh, bulb cross section.
         out.append(spec("food.garlic-skin", .papery, 0xEFE7D7, 0x9A6274, 0xF8F3EA, ca: 0.35,
                         knobs: V4(90, 0.4, 0.5, 1), tile: 0.05, rough: 0.5, seed: 1601, normal: 1.2))
