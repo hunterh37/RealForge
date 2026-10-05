@@ -338,4 +338,24 @@ public enum FoodMesh {
         }
         return o
     }
+
+    /// Re-maps UVs to box projection in meters (dominant normal axis picks the plane). Removes the pole
+    /// pinch of revolve UVs on round, untextured-direction items (dough, poured batter).
+    public static func boxUV(_ s: Surface) -> Surface {
+        var o = s
+        for i in o.positions.indices {
+            let p = o.positions[i], n = o.normals[i], a = simd_abs(n)
+            o.uvs[i] = a.x >= a.y && a.x >= a.z ? V2(p.z, p.y) : (a.y >= a.z ? V2(p.x, p.z) : V2(p.x, p.y))
+        }
+        o.computeTangents()
+        return o
+    }
+
+    /// Planar UVs in meters from the XZ plane (flat items seen from above).
+    public static func planarUV(_ s: Surface) -> Surface {
+        var o = s
+        o.uvs = o.positions.map { V2($0.x, $0.z) }
+        o.computeTangents()
+        return o
+    }
 }

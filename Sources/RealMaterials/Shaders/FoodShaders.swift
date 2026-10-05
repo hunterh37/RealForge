@@ -487,7 +487,9 @@ S foodSmooth(float2 uv, constant RFParams &P) {
         float4 fw = worley(uv, int2(F * 2, F * 2), sd + 17u, 1.0);
         float speck = (1.0 - smoothstep(0.02, 0.06, fw.x)) * step(0.8, fw.z);
         c = mix(c, P.colorC.rgb, speck * 0.5 * P.colorC.a);
-        h += -bub * 0.15 + ringB * 0.05 + mid * 0.03;
+        float grain = fbm(uv, int2(F, F), 3, sd + 20u);
+        c *= 0.96 + 0.08 * grain;
+        h += -bub * 0.15 + ringB * 0.05 + mid * 0.03 + grain * 0.06 * P.f.y;
         ao -= bub * 0.2;
         rough *= 1.0 - ringB * 0.3;
     }

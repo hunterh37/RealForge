@@ -125,11 +125,19 @@ public extension MaterialLibrary {
         // Dark chocolate bar.
         out.append(spec("food.chocolate", .foodSmooth, 0x2E170E, 0x24120A, 0x7C5C4A, ca: 0.3,
                         knobs: V4(20, 0.3, 0.22, 2), tile: 0.08, rough: 0.22, seed: 2201, normal: 0.4, clearcoat: 0.3))
+        // Chocolate chunks in dough: broken, satin faces.
+        out.append(spec("food.chocolate-chunk", .foodSmooth, 0x2E170E, 0x24120A, 0x6C4C3A, ca: 0.5,
+                        knobs: V4(20, 0.6, 0.48, 2), tile: 0.02, rough: 0.48, seed: 2202, normal: 1.0))
         // Pancake or cake batter and its baked crumb.
         out.append(spec("food.batter", .foodSmooth, 0xF0DCA4, 0xE2C886, 0xC4A26A, ca: 0.5,
                         knobs: V4(30, 0.4, 0.3, 7), tile: 0.05, rough: 0.3, seed: 2301, normal: 0.6, clearcoat: 0.3, cooked: "food.batter-cooked"))
         out.append(spec("food.batter-cooked", .foodCrumb, 0xD89E50, 0xA0642A, 0xF0D090, ca: 0.6,
                         knobs: V4(30, 0.4, 0.72, 3), tile: 0.05, rough: 0.72, seed: 2302, normal: 1.4))
+        // Chocolate chunk cookie dough and its baked crumb.
+        out.append(spec("food.cookie-dough", .foodSmooth, 0xC9A26C, 0xB08652, 0x5E3C20, ca: 0.7,
+                        knobs: V4(70, 0.4, 0.65, 7), tile: 0.04, rough: 0.65, seed: 2401, normal: 2.2, cooked: "food.cookie-dough-cooked"))
+        out.append(spec("food.cookie-dough-cooked", .foodCrumb, 0xD6A35C, 0x9A6026, 0xF0D29A, ca: 0.5,
+                        knobs: V4(36, 0.5, 0.75, 3), tile: 0.04, rough: 0.75, seed: 2402, normal: 1.4))
         return out
     }()
 }
