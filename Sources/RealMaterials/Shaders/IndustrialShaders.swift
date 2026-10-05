@@ -163,8 +163,11 @@ S paintedWood(float2 uv, constant RFParams &P) {
     float lip = smoothstep(t - 0.035, t, peelN) * (1.0 - bare);
     float chalk = smoothstep(-0.2, 0.4, fbm(uv, int2(3, 5), 4, sd + 3u)) * P.f.y;
     float brush = fbm(uv, int2(6, 90), 3, sd + 5u);
-    float3 paint = P.colorA.rgb * (0.9 + 0.12 * brush + 0.06 * streak);
+    // f.w: factory finish (1 = sprayed lacquer, no grain telegraph or checks).
+    float clean = sat(P.f.w);
+    float3 paint = P.colorA.rgb * (0.9 + 0.1 * clean + (0.12 * brush + 0.06 * streak) * (1.0 - clean * 0.85));
     paint = mix(paint, paint * 1.45 + float3(0.035), chalk * 0.6);
+    chk *= 1.0 - clean;
     paint *= 1.0 - chk * 0.35;
     paint = mix(paint, paint * 0.75, lip * 0.5);
     s.albedo = mix(paint, wood, bare);

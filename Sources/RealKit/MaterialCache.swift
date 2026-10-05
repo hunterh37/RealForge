@@ -230,6 +230,12 @@ public final class RealMaterialCache {
             var u = UnlitMaterial()
             let k = min(1, s.emissiveIntensity)
             u.color = .init(tint: .init(white: CGFloat(k), alpha: 1), texture: .init(t.albedo))
+            // Soft emitters (gas flames): alpha-blended by the albedo alpha, both faces.
+            if s.opacity < 1 {
+                let a = (try? alphaView(t)).map { MaterialParameters.Texture($0) } ?? .init(t.albedo)
+                u.blending = .transparent(opacity: .init(scale: s.opacity, texture: a))
+                u.faceCulling = .none
+            }
             return u
         }
         var m = PhysicallyBasedMaterial()

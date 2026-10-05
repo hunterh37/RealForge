@@ -114,6 +114,17 @@ public struct RigState: Sendable, Equatable {
     }
 }
 
+/// A part option chosen by a joint value: option = number of `thresholds` at or below |value|.
+/// A gas knob lights its burner (`thresholds: [10]`), a faucet lever opens the stream; with two
+/// thresholds `[10, 200]` a knob gives off (0), high (1) and low (2).
+public struct RigOptionLink: Sendable, Equatable {
+    public var part: String
+    public var joint: String
+    public var thresholds: [Float]
+    public init(part: String, joint: String, thresholds: [Float]) { self.part = part; self.joint = joint; self.thresholds = thresholds }
+    public func option(_ value: Float) -> Int { thresholds.filter { abs(value) >= $0 }.count }
+}
+
 /// An articulated asset: static base + jointed parts + states. See the file header.
 public struct Rig: Sendable {
     public var name: String
@@ -123,6 +134,8 @@ public struct Rig: Sendable {
     public var parts: [RigPart] = []
     public var lights: [RigLight] = []
     public var states: [RigState] = []
+    /// Options driven by joint values (`setJoints` and taps switch them; states set them explicitly).
+    public var optionLinks: [RigOptionLink] = []
     /// State used by `posed()` and by new entities. Defaults to the first state.
     public var defaultState: String?
 
@@ -195,6 +208,13 @@ public struct Rig: Sendable {
     }
 
     public func options(_ state: String) -> [String: Int] { states.first { $0.name == state }?.options ?? [:] }
+
+    /// Options implied by `optionLinks` for joint values (only linked parts appear).
+    public func linkedOptions(_ values: [String: Float]) -> [String: Int] {
+        var o: [String: Int] = [:]
+        for l in optionLinks { o[l.part] = l.option(values[l.joint] ?? 0) }
+        return o
+    }
 
     private func clampZero(_ r: ClosedRange<Float>) -> Float { min(max(0, r.lowerBound), r.upperBound) }
 
@@ -272,6 +292,14 @@ public struct Rig: Sendable {
             for (k, v) in s.options {
                 guard let i = index(k) else { issues.append("state \(s.name): unknown part \(k)"); continue }
                 if v < 0 || v >= parts[i].optionCount { issues.append("state \(s.name): \(k) option \(v) out of range") }
+            }
+        }
+        for k in optionLinks {
+            guard let i = index(k.part) else { issues.append("link: unknown part \(k.part)"); continue }
+            if index(k.joint) == nil { issues.append("link \(k.part): unknown joint \(k.joint)") }
+            if k.thresholds.count >= parts[i].optionCount { issues.append("link \(k.part): \(k.thresholds.count) thresholds for \(parts[i].optionCount) options") }
+            for s in states where (options(s.name)[k.part] ?? 0) != k.option(values(s.name)[k.joint] ?? 0) {
+                issues.append("state \(s.name): \(k.part) option disagrees with link from \(k.joint)")
             }
         }
         for l in lights {
