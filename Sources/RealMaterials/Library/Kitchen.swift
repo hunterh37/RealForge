@@ -39,7 +39,7 @@ public extension MaterialLibrary {
         // (u around the burner 0...1, v port to tip 0...1, one repeat); alpha-blended unlit emitter.
         MaterialSpec(key: "emissive.flame", program: .gasFlame).with {
             $0.colorA = linear(0x9CC8FF); $0.colorB = linear(0x2648E8); $0.colorC = linear(0xFF9A3C)
-            $0.knobs = V4(30, 0.3, 0.8, 0.45); $0.seed = 605; $0.tileSize = 1; $0.resolution = 512
+            $0.knobs = V4(36, 0.35, 0.8, 0.5); $0.seed = 605; $0.tileSize = 1; $0.resolution = 512
             $0.mode = .emissive; $0.emissive = V3(0.3, 0.45, 1); $0.emissiveIntensity = 1; $0.opacity = 0.99
             $0.twoSided = true; $0.hasAOMap = false; $0.normalStrength = 0
         },
@@ -48,6 +48,31 @@ public extension MaterialLibrary {
             $0.colorA = linear(0xC9A77E); $0.colorB = linear(0x9C7A55); $0.colorC = linear(0x3A2A1C)
             $0.knobs = V4(14, 0.34, 0.24, 0.0012); $0.seed = 606; $0.tileSize = 2.1; $0.resolution = 2048
             $0.normalStrength = 1.2; $0.roughness = 0.36; $0.clearcoat = 0.2; $0.antiTile = true
+        },
+        // Appliance stainless around the controls: fingerprints and cooking grease films, warmer haze.
+        MaterialSpec(key: "metal.stainless-smudged", program: .brushedMetal).with {
+            $0.colorA = linear(0xA7A8A9); $0.colorB = linear(0x6F675B)
+            $0.knobs = V4(0.8, 0.27, 0.9, 0.35); $0.seed = 608; $0.tileSize = 0.25; $0.normalStrength = 0.35
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.27
+        },
+        // Matte black enamel-coated cast iron (burner grates): satin, a few rubbed high spots.
+        MaterialSpec(key: "metal.grate-iron", program: .paintedMetal).with {
+            $0.colorA = linear(0x1A1919); $0.colorC = linear(0x4A4744, 0.6); $0.knobs = V4(0.1, 0.5, 0.55, 0)
+            $0.seed = 609; $0.tileSize = 0.3; $0.normalStrength = 1.6; $0.roughness = 0.55
+        },
+        // Black porcelain cooktop enamel: glossy, faint orange peel. Tint for color.
+        MaterialSpec(key: "metal.cooktop-enamel", program: .paintedMetal).with {
+            $0.colorA = linear(0x121213); $0.colorC = linear(0x1C1C1D, 0.4); $0.knobs = V4(0.0, 0.2, 0.25, 0)
+            $0.seed = 610; $0.tileSize = 0.5; $0.normalStrength = 0.5; $0.roughness = 0.16; $0.clearcoat = 0.7
+        },
+        // Oven liner: blue-grey speckled porcelain enamel.
+        MaterialSpec(key: "metal.oven-enamel", program: .paintedMetal).with {
+            $0.colorA = linear(0x262C3A); $0.colorC = linear(0x8A8F99, 0.5); $0.knobs = V4(0.0, 0.3, 0.4, 0)
+            $0.seed = 611; $0.tileSize = 0.3; $0.normalStrength = 0.8; $0.roughness = 0.35
+        },
+        // Tinted oven-door glass: dark smoked, glossy.
+        MaterialSpec(key: "glass.oven", program: nil).with {
+            $0.baseColor = V3(0.02, 0.02, 0.022); $0.roughness = 0.03; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.62; $0.twoSided = true
         },
         // realityhd:material.kitchen
     ]

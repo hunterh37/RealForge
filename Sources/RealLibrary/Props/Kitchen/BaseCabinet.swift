@@ -128,7 +128,8 @@ public struct BaseCabinet: RealArticulated {
                 }
                 let trap = [V3(0, H - 0.02, sinkCenter.z), V3(0, H - 0.2, sinkCenter.z), V3(0, H - 0.3, sinkCenter.z + 0.03), V3(0, H - 0.33, sinkCenter.z - 0.05),
                             V3(0, H - 0.28, bz + back + 0.12), V3(0, H - 0.28, bz + back)]
-                m.add(Prim.tube(catmull(trap, per: 4), radii: [0.02], sides: 12, seamTile: 0.1, material: "plastic.white"))
+                let trapPath = catmull(trap, per: 4)
+                m.add(Prim.tube(trapPath, radii: Array(repeating: 0.02, count: trapPath.count), sides: 12, seamTile: 0.1, material: "plastic.white"))
             }
             // Counter.
             if countertop {

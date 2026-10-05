@@ -4,14 +4,16 @@
   "kind": "prop",
   "materials": [
     "metal.stainless",
-    "metal.cast-iron",
-    "glass.clear:202020",
-    "metal.enamel:1A1A1A",
+    "metal.stainless-smudged",
+    "metal.grate-iron",
+    "metal.cooktop-enamel",
+    "metal.oven-enamel",
+    "glass.oven",
     "emissive.flame",
-    "emissive.warm"
+    "emissive.bulb"
   ],
   "name": "Freestanding gas range",
-  "notes": "Rig: oven-door hinge X -90...0; drawer slide +Z 0...0.35; knob1-5 hinge Z 0...270. Options: burner flame ring per knob (emissive.flame), oven light. States: off, oven-open, front-burner-on, all-on.",
+  "notes": "Rig: oven-door hinge X -90...0; drawer slide +Z 0...0.35; knob1-5 hinge Z 0...270 (knob1 left-rear, knob2 left-front, knob3 center, knob4 right-front, knob5 right-rear), oven knob 0...270. Options: flame1-5 (0 off, 1 high, 2 low) linked to knob1-5 (>= 10 high, >= 200 low); ovenlight linked to the oven knob. States: off, oven-open, front-burner-on, all-on, baking.",
   "parts": [
     "stainless body and front",
     "five sealed burners with cast-iron grates",
@@ -24,7 +26,7 @@
   "references": [],
   "size": [
     0.76,
-    0.94,
+    0.945,
     0.69
   ],
   "style": "mid-range 30 in gas range, light grease near knobs",
