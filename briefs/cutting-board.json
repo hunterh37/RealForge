@@ -1,13 +1,13 @@
 {
-  "budget": 1200,
+  "budget": 10000,
   "id": "cutting-board",
   "kind": "prop",
   "materials": [
     "wood.butcher-block",
-    "wood.endgrain"
+    "wood.butcher-block-side"
   ],
   "name": "End-grain cutting board",
-  "notes": "",
+  "notes": "Top surface at y = thickness (public var topY). Board along +X.",
   "parts": [
     "checkerboard end-grain top",
     "rounded corners",
@@ -26,6 +26,7 @@
   "tags": [
     "prop",
     "kitchen",
+    "cookware",
     "wood",
     "handheld"
   ],

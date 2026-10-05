@@ -1,0 +1,42 @@
+{
+  "budget" : 14000,
+  "id" : "stainless-skillet",
+  "kind" : "prop",
+  "materials" : [
+    "metal.tri-ply",
+    "metal.pan-interior",
+    "metal.heat-tint",
+    "metal.stainless"
+  ],
+  "name" : "Tri-ply stainless skillet",
+  "notes" : "Handle along +X. Simulator knobs: floorY, innerRadius, rimY, floorCenter. Inner floor is its own Surface.",
+  "parts" : [
+    "flat cooking floor with satin spin finish",
+    "flared walls with real 2.6 mm wall thickness",
+    "flared cut pouring rim",
+    "visible tri-ply edge at the rim",
+    "riveted stay-cool channel handle with hang hole",
+    "two flat-head rivets inside the wall",
+    "heat tint on the base and lower wall"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.45,
+    0.085,
+    0.262
+  ],
+  "style" : "10 in tri-ply stainless fry pan, used: utensil scratches inside, blue-gold heat tint underneath",
+  "summary" : "10 in tri-ply stainless fry pan: flared walls, cut rim, riveted stay-cool handle, heat-tinted base.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "handheld"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.08
+}

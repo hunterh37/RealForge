@@ -1,0 +1,37 @@
+{
+  "budget": 12000,
+  "id": "cast-iron-skillet",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron-seasoned",
+    "metal.cast-iron-floor",
+    "metal.cast-iron-worn"
+  ],
+  "name": "Cast-iron skillet",
+  "notes": "Handle along +X. Simulator knobs: floorY, innerRadius, rimY, floorCenter, gripPoint. Inner floor is its own Surface.",
+  "parts": [
+    "pan with sloped walls 4.5 mm thick and two pour spouts",
+    "long tapered handle with teardrop hanging hole",
+    "helper handle loop",
+    "seasoned cooking floor, smoother and glossier than the walls",
+    "sand-cast pebble texture outside, carbon crust on the base"
+  ],
+  "references": [],
+  "size": [
+    0.47,
+    0.06,
+    0.3
+  ],
+  "style": "12 in seasoned cast iron, rubbed sheen on the rim",
+  "summary": "Seasoned 12 in cast-iron skillet: sloped walls, pour spouts, long handle with hang hole and helper handle.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
