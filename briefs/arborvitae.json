@@ -1,0 +1,37 @@
+{
+  "budget": 13000,
+  "id": "arborvitae",
+  "kind": "prop",
+  "materials": [
+    "leaf.cypress",
+    "leaf.arborvitae-mass",
+    "bark.cypress"
+  ],
+  "name": "Arborvitae",
+  "notes": "",
+  "parts": [
+    "narrow pyramidal column of scale foliage",
+    "dense flattened sprays",
+    "slightly irregular outline and pointed top",
+    "short trunk and dark base"
+  ],
+  "references": [],
+  "size": [
+    0.9,
+    2.4,
+    0.9
+  ],
+  "style": "Emerald Green arborvitae, landscape-nursery size, healthy",
+  "summary": "Emerald Green arborvitae, 2.4 m: narrow pyramidal column of flat scale-foliage sprays over a dark core.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "conifer",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

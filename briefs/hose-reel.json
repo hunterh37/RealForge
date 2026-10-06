@@ -1,0 +1,41 @@
+{
+  "budget": 9000,
+  "id": "hose-reel",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:2F5A35",
+    "rubber.tubing:2D6A3A",
+    "rubber.tire",
+    "metal.brass"
+  ],
+  "name": "Hose reel cart",
+  "notes": "",
+  "parts": [
+    "tubular frame",
+    "wheels",
+    "drum with hub",
+    "wound hose",
+    "crank",
+    "nozzle",
+    "handle"
+  ],
+  "references": [],
+  "size": [
+    0.56,
+    0.84,
+    0.63
+  ],
+  "style": "garden-used, dirt on wheels",
+  "summary": "Hose reel cart, 0.85 m: green steel frame with two wheels, drum wound with garden hose, crank handle and brass nozzle.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "tool",
+    "plastic"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

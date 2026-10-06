@@ -1,0 +1,36 @@
+{
+  "budget": 3000,
+  "id": "terracotta-planter",
+  "kind": "prop",
+  "materials": [
+    "ceramic.bisque:B4643E",
+    "soil.potting"
+  ],
+  "name": "Terracotta planter",
+  "notes": "",
+  "parts": [
+    "rolled rim band",
+    "tapered wall",
+    "soil",
+    "drainage foot"
+  ],
+  "references": [],
+  "size": [
+    0.42,
+    0.36,
+    0.42
+  ],
+  "style": "unglazed clay, salt bloom",
+  "summary": "Terracotta pot, 0.42 m rim: tapered wall with rolled rim band, soil fill, efflorescence near the base.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "ceramic",
+    "container"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

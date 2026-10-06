@@ -1,0 +1,41 @@
+{
+  "budget": 3000,
+  "id": "landscape-spotlight",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:2E2B27",
+    "glass.led-lens",
+    "emissive.warm",
+    "rubber"
+  ],
+  "name": "Landscape spotlight",
+  "notes": "",
+  "parts": [
+    "ground stake",
+    "knuckle swivel",
+    "bullet body",
+    "glare hood",
+    "lens",
+    "cable"
+  ],
+  "references": [],
+  "size": [
+    0.071,
+    0.26,
+    0.22
+  ],
+  "style": "black-bronze powder coat, soil on stake",
+  "summary": "Bullet uplight on a ground stake, 0.33 m: cylindrical aluminum body with glare hood on a knuckle, tilts up when on with a spot beam.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "light",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

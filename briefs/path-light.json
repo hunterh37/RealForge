@@ -1,0 +1,41 @@
+{
+  "budget": 3000,
+  "id": "path-light",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:3B3128",
+    "glass.frosted",
+    "emissive.warm",
+    "plastic.black"
+  ],
+  "name": "Path light",
+  "notes": "",
+  "parts": [
+    "ground stake",
+    "round stem",
+    "diffuser glass cylinder",
+    "conical hat cap",
+    "finial",
+    "lamp (off/on)"
+  ],
+  "references": [],
+  "size": [
+    0.2,
+    0.55,
+    0.2
+  ],
+  "style": "cast aluminum bronze powder coat, dust on cap, mineral spots",
+  "summary": "Low-voltage pagoda path light, 0.55 m: ground stake, bronze stem, frosted glass diffuser under a wide conical cap; off/on states with a downward point light.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "light",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

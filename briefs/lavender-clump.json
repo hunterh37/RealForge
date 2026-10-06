@@ -1,0 +1,36 @@
+{
+  "budget": 13500,
+  "id": "lavender-clump",
+  "kind": "prop",
+  "materials": [
+    "leaf.lavender",
+    "plant.stem",
+    "flower.lavender"
+  ],
+  "name": "Lavender clump",
+  "notes": "",
+  "parts": [
+    "dense dome of narrow grey-green leaves",
+    "45-70 thin flower stalks rising above",
+    "purple flower spikes at the stalk tips"
+  ],
+  "references": [],
+  "size": [
+    0.65,
+    0.55,
+    0.65
+  ],
+  "style": "English lavender in bloom, silver foliage, purple spikes",
+  "summary": "English lavender, 0.55 m: grey-green dome of narrow leaves under 45-70 stalks with purple flower spikes.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "flower",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,38 @@
+{
+  "budget": 15000,
+  "id": "hydrangea-bush",
+  "kind": "prop",
+  "materials": [
+    "leaf.hydrangea",
+    "flower.hydrangea",
+    "leaf.privet-mass",
+    "plant.stem"
+  ],
+  "name": "Hydrangea bush",
+  "notes": "",
+  "parts": [
+    "mounded leafy shrub of broad serrated leaves",
+    "14-18 round mophead flower heads 20-26 cm",
+    "flower heads held at the canopy surface",
+    "stems at the base"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    1.0,
+    1.2
+  ],
+  "style": "bigleaf hydrangea in bloom, blue mopheads with slight pink cast",
+  "summary": "Bigleaf hydrangea, 1.0 m: mound of broad serrated leaves with 14-18 blue mophead flower heads.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "flower",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

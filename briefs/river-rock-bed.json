@@ -1,0 +1,40 @@
+{
+  "budget": 14000,
+  "id": "river-rock-bed",
+  "kind": "prop",
+  "materials": [
+    "rock.river",
+    "rock.river-wet",
+    "ground.gravel",
+    "ground.mud",
+    "bark.oak-dry"
+  ],
+  "name": "River rock bed",
+  "notes": "",
+  "parts": [
+    "rounded river stones 5-15 cm",
+    "pea gravel base",
+    "larger stones at center",
+    "half-buried margin stones"
+  ],
+  "references": [],
+  "size": [
+    1.5,
+    0.09,
+    0.77
+  ],
+  "style": "mixed grey-brown river rock, some wet",
+  "summary": "River-rock bed, 1.4 x 0.7 m: oval swale of packed 5-15 cm rounded river stones over pea gravel, larger stones at the center.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "stone",
+    "rock",
+    "ground"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

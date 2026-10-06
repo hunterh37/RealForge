@@ -1,0 +1,38 @@
+{
+  "budget": 14500,
+  "id": "retaining-wall-block",
+  "kind": "prop",
+  "materials": [
+    "stone.wall-block",
+    "stone.cap"
+  ],
+  "name": "Segmental retaining wall segment",
+  "notes": "",
+  "parts": [
+    "split-face blocks",
+    "running bond courses",
+    "course setback",
+    "cap stones",
+    "half blocks at ends"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.525,
+    0.37
+  ],
+  "style": "tan split-face concrete wall blocks with smooth caps",
+  "summary": "Segmental retaining wall segment, 1.2 m x 3 courses: split-face concrete blocks in running bond with setback and cap stones.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "stone",
+    "concrete",
+    "wall"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

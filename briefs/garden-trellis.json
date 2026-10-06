@@ -1,0 +1,36 @@
+{
+  "budget": 6000,
+  "id": "garden-trellis",
+  "kind": "prop",
+  "materials": [
+    "wood.weathered"
+  ],
+  "name": "Garden trellis",
+  "notes": "",
+  "parts": [
+    "stiles",
+    "stile caps",
+    "arched top rail",
+    "lattice slats in two layers",
+    "bottom rail"
+  ],
+  "references": [],
+  "size": [
+    0.64,
+    1.86,
+    0.046
+  ],
+  "style": "grey weathered cedar",
+  "summary": "Cedar lattice trellis, 1.85 m: two stiles, arched top rail, two-layer diagonal lattice, bottom rail.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "wood",
+    "fence"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

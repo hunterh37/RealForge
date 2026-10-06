@@ -1,0 +1,36 @@
+{
+  "budget": 4000,
+  "id": "concrete-stepper",
+  "kind": "prop",
+  "materials": [
+    "concrete.exposed-aggregate",
+    "rock.river"
+  ],
+  "name": "Precast concrete stepping stone",
+  "notes": "",
+  "parts": [
+    "round slab",
+    "rounded edge",
+    "exposed aggregate",
+    "chipped rim"
+  ],
+  "references": [],
+  "size": [
+    0.45,
+    0.054,
+    0.45
+  ],
+  "style": "grey precast stepper with pebble aggregate",
+  "summary": "Precast concrete stepping stone, 45 cm round x 5 cm: rounded edge, exposed-aggregate face, irregular outline, chipped rim.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "concrete",
+    "stone"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

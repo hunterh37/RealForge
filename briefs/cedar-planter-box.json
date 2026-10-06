@@ -1,0 +1,37 @@
+{
+  "budget": 6000,
+  "id": "cedar-planter-box",
+  "kind": "prop",
+  "materials": [
+    "wood.lumber-oak:A0663E",
+    "soil.potting"
+  ],
+  "name": "Cedar planter box",
+  "notes": "",
+  "parts": [
+    "corner posts",
+    "side boards",
+    "cap rail",
+    "soil fill",
+    "feet"
+  ],
+  "references": [],
+  "size": [
+    0.92,
+    0.45,
+    0.47
+  ],
+  "style": "new-ish cedar, darker at the base",
+  "summary": "Cedar planter box, 0.9 m: corner posts, horizontal board walls, cap rail, soil fill.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "wood",
+    "container"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

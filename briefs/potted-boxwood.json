@@ -1,0 +1,39 @@
+{
+  "budget": 11000,
+  "id": "potted-boxwood",
+  "kind": "prop",
+  "materials": [
+    "ceramic.terracotta",
+    "soil.potting",
+    "leaf.boxwood",
+    "leaf.boxwood-mass",
+    "bark.oak-dry"
+  ],
+  "name": "Potted boxwood",
+  "notes": "",
+  "parts": [
+    "tapered terracotta pot with rolled rim",
+    "potting soil surface",
+    "clipped boxwood ball on a short trunk"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.86,
+    0.46
+  ],
+  "style": "terracotta planter, slightly weathered, clipped boxwood",
+  "summary": "Potted boxwood: clipped 0.42 m ball on a short trunk in a 0.46 m terracotta pot with rolled rim.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "ceramic",
+    "decor",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
