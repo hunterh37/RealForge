@@ -1,0 +1,35 @@
+{
+  "budget": 7000,
+  "id": "yellow-onion",
+  "kind": "prop",
+  "materials": [
+    "food.onion-skin",
+    "food.onion",
+    "food.onion-rings"
+  ],
+  "name": "Yellow onion",
+  "notes": "",
+  "parts": [
+    "globe bulb with a twisted dry neck",
+    "papery copper outer skin, torn flakes showing paler layer",
+    "flat root plate with dried root stubs",
+    "white fleshy scales inside (cut rings)"
+  ],
+  "references": [],
+  "size": [
+    0.08,
+    0.09,
+    0.08
+  ],
+  "style": "storage yellow onion, dry papery skin",
+  "summary": "Yellow storage onion, 8 cm: papery copper skin over white fleshy scales, twisted neck, root plate with dry root stubs.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

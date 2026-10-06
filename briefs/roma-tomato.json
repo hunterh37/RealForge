@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "roma-tomato",
+  "kind": "prop",
+  "materials": [
+    "food.tomato",
+    "food.tomato-flesh",
+    "food.stem-green"
+  ],
+  "name": "Roma tomato",
+  "notes": "",
+  "parts": [
+    "plum-shaped elongated fruit lying on its side",
+    "glossy red skin",
+    "green star calyx with stem stub",
+    "pericarp, locules with gel and seeds in cross section"
+  ],
+  "references": [],
+  "size": [
+    0.076,
+    0.052,
+    0.052
+  ],
+  "style": "ripe roma plum tomato",
+  "summary": "Ripe roma tomato, 7.5 cm: glossy plum-shaped fruit on its side with green star calyx; flesh shell with locular cut face.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

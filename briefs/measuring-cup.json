@@ -1,0 +1,40 @@
+{
+  "budget" : 13000,
+  "id" : "measuring-cup",
+  "kind" : "prop",
+  "materials" : [
+    "glass.measuring",
+    "paint.measure-red"
+  ],
+  "name" : "Glass measuring cup",
+  "notes" : "Handle along +X, spout toward -X. Simulator knobs: floorY, innerRadius, rimY, rimRadius, levelY(milliliters:).",
+  "parts" : [
+    "thick tempered-glass body tapering out to the rim",
+    "pour spout",
+    "open D handle",
+    "red cup and quarter-cup graduations on one side",
+    "red milliliter graduations on the other side",
+    "thick base"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.165,
+    0.11,
+    0.112
+  ],
+  "style" : "2 cup tempered glass measuring cup with fired-on red markings",
+  "summary" : "2 cup glass measuring cup: thick tapered body, pour spout, D handle, red cup and milliliter graduations.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "glass",
+    "container",
+    "handheld"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.1
+}

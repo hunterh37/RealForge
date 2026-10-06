@@ -1,0 +1,40 @@
+{
+  "budget": 8000,
+  "id": "fish-turner",
+  "kind": "prop",
+  "materials": [
+    "metal.knife-blade",
+    "wood.walnut-oiled",
+    "metal.brass",
+    "metal.stainless"
+  ],
+  "name": "Slotted fish turner",
+  "notes": "Lies on the counter: handle toward -X, blade toward +X. Knobs: bladeLength, bladeWidth, slots, workPoint, gripPoint.",
+  "parts": [
+    "thin flexible blade with five fanned slots cut through",
+    "angled, beveled front edge",
+    "offset neck bent up from the blade",
+    "full tang between walnut scales",
+    "two brass rivets"
+  ],
+  "references": [],
+  "size": [
+    0.34,
+    0.036,
+    0.074
+  ],
+  "style": "Slotted offset fish spatula, satin stainless, oiled walnut handle",
+  "summary": "Slotted fish turner: thin fanned-slot stainless blade, angled edge, offset neck, walnut handle with brass rivets.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "wood",
+    "tool",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

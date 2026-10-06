@@ -1,0 +1,32 @@
+{
+  "budget": 4000,
+  "id": "butter-block",
+  "kind": "prop",
+  "materials": [
+    "food.butter"
+  ],
+  "name": "Butter block",
+  "notes": "",
+  "parts": [
+    "half-cup butter stick, rounded edges",
+    "soft wrapper creases on the faces",
+    "one cut end"
+  ],
+  "references": [],
+  "size": [
+    0.121,
+    0.032,
+    0.032
+  ],
+  "style": "unwrapped US butter stick, cold",
+  "summary": "Half-cup butter stick, 12 x 3.2 x 3.2 cm: pale yellow block with softened edges and wrapper impressions.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

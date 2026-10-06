@@ -21,6 +21,10 @@ public enum TextureProgram: Int32, Sendable, CaseIterable {
     case boneCortical, cartilageHyaline, muscleFiber, tendonFiber, vesselWall, nerveFascicle
     case pegboard
     case tapeRule
+    case pantryFill
+    case subwayTile, plankFloor, gasFlame, quartzSlab
+    case fruitSkin, papery, rootSkin, radialFlesh, poultryFlesh, foodSmooth, foodCrumb
+    case butcherBlock, seasonedIron, heatTint, bakedPatina
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should
@@ -81,6 +85,10 @@ public struct MaterialSpec: Sendable, Hashable {
     public var flow: Float = 0
     /// How much the layers' texture brightness pushes the boundary (stones poke through mud).
     public var splatHeight: Float = 1.5
+    /// Cooked look of this material (food). The cook shader blends base -> `cooked` by the
+    /// `Doneness` parameter, then layers Maillard browning and char by `BrownTop`/`BrownBottom`
+    /// (RealKit `RealCookMaterial`). nil = not cookable.
+    public var cooked: MaterialKey? = nil
 
     public init(key: MaterialKey, program: TextureProgram?) { self.key = key; self.program = program }
 
@@ -97,7 +105,7 @@ public func linear(_ hex: UInt32, _ a: Float = 1) -> V4 {
 /// Specs live in `Library/<Family>.swift`; add a family array to `all` when creating a new file.
 public enum MaterialLibrary {
     /// Every built-in spec, in catalog order. Keys are unique (tested).
-    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + plants + industrial + ground + conifer + rock + fabric + woodExtra + water + groundBlend + groundBlends + wild + craft + office + sports + sportsGear + medical + medicalSurgical + medicalDiagnostic + medicalBedside + medicalPatient + medicalTheatre + medicalClinic + medicalHospitalStructures + medicalHospitalLobby + anatomy + woodshop
+    public static let all: [MaterialSpec] = bark + foliage + stone + wood + metal + mineral + plastic + masonry + emissive + plants + industrial + ground + conifer + rock + fabric + woodExtra + water + groundBlend + groundBlends + wild + craft + office + sports + sportsGear + medical + medicalSurgical + medicalDiagnostic + medicalBedside + medicalPatient + medicalTheatre + medicalClinic + medicalHospitalStructures + medicalHospitalLobby + anatomy + woodshop + pantry + kitchen + cookware + food
 
     public static let keys: [MaterialKey] = all.map { $0.key }
 

@@ -1,0 +1,36 @@
+{
+  "budget": 10000,
+  "id": "cutting-board",
+  "kind": "prop",
+  "materials": [
+    "wood.butcher-block",
+    "wood.butcher-block-side"
+  ],
+  "name": "End-grain cutting board",
+  "notes": "Top surface at y = thickness (public var topY). Board along +X.",
+  "parts": [
+    "checkerboard end-grain top",
+    "rounded corners",
+    "juice groove",
+    "finger grips on the ends",
+    "knife marks"
+  ],
+  "references": [],
+  "size": [
+    0.45,
+    0.04,
+    0.3
+  ],
+  "style": "maple and walnut end-grain block",
+  "summary": "End-grain cutting board: maple and walnut checkerboard, juice groove, finger grips, knife scoring.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "cookware",
+    "wood",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
