@@ -1,0 +1,23 @@
+{
+  "budget": 7400,
+  "id": "safety-glasses",
+  "kind": "prop",
+  "materials": ["plastic.clear", "plastic.tool", "rubber", "metal.steel"],
+  "name": "Wraparound safety glasses",
+  "notes": "Rig: temple-left, temple-right hinge about Y at the shield ends. States folded (default), open.",
+  "parts": [
+    "single wraparound clear polycarbonate shield with integral side shields",
+    "molded brow bar",
+    "rubber nose pad",
+    "yellow temples with grip ribs at the ear ends",
+    "hinge barrels with pins"
+  ],
+  "references": [],
+  "size": [0.156, 0.05, 0.068],
+  "style": "Generic ANSI Z87 wraparound safety glasses, clear lens, yellow temples, light scuffs.",
+  "summary": "Wraparound clear polycarbonate safety glasses: one-piece shield with side shields, brow bar, rubber nose pad, hinged yellow temples.",
+  "tags": ["prop", "workshop", "handheld", "articulated", "plastic", "rubber"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

@@ -1,0 +1,43 @@
+{
+  "budget": 9000,
+  "id": "tape-measure",
+  "kind": "prop",
+  "materials": [
+    "plastic.tape-case",
+    "rubber",
+    "label.tape-rule",
+    "metal.steel",
+    "metal.chrome"
+  ],
+  "name": "Tape measure",
+  "notes": "Default extension 0 (hook at the nose). Points: grip, hookTip. Blade print: label.tape-rule (tapeRule program).",
+  "parts": [
+    "yellow case with black rubber armor band and side frames",
+    "yellow hub bosses and case screws",
+    "chrome spring belt clip",
+    "thumb lock button on the front",
+    "rubber nose bumper with blade slot",
+    "printed yellow blade with concave cup (extension knob)",
+    "riveted steel end hook with tab"
+  ],
+  "references": [],
+  "size": [
+    0.096,
+    0.078,
+    0.049
+  ],
+  "style": "New-ish job-site tape: clean yellow ABS, matte rubber, chrome clip; generic, unbranded.",
+  "summary": "25 ft x 1 in tape measure: rubber-armored yellow case, chrome belt clip, thumb lock, printed yellow blade with hook; extension knob 0-2 m.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "plastic",
+    "rubber",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,5 +1,35 @@
 # Changelog
 
+## 5.1.0
+
+Woodshop: a home woodshop scene and 30 gated woodworking props, built for training sims (stock that can be
+cut at runtime, machines whose blades, fences and arms are rig joints, documented working points on every
+hand tool).
+
+- Scene `woodshop`: 8 x 6.4 m CMU shop with concrete floor, 9 hanging LED shop lights with point lights,
+  west windows, steel door, pegboard wall, lumber rack, sawdust, offcuts and cords. `stations` knob bakes
+  the machines and benches in (showcase) or leaves the spots empty for an app to spawn live ones;
+  `WoodshopLayout` publishes every station, operator spot and fixture position.
+- Machines (articulated): `table-saw` (blade bevel, height and spin, rip fence, miter gauge and angle,
+  guard, paddle switch; `arborCenter`, `bladeExposure`, `fenceFaceX`, `miterGaugeFaceZ`, `tableBounds`),
+  `miter-saw` (miter with detents, bevel, chop arm, blade spin, trigger, mimicking lower guard;
+  `arborCenter`, `bladeNormal`, `handleGrip`).
+- Handheld power tools (articulated, one cordless family look): `circular-saw`, `cordless-drill` (bit
+  options), `random-orbit-sander`, `jigsaw`.
+- Hand tools: `hand-saw`, `claw-hammer`, `wood-chisel`, `speed-square`, `tape-measure` (continuous
+  `extension` with blade sag), `carpenter-pencil`, `block-plane`, `push-stick`, `bar-clamp` (articulated).
+- Shop: `workbench` (vise), `lumber-rack`, `pegboard-wall`, `shop-vac`, `sawdust-pile`, `shop-light`,
+  `fire-extinguisher`, `first-aid-kit` (door), `wood-glue` (cap), `safety-glasses` (temples), `ear-muffs`,
+  `wood-screw`, `screw-box`.
+- Stock: `lumber` and `plywood-sheet` with real dressed sizes (`Lumber.nominal`), miter and bevel ends, and
+  `crosscut(atX:kerf:miter:bevel:)` / `rip(atZ:kerf:)` returning pieces placed in the parent frame with
+  continuous grain and fresh end grain (`CutPiece`, LumberTests).
+- Texture programs `tapeRule` (1/16 in tape blade with numerals and stud marks) and `pegboard`. Materials:
+  lumber species, fresh end grain, butcher block, machined cast iron, saw plate, carbide, die-cast,
+  tool plastics, shop concrete, sawdust, hardboard, painted CMU and tool finishes.
+- Fix: static batching no longer emits empty LOD levels when transparent detail exists only in LOD0
+  (RealityKit rejected the whole scene with "Direct Mesh Validation Failed"). BatchTests.
+
 ## 5.0.0
 
 Hospital: an emergency department floor, its rooms, 50 articulated medical assets and hand grab

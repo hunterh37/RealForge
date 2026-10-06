@@ -1,0 +1,53 @@
+{
+  "budget": 15000,
+  "id": "miter-saw",
+  "kind": "prop",
+  "materials": [
+    "metal.diecast",
+    "plastic.tool",
+    "metal.sawblade",
+    "metal.carbide",
+    "metal.machined",
+    "metal.steel",
+    "metal.chrome",
+    "rubber",
+    "plastic.matte",
+    "plastic.clear",
+    "fabric.canvas"
+  ],
+  "name": "10-inch compound miter saw",
+  "notes": "Rig: miter (Y, turntable) > bevel (Z, rear pivot) > arm (X, arm pivot) > blade (X, arbor) and trigger; lower-guard mimics arm.",
+  "parts": [
+    "die-cast aluminum base with four bench-mount holes and side extension wings",
+    "rotating turntable with replaceable kerf insert plate",
+    "front miter arm with scale, detent plate and lock handle",
+    "tall two-piece fence at the back",
+    "rear bevel pivot casting with bevel scale and lock knob",
+    "pivot arm with motor housing and vents",
+    "D-handle with trigger and lock-off button",
+    "254 mm carbide-tipped blade with arbor bolt and flange",
+    "fixed upper blade guard",
+    "clear retracting lower blade guard",
+    "dust port with cloth dust bag",
+    "hold-down clamp post holes",
+    "power cord with strain relief"
+  ],
+  "references": [],
+  "size": [
+    0.5,
+    0.5,
+    0.57
+  ],
+  "style": "Generic jobsite 10-inch compound miter saw, yellow and black livery, lightly used: sawdust on the table, worn grip.",
+  "summary": "10 in compound miter saw: die-cast base and wings, turntable with miter scale, two-piece fence, bevel pivot, D-handle arm, carbide blade, dust bag.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

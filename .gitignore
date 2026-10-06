@@ -8,3 +8,4 @@ briefs/refs/
 __pycache__/
 Demo/build/
 showcase/
+.build-*/

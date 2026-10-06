@@ -1,0 +1,48 @@
+{
+  "budget": 9000,
+  "id": "random-orbit-sander",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool",
+    "rubber.cordless-grip",
+    "rubber",
+    "abrasive.cordless-disc-120",
+    "plastic.cordless-smoke",
+    "wood.sawdust",
+    "plastic.matte",
+    "metal.stainless"
+  ],
+  "name": "Random orbit sander",
+  "notes": "5 in (127 mm) pad, about 150-165 mm tall, battery on the rear, dust canister at the front.",
+  "parts": [
+    "5 in hook-and-loop pad with 8 dust holes",
+    "120 grit sanding disc",
+    "rubber shroud skirt",
+    "teal motor housing with vents",
+    "rubber-topped palm grip",
+    "booted on/off rocker switch",
+    "dust port and smoked dust canister with sawdust inside",
+    "rear battery mount with slide-on pack"
+  ],
+  "references": [],
+  "size": [
+    0.285,
+    0.152,
+    0.13
+  ],
+  "style": "same teal/black cordless family as cordless-drill, sawdust in the canister and dust on the shroud",
+  "summary": "Cordless 5 in random orbit sander on its pad: rubber palm grip, rocker switch, smoked dust canister, 8-hole hook-and-loop pad with a 120 grit disc.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "articulated",
+    "plastic",
+    "rubber",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

@@ -1,0 +1,51 @@
+{
+  "budget": 15000,
+  "id": "table-saw",
+  "kind": "prop",
+  "materials": [
+    "metal.table-saw-iron",
+    "metal.sawblade",
+    "metal.carbide",
+    "metal.powdercoat",
+    "plastic.tool",
+    "plastic.clear",
+    "metal.aluminum-brushed",
+    "rubber"
+  ],
+  "name": "Cabinet table saw",
+  "notes": "Width includes the 30 in rip fence rails (rails overhang the right wing). Table height 34 in (0.864 m), table 27 in deep, 40 in across the wings. Height includes the blade guard.",
+  "parts": [
+    "enclosed steel cabinet on a plinth base with a 4 in dust port",
+    "ground cast iron main table with two T-slot miter slots",
+    "red zero-clearance throat plate with kerf slot and finger hole",
+    "two cast iron extension wings with ribbed undersides",
+    "front rail tube with printed rip scale and rear rail",
+    "T-square rip fence with aluminum faces, yellow head, cam lock lever and cursor",
+    "10 in 40-tooth carbide blade with gullets, expansion slots and label ring (below the table in idle; up in raised, running, bevel-45, crosscut)",
+    "riving knife behind the blade",
+    "clear blade guard hood with anti-kickback pawls on a rear support arm",
+    "front height handwheel and side bevel handwheel with spinner handles",
+    "bevel scale arc with pointer",
+    "paddle switch with big red stop paddle under the front rail",
+    "miter gauge with protractor head and fence face in the left slot",
+    "power cord with plug"
+  ],
+  "references": [],
+  "size": [
+    1.48,
+    1.0,
+    0.9
+  ],
+  "style": "modern hybrid cabinet saw, grey cabinet with yellow accents, waxed ground cast iron top, light use: polished table around the throat, sawdust in the corners",
+  "summary": "10 in cabinet table saw: steel cabinet, cast iron table and wings, T-square fence, 40-tooth carbide blade, riving knife, guard, handwheels, miter gauge.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

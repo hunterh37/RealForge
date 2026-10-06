@@ -1,0 +1,23 @@
+{
+  "budget": 7200,
+  "id": "hand-saw",
+  "kind": "prop",
+  "materials": ["metal.saw-plate", "wood.saw-tote", "metal.brass-aged"],
+  "name": "Hand saw",
+  "notes": "Rest pose: lying flat on the bench on the tote cheek and the toe. Points: grip, toe, heel.",
+  "parts": [
+    "taper-ground steel plate, 20 in tooth line, breasted back edge",
+    "8 PPI crosscut teeth along the bottom edge with alternate set",
+    "closed hardwood tote with hand hole, top and bottom horns, rounded-over edges",
+    "three slotted brass split nuts through the tote cheek",
+    "lacquer worn through on the grip and thumb rest"
+  ],
+  "references": [],
+  "size": [0.66, 0.026, 0.157],
+  "style": "Well-used but cared-for panel saw: bright plate with faint grind lines, warm lacquered tote rubbed pale where the hand goes, aged brass.",
+  "summary": "20 in crosscut panel saw: taper-ground steel plate with set 8 PPI teeth, apple tote with three brass split nuts and a hand-worn grip.",
+  "tags": ["prop", "workshop", "tool", "handheld", "metal", "wood"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

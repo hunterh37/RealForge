@@ -1,0 +1,35 @@
+{
+  "id": "lumber",
+  "kind": "prop",
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08,
+  "references": [],
+  "name": "Dimensional lumber board",
+  "budget": 1000,
+  "size": [
+    0.6096,
+    0.0381,
+    0.0889
+  ],
+  "summary": "Dimensional lumber board, default 2 ft 2x4: eased arrises, sawn end grain, grade stamp, angled ends, grain-continuous crosscut and rip helpers.",
+  "tags": [
+    "prop",
+    "workshop",
+    "wood",
+    "handheld"
+  ],
+  "materials": [
+    "wood.lumber-pine",
+    "wood.endgrain-fresh",
+    "wood.lumber-stamp"
+  ],
+  "parts": [
+    "planed kiln-dried SPF 2x4 body, 38 x 89 mm dressed, grain along the length",
+    "3 mm factory round-over on the four long arrises",
+    "fresh sawn end-grain caps with growth rings around an off-center pith",
+    "faint inked grade stamp (SPF No.2 S-DRY KD) on the top face"
+  ],
+  "style": "Fresh lumberyard stud cut to a 2 ft length: clean pale pine, occasional knot, crisp sawn ends.",
+  "notes": "Size is the default 2x4 (x length, y thickness, z width). Game builds every board and cut piece from this struct."
+}

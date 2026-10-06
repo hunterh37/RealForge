@@ -1,0 +1,34 @@
+{
+  "budget": 11500,
+  "id": "sawdust-pile",
+  "kind": "prop",
+  "materials": [
+    "wood.sawdust",
+    "wood.lumber-pine",
+    "wood.endgrain-fresh"
+  ],
+  "name": "Sawdust pile",
+  "notes": "Knobs size (diameter) and height.",
+  "parts": [
+    "mounded sawdust heap with irregular lobed outline",
+    "thin scatter skirt fading out",
+    "curled pine shavings",
+    "small offcut chips and slivers"
+  ],
+  "references": [],
+  "size": [
+    0.5,
+    0.08,
+    0.47
+  ],
+  "style": "fresh pine dust, loose and fluffy, coarse chips on the outside",
+  "summary": "Heap of sawdust under a saw with curled pine shavings and small offcut chips; flattens to a thin floor scatter with the height knob.",
+  "tags": [
+    "prop",
+    "workshop",
+    "wood"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

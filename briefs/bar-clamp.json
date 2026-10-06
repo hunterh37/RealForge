@@ -1,0 +1,26 @@
+{
+  "budget": 9000,
+  "id": "bar-clamp",
+  "kind": "prop",
+  "materials": ["metal.galvanized", "metal.enamel", "metal.steel", "wood.beech-stained", "plastic.matte", "metal.chrome", "plastic.gloss"],
+  "name": "12 in F-style bar clamp",
+  "notes": "Rig: jaw (slide +X along the bar, 0...0.3 m), screw (slide -X, final clamping travel), handle (hinge about the screw axis, 0...360). Lies on its side, bar along X, jaws toward +Z.",
+  "parts": [
+    "zinc-plated steel bar 19 x 5.5 mm with serrated back edge",
+    "fixed cast jaw riveted to the bar end",
+    "sliding cast jaw arm with collar around the bar",
+    "acme-threaded steel screw",
+    "swivel pad on a ball end",
+    "turned wooden handle with steel ferrule",
+    "soft black protective jaw pads",
+    "end stop pin at the bar tail"
+  ],
+  "references": [],
+  "size": [0.44, 0.034, 0.13],
+  "style": "Generic medium-duty 12 in F-clamp: red enamel castings, plated bar, beech handle, used: chipped paint, dried glue on the bar.",
+  "summary": "12 in F-style bar clamp: serrated plated steel bar, red cast fixed and sliding jaws, threaded screw with swivel pad, beech handle, soft jaw pads.",
+  "tags": ["prop", "workshop", "tool", "handheld", "articulated", "metal", "wood"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

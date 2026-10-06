@@ -1,0 +1,44 @@
+{
+  "budget": 10500,
+  "id": "shop-light",
+  "kind": "prop",
+  "materials": [
+    "metal.shop-light-white",
+    "emissive.panel",
+    "plastic.white",
+    "metal.galvanized",
+    "metal.brass",
+    "plastic.matte"
+  ],
+  "name": "LED shop light",
+  "notes": "Base (diffuser bottom) at y = 0, chain top at public ceilingY.",
+  "parts": [
+    "white powder-coated steel housing with end caps",
+    "frosted lit diffuser lens",
+    "two hanger brackets",
+    "two jack chains",
+    "S-hooks top and bottom",
+    "ceiling screw eyes",
+    "pull chain switch with bead chain",
+    "power cord with plug",
+    "linking outlet on end cap"
+  ],
+  "references": [],
+  "size": [
+    1.254,
+    0.781,
+    0.077
+  ],
+  "style": "new white LED shop light, clean",
+  "summary": "4 ft linkable LED shop light: white steel housing with frosted diffuser, hung from two chains with S-hooks, pull chain switch and power cord.",
+  "tags": [
+    "prop",
+    "workshop",
+    "light",
+    "metal",
+    "plastic"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

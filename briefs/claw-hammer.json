@@ -1,0 +1,39 @@
+{
+  "budget": 7000,
+  "id": "claw-hammer",
+  "kind": "prop",
+  "materials": [
+    "metal.hammer-painted",
+    "metal.machined",
+    "wood.hammer-hickory",
+    "wood.lumber-walnut"
+  ],
+  "name": "Claw hammer",
+  "notes": "Rest pose on its cheek. Points: grip, faceCenter, faceNormal.",
+  "parts": [
+    "drop-forged head: crowned smooth face with chamfered rim, round neck, oval eye block",
+    "split curved claws with V nail slot",
+    "hickory handle swelling to the grip and flaring at the butt",
+    "hardwood wedge and round steel cross wedge in the top of the eye",
+    "hand-darkened grip"
+  ],
+  "references": [],
+  "size": [
+    0.337,
+    0.029,
+    0.141
+  ],
+  "style": "Working framing hammer: black enamelled forged head with polished face and claw tips, lacquered hickory rubbed dark at the grip.",
+  "summary": "16 oz curved claw hammer: forged steel head with a smooth crowned face and split claws, hickory handle wedged in the eye.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "metal",
+    "wood"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

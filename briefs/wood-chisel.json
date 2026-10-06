@@ -1,0 +1,41 @@
+{
+  "budget": 5200,
+  "id": "wood-chisel",
+  "kind": "prop",
+  "materials": [
+    "metal.tool-ground",
+    "metal.surgical-mirror",
+    "metal.brass-aged",
+    "wood.chisel-ash",
+    "metal.hammer-forged"
+  ],
+  "name": "Bevel-edge wood chisel",
+  "notes": "Rests bevel-up on the edge and the handle belly. Points: grip, edgeCenter, edgeDirection.",
+  "parts": [
+    "3/4 in tool-steel blade with ground side bevels and flat back",
+    "honed 25 degree primary bevel",
+    "round neck and flared bolster",
+    "brass ferrule",
+    "turned ash handle",
+    "steel strike hoop with mushroomed end"
+  ],
+  "references": [],
+  "size": [
+    0.246,
+    0.03,
+    0.0296
+  ],
+  "style": "Sharp, cared-for bench chisel: bright ground steel, honed mirror bevel, lacquered ash, aged brass.",
+  "summary": "3/4 in bevel-edge chisel: ground steel blade with honed bevel and flat back, bolster, brass ferrule, ash handle with a steel strike hoop.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "metal",
+    "wood"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
