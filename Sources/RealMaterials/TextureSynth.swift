@@ -176,7 +176,7 @@ public final class TextureSynth: @unchecked Sendable {
 
     func dispatch(_ enc: MTLComputeCommandEncoder, _ ps: MTLComputePipelineState, _ w: Int, _ h: Int) {
         let tw = ps.threadExecutionWidth, th = max(1, ps.maxTotalThreadsPerThreadgroup / tw)
-        enc.dispatchThreads(MTLSize(width: w, height: h, depth: 1), threadsPerThreadgroup: MTLSize(width: tw, height: th, depth: 1))
+        enc.dispatchThreadgroups(MTLSize(width: (w + tw - 1) / tw, height: (h + th - 1) / th, depth: 1), threadsPerThreadgroup: MTLSize(width: tw, height: th, depth: 1))
     }
 
     /// Synchronous convenience: generate a set into owned textures.
