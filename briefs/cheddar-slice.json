@@ -1,0 +1,31 @@
+{
+  "budget": 6000,
+  "id": "cheddar-slice",
+  "kind": "prop",
+  "materials": [
+    "food.cheddar"
+  ],
+  "name": "Cheddar slice",
+  "notes": "",
+  "parts": [
+    "square slice",
+    "slight droop"
+  ],
+  "references": [],
+  "size": [
+    0.09,
+    0.006,
+    0.09
+  ],
+  "style": "deli cheddar slice",
+  "summary": "Cheddar slice, 9 x 9 cm x 3 mm: orange processed cheddar with soft edges; melts glossy.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

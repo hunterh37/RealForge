@@ -1,0 +1,32 @@
+{
+  "budget": 6000,
+  "id": "beef-patty",
+  "kind": "prop",
+  "materials": [
+    "food.ground-beef"
+  ],
+  "name": "Ground beef ball",
+  "notes": "",
+  "parts": [
+    "loosely packed lumpy ball",
+    "coarse grind worms",
+    "fat specks"
+  ],
+  "references": [],
+  "size": [
+    0.062,
+    0.048,
+    0.063
+  ],
+  "style": "80/20 ground beef portion, 120 g",
+  "summary": "Ground beef 80/20, 120 g: loosely rolled coarse-grind ball, red lean with white fat specks; browns when cooked.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

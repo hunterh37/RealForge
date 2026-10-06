@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9956936,
+  "date" : "2026-10-06",
+  "final" : 0.8798678,
+  "fingerprint" : "40f00c840a89b201",
+  "id" : "spaghetti",
+  "iterations" : 1,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 9,
+    "grounding" : 8,
+    "materials" : 8,
+    "proportion" : 9,
+    "silhouette" : 9,
+    "wear" : 6
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.81750005
+}

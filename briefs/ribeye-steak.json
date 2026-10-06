@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "ribeye-steak",
+  "kind": "prop",
+  "materials": [
+    "food.beef-raw",
+    "food.beef-section",
+    "food.beef-fat"
+  ],
+  "name": "Ribeye steak",
+  "notes": "",
+  "parts": [
+    "marbled lean eye",
+    "fat seam between eye and spinalis cap",
+    "fat cap rim on the outer edge",
+    "uneven butcher-cut faces"
+  ],
+  "references": [],
+  "size": [
+    0.19,
+    0.026,
+    0.15
+  ],
+  "style": "raw boneless ribeye steak, 2.5 cm thick",
+  "summary": "Raw boneless ribeye, 20 x 14 x 2.5 cm: marbled lean eye, spinalis cap, fat seam and fat cap rim.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

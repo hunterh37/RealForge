@@ -1,0 +1,32 @@
+{
+  "budget": 7000,
+  "id": "parmesan-wedge",
+  "kind": "prop",
+  "materials": [
+    "food.parmesan",
+    "food.parmesan-rind"
+  ],
+  "name": "Parmesan wedge",
+  "notes": "",
+  "parts": [
+    "craggy crystalline paste",
+    "curved rind band with pin-dot stencil"
+  ],
+  "references": [],
+  "size": [
+    0.099,
+    0.045,
+    0.078
+  ],
+  "style": "Parmigiano-Reggiano wedge",
+  "summary": "Parmigiano-Reggiano wedge, 11 x 8 x 4.5 cm: crystalline crumbly straw paste, curved golden rind with pin-dot stencil.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
