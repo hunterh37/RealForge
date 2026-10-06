@@ -1,0 +1,36 @@
+{
+  "budget": 9000,
+  "id": "hosta",
+  "kind": "prop",
+  "materials": [
+    "leaf.hosta",
+    "plant.stem"
+  ],
+  "name": "Hosta",
+  "notes": "",
+  "parts": [
+    "rosette of 22-32 broad heart-shaped leaves",
+    "leaves on arching petioles from the crown",
+    "ribbed parallel veins",
+    "cupped leaf blades with drooping tips"
+  ],
+  "references": [],
+  "size": [
+    0.8,
+    0.45,
+    0.8
+  ],
+  "style": "shade hosta, blue-green with pale margins, healthy",
+  "summary": "Hosta, 0.45 m: rosette of 22-32 broad ribbed heart-shaped leaves on arching petioles.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "foliage",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

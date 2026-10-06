@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99999905,
+  "date" : "2026-10-06",
+  "final" : 0.8553747,
+  "fingerprint" : "169825a68b70ff44",
+  "id" : "pergola",
+  "iterations" : 4,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 8,
+    "materials" : 7,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.77750003
+}

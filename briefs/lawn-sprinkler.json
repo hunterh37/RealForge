@@ -1,0 +1,39 @@
+{
+  "budget": 4000,
+  "id": "lawn-sprinkler",
+  "kind": "prop",
+  "materials": [
+    "metal.aluminum-brushed",
+    "plastic.yellow",
+    "plastic.black",
+    "metal.brass"
+  ],
+  "name": "Oscillating lawn sprinkler",
+  "notes": "",
+  "parts": [
+    "sled base",
+    "spray tube",
+    "nozzles",
+    "gear housing",
+    "hose inlet"
+  ],
+  "references": [],
+  "size": [
+    0.54,
+    0.095,
+    0.19
+  ],
+  "style": "sun-bleached plastic, wet grime",
+  "summary": "Oscillating lawn sprinkler, 0.5 m: aluminum spray tube with nozzle row on a sled base, gear housing, hose inlet.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "tool",
+    "metal"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

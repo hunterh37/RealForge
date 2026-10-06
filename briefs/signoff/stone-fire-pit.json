@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99920636,
+  "date" : "2026-10-06",
+  "final" : 0.8518472,
+  "fingerprint" : "50a4a11ba539f984",
+  "id" : "stone-fire-pit",
+  "iterations" : 3,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 8,
+    "materials" : 7,
+    "proportion" : 8,
+    "silhouette" : 8,
+    "wear" : 8
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.7725
+}

@@ -1,0 +1,38 @@
+{
+  "budget": 14500,
+  "id": "knockout-azalea",
+  "kind": "prop",
+  "materials": [
+    "leaf.azalea",
+    "flower.azalea",
+    "leaf.boxwood-mass",
+    "plant.stem"
+  ],
+  "name": "Azalea in bloom",
+  "notes": "",
+  "parts": [
+    "mounded evergreen shrub of small elliptic leaves",
+    "many pink funnel flowers in clusters at the branch tips",
+    "flowers covering most of the crown",
+    "stems at the base"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    0.85,
+    1.0
+  ],
+  "style": "evergreen azalea in full spring bloom, hot pink",
+  "summary": "Evergreen azalea in bloom, 0.85 m: mound of small leaves covered in clusters of pink funnel flowers.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "flower",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

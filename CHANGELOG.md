@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.2.0
+
+Landscaping: a designed backyard scene and 35 gated landscaping props for yard design and preview apps.
+
+- Scene `backyard-landscape`: 14 x 10 m backyard with lawn, herringbone paver patio, stone fire pit,
+  adirondack chairs, mulch beds with shrubs, path lights, pergola, retaining wall and trees.
+- Plants: boxwood-shrub, boxwood-ball, privet-hedge (tileable `length`), hydrangea-bush, rose-bush,
+  lavender-clump, hosta, ornamental-grass, arborvitae, knockout-azalea, daylily-clump, potted-boxwood.
+  Shared `ShrubKit` helper.
+- Hardscape: paver-patio (`w`/`d`, herringbone), retaining-wall-block (`length`/`courses`), mulch-bed
+  (`radius`/`shape`), river-rock-bed, steel-edging (`length`), stone-fire-pit, pergola, picket-fence,
+  raised-garden-bed, sod-roll, concrete-stepper, garden-fountain.
+- Yard: path-light and landscape-spotlight (off/on rigs), patio-umbrella (closed/open), birdbath,
+  adirondack-chair, hose-reel, lawn-sprinkler, garden-trellis, terracotta-planter, cedar-planter-box,
+  solar-lantern; brief and sign-off for the existing wheelbarrow.
+- Materials `Library/Landscaping.swift`, texture programs `paverHerringbone` and `barkMulch` in
+  `Shaders/LandscapingShaders.swift`; tag `landscaping`.
+- Fix: duplicate material key `wood.butcher-block`; the woodshop workbench top is now `wood.bench-maple`.
+
 ## 5.1.0
 
 Woodshop: a home woodshop scene and 30 gated woodworking props, built for training sims (stock that can be

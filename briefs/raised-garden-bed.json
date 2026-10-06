@@ -1,0 +1,40 @@
+{
+  "budget": 13500,
+  "id": "raised-garden-bed",
+  "kind": "prop",
+  "materials": [
+    "wood.cedar",
+    "soil.potting",
+    "metal.galvanized",
+    "food.stem-green"
+  ],
+  "name": "Cedar raised garden bed",
+  "notes": "",
+  "parts": [
+    "2x6 board walls two courses",
+    "4x4 corner posts",
+    "mid stakes",
+    "cap rail",
+    "screws",
+    "mounded soil"
+  ],
+  "references": [],
+  "size": [
+    2.44,
+    0.33,
+    1.24
+  ],
+  "style": "cedar bed, dark garden soil",
+  "summary": "Cedar raised garden bed, 2.4 x 1.2 m x 0.29 m: two courses of 2x6 boards on 4x4 corner posts, top cap rail, mounded garden soil.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "wood",
+    "container"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,44 @@
+{
+  "budget": 14500,
+  "id": "stone-fire-pit",
+  "kind": "prop",
+  "materials": [
+    "stone.wall-block",
+    "stone.cap",
+    "metal.corten",
+    "ground.gravel:3A3230",
+    "wood.charred",
+    "wood.ash",
+    "emissive.ember"
+  ],
+  "name": "Round stone fire pit",
+  "notes": "",
+  "parts": [
+    "tapered wedge blocks two courses",
+    "cap ring",
+    "steel liner ring",
+    "lava rock floor",
+    "charred logs",
+    "ash bed",
+    "embers"
+  ],
+  "references": [],
+  "size": [
+    1.15,
+    0.335,
+    1.15
+  ],
+  "style": "split-face block kit, soot inside, burnt-down fire",
+  "summary": "Round stone fire pit, 1.1 m: two courses of tapered split-face wedge blocks, cap ring, Corten liner, lava-rock floor and charred logs in ash.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "stone",
+    "camp"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

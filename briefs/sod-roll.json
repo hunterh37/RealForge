@@ -1,0 +1,38 @@
+{
+  "budget": 14800,
+  "id": "sod-roll",
+  "kind": "prop",
+  "materials": [
+    "grass.lawn-thatch",
+    "soil.sod",
+    "plant.stem"
+  ],
+  "name": "Rolled turf sod",
+  "notes": "",
+  "parts": [
+    "rolled soil mat",
+    "grass outer face",
+    "unrolled tail",
+    "torn edges",
+    "soil crumbs"
+  ],
+  "references": [],
+  "size": [
+    0.7,
+    0.215,
+    0.489
+  ],
+  "style": "fresh-cut sod roll, green grass, dark soil",
+  "summary": "Rolled turf sod, 0.6 m wide: 2.5 cm soil-and-root mat rolled grass-in to a ~0.3 m roll with its loose end unrolled on the ground.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "grass",
+    "ground"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

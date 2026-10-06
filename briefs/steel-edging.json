@@ -1,0 +1,38 @@
+{
+  "budget": 7500,
+  "id": "steel-edging",
+  "kind": "prop",
+  "materials": [
+    "metal.corten",
+    "mulch.bark",
+    "ground.dirt"
+  ],
+  "name": "Corten steel landscape edging",
+  "notes": "",
+  "parts": [
+    "3 mm steel strip",
+    "rolled top bead",
+    "triangular ground stakes",
+    "rivets",
+    "joiner tab"
+  ],
+  "references": [],
+  "size": [
+    2.456,
+    0.1,
+    0.485
+  ],
+  "style": "weathering steel with even orange-brown patina",
+  "summary": "Corten steel landscape edging, 2.4 m: 3 mm x 10 cm curved strip, rolled top, riveted stakes, joiner tab, mulch and lawn soil.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "metal",
+    "barrier"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

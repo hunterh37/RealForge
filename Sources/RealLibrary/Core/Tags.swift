@@ -25,6 +25,8 @@ public enum AssetTag {
         "ceiling",
         // RealityHD 6: kitchen and cooking
         "appliance", "cookware",
+        // landscaping: yard props, hardscape, planting
+        "landscaping",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

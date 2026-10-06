@@ -1,0 +1,38 @@
+{
+  "budget": 9000,
+  "id": "wheelbarrow",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "wood.oak",
+    "rubber.tire"
+  ],
+  "name": "Wheelbarrow",
+  "notes": "",
+  "parts": [
+    "steel tray with rolled rim",
+    "hardwood handles",
+    "steel legs",
+    "braces",
+    "pneumatic wheel",
+    "axle"
+  ],
+  "references": [],
+  "size": [
+    1.68,
+    0.68,
+    0.72
+  ],
+  "style": "contractor wheelbarrow, chipped paint, worn grips",
+  "summary": "Contractor wheelbarrow: pressed steel tray with rolled rim, hardwood handles, steel legs, pneumatic wheel.",
+  "tags": [
+    "prop",
+    "construction",
+    "metal",
+    "tool",
+    "vehicle"
+  ],
+  "theme": "Construction",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

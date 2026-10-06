@@ -1,0 +1,39 @@
+{
+  "budget": 14000,
+  "id": "rose-bush",
+  "kind": "prop",
+  "materials": [
+    "leaf.rose",
+    "flower.rose",
+    "plant.stem",
+    "leaf.boxwood-mass"
+  ],
+  "name": "Rose bush",
+  "notes": "",
+  "parts": [
+    "upright canes from a woody crown",
+    "dark green serrated compound leaves",
+    "14-20 open cupped rose blooms",
+    "buds",
+    "bare lower canes"
+  ],
+  "references": [],
+  "size": [
+    0.9,
+    1.0,
+    0.9
+  ],
+  "style": "shrub rose in bloom, red flowers, healthy glossy leaves",
+  "summary": "Shrub rose, 1.0 m: woody canes, dark serrated leaves, 14-20 red cupped blooms and buds.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "flower",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

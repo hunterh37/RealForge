@@ -28,7 +28,7 @@ public struct Workbench: RealArticulated {
     /// Top thickness, meters.
     public var topThickness: Float = 0.07
     /// Top material (grain along X).
-    public var topMaterial: MaterialKey = "wood.butcher-block"
+    public var topMaterial: MaterialKey = "wood.bench-maple"
     /// Strip tone tints cycled with the plain top material so the laminations read (sRGB hex).
     public var stripTints: [UInt32] = [0xD3B68C, 0xE6D2AE]
     /// End-grain material for the top strips, legs and chop.

@@ -1,0 +1,37 @@
+{
+  "budget": 10000,
+  "id": "daylily-clump",
+  "kind": "prop",
+  "materials": [
+    "grass.reed",
+    "plant.stem",
+    "flower.daylily"
+  ],
+  "name": "Daylily clump",
+  "notes": "",
+  "parts": [
+    "fountain of long arching strap leaves",
+    "8-14 bare scapes above the leaves",
+    "orange six-petal trumpet flowers",
+    "closed buds on the scapes"
+  ],
+  "references": [],
+  "size": [
+    0.8,
+    0.8,
+    0.8
+  ],
+  "style": "orange daylily in summer bloom",
+  "summary": "Daylily clump, 0.8 m: arching strap leaves and scapes with orange six-petal trumpet flowers and buds.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "flower",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

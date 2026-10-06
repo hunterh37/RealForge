@@ -31,7 +31,7 @@ public extension MaterialLibrary {
             $0.roughness = 0.88
         },
         // Butcher-block maple workbench top: edge-glued strips under an oil finish.
-        MaterialSpec(key: "wood.butcher-block", program: .woodPlank).with {
+        MaterialSpec(key: "wood.bench-maple", program: .woodPlank).with {
             $0.colorA = linear(0xDCC39A); $0.colorB = linear(0xA9875C); $0.knobs = V4(0.1, 0.5, 0, 0); $0.seed = 806
             $0.tileSize = 0.6; $0.normalStrength = 0.8; $0.roughness = 0.45; $0.clearcoat = 0.3
         },

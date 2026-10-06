@@ -1,0 +1,36 @@
+{
+  "budget": 12000,
+  "id": "ornamental-grass",
+  "kind": "prop",
+  "materials": [
+    "grass.tall",
+    "plant.stem",
+    "grass.plume"
+  ],
+  "name": "Ornamental grass",
+  "notes": "",
+  "parts": [
+    "fountain of long arching blades",
+    "dense base clump",
+    "15-30 feathery seed plumes above the blades"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    1.3,
+    1.0
+  ],
+  "style": "fountain grass in late summer, green blades, buff plumes",
+  "summary": "Fountain grass, 1.3 m: dense clump of long arching blades with 15-30 buff seed plumes.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "grass",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,40 @@
+{
+  "budget": 4000,
+  "id": "solar-lantern",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:1E1E1E",
+    "glass.clear",
+    "emissive.warm",
+    "screen.off"
+  ],
+  "name": "Solar lantern",
+  "notes": "",
+  "parts": [
+    "base",
+    "corner posts",
+    "glass panes",
+    "solar panel lid",
+    "hanging loop",
+    "LED"
+  ],
+  "references": [],
+  "size": [
+    0.17,
+    0.28,
+    0.17
+  ],
+  "style": "black powder coat, light dust",
+  "summary": "Solar garden lantern, 0.32 m: square metal cage, glass panes, solar panel lid, hanging loop, warm LED inside.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "light",
+    "glass"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
