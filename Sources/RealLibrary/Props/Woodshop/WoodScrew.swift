@@ -15,7 +15,8 @@ public struct WoodScrew: RealAsset {
     public static let author = "hunter"
     public static let preview = PreviewHint(azimuth: -50, elevation: 30, distance: 0.13, studio: true)
 
-    public enum Drive: Sendable { case phillips, square }
+    /// Drive recess: #2 Phillips, #2 square (Robertson) or T25 six-lobe star (Torx-style).
+    public enum Drive: Sendable { case phillips, square, star }
 
     /// Overall length, head top to point (m); 1-1/4 in. Clamped to 0.019...0.076 (3/4 in to 3 in).
     public var length: Float = 0.03175
@@ -33,11 +34,22 @@ public struct WoodScrew: RealAsset {
     public var threadFraction: Float = 0.62
     /// Drive recess.
     public var drive: Drive = .phillips
-    /// Plating: `metal.screw-zinc` (bright zinc) or `metal.screw-zinc-yellow`.
+    /// Plating: `metal.screw-zinc` (bright zinc), `metal.screw-zinc-yellow` or `metal.screw-ceramic-tan`.
     public var plate: MaterialKey = "metal.screw-zinc"
     /// Pine fibres packed in the thread root near the point (a used screw).
     public var packedFibres = true
     public init() {}
+
+    /// Coated exterior deck screw, #9 x 2-1/2 in: 4.50 mm (0.177 in) major diameter, 3.2 mm root, 10 TPI
+    /// (2.54 mm pitch) coarse thread over the lower 60 percent, 8.6 mm countersunk head with a T25 six-lobe
+    /// star recess, tan ceramic coating (ACQ-rated treated lumber). LOD0 runs about 6k triangles.
+    public static var deck: WoodScrew {
+        var s = WoodScrew()
+        s.length = 0.0635; s.majorDiameter = 0.0045; s.rootDiameter = 0.0032; s.shankDiameter = 0.0041
+        s.headDiameter = 0.0086; s.pitch = 0.00254; s.threadFraction = 0.6; s.drive = .star
+        s.plate = "metal.screw-ceramic-tan"
+        return s
+    }
 
     // MARK: public frame
 
@@ -163,6 +175,18 @@ public struct WoodScrew: RealAsset {
             outline = sq(s)
             rings = [outline, sq(s * 0.88), sq(s * 0.55)]
             for k in 0..<4 { chains.append([outline[k * 2], outline[k * 2 + 1], outline[(k * 2 + 2) % 8]]) }
+        case .star:
+            // Six rounded lobes, 24 samples CCW from angle 0; four chains of 7 samples each.
+            let ra = headDiameter * 0.265
+            func star(_ r: Float) -> [V2] {
+                (0..<24).map { k -> V2 in
+                    let a = Float(k) / 24 * 2 * .pi
+                    return V2(cos(a), sin(a)) * r * (0.8 + 0.2 * cos(6 * a))
+                }
+            }
+            outline = star(ra)
+            rings = [outline, star(ra * 0.86), star(ra * 0.42)]
+            for k in 0..<4 { chains.append((0...6).map { outline[(k * 6 + $0) % 24] }) }
         }
         var top = Surface(material: plate)
         let quarter = n / 4
@@ -183,7 +207,7 @@ public struct WoodScrew: RealAsset {
         top.computeTangents()
         m.add(top)
         if recess {
-            let depths: [Float] = drive == .phillips ? [0, 0.0011, 0.0021] : [0, 0.0016, 0.0027]
+            let depths: [Float] = drive == .phillips ? [0, 0.0011, 0.0021] : (drive == .star ? [0, 0.0013, 0.0024] : [0, 0.0016, 0.0027])
             let r3 = zip(rings, depths).map { Prim.ring($0.0, y: L - $0.1) }
             m.add(Prim.loft(r3, capEnd: true, material: plate))
         }

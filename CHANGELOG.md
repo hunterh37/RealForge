@@ -1,5 +1,26 @@
 # Changelog
 
+## 5.3.0
+
+Woodshop missions: hardware, roofing and a mission ticket for in-shop jobs.
+
+- `butt-hinge` (articulated): 3 x 3 in steel butt hinge, 2.2 mm leaves with 1/4 in radius corners, three
+  swaged #9 countersunk holes per leaf, 5-knuckle 11 mm barrel, removable 3.3 mm pin with button head and
+  bottom button cap, satin nickel. Joints `leaf` 0...180 deg (0 closed, 180 open flat) and `pin`
+  0...0.08 m; states open-flat, closed, open-90, pin-out. Points `pinOrigin`, `pinDirection`, `pinHead`,
+  `fixedLeafHoles`, `movingLeafHoles(angle:)`, `movingLeafScrewAxis(angle:)`.
+- `shingle-strip`: 3-tab asphalt shingle, 36 x 12 in, 5 in exposure, two 1/4 in keyway cutouts, granule
+  coat with per-tab blend shading (`color` knob), self-seal dashes, painted nail line. Points
+  `nailPoints`, `tabCenters`, `cutoutTops`.
+- `job-ticket`: letter-size hardboard clipboard with a riveted steel clip, pencil dent and a blueprint
+  sheet (border, deck framing plan, dimensions, section bubble, title block) with a curled corner.
+  Points `clipPress`, `clipJaw`, `sheetCenter`, `titleBlockCenter`, `curledCorner`, `pencilSlot`, `grip`.
+- `wood-screw`: `Drive.star` (T25 six-lobe recess) and `WoodScrew.deck`, a #9 x 2-1/2 in tan
+  ceramic-coated deck screw preset.
+- Materials: `wood.lumber-cedar`, `wood.plywood-osb`, `metal.hinge-satin-nickel`,
+  `metal.screw-ceramic-tan`, `roofing.shingle-granule`, `roofing.shingle-sealant`.
+- WoodshopMissionTests.
+
 ## 5.2.0
 
 Landscaping: a designed backyard scene and 35 gated landscaping props for yard design and preview apps.

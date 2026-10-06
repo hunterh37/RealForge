@@ -297,6 +297,38 @@ public extension MaterialLibrary {
             $0.seed = 876; $0.tileSize = 0.8; $0.hasMetallicMap = true; $0.normalStrength = 0.5; $0.roughness = 0.38
             $0.topColor = linear(0x6A5C46); $0.topAmount = 0.7; $0.topLow = 2.45
         },
+        // Western red cedar lumber (decking, fence boards): salmon to reddish brown heartwood, pale sapwood
+        // streaks, soft open grain, rough-planed (no finish).
+        MaterialSpec(key: "wood.lumber-cedar", program: .woodPlank).with {
+            $0.colorA = linear(0xC98A5E); $0.colorB = linear(0x8A4E30); $0.knobs = V4(0.05, 0.7, 0, 0); $0.seed = 881
+            $0.tileSize = 0.8; $0.normalStrength = 1.3; $0.roughness = 0.82
+        },
+        // Oriented strand board: pressed aspen strands in a mottled tan field, darker resin-cooked flakes.
+        MaterialSpec(key: "wood.plywood-osb", program: .terrazzo).with {
+            $0.colorA = linear(0xC9A46E); $0.colorB = linear(0xA67E4C); $0.colorC = linear(0x6E4E2C, 0.5)
+            $0.knobs = V4(70, 0.6, 0.35, 0.45); $0.seed = 882; $0.tileSize = 0.35; $0.resolution = 1024; $0.normalStrength = 0.9
+            $0.roughness = 0.8
+        },
+        // Satin nickel plate on steel hinges (butt-hinge): warm grey, fine brushing along U, low gloss.
+        MaterialSpec(key: "metal.hinge-satin-nickel", program: .brushedMetal).with {
+            $0.colorA = linear(0xB9B5AB); $0.colorB = linear(0x85827A)
+            $0.knobs = V4(0.55, 0.3, 0.3, 0.2); $0.seed = 883; $0.tileSize = 0.05; $0.normalStrength = 0.3
+            $0.hasMetallicMap = true; $0.metallic = 1; $0.roughness = 0.38
+        },
+        // Ceramic-coated deck screw finish (wood-screw deck preset): tan, matte, faintly gritty.
+        MaterialSpec(key: "metal.screw-ceramic-tan", program: .plastic).with {
+            $0.colorA = linear(0xB49A6C); $0.knobs = V4(0.3, 0.35, 0.2, 0); $0.seed = 884; $0.tileSize = 0.03; $0.resolution = 256
+            $0.normalStrength = 0.7; $0.roughness = 0.62
+        },
+        // Asphalt shingle ceramic-coated mineral granules (shingle-strip): mixed grey with dark and light
+        // grains about 1 mm. Tint colorA with `:RRGGBB` for the shingle color.
+        MaterialSpec(key: "roofing.shingle-granule", program: .sand).with {
+            $0.colorA = linear(0x6A6763); $0.colorB = linear(0x2A2826); $0.colorC = linear(0xA8A49C)
+            $0.knobs = V4(0, 0, 0.5, 40); $0.seed = 885; $0.tileSize = 0.06; $0.resolution = 1024; $0.normalStrength = 2.2
+            $0.roughness = 0.92
+        },
+        // Self-seal thermoplastic asphalt strip (shingle-strip): near-black, semi-gloss.
+        MaterialSpec(key: "roofing.shingle-sealant", program: nil).with { $0.baseColor = V3(0.018, 0.016, 0.014); $0.roughness = 0.35 },
         // realityhd:material.woodshop
     ]
 }
