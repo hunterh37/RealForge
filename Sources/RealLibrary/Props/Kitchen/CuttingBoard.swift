@@ -29,7 +29,7 @@ public struct CuttingBoard: RealAsset {
     /// Finger grip depth into each short end (m).
     public var gripDepth: Float = 0.012
     /// Top and bottom faces (end grain).
-    public var top: MaterialKey = "wood.butcher-block"
+    public var top: MaterialKey = "wood.butcher-block-endgrain"
     /// Edges (side grain).
     public var side: MaterialKey = "wood.butcher-block-side"
     public init() {}
