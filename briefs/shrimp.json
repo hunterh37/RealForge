@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "shrimp",
+  "kind": "prop",
+  "materials": [
+    "food.shrimp-raw",
+    "food.shrimp-flesh",
+    "food.shrimp-tail"
+  ],
+  "name": "Shrimp",
+  "notes": "",
+  "parts": [
+    "curled segmented body",
+    "deveined back groove",
+    "tail fan of five paddles"
+  ],
+  "references": [],
+  "size": [
+    0.046,
+    0.015,
+    0.046
+  ],
+  "style": "raw peeled large shrimp, tail on",
+  "summary": "Raw peeled shrimp, 8 cm curled C: translucent grey-pink segmented body, deveined back, tail fan on.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

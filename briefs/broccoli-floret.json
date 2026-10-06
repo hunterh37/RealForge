@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "broccoli-floret",
+  "kind": "prop",
+  "materials": [
+    "food.broccoli",
+    "food.broccoli-stem",
+    "food.broccoli-flesh"
+  ],
+  "name": "Broccoli floret",
+  "notes": "",
+  "parts": [
+    "branching pale stem",
+    "bead-textured floret clusters"
+  ],
+  "references": [],
+  "size": [
+    0.062,
+    0.055,
+    0.059
+  ],
+  "style": "broccoli floret",
+  "summary": "Broccoli floret, 7.5 cm: pale green branching stem, tight dark-green beaded crown clusters; brightens when cooked.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

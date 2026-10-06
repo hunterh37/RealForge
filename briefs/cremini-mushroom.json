@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "cremini-mushroom",
+  "kind": "prop",
+  "materials": [
+    "food.mushroom-cap",
+    "food.mushroom-flesh",
+    "food.mushroom-gills"
+  ],
+  "name": "Cremini mushroom",
+  "notes": "",
+  "parts": [
+    "brown domed cap",
+    "gill layer under the cap",
+    "stout stem"
+  ],
+  "references": [],
+  "size": [
+    0.048,
+    0.037,
+    0.048
+  ],
+  "style": "cremini (baby bella) mushroom",
+  "summary": "Cremini mushroom, 4.8 cm cap: brown domed cap, dark gills under a rolled margin, stout white stem; browns when cooked.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
