@@ -31,7 +31,6 @@ public struct DeskPedestal: RealArticulated {
         let alu: MaterialKey = "metal.aluminum-brushed", dark: MaterialKey = "plastic.black"
         let W = width, H = height, D = depth
         let sheet: Float = 0.01, front: Float = 0.02, plinth: Float = 0.032, topT: Float = 0.022
-        let zFace = D / 2 - front
         let stackLo = plinth, stackHi = H - topT
         let reveal: Float = 0.003
         // Drawer heights as fractions of the stack: box, box, file (top to bottom).

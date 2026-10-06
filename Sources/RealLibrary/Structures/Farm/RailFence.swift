@@ -33,7 +33,7 @@ public struct RailFence: RealAsset {
     }
 
     public func build(seed: UInt64) -> LODModel {
-        var rng = SeededRNG(seed: seed)
+        let rng = SeededRNG(seed: seed)
         var m = Model(name: Self.id)
         let L = length / 2
         let posts: [Float] = endPost ? [-L, L] : [-L]

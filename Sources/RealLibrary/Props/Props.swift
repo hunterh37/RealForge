@@ -207,6 +207,8 @@ public enum Props {
         SodRoll.self,
         ConcreteStepper.self,
         GardenFountain.self,
+        TerracottaPot.self,
+        BrassCandlestick.self,
         // realityhd:prop
     ]
 }

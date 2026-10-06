@@ -55,7 +55,7 @@ Write `build(seed:)`. Rules that decide the score:
 ## 3. Loop
 
 ```sh
-swift build -q && swift run -q realityhd lint <id>          # fix every error and warn first
+swift build -q 2>&1 | grep -E "error:|warning:" | sort -u; swift run -q realityhd lint <id>   # deduped diagnostics, then lint
 swift run -q realityhd gate <id> [--ref briefs/refs/<id>/a.jpg]
 ```
 

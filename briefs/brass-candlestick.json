@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "brass-candlestick",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "plastic.matte:EFE7D4"
+  ],
+  "name": "Brass Candlestick",
+  "notes": "",
+  "parts": [
+    "stepped domed base",
+    "baluster stem with two knops",
+    "drip pan bobeche",
+    "candle socket",
+    "tapered candle with wick and wax drip"
+  ],
+  "references": [],
+  "size": [
+    0.12,
+    0.41,
+    0.12
+  ],
+  "style": "19th century cast brass, tarnish in recesses, polished high points, partly burned taper",
+  "summary": "Turned brass candlestick, 43 cm with its candle: stepped round base, baluster stem with knops, drip pan socket, ivory taper candle.",
+  "tags": [
+    "prop",
+    "decor",
+    "metal",
+    "antique",
+    "handheld"
+  ],
+  "theme": "Decor",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
