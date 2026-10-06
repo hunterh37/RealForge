@@ -1,0 +1,36 @@
+{
+  "budget": 4200,
+  "id": "job-ticket",
+  "kind": "prop",
+  "materials": [
+    "wood.hardboard",
+    "metal.chrome",
+    "paper.sheet"
+  ],
+  "name": "Clipboard job ticket",
+  "notes": "Lies flat, clip toward -Z. In-shop mission ticket.",
+  "parts": [
+    "hardboard clipboard with pencil dent",
+    "low-profile steel clip with rivets",
+    "blueprint sheet with border, plan, title block",
+    "curled sheet corner"
+  ],
+  "references": [],
+  "size": [
+    0.2286,
+    0.019,
+    0.3175
+  ],
+  "style": "Letter-size brown hardboard clipboard, chrome clip, diazo blueprint with white lines.",
+  "summary": "Hardboard clipboard with a steel clip holding a blueprint job sheet: title block, plan lines, curled corner, pencil dent.",
+  "tags": [
+    "prop",
+    "workshop",
+    "handheld",
+    "paper",
+    "wood"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}
