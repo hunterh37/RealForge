@@ -5,7 +5,7 @@ public extension MaterialLibrary {
     /// cast iron, knife steel, POM handles, sheet-pan aluminum, measuring glass.
     static let cookware: [MaterialSpec] = [
         // End-grain butcher block: maple and walnut checker, 3.75 cm blocks, knife scoring, oiled.
-        MaterialSpec(key: "wood.butcher-block", program: .butcherBlock).with {
+        MaterialSpec(key: "wood.butcher-block-endgrain", program: .butcherBlock).with {
             $0.colorA = linear(0xC9A676); $0.colorB = linear(0x4A3020); $0.colorC = linear(0x2E2016)
             $0.knobs = V4(12, 18, 0.8, 0.62); $0.seed = 1201; $0.tileSize = 0.45; $0.resolution = 2048; $0.normalStrength = 0.8
             $0.roughness = 0.62
