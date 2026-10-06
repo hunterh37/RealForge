@@ -1,0 +1,35 @@
+{
+  "budget": 4000,
+  "id": "push-stick",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool"
+  ],
+  "name": "Push stick",
+  "notes": "Lies flat on its side; length along X, notch end at +X.",
+  "parts": [
+    "flat molded shaft about 14 in long, 1/2 in thick",
+    "closed handle loop with finger opening and grip ridges",
+    "notched heel at the tip",
+    "raised molded rim and ejector pin marks",
+    "blade nick in the heel"
+  ],
+  "references": [],
+  "size": [
+    0.356,
+    0.0135,
+    0.1
+  ],
+  "style": "orange molded plastic shop push stick, scuffed heel",
+  "summary": "Orange molded plastic push stick, 14 in long: flat shaft, closed handle loop with grip ridges, notched heel.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "plastic"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -155,7 +155,14 @@ public struct RealScene {
                 } else { groups[k] = levels; order.append(k) }
             }
         }
-        return order.map { k in Single(asset: LODModel(levels: groups[k]!, switchDistances: k.distances), at: .identity) }
+        return order.map { k in
+            // A split can leave lower levels empty (transparent detail only in LOD0, such as decals). Empty
+            // meshes fail RealityKit validation, so keep the non-empty prefix: the detail stays at its last
+            // populated level instead of vanishing.
+            var levels = groups[k]!
+            if let firstEmpty = levels.firstIndex(where: { $0.triangleCount == 0 }) { levels = Array(levels.prefix(Swift.max(1, firstEmpty))) }
+            return Single(asset: LODModel(levels: levels, switchDistances: Array(k.distances.prefix(levels.count - 1))), at: .identity)
+        }
     }
 
     /// Applies the AO bake to `bake` singles in world space, occluded by everything static.

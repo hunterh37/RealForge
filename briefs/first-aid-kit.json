@@ -1,0 +1,47 @@
+{
+  "budget": 9000,
+  "id": "first-aid-kit",
+  "kind": "prop",
+  "materials": [
+    "plastic.gloss",
+    "paper.sheet",
+    "paper.exam",
+    "fabric.linen",
+    "rubber.silicone",
+    "metal.chrome",
+    "label.supply-small"
+  ],
+  "name": "First aid cabinet",
+  "notes": "RealArticulated part door, states closed/open.",
+  "parts": [
+    "ABS case with molded rim",
+    "hinged front door with white cross",
+    "piano hinge on the left edge",
+    "door latch",
+    "carry handle on top",
+    "shelf divider",
+    "gauze pad packs",
+    "bandage boxes",
+    "tape roll",
+    "glove pairs",
+    "wall mounting tabs"
+  ],
+  "references": [],
+  "size": [
+    0.377,
+    0.458,
+    0.141
+  ],
+  "style": "red ABS cabinet, lightly scuffed, stocked",
+  "summary": "Wall-mount ABS first aid cabinet with a white cross on a hinged front door, stocked with gauze, bandage boxes, tape and gloves.",
+  "tags": [
+    "prop",
+    "workshop",
+    "plastic",
+    "medical",
+    "articulated"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

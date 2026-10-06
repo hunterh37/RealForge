@@ -1,0 +1,36 @@
+{
+  "id": "plywood-sheet",
+  "kind": "prop",
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08,
+  "references": [],
+  "name": "Plywood sheet",
+  "budget": 400,
+  "size": [
+    1.22,
+    0.019,
+    0.61
+  ],
+  "summary": "3/4 in sanded plywood panel, 2 x 4 ft: veneer faces, seven-ply edges, grain-continuous crosscut and rip helpers.",
+  "tags": [
+    "prop",
+    "workshop",
+    "wood"
+  ],
+  "materials": [
+    "wood.plywood",
+    "wood.plywood-edge",
+    "wood.lumber-stamp",
+    "wood.plywood-pencil"
+  ],
+  "parts": [
+    "rotary-cut softwood face veneer, grain along the length, football patches",
+    "seven-ply edges with dark glue lines and core voids",
+    "crisp factory-cut arrises",
+    "inked mill grade stamp on the face",
+    "pencil cut line with an X on the waste side"
+  ],
+  "style": "New sanded 3/4 in sheathing-grade plywood project panel, clean faces.",
+  "notes": "Flat panel lying on the floor."
+}

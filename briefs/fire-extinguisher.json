@@ -1,0 +1,45 @@
+{
+  "budget": 7000,
+  "id": "fire-extinguisher",
+  "kind": "prop",
+  "materials": [
+    "metal.enamel",
+    "metal.aluminum-brushed",
+    "rubber",
+    "label.fire-extinguisher",
+    "metal.chrome",
+    "plastic.matte",
+    "label.inspection"
+  ],
+  "name": "Fire extinguisher",
+  "notes": "Knob bracket adds the wall bracket behind the cylinder.",
+  "parts": [
+    "red steel cylinder with domed ends",
+    "aluminum valve body",
+    "squeeze lever and carry handle",
+    "pressure gauge with green zone",
+    "pull pin with ring and plastic tamper seal",
+    "rubber hose",
+    "nozzle clipped to the side",
+    "hose retaining clip",
+    "generic label band",
+    "optional wall bracket"
+  ],
+  "references": [],
+  "size": [
+    0.224,
+    0.413,
+    0.115
+  ],
+  "style": "new 5 lb ABC unit, slightly dusty, scuffed base ring",
+  "summary": "5 lb ABC dry chemical extinguisher: red steel cylinder, valve with gauge, pinned squeeze lever, hose and nozzle clipped to the side, label band.",
+  "tags": [
+    "prop",
+    "workshop",
+    "metal",
+    "sign"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

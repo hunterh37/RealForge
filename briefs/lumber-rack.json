@@ -1,0 +1,53 @@
+{
+  "id": "lumber-rack",
+  "kind": "prop",
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08,
+  "references": [],
+  "name": "Cantilever lumber rack",
+  "budget": 15000,
+  "size": [
+    3.05,
+    2.145,
+    0.453
+  ],
+  "summary": "Wall cantilever lumber rack: three steel uprights, five arm levels of 2x4s, 1x6s, 2x6s, trim and hardwood, plywood offcuts leaning below.",
+  "tags": [
+    "prop",
+    "workshop",
+    "wood",
+    "metal",
+    "industrial"
+  ],
+  "materials": [
+    "metal.rack-powdercoat",
+    "metal.galvanized",
+    "rubber",
+    "wood.lumber-pine",
+    "wood.lumber-oak",
+    "wood.lumber-maple",
+    "wood.lumber-walnut",
+    "wood.endgrain-fresh",
+    "wood.lumber-stamp",
+    "wood.plywood",
+    "wood.plywood-edge",
+    "wood.plywood-pencil",
+    "wood.pine-aged",
+    "plastic.matte",
+    "metal.galvanized"
+  ],
+  "parts": [
+    "three powder-coated steel tube uprights against the wall with cap plates",
+    "wall bracket plates with lag bolts",
+    "five levels of cantilever arms with sleeve brackets, gussets, upturned end stops and rubber caps",
+    "stacks of 8 ft and 7 ft SPF 2x4s, 1x6s, 2x6s, 1x4 and 1x2 trim with sawn ends and grade stamps",
+    "planed oak, maple and walnut boards of mixed widths and lengths",
+    "two plywood offcuts leaning on the uprights below the bottom arms",
+    "floor foot plates with anchor bolts",
+    "wax-sealed hardwood ends",
+    "a few grey old boards on the top arms"
+  ],
+  "style": "Home or small pro shop wall rack, black powder coat, a working stock of construction lumber and a few hardwood boards.",
+  "notes": "Back at z = 0 (wall plane), faces +Z; size measured with boards overhanging the uprights."
+}

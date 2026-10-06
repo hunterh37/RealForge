@@ -1,0 +1,22 @@
+{
+  "budget": 3400,
+  "id": "wood-screw",
+  "kind": "prop",
+  "materials": ["metal.screw-zinc", "metal.screw-zinc-yellow"],
+  "name": "#8 x 1-1/4 in wood screw",
+  "notes": "Lies on its side, axis along X, head at -X. Knob length 0.019...0.076 m.",
+  "parts": [
+    "flat countersunk head with Phillips drive recess",
+    "smooth unthreaded shank",
+    "single-start helical thread",
+    "gimlet point"
+  ],
+  "references": [],
+  "size": [0.032, 0.0082, 0.0082],
+  "style": "Generic zinc-plated #8 flat-head wood screw, bright plate.",
+  "summary": "#8 x 1-1/4 in flat-head wood screw: countersunk Phillips head, partial helical thread, gimlet point, zinc plate.",
+  "tags": ["prop", "workshop", "handheld", "metal"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

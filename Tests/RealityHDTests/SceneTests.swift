@@ -31,3 +31,20 @@ import RealMaterials
         #expect(s.singles.count == Props.all.count + 1)
     }
 }
+
+@Suite struct BatchTests {
+    /// Transparent detail only in LOD0 must not produce empty lower levels (RealityKit rejects empty meshes).
+    @Test func transparentDetailOnlyInLOD0KeepsNonEmptyLevels() {
+        var l0 = Model(name: "a"), l1 = Model(name: "a")
+        l0.add(Prim.roundedBox(V3(0.5, 0.5, 0.5), radius: 0.01, material: "wood.lumber-pine"), .identity)
+        l0.add(Prim.roundedBox(V3(0.1, 0.01, 0.1), radius: 0.001, material: "glass.clear"), .identity)
+        l1.add(Prim.roundedBox(V3(0.5, 0.5, 0.5), radius: 0.01, bevelSegments: 1, material: "wood.lumber-pine"), .identity)
+        let s = RealScene.Single(asset: LODModel(levels: [l0, l1], switchDistances: [6]), at: .identity)
+        let out = RealScene.batches([s], cell: 4)
+        #expect(out.count == 2)
+        for b in out {
+            #expect(b.asset.levels.allSatisfy { $0.triangleCount > 0 })
+            #expect(b.asset.switchDistances.count == b.asset.levels.count - 1)
+        }
+    }
+}

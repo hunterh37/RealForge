@@ -1,0 +1,52 @@
+{
+  "budget": 9000,
+  "id": "jigsaw",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool",
+    "rubber.cordless-grip",
+    "rubber",
+    "metal.stainless",
+    "metal.diecast",
+    "metal.sawblade",
+    "metal.chrome",
+    "plastic.clear",
+    "plastic.matte"
+  ],
+  "name": "Cordless jigsaw",
+  "notes": "Top-handle cordless jigsaw: about 245 mm long, 210 mm tall above the shoe, shoe 115 x 68 mm; blade hangs about 65 mm below the shoe. Cutting direction +X. Brief height is the bounding box including the blade below the shoe.",
+  "parts": [
+    "stamped steel bevel shoe with blade notch",
+    "die-cast gear housing",
+    "teal motor housing with vents",
+    "closed top handle with rubber overmold",
+    "trigger and lock-on button",
+    "speed dial",
+    "orbital selector lever",
+    "blade roller guide and wire finger guard",
+    "clear chip shield",
+    "T-shank blade on the plunger with tool-free clamp",
+    "rear slide-on battery pack"
+  ],
+  "references": [],
+  "size": [
+    0.255,
+    0.268,
+    0.08
+  ],
+  "style": "same teal/black cordless family as cordless-drill, scuffed shoe, sawdust in the corners",
+  "summary": "Cordless top-handle jigsaw on its steel shoe: rubber D handle, locking trigger, speed dial, orbital selector, roller guide, chip shield, T-shank blade.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "articulated",
+    "plastic",
+    "rubber",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

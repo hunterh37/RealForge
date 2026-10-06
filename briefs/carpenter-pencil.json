@@ -1,0 +1,36 @@
+{
+  "budget": 3000,
+  "id": "carpenter-pencil",
+  "kind": "prop",
+  "materials": [
+    "plastic.pencil-lacquer",
+    "wood.pencil-cedar",
+    "graphite.pencil"
+  ],
+  "name": "Carpenter pencil",
+  "notes": "Lies on its wide face. Points: grip, tip.",
+  "parts": [
+    "flat rounded-rectangle cedar body in red gloss lacquer",
+    "knife-whittled point with faceted cuts and ragged paint edge",
+    "rectangular lead shaved to a chisel point",
+    "square-cut back end showing cedar and lead"
+  ],
+  "references": [],
+  "size": [
+    0.17,
+    0.0066,
+    0.0127
+  ],
+  "style": "Freshly knife-sharpened carpenter pencil, glossy lacquer.",
+  "summary": "Flat carpenter pencil: red-lacquered cedar, knife-sharpened chisel point with exposed rectangular graphite.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "wood"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

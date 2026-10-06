@@ -1,0 +1,22 @@
+{
+  "budget": 12500,
+  "id": "screw-box",
+  "kind": "prop",
+  "materials": ["paper.screwbox-kraft", "metal.screw-zinc", "paper.sheet"],
+  "name": "Small box of wood screws",
+  "notes": "Open kraft cardboard box, lid flap folded back, filled with #8 wood screws.",
+  "parts": [
+    "kraft cardboard box with folded walls and glued flap",
+    "hinged lid flap folded open",
+    "printed label band with size swatch",
+    "pile of #8 x 1-1/4 in wood screws"
+  ],
+  "references": [],
+  "size": [0.133, 0.116, 0.101],
+  "style": "Generic hardware-store box of 100 wood screws, kraft board, yellow label band, lid flap creased open.",
+  "summary": "Small open kraft box of #8 x 1-1/4 in wood screws: folded cardboard, lid flap open, yellow label band, screw pile.",
+  "tags": ["prop", "workshop", "handheld", "metal", "paper"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}
