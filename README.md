@@ -25,6 +25,8 @@ every PBR texture is synthesized on the GPU.
 - [Interiors and articulated assets](#interiors-and-articulated-assets-40) (4.0)
 - [Ballpark](#ballpark-41) (4.1)
 - [Hospital](#hospital-50) (5.0)
+- [Kitchen and woodshop](#kitchen-and-woodshop-51) (5.1)
+- [Backyard landscape](#backyard-landscape-52) (5.2)
 - [Package structure](#package-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -347,6 +349,35 @@ States through the live rig:
 New texture programs `sheetVinyl` (chip sheet flooring with welded seams), `nonwoven` (SMS drapes and
 crepe exam paper), `wallTile`, `vitalsUI` (ECG, pleth, arterial and respiration traces with numerics)
 and `medLabel` (pharmacy and hazard labels with barcodes).
+
+### Kitchen and woodshop (5.1)
+
+`cooking-counter`: a kitchen wall run with quartz tops, sink and faucet under a window, gas range with
+knob-linked flames, range hood and shaker cabinets (`CookingCounterLayout`). Cooking engine: plane
+slicing with capped cut faces, heat model (food, vessel, burner, oven), cook ShaderGraph layer,
+`RealFoodComponent`, `RealFood`/`RealVessel`/`RealBlade`. Cookware (skillets, saucepan, stock pot, knives,
+knife block, utensils, bowls, boards) and food (onion, garlic, tomato, pepper, carrot, potato, lemon, egg,
+chicken breast, butter, chocolate, strawberry, pancake, fried egg, cookie dough). See docs/guides/cooking.md.
+
+`woodshop`: `WoodshopLayout` with a stations knob and 30 gated woodworking props: table and miter saw
+rigs, cordless drill, sander, jigsaw, circular saw, hand tools, workbench, lumber rack, pegboard, clamps,
+PPE. `Lumber` and `PlywoodSheet` with grain-continuous crosscut and rip. Texture programs `tapeRule`, `pegboard`.
+
+Also: hand anatomy (`RealHandAnatomy`, x-ray graph, `realityhd anatomy`), `rooftop-plank` scene.
+
+| | |
+|---|---|
+| ![cooking-counter](docs/scenes/cooking-counter.png)<br>`cooking-counter` | ![woodshop](docs/scenes/woodshop.png)<br>`woodshop` |
+
+### Backyard landscape (5.2)
+
+`backyard-landscape` with 35 gated landscaping props: plants (boxwood, privet hedge, hydrangea, rose,
+lavender, hosta, ornamental grass, arborvitae, azalea, daylily), hardscape (herringbone paver patio,
+retaining wall, mulch and river rock beds, steel edging, fire pit, pergola, picket fence, raised bed,
+fountain) and yard props (path light, spotlight and umbrella rigs, birdbath, adirondack chair, hose reel,
+sprinkler, trellis, planters). Tag `landscaping`. Test props `terracotta-pot`, `brass-candlestick`.
+
+![backyard-landscape](docs/scenes/backyard-landscape.png)
 
 ## Performance
 
