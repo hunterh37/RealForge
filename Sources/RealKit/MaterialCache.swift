@@ -146,7 +146,7 @@ public final class RealMaterialCache {
         // Swizzled textures can't be shader-writable; they are filled by blit copy instead.
         try LowLevelTexture(descriptor: .init(textureType: .type2D, pixelFormat: fmt, width: n, height: n,
                                               mipmapLevelCount: TextureSynth.mipCount(n),
-                                              textureUsage: swizzle == nil ? [.shaderRead, .shaderWrite] : [.shaderRead],
+                                              textureUsage: swizzle != nil ? [.shaderRead] : fmt == .rgba8Unorm_srgb ? [.shaderRead, .shaderWrite, .pixelFormatView] : [.shaderRead, .shaderWrite],
                                               swizzle: swizzle ?? .init(red: .red, green: .green, blue: .blue, alpha: .alpha)))
     }
 
