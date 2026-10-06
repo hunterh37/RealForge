@@ -1,0 +1,36 @@
+{
+  "budget": 6000,
+  "id": "butt-hinge",
+  "kind": "prop",
+  "materials": [
+    "metal.hinge-satin-nickel",
+    "metal.screw-zinc"
+  ],
+  "name": "3 x 3 in butt hinge",
+  "notes": "Rig: leaf hinge about the pin 0...180 deg (0 closed, 180 open flat), pin slide 0...0.08 m. States open-flat, closed, open-90, pin-out.",
+  "parts": [
+    "fixed leaf with three countersunk holes",
+    "moving leaf with three countersunk holes",
+    "5-knuckle barrel",
+    "removable pin with button head",
+    "button cap on the bottom knuckle"
+  ],
+  "references": [],
+  "size": [
+    0.0762,
+    0.011,
+    0.0794
+  ],
+  "style": "Residential 3 x 3 in steel butt hinge, 1/4 in radius corners, satin nickel plate.",
+  "summary": "3 x 3 in steel butt hinge: two leaves with countersunk screw holes, 5-knuckle barrel, removable button-tip pin, satin nickel.",
+  "tags": [
+    "prop",
+    "workshop",
+    "handheld",
+    "articulated",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}
