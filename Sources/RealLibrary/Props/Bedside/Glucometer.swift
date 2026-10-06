@@ -24,7 +24,7 @@ public struct Glucometer: RealArticulated {
     public func rig(seed: UInt64) -> Rig {
         var rng = SeededRNG(seed: seed)
         var rig = Rig(name: Self.id, lods: 2, switchDistances: [2])
-        let L: Float = 0.088, Wd: Float = 0.047, T: Float = 0.0114
+        let L: Float = 0.088, Wd: Float = 0.047
         let ox: Float = -0.02, oz: Float = 0.014              // meter center on the table
         let flat = simd_quatf(degrees: -90, axis: V3(1, 0, 0))  // extrude +Z -> +Y, outline y -> -Z
         let top: MaterialKey = "plastic.medical:F2F2EF", base: MaterialKey = "plastic.medical:" + String(format: "%06X", baseColor)

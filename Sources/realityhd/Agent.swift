@@ -45,6 +45,8 @@ Shape2D.rect / roundedRect(w, h, radius:) / circle(r, ry:) / superellipse(w, h, 
 Shape2D.rounded(points, radius:) fillet corners   Shape2D.offset(points, d)   Shape2D.triangulate(points)
 Profile.roundedCylinder(...)  Profile.smooth(points, per:)  Profile.shell(outer, wall:, floor:)  thin-walled vessels
 surface.deform { p in p' }  surface.displace { p, n in meters }  surface.subdivided()  surface.flipped()  surface.bakeCavityAO()
+rng.float() 0..1  rng.float(a...b)  rng.vary(base, spread)  rng.int(a...b)  rng.chance(p)  rng.pick(arr)  rng.inDisc(radius:)  rng.fork(i)
+surface.uvs = surface.positions.map { V2($0.x, $0.z) }; surface.computeTangents()   planar UVs (rebuild tangents after any UV edit)
 plank(len, width, thick, bevel:, material:)  board(from:, to:, width:, thick:, up:, material:) -> (Surface, Xform)
 catmull(points, per:)  resample(path, spacing:)  facing(normal) -> quat (+Y to normal)  xform.jittered(&rng)
 rivet(&m, at:, normal:, radius:, material:)  rivetRow(&m, along:, spacing:, normal:, material:)
@@ -59,19 +61,29 @@ static let preview = PreviewHint(azimuth:, elevation:, distance:, studio: true) 
 """
 
 func materialSheet(filter: String?) -> String {
-    var lines = ["## Materials (key  program  tile m  notes)"]
-    var family = ""
+    // One line per family and (program, tile, notes) signature; variants listed by suffix.
+    // About a quarter of the per-key table it replaces.
+    var lines = ["## Materials: family [program tile-m notes] variants (key = family.variant)"]
+    var order: [String] = []
+    var groups: [String: [(sig: String, variants: [String])]] = [:]
     for s in MaterialLibrary.all where filter == nil || s.key.hasPrefix(filter!) {
-        let f = String(s.key.split(separator: ".")[0])
-        if f != family { family = f; lines.append("# \(f)") }
+        let parts = s.key.split(separator: ".", maxSplits: 1).map(String.init)
+        let f = parts[0], v = parts.count > 1 ? parts[1] : ""
         var notes: [String] = []
         if s.mode != .opaque { notes.append("\(s.mode)") }
         if s.metallic > 0 || s.hasMetallicMap { notes.append("metal") }
         if s.clearcoat > 0 { notes.append("clearcoat") }
         if s.triplanar { notes.append("triplanar") }
-        if s.topAmount > 0 { notes.append("top layer") }
-        if s.tileSize == 0 { notes.append("atlas UVs") }
-        lines.append("\(pad(s.key, 26))\(pad(s.program.map { "\($0)" } ?? "scalar", 15))\(pad(s.tileSize == 0 ? "-" : String(format: "%.2f", s.tileSize), 6))\(notes.joined(separator: ", "))")
+        if s.topAmount > 0 { notes.append("top") }
+        let tile = s.tileSize == 0 ? "atlas" : String(format: "%g", s.tileSize)
+        let sig = ([s.program.map { "\($0)" } ?? "scalar", tile] + notes).joined(separator: " ")
+        if groups[f] == nil { order.append(f); groups[f] = [] }
+        if let i = groups[f]!.firstIndex(where: { $0.sig == sig }) { groups[f]![i].variants.append(v) }
+        else { groups[f]!.append((sig, [v])) }
+    }
+    for f in order {
+        lines.append("# \(f)")
+        for g in groups[f]! { lines.append("[\(g.sig)] \(g.variants.joined(separator: " "))") }
     }
     return lines.joined(separator: "\n")
 }

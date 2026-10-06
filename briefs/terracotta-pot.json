@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "terracotta-pot",
+  "kind": "prop",
+  "materials": [
+    "ceramic.bisque:B4643C",
+    "soil.potting"
+  ],
+  "name": "Terracotta Pot",
+  "notes": "",
+  "parts": [
+    "tapered body with thrown ridges",
+    "thick rolled rim band",
+    "soil fill with uneven surface",
+    "raised foot ring",
+    "shallow saucer"
+  ],
+  "references": [],
+  "size": [
+    0.3,
+    0.22,
+    0.3
+  ],
+  "style": "unglazed orange-red terracotta, white mineral bloom near the base, darker damp saucer",
+  "summary": "Classic 25 cm terracotta flower pot: tapered thrown body, rolled rim band, drainage foot, matching saucer, filled with potting soil.",
+  "tags": [
+    "prop",
+    "garden",
+    "ceramic",
+    "decor"
+  ],
+  "theme": "Garden",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

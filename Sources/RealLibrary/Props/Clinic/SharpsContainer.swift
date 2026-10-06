@@ -24,13 +24,12 @@ public struct SharpsContainer: RealArticulated {
     public init() {}
 
     public func rig(seed: UInt64) -> Rig {
-        var rng = SeededRNG(seed: seed)
+        let rng = SeededRNG(seed: seed)
         var rig = Rig(name: Self.id, lods: 2, switchDistances: [4])
         let W = width, D = depth
         let backZ: Float = -0.0675, plateT: Float = 0.006
         let bz = backZ + plateT + 0.0006 + D / 2            // body center z
         let y0: Float = 0.008, lipY: Float = 0.192, lidY: Float = 0.199
-        let flat = simd_quatf(degrees: -90, axis: V3(1, 0, 0))
         func outline(_ s: Float, _ seg: Int) -> [V2] { Shape2D.roundedRect(W * s, D * s + (1 - s) * 0.02, radius: 0.022 * s, segments: seg) }
 
         // MARK: body, lid shell, bracket

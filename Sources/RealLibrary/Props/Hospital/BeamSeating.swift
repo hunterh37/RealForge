@@ -25,7 +25,7 @@ public struct BeamSeating: RealArticulated {
     public init() {}
 
     public func rig(seed: UInt64) -> Rig {
-        var rng = SeededRNG(seed: seed)
+        let rng = SeededRNG(seed: seed)
         var rig = Rig(name: Self.id, lods: 2, switchDistances: [7])
         let n = max(2, seats), P = pitch
         let half = Float(n) * P / 2                      // end arm centre lines at +-half

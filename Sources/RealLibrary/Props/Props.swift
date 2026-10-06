@@ -172,6 +172,8 @@ public enum Props {
         BakingSheet.self,
         MeasuringCup.self,
         KnifeBlock.self,
+        TerracottaPot.self,
+        BrassCandlestick.self,
         // realityhd:prop
     ]
 }
