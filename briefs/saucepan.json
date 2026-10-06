@@ -1,0 +1,44 @@
+{
+  "budget" : 15000,
+  "id" : "saucepan",
+  "kind" : "prop",
+  "materials" : [
+    "metal.pan-interior",
+    "metal.pan-floor",
+    "metal.heat-tint",
+    "metal.tri-ply",
+    "metal.stainless"
+  ],
+  "name" : "Tri-ply saucepan",
+  "notes" : "Rig: part lid, slide +Y 0...0.15. States: covered, open. Handle along +X. Simulator knobs: floorY, innerRadius, rimY, rimRadius, floorCenter, gripPoint, lidLift.",
+  "parts" : [
+    "straight-wall pan 2.6 mm thick with a flared cut rim",
+    "satin interior with a separate floor",
+    "riveted stay-cool channel handle with hang loop",
+    "domed stainless lid with rolled edge",
+    "riveted loop handle on the lid",
+    "heat tint on the lower wall"
+  ],
+  "references" : [
+
+  ],
+  "size" : [
+    0.37,
+    0.135,
+    0.175
+  ],
+  "style" : "2 qt tri-ply stainless saucepan with lid, lightly used",
+  "summary" : "2 qt tri-ply saucepan: straight walls, flared rim, riveted stay-cool handle, domed stainless lid with loop handle.",
+  "tags" : [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "container",
+    "handheld",
+    "articulated"
+  ],
+  "theme" : "Kitchen",
+  "threshold" : 0.85,
+  "tolerance" : 0.08
+}

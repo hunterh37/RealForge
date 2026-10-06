@@ -1,0 +1,37 @@
+{
+  "budget": 9000,
+  "id": "boxwood-ball",
+  "kind": "prop",
+  "materials": [
+    "leaf.boxwood",
+    "leaf.boxwood-mass",
+    "bark.oak-dry"
+  ],
+  "name": "Clipped boxwood ball",
+  "notes": "",
+  "parts": [
+    "clipped sphere of tight small leaves",
+    "flattened base touching the ground",
+    "short woody trunk hidden under the skirt",
+    "a few new shoots poking past the clipped surface"
+  ],
+  "references": [],
+  "size": [
+    0.6,
+    0.58,
+    0.6
+  ],
+  "style": "formal topiary, freshly clipped, slight lighter new growth",
+  "summary": "Clipped boxwood topiary ball, 0.6 m: tight sphere of small glossy leaves, a few fresh shoots past the shear line.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "foliage",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

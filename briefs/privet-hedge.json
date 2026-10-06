@@ -1,0 +1,38 @@
+{
+  "budget": 13500,
+  "id": "privet-hedge",
+  "kind": "prop",
+  "materials": [
+    "leaf.privet",
+    "leaf.privet-mass",
+    "bark.oak-dry"
+  ],
+  "name": "Privet hedge segment",
+  "notes": "",
+  "parts": [
+    "clipped box hedge with flat top and slightly battered sides",
+    "dense small oval leaves",
+    "woody stems glimpsed in the shaded skirt",
+    "tileable along X: open ends join the next segment"
+  ],
+  "references": [],
+  "size": [
+    1.5,
+    1.4,
+    0.6
+  ],
+  "style": "formal clipped privet hedge, mid green, thinner at the base",
+  "summary": "Clipped privet hedge segment, 1.5 m x 1.4 m x 0.6 m: flat top, tapered sides, bare stems at the base; tiles along X.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "plant",
+    "foliage",
+    "fence",
+    "outdoor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

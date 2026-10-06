@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "scallion",
+  "kind": "prop",
+  "materials": [
+    "food.scallion-white",
+    "food.scallion-green",
+    "food.scallion-section",
+    "food.scallion-root"
+  ],
+  "name": "Scallion",
+  "notes": "",
+  "parts": [
+    "white bulb end with roots",
+    "green hollow leaves splitting"
+  ],
+  "references": [],
+  "size": [
+    0.292,
+    0.013,
+    0.023
+  ],
+  "style": "green onion",
+  "summary": "Scallion, 30 cm: white bulb with fine roots, hollow green leaves splitting into three.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

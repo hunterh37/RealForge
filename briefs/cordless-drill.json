@@ -1,0 +1,54 @@
+{
+  "budget": 9000,
+  "id": "cordless-drill",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool",
+    "rubber.cordless-grip",
+    "rubber",
+    "metal.chrome",
+    "metal.stainless",
+    "metal.surgical-gold",
+    "metal.powdercoat",
+    "glass.led-lens",
+    "emissive.bulb",
+    "plastic.matte",
+    "emissive.led-green"
+  ],
+  "name": "Cordless drill/driver",
+  "notes": "Compact brushless drill/driver: 190-205 mm long with chuck, 225-240 mm tall on a 2 Ah pack, 75-80 mm wide (pack). Chuck axis +X.",
+  "parts": [
+    "motor housing clamshell with rear vents and side screws",
+    "pistol grip with black rubber overmold",
+    "variable speed trigger",
+    "forward/reverse rocker",
+    "2-speed slider on top",
+    "numbered clutch ring",
+    "1/2 in keyless chuck with ribbed sleeve, steel nose and jaws",
+    "LED work light at the trigger",
+    "steel belt clip",
+    "slide-on battery pack with release button, fuel gauge and grip ribs",
+    "optional bit: 3/16 in twist drill or #2 Phillips power bit"
+  ],
+  "references": [],
+  "size": [
+    0.205,
+    0.232,
+    0.08
+  ],
+  "style": "generic teal/black cordless family, workshop used: grip rubber polished where the palm sits, scuffed pack base",
+  "summary": "18V class cordless 1/2 in drill/driver standing on its slide-on battery: teal and black housing, rubber overmold grip, trigger, keyless chuck, clutch ring.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "articulated",
+    "plastic",
+    "rubber",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}

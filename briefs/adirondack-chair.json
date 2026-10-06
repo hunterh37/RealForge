@@ -1,0 +1,40 @@
+{
+  "budget": 8000,
+  "id": "adirondack-chair",
+  "kind": "prop",
+  "materials": [
+    "wood.weathered",
+    "metal.steel"
+  ],
+  "name": "Adirondack chair",
+  "notes": "",
+  "parts": [
+    "two side stringers",
+    "front legs",
+    "seat slats",
+    "fan back slats",
+    "back cross supports",
+    "wide armrests",
+    "arm brackets",
+    "screws"
+  ],
+  "references": [],
+  "size": [
+    0.76,
+    0.97,
+    1.02
+  ],
+  "style": "weathered painted cedar, worn edges on arms",
+  "summary": "Cedar Adirondack chair, 0.97 m: slanted slat seat, fan back of five rounded slats, wide flat armrests on front legs.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "furniture",
+    "wood"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

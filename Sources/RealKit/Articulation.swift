@@ -248,20 +248,25 @@ public extension Entity {
             if let j = root.findEntity(named: "joint:\(p.name)")?.components[RealJointComponent.self] { current[p.name] = j.moving ? j.to : j.value }
         }
         for (k, v) in values { current[k] = v }
-        root.applyJoints(a.rig.values(current), rig: a.rig, animated: animated)
+        let resolved = a.rig.values(current)
+        root.applyJoints(resolved, rig: a.rig, animated: animated)
+        if !a.rig.optionLinks.isEmpty { root.applyOptions(root.currentOptions(a.rig).merging(a.rig.linkedOptions(resolved)) { $1 }, rig: a.rig) }
     }
 
-    /// Switches part options directly (flame rings, lamp bulbs, screens) and the lights they drive;
-    /// parts not named keep their current option.
-    func setOptions(_ values: [String: Int]) {
+    /// Switches part options directly (a burner flame, a lamp bulb); parts not named keep theirs.
+    func setOptions(_ options: [String: Int]) {
         guard let root = articulationRoot, let a = root.components[RealArticulationComponent.self] else { return }
-        var current: [String: Int] = [:]
-        for p in a.rig.parts where p.optionCount > 1 {
-            guard let e = root.findEntity(named: "joint:\(p.name)") else { continue }
-            current[p.name] = e.children.first { $0.name.hasPrefix("opt") && $0.isEnabled }.flatMap { Int($0.name.dropFirst(3)) } ?? 0
+        root.applyOptions(root.currentOptions(a.rig).merging(options) { $1 }, rig: a.rig)
+    }
+
+    /// Option index each multi-option part shows now.
+    func currentOptions(_ rig: Rig) -> [String: Int] {
+        var o: [String: Int] = [:]
+        for p in rig.parts where p.optionCount > 1 {
+            guard let e = findEntity(named: "joint:\(p.name)") else { continue }
+            if let c = e.children.first(where: { $0.name.hasPrefix("opt") && $0.isEnabled }), let i = Int(c.name.dropFirst(3)) { o[p.name] = i }
         }
-        for (k, v) in values { current[k] = v }
-        root.applyOptions(current, rig: a.rig)
+        return o
     }
 
     /// The entity holding option `index` of part `part` (scale or tint it for intensity).
@@ -289,7 +294,9 @@ public extension Entity {
                 let open = stateValues.max { abs($0) < abs($1) } ?? j.joint.range.upperBound
                 let goal = abs((j.moving ? j.to : j.value) - closed) < abs(open - closed) * 0.5 ? open : closed
                 // Options follow the state that holds this joint at the goal (a lamp shade lifting also lights it).
-                if let s = a.rig.states.first(where: { a.rig.values($0.name)[j.name] == goal }), !a.rig.options(s.name).isEmpty {
+                if a.rig.optionLinks.contains(where: { $0.joint == j.name }) {
+                    // Linked options (gas knob -> flame) follow `setJoints` below.
+                } else if let s = a.rig.states.first(where: { a.rig.values($0.name)[j.name] == goal }), !a.rig.options(s.name).isEmpty {
                     root.applyOptions(a.rig.options(s.name), rig: a.rig)
                 }
                 setJoints([j.name: goal], animated: animated)

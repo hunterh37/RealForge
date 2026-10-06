@@ -1,0 +1,43 @@
+{
+  "budget": 9000,
+  "id": "patio-umbrella",
+  "kind": "prop",
+  "materials": [
+    "fabric.canvas:C8B996",
+    "metal.aluminum-brushed",
+    "concrete.smooth",
+    "plastic.black"
+  ],
+  "name": "Patio umbrella",
+  "notes": "",
+  "parts": [
+    "weighted base",
+    "pole",
+    "runner",
+    "ribs",
+    "struts",
+    "canopy panels",
+    "top vent",
+    "crank"
+  ],
+  "references": [],
+  "size": [
+    2.44,
+    2.58,
+    2.44
+  ],
+  "style": "sun-faded canvas, scuffed base",
+  "summary": "Market patio umbrella, 2.6 m canopy: aluminum pole, weighted base, eight ribs and struts on a sliding runner, vented canvas canopy; closed and open.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "furniture",
+    "fabric",
+    "articulated"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

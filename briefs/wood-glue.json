@@ -1,0 +1,24 @@
+{
+  "budget": 6000,
+  "id": "wood-glue",
+  "kind": "prop",
+  "materials": ["plastic.matte", "plastic.gloss", "plastic.tool"],
+  "name": "16 oz wood glue bottle",
+  "notes": "Rig: cap option part (0 closed, 1 open, nozzle raised). States closed, open.",
+  "parts": [
+    "oval HDPE squeeze bottle body",
+    "ribbed shoulder tapering to a round neck",
+    "orange twist-open spout cap with ribbed skirt and pointed tip",
+    "generic printed wrap label (colored bands and print bars)",
+    "dried yellow glue drip down the side",
+    "recessed base with standing ring"
+  ],
+  "references": [],
+  "size": [0.076, 0.205, 0.05],
+  "style": "Generic 16 fl oz yellow PVA wood glue, unbranded: off-white bottle, yellow and brown label, orange cap, glue crust at the spout.",
+  "summary": "16 oz squeeze bottle of yellow PVA wood glue: oval body, ribbed shoulder, orange twist-open spout cap, generic label, dried drip.",
+  "tags": ["prop", "workshop", "handheld", "articulated", "plastic"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

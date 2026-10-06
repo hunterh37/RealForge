@@ -1,0 +1,34 @@
+{
+  "budget": 3600,
+  "id": "shingle-strip",
+  "kind": "prop",
+  "materials": [
+    "roofing.shingle-granule",
+    "roofing.shingle-sealant",
+    "asphalt"
+  ],
+  "name": "3-tab asphalt shingle",
+  "notes": "Lies flat, tab edge at +Z. Knob color tints the granules.",
+  "parts": [
+    "asphalt-coated mat with two keyway cutouts",
+    "granule surface, three tabs with blend shading",
+    "self-seal strip dashes",
+    "painted nail line"
+  ],
+  "references": [],
+  "size": [
+    0.9144,
+    0.004,
+    0.3048
+  ],
+  "style": "Generic 3-tab fibreglass asphalt shingle, weathered grey granules.",
+  "summary": "3-tab asphalt roofing shingle, 36 x 12 in: granule surface, two keyway cutouts, self-seal strip, painted nail line.",
+  "tags": [
+    "prop",
+    "workshop",
+    "construction"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

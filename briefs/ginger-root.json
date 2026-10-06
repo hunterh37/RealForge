@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "ginger-root",
+  "kind": "prop",
+  "materials": [
+    "food.ginger",
+    "food.ginger-flesh"
+  ],
+  "name": "Ginger root",
+  "notes": "",
+  "parts": [
+    "knobby branching rhizome",
+    "ringed tan skin",
+    "cut end"
+  ],
+  "references": [],
+  "size": [
+    0.101,
+    0.024,
+    0.061
+  ],
+  "style": "fresh ginger rhizome",
+  "summary": "Fresh ginger root, 11 cm: knobby branching rhizome with ringed tan skin and yellow fibrous flesh.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

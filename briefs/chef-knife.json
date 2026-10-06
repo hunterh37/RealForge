@@ -1,0 +1,41 @@
+{
+  "budget": 8000,
+  "id": "chef-knife",
+  "kind": "prop",
+  "materials": [
+    "metal.knife-blade",
+    "metal.surgical-mirror",
+    "plastic.pom",
+    "metal.stainless"
+  ],
+  "name": "Chef knife",
+  "notes": "Lies on its side (blade face normal +Y), blade along +X with the tip at max X, edge toward -Z. Knobs: bladeLength, edgeDirection, tipPoint, gripPoint.",
+  "parts": [
+    "8 in gyuto blade with flat grind tapering from a 2.4 mm spine",
+    "polished secondary edge bevel",
+    "curved belly rising to the tip",
+    "half bolster at the heel",
+    "full tang visible between the scales",
+    "black POM handle scales with rounded edges",
+    "three flush rivets"
+  ],
+  "references": [],
+  "size": [
+    0.34,
+    0.023,
+    0.05
+  ],
+  "style": "Western-handled gyuto, satin blade with grind lines, mirror edge bevel",
+  "summary": "8 in chef knife (gyuto): flat-ground satin blade, polished edge bevel, full tang, three-rivet black POM handle.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "cookware",
+    "metal",
+    "tool",
+    "handheld"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

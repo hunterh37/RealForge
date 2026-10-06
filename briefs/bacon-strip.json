@@ -1,0 +1,31 @@
+{
+  "budget": 6000,
+  "id": "bacon-strip",
+  "kind": "prop",
+  "materials": [
+    "food.bacon"
+  ],
+  "name": "Bacon strip",
+  "notes": "",
+  "parts": [
+    "wavy strip",
+    "fat and lean stripes"
+  ],
+  "references": [],
+  "size": [
+    0.25,
+    0.005,
+    0.039
+  ],
+  "style": "raw streaky bacon strip",
+  "summary": "Raw streaky bacon strip, 25 x 3 cm: wavy rippled slice with pink lean and white fat stripes; crisps when cooked.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

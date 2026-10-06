@@ -1,0 +1,46 @@
+{
+  "budget": 15000,
+  "id": "shop-vac",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool",
+    "plastic.matte",
+    "rubber",
+    "metal.galvanized",
+    "wood.sawdust",
+    "label.shop-vac",
+    "fabric.canvas"
+  ],
+  "name": "Wet/dry shop vacuum",
+  "notes": "Drum on the origin; the hose loop and floor nozzle lie in front and to the sides, so the bounds include them. Hose end point public hoseEnd.",
+  "parts": [
+    "12 gallon plastic drum with molded ribs",
+    "caster dolly with four swivel casters",
+    "motor head with molded carry handle",
+    "two side latches",
+    "rocker power switch",
+    "exhaust/blower port with grille",
+    "inlet port on the drum",
+    "2.5 in ribbed hose coiled",
+    "floor nozzle",
+    "power cord wrapped on cord hooks",
+    "drain cap"
+  ],
+  "references": [],
+  "size": [
+    0.85,
+    0.684,
+    0.89
+  ],
+  "style": "generic red/black shop vac, dusty around the inlet and nozzle",
+  "summary": "12 gallon wet/dry shop vacuum: drum on a caster dolly, motor head with handle and latches, switch, 2.5 in hose coiled to a floor nozzle, cord wrap.",
+  "tags": [
+    "prop",
+    "workshop",
+    "plastic",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

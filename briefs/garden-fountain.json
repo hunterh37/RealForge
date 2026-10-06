@@ -1,0 +1,43 @@
+{
+  "budget": 14000,
+  "id": "garden-fountain",
+  "kind": "prop",
+  "materials": [
+    "stone.cast-grey",
+    "water.pond",
+    "water.stream",
+    "moss.cushion"
+  ],
+  "name": "Three-tier stone fountain",
+  "notes": "",
+  "parts": [
+    "ground basin with rolled rim",
+    "fluted pedestal",
+    "middle bowl",
+    "upper column",
+    "top bowl",
+    "finial",
+    "standing water",
+    "spilling water sheets"
+  ],
+  "references": [],
+  "size": [
+    1.04,
+    1.275,
+    1.04
+  ],
+  "style": "grey cast stone, water in bowls",
+  "summary": "Three-tier cast-stone garden fountain, 1.3 m: 1 m basin, fluted pedestal, two bowls on turned columns, finial, standing water and spill streams.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "stone",
+    "water",
+    "decor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

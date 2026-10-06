@@ -1,0 +1,39 @@
+{
+  "budget": 14000,
+  "id": "paver-patio",
+  "kind": "prop",
+  "materials": [
+    "paver.clay",
+    "paver.clay-stained",
+    "ground.sand",
+    "moss.cushion"
+  ],
+  "name": "Herringbone paver patio tile",
+  "notes": "",
+  "parts": [
+    "individual 10x20 cm pavers",
+    "90-degree herringbone field",
+    "sailor-course border",
+    "sand joints",
+    "tone variation"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    0.063,
+    1.0
+  ],
+  "style": "clay-tone concrete pavers, swept sand joints, slight height variance",
+  "summary": "Herringbone paver patio tile, 1 x 1 m: 10 x 20 cm concrete pavers in a 90-degree herringbone, sailor-course border, sand joints.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "stone",
+    "concrete"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

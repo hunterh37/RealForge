@@ -1,0 +1,32 @@
+{
+  "budget": 7000,
+  "id": "cilantro-bunch",
+  "kind": "prop",
+  "materials": [
+    "food.cilantro",
+    "food.herb-stem"
+  ],
+  "name": "Cilantro bunch",
+  "notes": "",
+  "parts": [
+    "several thin stems",
+    "lobed compound leaves"
+  ],
+  "references": [],
+  "size": [
+    0.146,
+    0.005,
+    0.105
+  ],
+  "style": "cilantro (coriander) bunch",
+  "summary": "Cilantro bunch, 18 cm: thin green stems with fan-lobed flat leaves; wilts.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

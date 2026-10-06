@@ -1,0 +1,24 @@
+{
+  "budget": 9600,
+  "id": "ear-muffs",
+  "kind": "prop",
+  "materials": ["plastic.tool", "metal.steel", "leather.black", "fabric.nylon", "plastic.matte"],
+  "name": "Over-ear hearing protection",
+  "notes": "Stands upright on the cup rims, cushions pressed together by the headband spring.",
+  "parts": [
+    "two oval molded cups in bright yellow",
+    "foam cushions with black vinyl cover and fabric inner cover",
+    "twin spring steel headband wires",
+    "padded headband with stitched cover",
+    "sliding height adjusters with wire slots",
+    "cup pivot yokes"
+  ],
+  "references": [],
+  "size": [0.125, 0.218, 0.09],
+  "style": "Generic NRR 25 dB passive earmuffs, yellow cups, black cushions, slightly worn headband pad.",
+  "summary": "Over-ear passive hearing protection: yellow oval cups, foam cushions, twin steel headband wires with padded band, sliding height adjusters.",
+  "tags": ["prop", "workshop", "handheld", "plastic", "metal"],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

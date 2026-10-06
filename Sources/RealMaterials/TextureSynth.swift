@@ -121,7 +121,7 @@ public final class TextureSynth: @unchecked Sendable {
     public func encode(_ spec: MaterialSpec, into set: TextureSet, commandBuffer cb: MTLCommandBuffer) throws {
         guard let program = spec.program else { return }
         let n = set.albedo.width
-        var p = RFParams(kind: program.rawValue, seed: spec.seed, size: Int32(n), alphaMode: spec.mode == .cutout ? 1 : 0,
+        var p = RFParams(kind: program.rawValue, seed: spec.seed, size: Int32(n), alphaMode: spec.mode == .cutout || (spec.mode == .emissive && spec.opacity < 1) ? 1 : 0,
                          colorA: spec.colorA, colorB: spec.colorB, colorC: spec.colorC, f: spec.knobs,
                          normalStrength: spec.normalStrength, flipGreen: Self.flipGreen)
         let height = makeTexture(.r16Float, n, mips: false)

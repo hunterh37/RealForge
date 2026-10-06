@@ -1,0 +1,49 @@
+{
+  "id": "workbench",
+  "kind": "prop",
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08,
+  "references": [],
+  "name": "Woodworking workbench",
+  "budget": 14000,
+  "size": [
+    1.8,
+    0.89,
+    0.712
+  ],
+  "summary": "Maple workbench, 1.8 x 0.6 m: butcher-block top with dog holes, front vise with wooden chop, laminated legs with through tenons, lower shelf with offcuts.",
+  "tags": [
+    "prop",
+    "workshop",
+    "furniture",
+    "wood",
+    "articulated"
+  ],
+  "materials": [
+    "wood.bench-maple",
+    "wood.endgrain-fresh",
+    "wood.lumber-maple",
+    "wood.lumber-pine",
+    "wood.lumber-walnut",
+    "wood.plywood",
+    "wood.plywood-edge",
+    "wood.sawdust",
+    "leather.tan",
+    "metal.steel",
+    "metal.powdercoat"
+  ],
+  "parts": [
+    "70 mm laminated maple butcher-block top, edge-glued strips with staggered butt joints and end grain at the ends",
+    "row of square dog holes along the front with one bench dog raised",
+    "front face vise: maple chop with leather liner, steel screw with thread, two guide rods, cast hub and sliding steel handle bar",
+    "front and back aprons under the top",
+    "four laminated maple legs",
+    "upper and lower end rails, lower ones with wedged through tenons",
+    "long stretchers bench-bolted through the legs",
+    "lower shelf of ripped pine boards nailed to the rails",
+    "offcuts on the shelf (2x4 miter drop, 1x6, walnut scrap, plywood corner) and a little sawdust"
+  ],
+  "style": "Well-used but cared-for traditional maple workbench, oiled top, light dents, sawdust on the shelf.",
+  "notes": "Size includes the raised bench dog (y 0.89) and the vise hub and handle in front (z 0.66 at rest)."
+}

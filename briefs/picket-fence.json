@@ -1,0 +1,38 @@
+{
+  "budget": 12000,
+  "id": "picket-fence",
+  "kind": "prop",
+  "materials": [
+    "wood.barn-white",
+    "metal.galvanized"
+  ],
+  "name": "White picket fence segment",
+  "notes": "",
+  "parts": [
+    "4x4 posts",
+    "pyramid post caps",
+    "two back rails",
+    "pointed 1x4 pickets",
+    "nail heads"
+  ],
+  "references": [],
+  "size": [
+    2.5,
+    1.14,
+    0.109
+  ],
+  "style": "white painted fence, chipped paint near the ground",
+  "summary": "White picket fence segment, 2.4 m x 1.07 m: 4x4 posts with caps, two back rails, pointed 1x4 pickets, nail heads, worn paint.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "wood",
+    "fence",
+    "barrier"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

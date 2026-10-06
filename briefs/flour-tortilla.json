@@ -1,0 +1,32 @@
+{
+  "budget": 6000,
+  "id": "flour-tortilla",
+  "kind": "prop",
+  "materials": [
+    "food.tortilla"
+  ],
+  "name": "Flour tortilla",
+  "notes": "",
+  "parts": [
+    "thin round flatbread",
+    "soft wavy edge",
+    "toasted spots"
+  ],
+  "references": [],
+  "size": [
+    0.201,
+    0.005,
+    0.2
+  ],
+  "style": "8 inch flour tortilla",
+  "summary": "Flour tortilla, 20 cm: thin soft flatbread, wavy edge, pale with light toast spots; browns with blisters.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

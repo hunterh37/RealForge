@@ -1,0 +1,48 @@
+{
+  "budget": 15000,
+  "id": "pegboard-wall",
+  "kind": "prop",
+  "materials": [
+    "wood.pegboard",
+    "wood.hardboard",
+    "wood.lumber-pine",
+    "metal.galvanized",
+    "plastic.tool",
+    "metal.sawblade",
+    "metal.carbide",
+    "sack.jute",
+    "metal.powdercoat"
+  ],
+  "name": "Pegboard wall",
+  "notes": "Back plane at z = 0 facing +Z, bottom edge at y = 0; scenes lift it. Depth includes hung items.",
+  "parts": [
+    "1/8 in tempered hardboard sheet with 1/4 in holes on a 1 in grid",
+    "1x2 pine furring strips behind the sheet",
+    "screws with washers into the furring",
+    "single straight steel hooks",
+    "double prong hooks",
+    "loop (J) hooks",
+    "coiled orange extension cord with plug and socket ends",
+    "coil of rope tied off",
+    "small parts-bin shelf with bins",
+    "two spare circular saw blades on a hook"
+  ],
+  "references": [],
+  "size": [
+    1.22,
+    1.22,
+    0.162
+  ],
+  "style": "used home shop wall: some holes grimy from hooks, cord loosely coiled, bins with screws",
+  "summary": "4 x 4 ft hardboard pegboard on furring strips with steel hooks holding an extension cord, a rope coil, a parts-bin shelf and spare saw blades.",
+  "tags": [
+    "prop",
+    "workshop",
+    "wood",
+    "metal",
+    "tool"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

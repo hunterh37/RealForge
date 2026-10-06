@@ -1,0 +1,36 @@
+{
+  "budget": 14500,
+  "id": "mulch-bed",
+  "kind": "prop",
+  "materials": [
+    "mulch.bark",
+    "grass.lawn-thatch",
+    "ground.dirt"
+  ],
+  "name": "Shredded bark mulch bed",
+  "notes": "",
+  "parts": [
+    "crowned mulch layer",
+    "ragged feathered edge",
+    "loose chips past the rim"
+  ],
+  "references": [],
+  "size": [
+    2.259,
+    0.088,
+    2.273
+  ],
+  "style": "brown shredded hardwood mulch, sun bleached chips",
+  "summary": "Shredded-bark mulch bed, 0.9 m radius: crowned 6 cm layer with a spade-cut turf edge, bark slabs and loose chips; round, oval or kidney shape.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "wood",
+    "ground"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

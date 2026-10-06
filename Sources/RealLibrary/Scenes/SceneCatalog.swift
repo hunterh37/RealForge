@@ -37,6 +37,9 @@ public enum SceneCatalog {
                 OperatingRoom.self,
                 HospitalFloor.self,
                 RooftopPlank.self,
+                WoodshopScene.self,
+                CookingCounter.self,
+                BackyardLandscape.self,
                 // realityhd:scene
     ]
 

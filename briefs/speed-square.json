@@ -1,0 +1,38 @@
+{
+  "budget": 7000,
+  "id": "speed-square",
+  "kind": "prop",
+  "materials": [
+    "metal.diecast",
+    "plastic.matte"
+  ],
+  "name": "Speed square",
+  "notes": "Rests on the fence lip and the far corner. Points: grip, pivot, fenceEdge, fenceEdgeDirection.",
+  "parts": [
+    "7 in right-triangle aluminum plate",
+    "lipped fence along one leg",
+    "pivot corner mark",
+    "engraved inch scale with 1/8 in ticks and numerals",
+    "degree scale along the hypotenuse, labels every 10",
+    "triangular cut-out window",
+    "scribing slot with 1/4 in notches"
+  ],
+  "references": [],
+  "size": [
+    0.178,
+    0.0195,
+    0.18
+  ],
+  "style": "Bare cast aluminum, satin, black-filled engraving; generic, unbranded.",
+  "summary": "7 in aluminum rafter square: lipped fence, pivot corner, engraved inch and degree scales, cut-out window and scribing slot.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

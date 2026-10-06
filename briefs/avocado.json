@@ -1,0 +1,36 @@
+{
+  "budget": 7000,
+  "id": "avocado",
+  "kind": "prop",
+  "materials": [
+    "food.avocado-skin",
+    "food.avocado-flesh",
+    "food.avocado-pit",
+    "food.avocado-pit-section"
+  ],
+  "name": "Avocado",
+  "notes": "",
+  "parts": [
+    "pear-shaped pebbled dark skin",
+    "stem nub",
+    "yellow-green flesh",
+    "large brown seed"
+  ],
+  "references": [],
+  "size": [
+    0.11,
+    0.072,
+    0.072
+  ],
+  "style": "ripe Hass avocado",
+  "summary": "Ripe Hass avocado, 10.5 cm: pebbled dark skin, stem nub, yellow-green flesh around a large brown seed; halves cleanly.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

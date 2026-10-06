@@ -1,0 +1,42 @@
+{
+  "budget": 14000,
+  "id": "pergola",
+  "kind": "prop",
+  "materials": [
+    "wood.cedar",
+    "wood.cedar-weathered",
+    "metal.galvanized",
+    "concrete.rough"
+  ],
+  "name": "Cedar pergola",
+  "notes": "",
+  "parts": [
+    "four 6x6 posts",
+    "steel post bases",
+    "concrete footings",
+    "doubled 2x10 beams",
+    "2x8 rafters with curved tails",
+    "2x2 purlins",
+    "knee braces",
+    "through bolts"
+  ],
+  "references": [],
+  "size": [
+    3.6,
+    2.647,
+    3.723
+  ],
+  "style": "freestanding western red cedar pergola, galvanized hardware",
+  "summary": "Freestanding cedar pergola, 3 x 3 m, 2.75 m tall: 6x6 posts on steel bases, doubled 2x10 beams, 2x8 rafters with curved tails, 2x2 purlins, knee braces.",
+  "tags": [
+    "prop",
+    "garden",
+    "outdoor",
+    "landscaping",
+    "wood",
+    "furniture"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

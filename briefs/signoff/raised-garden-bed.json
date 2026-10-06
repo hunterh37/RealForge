@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9982902,
+  "date" : "2026-10-06",
+  "final" : 0.8515265,
+  "fingerprint" : "9b02057f2586389a",
+  "id" : "raised-garden-bed",
+  "iterations" : 4,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 8,
+    "materials" : 7,
+    "proportion" : 8,
+    "silhouette" : 8,
+    "wear" : 8
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.7725
+}

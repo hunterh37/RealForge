@@ -1,0 +1,35 @@
+{
+  "budget": 5000,
+  "id": "strawberry",
+  "kind": "prop",
+  "materials": [
+    "food.strawberry",
+    "food.strawberry-flesh",
+    "food.stem-green"
+  ],
+  "name": "Strawberry",
+  "notes": "",
+  "parts": [
+    "conical berry lying on its side",
+    "achenes seated in pits",
+    "green star calyx with short stem",
+    "white pith and vascular strands in cross section"
+  ],
+  "references": [],
+  "size": [
+    0.045,
+    0.034,
+    0.034
+  ],
+  "style": "ripe garden strawberry",
+  "summary": "Ripe strawberry, 4.5 cm: glossy conical berry with seeded pits, green star calyx and stem; pith and strand cut face.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

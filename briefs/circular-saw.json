@@ -1,0 +1,51 @@
+{
+  "budget": 9000,
+  "id": "circular-saw",
+  "kind": "prop",
+  "materials": [
+    "plastic.tool",
+    "rubber",
+    "metal.diecast",
+    "metal.steel",
+    "metal.sawblade",
+    "metal.carbide",
+    "metal.chrome",
+    "plastic.matte"
+  ],
+  "name": "7-1/4 inch circular saw",
+  "notes": "Rig: blade (Z hinge through arbor), lower-guard (Z hinge through arbor, retracts), trigger.",
+  "parts": [
+    "motor housing in tool plastic with rubber overmold and cooling vents",
+    "rear handle with trigger and lock-off button",
+    "front assist knob",
+    "stamped steel shoe with cut-line notch",
+    "bevel quadrant with wing nut",
+    "depth adjustment lever",
+    "fixed upper guard with rotation arrow",
+    "spring-loaded lower guard with retract lever",
+    "184 mm carbide-tipped blade",
+    "arbor bolt and washer",
+    "spindle lock button",
+    "power cord with strain relief"
+  ],
+  "references": [],
+  "size": [
+    0.366,
+    0.295,
+    0.2
+  ],
+  "style": "Generic corded 15 A sidewinder circular saw, yellow and black livery, used: worn grip and scuffed shoe.",
+  "summary": "7-1/4 inch corded sidewinder circular saw: rubber-gripped housing, rear trigger handle, front knob, die-cast bevel shoe, spring lower guard, carbide blade.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "articulated",
+    "metal",
+    "plastic"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

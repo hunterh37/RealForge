@@ -1,0 +1,37 @@
+{
+  "budget": 4000,
+  "id": "birdbath",
+  "kind": "prop",
+  "materials": [
+    "concrete.rough",
+    "water.pond",
+    "moss.cushion"
+  ],
+  "name": "Birdbath",
+  "notes": "",
+  "parts": [
+    "square plinth",
+    "fluted pedestal",
+    "basin bowl with lip",
+    "water surface"
+  ],
+  "references": [],
+  "size": [
+    0.6,
+    0.68,
+    0.6
+  ],
+  "style": "aged cast stone, moss at the base, water stain ring",
+  "summary": "Cast concrete pedestal birdbath, 0.68 m: scalloped basin with water, fluted baluster pedestal, square plinth.",
+  "tags": [
+    "prop",
+    "landscaping",
+    "garden",
+    "outdoor",
+    "concrete",
+    "decor"
+  ],
+  "theme": "Landscaping",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

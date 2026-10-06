@@ -69,12 +69,24 @@ public protocol RealVessel: RealAsset {
     var rimRadius: Float { get }
     /// How it conducts heat on a burner.
     var metal: VesselThermal.Metal { get }
+    /// Center of the inner floor surface (pans centered on their footprint sit off x = 0).
+    var floorCenter: V3 { get }
 }
 
 public extension RealVessel {
     var rimRadius: Float { innerRadius * 1.15 }
     var metal: VesselThermal.Metal { .stainless }
+    var floorCenter: V3 { V3(0, floorY, 0) }
 }
+
+extension StainlessSkillet: RealVessel {}
+extension CastIronSkillet: RealVessel { public var metal: VesselThermal.Metal { .castIron } }
+extension Saucepan: RealVessel {}
+extension StockPot: RealVessel {}
+extension MixingBowl: RealVessel {}
+extension BakingSheet: RealVessel { public var metal: VesselThermal.Metal { .aluminum } }
+extension MeasuringCup: RealVessel {}
+extension ChefKnife: RealBlade {}
 
 /// A cutting tool. Asset space: lying on its side (blade face normal +Y), blade along +X, edge toward -Z.
 public protocol RealBlade: RealAsset {

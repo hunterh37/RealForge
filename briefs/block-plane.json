@@ -1,0 +1,42 @@
+{
+  "budget": 8000,
+  "id": "block-plane",
+  "kind": "prop",
+  "materials": [
+    "metal.plane-japanned",
+    "metal.machined",
+    "metal.tool-ground",
+    "metal.plane-nickel",
+    "metal.brass-aged",
+    "wood.walnut"
+  ],
+  "name": "Low-angle block plane",
+  "notes": "Rests on its sole. Points: grip, soleCenter, pushDirection.",
+  "parts": [
+    "cast iron body with machined sole and side faces",
+    "blue-grey enamel on bed, toe deck and wall edges",
+    "mouth with the iron edge just through",
+    "bevel-up iron bedded at 12 degrees",
+    "nickel lever cap with brass clamp screw",
+    "walnut front knob",
+    "knurled brass depth-adjuster knob"
+  ],
+  "references": [],
+  "size": [
+    0.162,
+    0.036,
+    0.05
+  ],
+  "style": "Well-kept user plane: bright machined sides, slightly chipped enamel, aged brass.",
+  "summary": "Low-angle block plane: enamelled cast iron body with machined sole and sides, bevel-up iron at the mouth, lever cap, brass adjuster knob.",
+  "tags": [
+    "prop",
+    "workshop",
+    "tool",
+    "handheld",
+    "metal"
+  ],
+  "theme": "Woodshop",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

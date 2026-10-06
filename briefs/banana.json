@@ -1,0 +1,36 @@
+{
+  "budget": 7000,
+  "id": "banana",
+  "kind": "prop",
+  "materials": [
+    "food.banana-peel",
+    "food.banana-peel-section",
+    "food.banana-flesh",
+    "food.banana-tip"
+  ],
+  "name": "Banana",
+  "notes": "",
+  "parts": [
+    "curved angular yellow peel",
+    "stem",
+    "dark blossom tip",
+    "cream flesh inside the peel"
+  ],
+  "references": [],
+  "size": [
+    0.181,
+    0.037,
+    0.055
+  ],
+  "style": "ripe Cavendish banana",
+  "summary": "Ripe Cavendish banana, 19 cm: curved ridged yellow peel with freckles, green-brown stem, dark tip, cream flesh inside.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

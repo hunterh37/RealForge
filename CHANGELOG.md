@@ -1,5 +1,87 @@
 # Changelog
 
+## 5.3.2
+
+- Texture synthesis runs on the visionOS simulator with Metal validation: albedo is written through an
+  RGBA8Unorm view with sRGB encoded in the kernel, alpha-mip passes use separate encoders instead of
+  compute `memoryBarrier`, and `rf_alpha_apply` no longer needs read-write RGBA8.
+- `GPUSmokeTests`: sky, environment and every material on the simulator.
+
+## 5.3.1
+
+- `TextureSynth.dispatch` uses `dispatchThreadgroups` with rounded-up counts. Fixes the
+  `Dispatch Threads with Non-Uniform Threadgroup Size` assertion on the visionOS simulator.
+
+## 5.3.0
+
+Woodshop missions: hardware, roofing and a mission ticket for in-shop jobs.
+
+- `butt-hinge` (articulated): 3 x 3 in steel butt hinge, 2.2 mm leaves with 1/4 in radius corners, three
+  swaged #9 countersunk holes per leaf, 5-knuckle 11 mm barrel, removable 3.3 mm pin with button head and
+  bottom button cap, satin nickel. Joints `leaf` 0...180 deg (0 closed, 180 open flat) and `pin`
+  0...0.08 m; states open-flat, closed, open-90, pin-out. Points `pinOrigin`, `pinDirection`, `pinHead`,
+  `fixedLeafHoles`, `movingLeafHoles(angle:)`, `movingLeafScrewAxis(angle:)`.
+- `shingle-strip`: 3-tab asphalt shingle, 36 x 12 in, 5 in exposure, two 1/4 in keyway cutouts, granule
+  coat with per-tab blend shading (`color` knob), self-seal dashes, painted nail line. Points
+  `nailPoints`, `tabCenters`, `cutoutTops`.
+- `job-ticket`: letter-size hardboard clipboard with a riveted steel clip, pencil dent and a blueprint
+  sheet (border, deck framing plan, dimensions, section bubble, title block) with a curled corner.
+  Points `clipPress`, `clipJaw`, `sheetCenter`, `titleBlockCenter`, `curledCorner`, `pencilSlot`, `grip`.
+- `wood-screw`: `Drive.star` (T25 six-lobe recess) and `WoodScrew.deck`, a #9 x 2-1/2 in tan
+  ceramic-coated deck screw preset.
+- Materials: `wood.lumber-cedar`, `wood.plywood-osb`, `metal.hinge-satin-nickel`,
+  `metal.screw-ceramic-tan`, `roofing.shingle-granule`, `roofing.shingle-sealant`.
+- WoodshopMissionTests.
+
+## 5.2.0
+
+Landscaping: a designed backyard scene and 35 gated landscaping props for yard design and preview apps.
+
+- Scene `backyard-landscape`: 14 x 10 m backyard with lawn, herringbone paver patio, stone fire pit,
+  adirondack chairs, mulch beds with shrubs, path lights, pergola, retaining wall and trees.
+- Plants: boxwood-shrub, boxwood-ball, privet-hedge (tileable `length`), hydrangea-bush, rose-bush,
+  lavender-clump, hosta, ornamental-grass, arborvitae, knockout-azalea, daylily-clump, potted-boxwood.
+  Shared `ShrubKit` helper.
+- Hardscape: paver-patio (`w`/`d`, herringbone), retaining-wall-block (`length`/`courses`), mulch-bed
+  (`radius`/`shape`), river-rock-bed, steel-edging (`length`), stone-fire-pit, pergola, picket-fence,
+  raised-garden-bed, sod-roll, concrete-stepper, garden-fountain.
+- Yard: path-light and landscape-spotlight (off/on rigs), patio-umbrella (closed/open), birdbath,
+  adirondack-chair, hose-reel, lawn-sprinkler, garden-trellis, terracotta-planter, cedar-planter-box,
+  solar-lantern; brief and sign-off for the existing wheelbarrow.
+- Materials `Library/Landscaping.swift`, texture programs `paverHerringbone` and `barkMulch` in
+  `Shaders/LandscapingShaders.swift`; tag `landscaping`.
+- Fix: duplicate material key `wood.butcher-block`; the woodshop workbench top is now `wood.bench-maple`.
+
+## 5.1.0
+
+Woodshop: a home woodshop scene and 30 gated woodworking props, built for training sims (stock that can be
+cut at runtime, machines whose blades, fences and arms are rig joints, documented working points on every
+hand tool).
+
+- Scene `woodshop`: 8 x 6.4 m CMU shop with concrete floor, 9 hanging LED shop lights with point lights,
+  west windows, steel door, pegboard wall, lumber rack, sawdust, offcuts and cords. `stations` knob bakes
+  the machines and benches in (showcase) or leaves the spots empty for an app to spawn live ones;
+  `WoodshopLayout` publishes every station, operator spot and fixture position.
+- Machines (articulated): `table-saw` (blade bevel, height and spin, rip fence, miter gauge and angle,
+  guard, paddle switch; `arborCenter`, `bladeExposure`, `fenceFaceX`, `miterGaugeFaceZ`, `tableBounds`),
+  `miter-saw` (miter with detents, bevel, chop arm, blade spin, trigger, mimicking lower guard;
+  `arborCenter`, `bladeNormal`, `handleGrip`).
+- Handheld power tools (articulated, one cordless family look): `circular-saw`, `cordless-drill` (bit
+  options), `random-orbit-sander`, `jigsaw`.
+- Hand tools: `hand-saw`, `claw-hammer`, `wood-chisel`, `speed-square`, `tape-measure` (continuous
+  `extension` with blade sag), `carpenter-pencil`, `block-plane`, `push-stick`, `bar-clamp` (articulated).
+- Shop: `workbench` (vise), `lumber-rack`, `pegboard-wall`, `shop-vac`, `sawdust-pile`, `shop-light`,
+  `fire-extinguisher`, `first-aid-kit` (door), `wood-glue` (cap), `safety-glasses` (temples), `ear-muffs`,
+  `wood-screw`, `screw-box`.
+- Stock: `lumber` and `plywood-sheet` with real dressed sizes (`Lumber.nominal`), miter and bevel ends, and
+  `crosscut(atX:kerf:miter:bevel:)` / `rip(atZ:kerf:)` returning pieces placed in the parent frame with
+  continuous grain and fresh end grain (`CutPiece`, LumberTests).
+- Texture programs `tapeRule` (1/16 in tape blade with numerals and stud marks) and `pegboard`. Materials:
+  lumber species, fresh end grain, butcher block, machined cast iron, saw plate, carbide, die-cast,
+  tool plastics, shop concrete, sawdust, hardboard, painted CMU and tool finishes.
+- Fix: static batching no longer emits empty LOD levels when transparent detail exists only in LOD0
+  (RealityKit rejected the whole scene with "Direct Mesh Validation Failed"). BatchTests.
+
 ## 5.0.0
 
 Hospital: an emergency department floor, its rooms, 50 articulated medical assets and hand grab
