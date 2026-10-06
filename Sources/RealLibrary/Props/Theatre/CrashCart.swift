@@ -35,7 +35,7 @@ public struct CrashCart: RealArticulated {
         let y0: Float = 0.165, yTop: Float = 1.045           // cabinet underside, cabinet top
         let sheet: Float = 0.018, stile: Float = 0.026, front: Float = 0.02
         let zFace = D / 2 - front
-        let stackLo = y0 + 0.012, reveal: Float = 0.006
+        let reveal: Float = 0.006
 
         func box(_ size: V3, _ c: V3, _ mat: MaterialKey, r: Float = 0.004, seg: Int = 1) -> (Surface, Xform) {
             (Prim.roundedBox(size, radius: r, bevelSegments: seg, material: mat), Xform(translation: c))

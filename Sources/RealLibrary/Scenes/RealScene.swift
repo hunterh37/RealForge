@@ -173,7 +173,7 @@ public struct RealScene {
         guard !receiversIdx.isEmpty else { return singles }
         let work = Task.detached(priority: .userInitiated) { () -> [Single] in
             var occluders: [Model] = []
-            for (i, s) in singles.enumerated() where !s.bake {
+            for s in singles where !s.bake {
                 let lod = s.asset.levels[min(1, s.asset.levels.count - 1)]
                 occluders.append(lod.transformed(s.at))
             }

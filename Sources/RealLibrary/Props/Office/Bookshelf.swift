@@ -44,7 +44,7 @@ public struct Bookshelf: RealAsset {
     enum Extra { case bookend(V3, Float), vase(V3), bowl(V3) }
 
     func layout(seed: UInt64) -> ([Book], [Extra]) {
-        var rng = SeededRNG(seed: seed)
+        let rng = SeededRNG(seed: seed)
         var books: [Book] = []
         var extras: [Extra] = []
         let inner = width - 2 * panel
