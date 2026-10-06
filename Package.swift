@@ -19,7 +19,7 @@ let package = Package(
         .target(name: "RealLibrary", dependencies: ["RealCore", "RealMaterials", "RealKit"]),
         // CLI: list, stats, offscreen PNG preview via RealityRenderer.
         .executableTarget(name: "realityhd", dependencies: ["RealCore", "RealMaterials", "RealKit", "RealLibrary"]),
-        .testTarget(name: "RealityHDTests", dependencies: ["RealCore", "RealLibrary"]),
+        .testTarget(name: "RealityHDTests", dependencies: ["RealCore", "RealLibrary", "RealKit", "RealMaterials"]),
     ],
     swiftLanguageModes: [.v5]
 )

@@ -106,7 +106,7 @@ public final class TextureSynth: @unchecked Sendable {
 
     public func makeTexture(_ fmt: MTLPixelFormat, _ n: Int, mips: Bool = true, storage: MTLStorageMode = .private) -> MTLTexture {
         let d = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: fmt, width: n, height: n, mipmapped: mips)
-        d.usage = [.shaderRead, .shaderWrite]
+        d.usage = fmt == .rgba8Unorm_srgb ? [.shaderRead, .shaderWrite, .pixelFormatView] : [.shaderRead, .shaderWrite]
         d.storageMode = storage
         return device.makeTexture(descriptor: d)!
     }
@@ -129,7 +129,10 @@ public final class TextureSynth: @unchecked Sendable {
         let scratchM = spec.hasMetallicMap ? nil : makeTexture(.r8Unorm, n, mips: false)
         guard let enc = cb.makeComputeCommandEncoder() else { throw SynthError.encode }
         enc.setComputePipelineState(material)
-        enc.setTexture(set.albedo, index: 0); enc.setTexture(height, index: 1); enc.setTexture(set.roughness, index: 2)
+        // Writable view: sRGB formats are not shader-writable on the simulator / pre-A15 GPUs.
+        let albedoFmt: MTLPixelFormat = set.albedo.pixelFormat == .rgba8Unorm_srgb ? .rgba8Unorm : set.albedo.pixelFormat
+        let albedoW = set.albedo.makeTextureView(pixelFormat: albedoFmt) ?? set.albedo
+        enc.setTexture(albedoW, index: 0); enc.setTexture(height, index: 1); enc.setTexture(set.roughness, index: 2)
         enc.setTexture(set.ao ?? scratchR, index: 3); enc.setTexture(set.metallic ?? scratchM, index: 4)
         enc.setBytes(&p, length: MemoryLayout<RFParams>.stride, index: 0)
         dispatch(enc, material, n, n)
@@ -137,7 +140,9 @@ public final class TextureSynth: @unchecked Sendable {
         enc.setTexture(height, index: 0); enc.setTexture(set.normal, index: 1)
         enc.setBytes(&p, length: MemoryLayout<RFParams>.stride, index: 0)
         dispatch(enc, normal, n, n)
-        // Coverage-preserving alpha mips for cutout foliage.
+        enc.endEncoding()
+        // Coverage-preserving alpha mips for cutout foliage. One encoder per pass: compute
+        // memoryBarrier is unavailable on the simulator; encoder boundaries order the passes.
         if spec.mode == .cutout && set.albedo.mipmapLevelCount > 1 {
             let levels = set.albedo.mipmapLevelCount
             // counts: per level 16 scale buckets; level 0 slot 16 holds its texel count.
@@ -145,28 +150,22 @@ public final class TextureSynth: @unchecked Sendable {
             var zero = [UInt32](repeating: 0, count: levels * stride)
             zero[16] = UInt32(n * n)
             let counts = device.makeBuffer(bytes: &zero, length: zero.count * 4, options: .storageModeShared)!
-            func view(_ l: Int) -> MTLTexture { set.albedo.makeTextureView(pixelFormat: set.albedo.pixelFormat, textureType: .type2D, levels: l..<(l + 1), slices: 0..<1)! }
-            enc.setComputePipelineState(alphaCount)
-            enc.setTexture(view(0), index: 0); enc.setBuffer(counts, offset: 0, index: 0)
-            dispatch(enc, alphaCount, n, n)
+            func view(_ l: Int) -> MTLTexture { set.albedo.makeTextureView(pixelFormat: albedoFmt, textureType: .type2D, levels: l..<(l + 1), slices: 0..<1)! }
+            func pass(_ ps: MTLComputePipelineState, _ w: Int, _ h: Int, _ bind: (MTLComputeCommandEncoder) -> Void) throws {
+                guard let e = cb.makeComputeCommandEncoder() else { throw SynthError.encode }
+                e.setComputePipelineState(ps); bind(e); dispatch(e, ps, w, h); e.endEncoding()
+            }
+            try pass(alphaCount, n, n) { $0.setTexture(view(0), index: 0); $0.setBuffer(counts, offset: 0, index: 0) }
             for level in 1..<levels {
                 let src = view(level - 1), dst = view(level)
-                enc.memoryBarrier(scope: .textures)
-                enc.setComputePipelineState(alphaDown)
-                enc.setTexture(src, index: 0); enc.setTexture(dst, index: 1)
-                dispatch(enc, alphaDown, dst.width, dst.height)
-                enc.memoryBarrier(scope: .textures)
-                enc.setComputePipelineState(alphaCount)
-                enc.setTexture(dst, index: 0); enc.setBuffer(counts, offset: level * stride * 4, index: 0)
-                dispatch(enc, alphaCount, dst.width, dst.height)
-                enc.memoryBarrier(scope: .buffers)
-                enc.setComputePipelineState(alphaApply)
-                enc.setTexture(dst, index: 0)
-                enc.setBuffer(counts, offset: 0, index: 0); enc.setBuffer(counts, offset: level * stride * 4, index: 1)
-                dispatch(enc, alphaApply, dst.width, dst.height)
+                try pass(alphaDown, dst.width, dst.height) { $0.setTexture(src, index: 0); $0.setTexture(dst, index: 1) }
+                try pass(alphaCount, dst.width, dst.height) { $0.setTexture(dst, index: 0); $0.setBuffer(counts, offset: level * stride * 4, index: 0) }
+                try pass(alphaApply, dst.width, dst.height) {
+                    $0.setTexture(src, index: 0); $0.setTexture(dst, index: 1)
+                    $0.setBuffer(counts, offset: 0, index: 0); $0.setBuffer(counts, offset: level * stride * 4, index: 1)
+                }
             }
         }
-        enc.endEncoding()
         guard let blit = cb.makeBlitCommandEncoder() else { throw SynthError.encode }
         var mipped = [set.normal, set.roughness] + [set.ao, set.metallic].compactMap { $0 }
         if spec.mode != .cutout { mipped.append(set.albedo) }
