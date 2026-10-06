@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "bread-slice",
+  "kind": "prop",
+  "materials": [
+    "food.bread-crumb",
+    "food.bread-crust"
+  ],
+  "name": "Sourdough slice",
+  "notes": "",
+  "parts": [
+    "open crumb faces",
+    "dark crust ring",
+    "domed loaf outline with ear"
+  ],
+  "references": [],
+  "size": [
+    0.19,
+    0.016,
+    0.121
+  ],
+  "style": "sourdough bread slice",
+  "summary": "Sourdough slice, 19 x 12 x 1.5 cm: open irregular crumb, dark blistered crust ring; toasts golden.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

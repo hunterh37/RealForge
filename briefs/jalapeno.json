@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "jalapeno",
+  "kind": "prop",
+  "materials": [
+    "food.jalapeno",
+    "food.jalapeno-section",
+    "food.stem-green"
+  ],
+  "name": "Jalapeno",
+  "notes": "",
+  "parts": [
+    "glossy tapering pod",
+    "green calyx",
+    "curved stem",
+    "seeded pith in section"
+  ],
+  "references": [],
+  "size": [
+    0.089,
+    0.024,
+    0.024
+  ],
+  "style": "jalapeno pepper",
+  "summary": "Jalapeno, 7.5 cm: glossy dark-green tapering pod, calyx and curved stem, pale seeded section; chars when cooked.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

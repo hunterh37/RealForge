@@ -1,0 +1,32 @@
+{
+  "budget": 7000,
+  "id": "spaghetti",
+  "kind": "prop",
+  "materials": [
+    "food.pasta-dry"
+  ],
+  "name": "Spaghetti bundle",
+  "notes": "",
+  "parts": [
+    "about 110 straight strands",
+    "staggered flat-cut ends",
+    "a few splayed strands"
+  ],
+  "references": [],
+  "size": [
+    0.263,
+    0.023,
+    0.029
+  ],
+  "style": "dry spaghetti bundle",
+  "summary": "Dry spaghetti bundle, 25.5 cm: ~110 straight 1.8 mm strands, staggered cut ends, a few splayed; softens when boiled.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

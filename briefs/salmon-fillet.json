@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "salmon-fillet",
+  "kind": "prop",
+  "materials": [
+    "food.salmon",
+    "food.salmon-skin"
+  ],
+  "name": "Salmon fillet",
+  "notes": "",
+  "parts": [
+    "coral flesh with white myomere lines",
+    "back to belly taper",
+    "silver skin underside"
+  ],
+  "references": [],
+  "size": [
+    0.152,
+    0.032,
+    0.082
+  ],
+  "style": "skin-on Atlantic salmon fillet portion",
+  "summary": "Skin-on salmon fillet portion, 15 x 8 x 3 cm: coral flesh with white myomere lines, back-to-belly taper, silver skin.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

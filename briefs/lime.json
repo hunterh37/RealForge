@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "lime",
+  "kind": "prop",
+  "materials": [
+    "food.lime",
+    "food.lime-pith",
+    "food.lime-flesh"
+  ],
+  "name": "Lime",
+  "notes": "",
+  "parts": [
+    "pitted glossy rind",
+    "stem button",
+    "pith",
+    "segmented flesh"
+  ],
+  "references": [],
+  "size": [
+    0.061,
+    0.053,
+    0.053
+  ],
+  "style": "Persian lime",
+  "summary": "Persian lime, 6.2 cm: glossy pitted green rind, stem button, thin pith, juicy segmented flesh.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

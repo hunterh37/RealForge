@@ -1,0 +1,32 @@
+{
+  "budget": 6000,
+  "id": "mozzarella-ball",
+  "kind": "prop",
+  "materials": [
+    "food.mozzarella",
+    "food.mozzarella-section"
+  ],
+  "name": "Mozzarella ball",
+  "notes": "",
+  "parts": [
+    "glossy fresh ball",
+    "pinched knot"
+  ],
+  "references": [],
+  "size": [
+    0.066,
+    0.06,
+    0.066
+  ],
+  "style": "fresh mozzarella ball, 125 g",
+  "summary": "Fresh mozzarella ball, 6.5 cm: glossy milk-white skin, pinched closing knot, fibrous white section; melts and browns.",
+  "tags": [
+    "prop",
+    "food",
+    "kitchen",
+    "handheld"
+  ],
+  "theme": "Food",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
