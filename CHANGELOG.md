@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.3.2
+
+- Texture synthesis runs on the visionOS simulator with Metal validation: albedo is written through an
+  RGBA8Unorm view with sRGB encoded in the kernel, alpha-mip passes use separate encoders instead of
+  compute `memoryBarrier`, and `rf_alpha_apply` no longer needs read-write RGBA8.
+- `GPUSmokeTests`: sky, environment and every material on the simulator.
+
 ## 5.3.1
 
 - `TextureSynth.dispatch` uses `dispatchThreadgroups` with rounded-up counts. Fixes the
