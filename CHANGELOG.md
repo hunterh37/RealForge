@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.3.1
+
+- `TextureSynth.dispatch` uses `dispatchThreadgroups` with rounded-up counts. Fixes the
+  `Dispatch Threads with Non-Uniform Threadgroup Size` assertion on the visionOS simulator.
+
 ## 5.3.0
 
 Woodshop missions: hardware, roofing and a mission ticket for in-shop jobs.
