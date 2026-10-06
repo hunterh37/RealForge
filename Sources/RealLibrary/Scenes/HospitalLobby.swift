@@ -90,9 +90,9 @@ public struct HospitalLobby: RealSceneBuilder {
         for (i, x) in [Float(-5.6), -3.6, -1.9].enumerated() {
             scene.add(HospitalFit.sign(width: 1.0, height: 0.55, label: i == 1 ? "label.rx" : "label.hazard"), at: place(x, -D / 2, y: 1.75))
         }
-        scene.addLive(Wheelchair(), at: place(-6.6, 4.6, yaw: 120), seed: seed &+ 30, state: "brakes-on")
-        scene.addLive(Wheelchair(), at: place(-7.2, 3.9, yaw: 110), seed: seed &+ 31, state: "ready")
-        scene.addLive(BiohazardBin(), at: place(7.4, -1.0, yaw: -90), seed: seed &+ 32, state: "closed")
+        scene.addLive(Wheelchair(), at: place(-6.6, 4.6, yaw: 120), seed: seed &+ 30, state: "brakes-on", grabbable: true)
+        scene.addLive(Wheelchair(), at: place(-7.2, 3.9, yaw: 110), seed: seed &+ 31, state: "ready", grabbable: true)
+        scene.addLive(BiohazardBin(), at: place(7.4, -1.0, yaw: -90), seed: seed &+ 32, state: "closed", grabbable: true)
         scene.addLive(SanitizerDispenser(), at: place(-W / 2 + 0.052, 4.0, y: 1.0, yaw: 90), seed: seed &+ 33, state: "idle")
         for (i, p) in [V2(-W / 2 + 0.6, D / 2 - 0.7), V2(W / 2 - 0.6, D / 2 - 0.7), V2(-W / 2 + 0.6, -D / 2 + 0.7), V2(W / 2 - 0.6, 0.6)].enumerated() {
             scene.add(SnakePlant(), at: place(p.x, p.y, yaw: rng.float(0...360), scale: 1.25), seed: seed &+ UInt64(40 + i))

@@ -17,6 +17,19 @@ public struct RealGrabComponent: Component {
     public init(release: Release = .stay, home: Transform? = nil) { self.release = release; self.home = home }
 }
 
+#if os(visionOS)
+@MainActor
+public enum RealGrabStyle {
+    /// Hover effect handed to `ManipulationComponent.configureEntity` for every grabbable.
+    /// `RealGrabCue.enable()` switches it to a shader effect that drives the gaze dot.
+    public static var hoverEffect: HoverEffectComponent.HoverEffect = .spotlight(.default)
+    /// false: no `ManipulationComponent`; the app moves grabbables with its own drag gesture
+    /// (`Entity.grabDragChanged`). ManipulationComponent traps in Drift on visionOS 26.2 devices when
+    /// the RealityView also carries a tap gesture.
+    public static var useManipulation = true
+}
+#endif
+
 @MainActor
 public extension Entity {
     /// Makes this entity pickable by hand. `min`/`max` bound everything it carries (local space).
@@ -25,7 +38,13 @@ public extension Entity {
         let shape = ShapeResource.generateBox(size: size).offsetBy(translation: (lo + hi) / 2)
         components.set(RealGrabComponent(release: release, home: transform))
         #if os(visionOS)
-        ManipulationComponent.configureEntity(self, hoverEffect: .spotlight(.default), allowedInputTypes: .all, collisionShapes: [shape])
+        guard RealGrabStyle.useManipulation else {
+            components.set(CollisionComponent(shapes: [shape], mode: .default, filter: .default))
+            components.set(InputTargetComponent(allowedInputTypes: .all))
+            components.set(HoverEffectComponent(RealGrabStyle.hoverEffect))
+            return
+        }
+        ManipulationComponent.configureEntity(self, hoverEffect: RealGrabStyle.hoverEffect, allowedInputTypes: .all, collisionShapes: [shape])
         if var m = components[ManipulationComponent.self] {
             m.releaseBehavior = release == .stay ? .stay : .reset
             m.dynamics.scalingBehavior = .none

@@ -26,8 +26,9 @@ public final class RealViewerTracker {
     func update() {
         guard running, world.state == .running,
               let a = world.queryDeviceAnchor(atTimestamp: CACurrentMediaTime()) else { return }
-        let c = a.originFromAnchorTransform.columns.3
-        RealViewer.position = SIMD3(c.x, c.y, c.z)
+        let m = a.originFromAnchorTransform
+        RealViewer.position = SIMD3(m.columns.3.x, m.columns.3.y, m.columns.3.z)
+        RealViewer.forward = -SIMD3(m.columns.2.x, m.columns.2.y, m.columns.2.z)
     }
 }
 #endif

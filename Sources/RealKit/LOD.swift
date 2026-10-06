@@ -8,6 +8,8 @@ import RealCore
 @MainActor
 public enum RealViewer {
     public static var position: SIMD3<Float> = SIMD3(0, 1.6, 0)
+    /// Head look direction (scene space, unit length); -Z without tracking.
+    public static var forward: SIMD3<Float> = SIMD3(0, 0, -1)
 }
 
 /// Discrete LOD switching: children named "lod0", "lod1", ... are enabled by distance from the viewer
