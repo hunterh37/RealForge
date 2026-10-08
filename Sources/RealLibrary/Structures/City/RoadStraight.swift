@@ -6,7 +6,7 @@ import Foundation
 /// the 12 m between curbs (curbs live on the adjacent `sidewalk-curb` tiles). Top at y = 0.1.
 public struct RoadStraight: RealAsset {
     public static let id = "road-straight"
-    public static let summary = "Straight two-lane road tile, 12 x 12 m snap cell: asphalt slab with oil-stained lanes, double yellow centre line, white edge lines, concrete gutter pans, crack sealant and a utility patch."
+    public static let summary = "Straight two-lane road tile, 12 m snap cell: asphalt with oil stains, double yellow centre line, edge lines, concrete gutters, sealed cracks, a patch."
     public static let tags = ["structure", "city", "street", "road", "tile", "outdoor", "concrete"]
     public static let budget = 3200
     public static let author = "realityhd"

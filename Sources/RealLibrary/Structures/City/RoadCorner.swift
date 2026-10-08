@@ -8,7 +8,7 @@ import Foundation
 /// sidewalk top y = 0.25.
 public struct RoadCorner: RealAsset {
     public static let id = "road-corner"
-    public static let summary = "Road corner tile, 12 x 12 m snap cell: two-lane road turning 90 degrees between the west and south edges, curved double yellow line, granite curb and sidewalk filling the outer corner."
+    public static let summary = "Road corner tile, 12 m snap cell: two-lane road bending between the west and south edges, curved centre line, granite curb and sidewalk outside."
     public static let tags = ["structure", "city", "street", "road", "tile", "outdoor", "concrete", "stone"]
     public static let budget = 8600
     public static let author = "realityhd"

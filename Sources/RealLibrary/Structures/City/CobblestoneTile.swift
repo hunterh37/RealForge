@@ -1,14 +1,14 @@
 import simd
 import Foundation
 
-/// Cobblestone tile on the 3 m city grid: granite setts about 16 x 11 cm laid in running-bond rows
+/// Cobblestone tile on the 3 m city grid: granite setts about 22 x 12 cm laid in running-bond rows
 /// along X on a dark grit bed. Every sett is its own worn, domed block with seeded size, tilt and
 /// tone. Top y ~ 0.25 so it sits flush with sidewalk and plaza tiles.
 public struct CobblestoneTile: RealAsset {
     public static let id = "cobblestone-tile"
     public static let summary = "Cobblestone tile, 3 x 3 m snap cell: rows of worn granite setts with dark grit joints, sidewalk height."
     public static let tags = ["structure", "city", "street", "road", "tile", "outdoor", "stone"]
-    public static let budget = 24000
+    public static let budget = 15000
     public static let author = "realityhd"
     public static let preview = PreviewHint(azimuth: 30, elevation: 35, distance: 1.0)
 
@@ -17,8 +17,8 @@ public struct CobblestoneTile: RealAsset {
     /// Top of the setts (m).
     public var top: Float = CityGrid.walkTop
     /// Sett length along the row (X) and width across (Z) (m).
-    public var settLength: Float = 0.16
-    public var settWidth: Float = 0.11
+    public var settLength: Float = 0.22
+    public var settWidth: Float = 0.12
     /// Joint width (m).
     public var joint: Float = 0.014
     /// Exposed sett height above the grit (m).

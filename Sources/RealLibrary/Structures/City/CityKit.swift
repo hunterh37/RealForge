@@ -291,3 +291,39 @@ extension Xform {
         Xform(translation: translation + rotation.act(local.translation * scale), rotation: rotation * local.rotation, scale: scale * local.scale)
     }
 }
+
+// MARK: - Signals
+
+/// Three-section 30 cm (12 in) vehicle signal head facing +Z, origin at the head's center: polycarbonate
+/// housing, lenses with tunnel visors and a black backplate with a yellow retroreflective border.
+/// `lit` 0 red, 1 amber, 2 green; nil = all dark.
+public func citySignalHead(_ m: inout Model, at x: Xform, lit: Int? = 0, sections: Int = 3, housing: MaterialKey = "metal.signal-yellow",
+                           backplate: Bool = true) {
+    let pitch: Float = 0.36, H = pitch * Float(sections) + 0.02, W: Float = 0.36, D: Float = 0.24
+    m.add(Prim.roundedBox(V3(W, H, D), radius: 0.02, bevelSegments: 2, material: housing), x)
+    if backplate {
+        let bp = Shape2D.roundedRect(W + 0.28, H + 0.24, radius: 0.07, segments: 4)
+        citySignPlate(&m, outline: bp, x: x.child(Xform(translation: V3(0, 0, -D / 2 - 0.006))), thickness: 0.004, border: 0.05,
+                      borderMaterial: "sign.white:E8B800", face: "plastic.black", back: nil, twoSided: true)
+    }
+    let lamps: [MaterialKey] = ["emissive.signal-red", "emissive.signal-orange", "emissive.signal-green"]
+    for i in 0..<sections {
+        let y = (Float(sections - 1) / 2 - Float(i)) * pitch
+        let on = (lit ?? -1) == i
+        let face = x.child(Xform(translation: V3(0, y, D / 2)))
+        // Door ring and lens.
+        m.add(Prim.cylinder(radius: 0.155, height: 0.012, bevel: 0.004, segments: 20, bevelSegments: 1, material: housing),
+              face.child(Xform(rotation: simd_quatf(degrees: 90, axis: V3(1, 0, 0)))))
+        var lens = Prim.superellipsoid(V3(0.27, 0.27, 0.04), exponent: 2, subdivisions: 4, material: on ? lamps[i % 3] : "glass.signal-off")
+        lens = lens.transformed(Xform(translation: V3(0, 0, 0.008)))
+        m.add(lens, face)
+        // Tunnel visor: a 300-degree hood open at the bottom, 22 cm deep.
+        let a0: Float = -0.35, a1: Float = .pi + 0.35
+        var band: [V2] = []
+        for k in 0...10 { let a = a0 + (a1 - a0) * Float(k) / 10; band.append(V2(cos(a), sin(a)) * 0.168) }
+        for k in (0...10).reversed() { let a = a0 + (a1 - a0) * Float(k) / 10; band.append(V2(cos(a), sin(a)) * 0.176) }
+        var hood = Prim.extrude(band.reversedIfCW(), depth: 0.22, bevel: 0.002, bevelSegments: 1, material: housing)
+        hood = hood.transformed(Xform(translation: V3(0, 0, 0.11 + 0.01)))
+        m.add(hood, face)
+    }
+}

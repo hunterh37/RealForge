@@ -6,7 +6,7 @@ import Foundation
 /// edge. Concrete gutter squares sit at the four corners where the curb returns meet. Top at y = 0.1.
 public struct RoadIntersection: RealAsset {
     public static let id = "road-intersection"
-    public static let summary = "Four-way intersection tile, 12 x 12 m snap cell: asphalt box with continental crosswalks and stop bars on all four legs, gutter pans at the corners, sealed cracks and oil drips."
+    public static let summary = "Four-way intersection tile, 12 m snap cell: asphalt box with continental crosswalks and stop bars on four legs, corner gutters, sealed cracks."
     public static let tags = ["structure", "city", "street", "road", "tile", "outdoor", "concrete"]
     public static let budget = 6000
     public static let author = "realityhd"

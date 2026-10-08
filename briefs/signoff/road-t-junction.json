@@ -4,7 +4,7 @@
   "final" : 0.85265553,
   "fingerprint" : "2e9f6f9910c1a67d",
   "id" : "road-t-junction",
-  "iterations" : 1,
+  "iterations" : 2,
   "judge" : "agent",
   "scores" : {
     "artifacts" : 8,

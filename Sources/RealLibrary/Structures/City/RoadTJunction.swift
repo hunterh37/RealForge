@@ -6,7 +6,7 @@ import Foundation
 /// the branch carries a crosswalk, stop bar and centre-line stub. Top at y = 0.1.
 public struct RoadTJunction: RealAsset {
     public static let id = "road-t-junction"
-    public static let summary = "T-junction road tile, 12 x 12 m snap cell: through road east-west with a branch south, double yellow centre line, crosswalk and stop bar on the branch, gutter pan on the closed side."
+    public static let summary = "T-junction road tile, 12 m snap cell: east-west through road with a south branch, crosswalk and stop bar on the branch, gutter on the closed side."
     public static let tags = ["structure", "city", "street", "road", "tile", "outdoor", "concrete"]
     public static let budget = 5000
     public static let author = "realityhd"

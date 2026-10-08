@@ -60,13 +60,13 @@ public extension MaterialLibrary {
         MaterialSpec(key: "sign.green", program: nil).with { $0.baseColor = V3(0.0, 0.16, 0.07); $0.roughness = 0.35; $0.clearcoat = 0.6 },
         // Signal lamps lit: red, amber, green, walk-white, don't-walk orange.
         MaterialSpec(key: "emissive.signal-red", program: nil).with {
-            $0.baseColor = V3(1, 0.1, 0.06); $0.mode = .emissive; $0.emissive = V3(1, 0.08, 0.04); $0.emissiveIntensity = 5
+            $0.baseColor = V3(0.9, 0.02, 0.01); $0.mode = .emissive; $0.emissive = V3(1, 0.03, 0.01); $0.emissiveIntensity = 2.5
         },
         MaterialSpec(key: "emissive.signal-green", program: nil).with {
-            $0.baseColor = V3(0.2, 1, 0.75); $0.mode = .emissive; $0.emissive = V3(0.1, 1, 0.7); $0.emissiveIntensity = 5
+            $0.baseColor = V3(0.05, 0.9, 0.6); $0.mode = .emissive; $0.emissive = V3(0.02, 1, 0.65); $0.emissiveIntensity = 2.5
         },
         MaterialSpec(key: "emissive.signal-orange", program: nil).with {
-            $0.baseColor = V3(1, 0.45, 0.1); $0.mode = .emissive; $0.emissive = V3(1, 0.4, 0.08); $0.emissiveIntensity = 4
+            $0.baseColor = V3(1, 0.35, 0.02); $0.mode = .emissive; $0.emissive = V3(1, 0.32, 0.02); $0.emissiveIntensity = 2.5
         },
         MaterialSpec(key: "emissive.signal-white", program: nil).with {
             $0.baseColor = V3(1, 0.97, 0.9); $0.mode = .emissive; $0.emissive = V3(1, 0.96, 0.88); $0.emissiveIntensity = 4
@@ -79,7 +79,7 @@ public extension MaterialLibrary {
         },
         // Fountain basin water, clear with slight green.
         MaterialSpec(key: "water.fountain", program: nil).with {
-            $0.baseColor = V3(0.35, 0.45, 0.42); $0.roughness = 0.03; $0.specular = 0.6; $0.mode = .transparent; $0.opacity = 0.55
+            $0.baseColor = V3(0.12, 0.17, 0.15); $0.roughness = 0.03; $0.specular = 0.7; $0.mode = .transparent; $0.opacity = 0.7
         },
         // Hot-poured crack sealant, dull from grit and traffic.
         MaterialSpec(key: "asphalt.sealant", program: nil).with { $0.baseColor = V3(0.02, 0.02, 0.019); $0.roughness = 0.7 },
@@ -102,6 +102,10 @@ public extension MaterialLibrary {
         MaterialSpec(key: "metal.cast-iron-street", program: .rustMetal).with {
             $0.colorA = linear(0x2E2A27); $0.colorB = linear(0x1A1817); $0.knobs = V4(0.12, 0, 0, 0); $0.seed = 9181
             $0.tileSize = 0.5; $0.hasMetallicMap = true; $0.normalStrength = 2.0; $0.roughness = 0.7
+        },
+        // Aerated falling water and foam: white, translucent.
+        MaterialSpec(key: "water.fountain-foam", program: nil).with {
+            $0.baseColor = V3(0.82, 0.87, 0.87); $0.roughness = 0.25; $0.specular = 0.5; $0.mode = .transparent; $0.opacity = 0.3; $0.twoSided = true
         },
         // realityhd:material.city
     ]

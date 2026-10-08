@@ -27,7 +27,7 @@
     12
   ],
   "style": "US neighbourhood T-junction",
-  "summary": "T-junction road tile, 12 x 12 m snap cell: through road east-west with a branch south, double yellow centre line, crosswalk and stop bar on the branch, gutter pan on the closed side.",
+  "summary": "T-junction road tile, 12 m snap cell: east-west through road with a south branch, crosswalk and stop bar on the branch, gutter on the closed side.",
   "tags": [
     "structure",
     "city",
