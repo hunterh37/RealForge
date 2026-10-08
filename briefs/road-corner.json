@@ -1,0 +1,44 @@
+{
+  "budget": 8600,
+  "id": "road-corner",
+  "kind": "structure",
+  "materials": [
+    "asphalt.road",
+    "asphalt.worn",
+    "paint.lane-yellow",
+    "paint.lane-white",
+    "stone.granite-curb",
+    "concrete.sidewalk"
+  ],
+  "name": "Road corner tile",
+  "notes": "",
+  "parts": [
+    "asphalt slab",
+    "curved double yellow centre line",
+    "curved edge lines",
+    "curved granite curb",
+    "sidewalk fill in the outer corner",
+    "curved gutter pan"
+  ],
+  "references": [],
+  "size": [
+    12,
+    0.25,
+    12
+  ],
+  "style": "US city street bend, granite curbs",
+  "summary": "Road corner tile, 12 x 12 m snap cell: two-lane road turning 90 degrees between the west and south edges, curved double yellow line, granite curb and sidewalk filling the outer corner.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete",
+    "stone"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

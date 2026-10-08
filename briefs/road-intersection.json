@@ -1,0 +1,42 @@
+{
+  "budget": 12000,
+  "id": "road-intersection",
+  "kind": "structure",
+  "materials": [
+    "asphalt.road",
+    "paint.lane-white",
+    "paint.lane-yellow",
+    "concrete.sidewalk",
+    "asphalt.sealant"
+  ],
+  "name": "Four-way road intersection tile",
+  "notes": "",
+  "parts": [
+    "asphalt slab",
+    "continental crosswalk bars on four legs",
+    "stop bars",
+    "centre line stubs",
+    "corner gutter pans",
+    "sealed cracks"
+  ],
+  "references": [],
+  "size": [
+    12,
+    0.1,
+    12
+  ],
+  "style": "US downtown intersection, worn ladder crosswalks",
+  "summary": "Four-way intersection tile, 12 x 12 m snap cell: asphalt box with continental crosswalks and stop bars on all four legs, gutter pans at the corners, sealed cracks and oil drips.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

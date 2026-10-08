@@ -1,0 +1,37 @@
+{
+  "budget": 24000,
+  "id": "cobblestone-tile",
+  "kind": "structure",
+  "materials": [
+    "stone.granite-curb",
+    "ground.sand"
+  ],
+  "name": "Cobblestone street tile",
+  "notes": "",
+  "parts": [
+    "individual granite setts",
+    "running-bond rows",
+    "grit joints",
+    "worn domed tops"
+  ],
+  "references": [],
+  "size": [
+    3,
+    0.25,
+    3
+  ],
+  "style": "old-town granite setts, polished by traffic",
+  "summary": "Cobblestone tile, 3 x 3 m snap cell: rows of worn granite setts with dark grit joints, sidewalk height.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "stone"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

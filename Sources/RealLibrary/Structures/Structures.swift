@@ -26,6 +26,13 @@ public enum Structures {
         PrivacyCurtain.self,
         Headwall.self,
         NurseStation.self,
+        RoadStraight.self,
+        RoadIntersection.self,
+        RoadTJunction.self,
+        RoadCorner.self,
+        SidewalkCurb.self,
+        PlazaPaving.self,
+        CobblestoneTile.self,
         // realityhd:structure
     ]
 }

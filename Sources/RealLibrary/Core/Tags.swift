@@ -27,6 +27,8 @@ public enum AssetTag {
         "appliance", "cookware",
         // landscaping: yard props, hardscape, planting
         "landscaping",
+        // city streetscape: snap-grid road and sidewalk tiles, street furniture
+        "city", "tile",
     ])
 
     /// Scene tags: any vocabulary tag plus these.
