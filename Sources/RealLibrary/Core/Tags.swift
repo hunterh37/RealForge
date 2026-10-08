@@ -27,6 +27,10 @@ public enum AssetTag {
         "appliance", "cookware",
         // landscaping: yard props, hardscape, planting
         "landscaping",
+        // architecture: facade openings and building elements sized per bay by building generators
+        "architecture", "facade", "roof",
+        // classical trim and ornament tiled along facade edges
+        "trim", "ornament",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

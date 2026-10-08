@@ -1,0 +1,36 @@
+{
+  "budget": 4000,
+  "id": "classical-pilaster",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Classical pilaster",
+  "notes": "type ClassicalPilaster",
+  "parts": [
+    "plinth",
+    "attic base moldings",
+    "fluted shaft",
+    "necking astragal",
+    "capital echinus",
+    "abacus"
+  ],
+  "references": [],
+  "size": [
+    0.58,
+    3.0,
+    0.17
+  ],
+  "style": "Roman Doric pilaster, 0.4 m shaft with seven shallow flutes, attic base, molded capital",
+  "summary": "Classical pilaster, 3 m: plinth, attic base, fluted shaft, astragal, echinus capital and abacus projecting from the wall.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

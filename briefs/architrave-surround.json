@@ -1,0 +1,38 @@
+{
+  "budget": 4000,
+  "id": "architrave-surround",
+  "kind": "structure",
+  "materials": [
+    "stone.cast-stone"
+  ],
+  "name": "Window architrave surround",
+  "notes": "type ArchitraveSurround",
+  "parts": [
+    "molded architrave band",
+    "mitered corners",
+    "inner bead",
+    "projecting sill",
+    "sill drip",
+    "sill blocks",
+    "dark reveal",
+    "crossette ears"
+  ],
+  "references": [],
+  "size": [
+    1.3,
+    1.8,
+    0.12
+  ],
+  "style": "Eared window architrave in cast stone, 0.9 x 1.5 m opening, two-fascia molded band, projecting sill on blocks",
+  "summary": "Window architrave surround, 0.9 x 1.5 m opening: molded band with crossette ears and a projecting sill on blocks.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,38 @@
+{
+  "budget": 3000,
+  "id": "entablature",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Ionic entablature",
+  "notes": "type Entablature",
+  "parts": [
+    "three-fascia architrave",
+    "bead and fillet",
+    "frieze",
+    "dentil course",
+    "bed mold",
+    "corona",
+    "cyma crown",
+    "egg-and-dart ovolo"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.85,
+    0.355
+  ],
+  "style": "Ionic entablature: three-fascia architrave, plain frieze, dentil cornice with corona and cyma recta",
+  "summary": "Ionic entablature, 1.2 m run: three-fascia architrave, plain frieze, dentil cornice, corona and cyma crown; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

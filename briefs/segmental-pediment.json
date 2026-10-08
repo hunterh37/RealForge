@@ -1,0 +1,34 @@
+{
+  "budget": 5000,
+  "id": "segmental-pediment",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Segmental pediment",
+  "notes": "type SegmentalPediment",
+  "parts": [
+    "horizontal cornice",
+    "segmental arched cornice",
+    "tympanum",
+    "dentils under the arc"
+  ],
+  "references": [],
+  "size": [
+    2.32,
+    0.633,
+    0.16
+  ],
+  "style": "Segmental (arched) window pediment, 2.2 m span, molded arc cornice over a flat tympanum",
+  "summary": "Segmental pediment, 2.2 m: horizontal cornice under a molded segmental arc cornice framing a tympanum.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
