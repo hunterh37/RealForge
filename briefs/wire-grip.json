@@ -1,0 +1,38 @@
+{
+  "budget": 7000,
+  "id": "wire-grip",
+  "kind": "prop",
+  "materials": [
+    "metal.screw-zinc-yellow",
+    "metal.steel"
+  ],
+  "name": "Wire grip",
+  "notes": "",
+  "parts": [
+    "parallel jaws",
+    "toggle levers",
+    "bail pulling eye",
+    "latch keeper",
+    "pivot rivets"
+  ],
+  "references": [
+    "notes/refs/wire-grip.jpg"
+  ],
+  "size": [
+    0.274,
+    0.018,
+    0.11
+  ],
+  "style": "Chicago style come-along wire grip, yellow chromate plated forged steel",
+  "summary": "Chicago style come-along wire grip: parallel jaws, toggle linkage and pulling bail in yellow-zinc steel.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

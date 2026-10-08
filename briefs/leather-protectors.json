@@ -1,0 +1,41 @@
+{
+  "budget": 6000,
+  "id": "leather-protectors",
+  "kind": "prop",
+  "materials": [
+    "leather.split-tan",
+    "plastic.orange",
+    "fabric.webbing",
+    "plastic.black"
+  ],
+  "name": "Leather protectors",
+  "notes": "",
+  "parts": [
+    "pair of tan leather protectors lying flat",
+    "gauntlet cuff",
+    "cuff adjust strap and buckle",
+    "sewn fingers and seams",
+    "orange vinyl cuff back"
+  ],
+  "references": [
+    "notes/refs/leather-protectors.jpg"
+  ],
+  "size": [
+    0.3,
+    0.022,
+    0.31
+  ],
+  "style": "12 in leather protectors over rubber gloves, grained cowhide, work grime on fingertips",
+  "summary": "Pair of 12 in leather glove protectors lying flat: tan cowhide, gauntlet cuff with orange vinyl and strap.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "ppe",
+    "leather"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

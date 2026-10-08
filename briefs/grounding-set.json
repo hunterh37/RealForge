@@ -1,0 +1,42 @@
+{
+  "budget": 14000,
+  "id": "grounding-set",
+  "kind": "prop",
+  "materials": [
+    "plastic.pvc-clear",
+    "metal.copper-strand",
+    "metal.brass-aged",
+    "metal.satin-aluminum",
+    "metal.galvanized",
+    "rubber"
+  ],
+  "name": "Grounding set",
+  "notes": "",
+  "parts": [
+    "clear jacket copper ground lead coiled",
+    "two bronze C clamps with eye screws",
+    "threaded ferrules with shrink",
+    "stranded copper visible through jacket"
+  ],
+  "references": [
+    "notes/refs/grounding-set.jpg"
+  ],
+  "size": [
+    0.92,
+    0.134,
+    0.53
+  ],
+  "style": "temporary protective ground jumper, clear PVC jacket over 2/0 copper, bronze clamps",
+  "summary": "Temporary grounding jumper: coiled clear-jacket copper lead with ferrules and two bronze C clamps.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,42 @@
+{
+  "id": "pole-transformer",
+  "kind": "prop",
+  "name": "Pole transformer",
+  "theme": "Utility",
+  "size": [
+    0.52,
+    0.99,
+    0.63
+  ],
+  "summary": "25 kVA single-phase pole-mount transformer: ANSI 70 gray tank, clamped cover, primary bushing, three secondary bushings, hangers.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "metal"
+  ],
+  "parts": [
+    "round tank with welded bottom",
+    "domed cover with clamp band",
+    "primary porcelain bushing",
+    "three secondary bushings with spade terminals",
+    "upper and lower hanger brackets",
+    "lifting lugs",
+    "nameplate and kVA decal",
+    "ground pad"
+  ],
+  "materials": [
+    "metal.transformer-gray",
+    "ceramic.porcelain-gray",
+    "metal.bronze-cast",
+    "metal.galvanized"
+  ],
+  "style": "in-service, slight rain streaking, rust at the cover band",
+  "budget": 8000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/pole-transformer.jpg"
+  ]
+}

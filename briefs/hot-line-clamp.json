@@ -1,0 +1,40 @@
+{
+  "id": "hot-line-clamp",
+  "kind": "prop",
+  "name": "Hot line clamp",
+  "theme": "Utility",
+  "size": [
+    0.16,
+    0.064,
+    0.06
+  ],
+  "summary": "Bronze hot-line clamp for 4/0 conductor: cast body with jaw and saddle, stainless eye screw with hot-stick eye, tap conductor clamp bolt.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "metal"
+  ],
+  "parts": [
+    "cast bronze body",
+    "conductor jaw and saddle",
+    "stainless eye screw",
+    "hot stick eye ring",
+    "tap clamp bolt and nut",
+    "cast-in catalog lettering"
+  ],
+  "materials": [
+    "metal.bronze-cast",
+    "metal.stainless",
+    "metal.galvanized"
+  ],
+  "style": "new casting, warm bronze, greased threads",
+  "budget": 4000,
+  "tolerance": 0.12,
+  "threshold": 0.85,
+  "notes": "Lying on its side; 6.5 in overall like HLB-400.",
+  "references": [
+    "notes/refs/hot-line-clamp.jpg"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "budget": 14000,
+  "id": "rubber-gloves",
+  "kind": "prop",
+  "materials": [
+    "rubber.insulating-red",
+    "rubber.insulating-black",
+    "label.inspection"
+  ],
+  "name": "Rubber insulating gloves",
+  "notes": "",
+  "parts": [
+    "pair of red insulating gloves standing on cuffs",
+    "straight 14 in cuff with rolled bead",
+    "separate fingers and thumb",
+    "class label patch"
+  ],
+  "references": [
+    "notes/refs/rubber-gloves.jpg"
+  ],
+  "size": [
+    0.31,
+    0.37,
+    0.083
+  ],
+  "style": "Class 2 natural rubber linemen's gloves, satin bloom, red outside black inside",
+  "summary": "Pair of Class 2 red rubber insulating gloves standing on their 14 in rolled cuffs.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "ppe",
+    "rubber"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

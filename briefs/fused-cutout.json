@@ -1,0 +1,44 @@
+{
+  "id": "fused-cutout",
+  "kind": "prop",
+  "name": "Fused cutout",
+  "theme": "Utility",
+  "size": [
+    0.1,
+    0.49,
+    0.54
+  ],
+  "summary": "15 kV 100 A porcelain fused cutout on a NEMA B bracket: glazed body, fiberglass fuse door with pull ring, bronze contacts.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "articulated",
+    "ceramic",
+    "metal"
+  ],
+  "parts": [
+    "glazed porcelain insulator body with sheds",
+    "galvanized NEMA B bracket and mounting strap",
+    "upper contact hood with latch",
+    "fiberglass fuse tube door with pull ring",
+    "lower hinge casting with trunnion",
+    "bronze eye-bolt connectors",
+    "fuse link leader tail"
+  ],
+  "materials": [
+    "ceramic.porcelain-gray",
+    "plastic.fuse-tube",
+    "metal.bronze-cast",
+    "metal.galvanized",
+    "metal.tinned-copper"
+  ],
+  "style": "in-service cutout, gray glaze, galvanized steel dulled, bronze castings tarnished",
+  "budget": 12000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/fused-cutout.jpg"
+  ]
+}

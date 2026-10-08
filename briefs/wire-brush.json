@@ -1,0 +1,40 @@
+{
+  "budget": 13000,
+  "id": "wire-brush",
+  "kind": "prop",
+  "materials": [
+    "plastic.yellow",
+    "metal.stainless",
+    "plastic.black",
+    "metal.chrome"
+  ],
+  "name": "Conductor wire brush",
+  "notes": "",
+  "parts": [
+    "flat steel bristle pad",
+    "molded frame",
+    "handle with grip",
+    "hang ring"
+  ],
+  "references": [
+    "notes/refs/wire-brush.jpg"
+  ],
+  "size": [
+    0.36,
+    0.041,
+    0.06
+  ],
+  "style": "conductor cleaning flat brush, molded frame, steel bristles, worn and dirty",
+  "summary": "Conductor cleaning flat wire brush: steel bristle pad in a moulded frame, rubber grip handle and hang ring.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "plastic",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

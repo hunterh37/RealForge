@@ -1,0 +1,40 @@
+{
+  "budget": 14000,
+  "id": "fall-harness",
+  "kind": "prop",
+  "materials": [
+    "fabric.webbing",
+    "metal.galvanized",
+    "plastic.black",
+    "metal.steel"
+  ],
+  "name": "Fall arrest harness",
+  "notes": "",
+  "parts": [
+    "shoulder straps crossing at dorsal D ring",
+    "chest strap with buckle",
+    "waist and leg loops",
+    "quick connect buckles",
+    "shock absorbing lanyard with snap hook"
+  ],
+  "references": [
+    "notes/refs/fall-harness.jpg"
+  ],
+  "size": [
+    0.5,
+    0.8,
+    0.47
+  ],
+  "style": "full body linemen's harness in worn shape, grey webbing, black leg straps, lanyard",
+  "summary": "Full body fall arrest harness in worn shape: grey webbing, dorsal D ring, chest and leg buckles, lanyard.",
+  "tags": [
+    "prop",
+    "ppe",
+    "handheld",
+    "utility",
+    "fabric"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

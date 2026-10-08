@@ -1,0 +1,48 @@
+{
+  "id": "distribution-pole",
+  "kind": "prop",
+  "name": "Distribution pole",
+  "theme": "Utility",
+  "size": [
+    3.85,
+    11.9,
+    1.7
+  ],
+  "summary": "45 ft class 3 wood distribution pole with a three-phase crossarm, pin insulators, neutral, 25 kVA transformer, three cutouts, an arrester and a guy wire.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "articulated",
+    "wood",
+    "metal"
+  ],
+  "parts": [
+    "tapered treated pine pole with checks",
+    "creosote butt and burned brand",
+    "8 ft crossarm with braces",
+    "three pin insulators with conductors",
+    "neutral on secondary rack",
+    "transformer with drop leads",
+    "three fused cutouts on a bracket arm",
+    "arrester",
+    "guy wire with guard",
+    "pole tag and ground molding"
+  ],
+  "materials": [
+    "wood.pole-pine",
+    "wood.pole-creosote",
+    "wood.crossarm-fir",
+    "ceramic.porcelain-gray",
+    "metal.galvanized",
+    "metal.acsr-strand"
+  ],
+  "style": "in-service pole, sun-greyed wood, creosote dark near grade",
+  "budget": 15000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "Pole base at the origin; the down guy anchor extends 3 m toward -X, so bounds are off center by design.",
+  "references": [
+    "notes/refs/distribution-pole.jpg"
+  ]
+}
