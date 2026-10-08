@@ -1,0 +1,40 @@
+{
+  "budget": 30000,
+  "id": "bay-window",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "glass.pane",
+    "metal.copper-patina"
+  ],
+  "name": "Bay Window",
+  "notes": "",
+  "parts": [
+    "center and two 45-degree side units",
+    "double-hung sashes",
+    "corner posts",
+    "paneled apron",
+    "bracket-supported base",
+    "hip roof with copper cladding",
+    "cornice"
+  ],
+  "references": [],
+  "size": [
+    2.74,
+    3.15,
+    0.72
+  ],
+  "style": "Victorian painted bay window, copper roof aged green.",
+  "summary": "Three-sided bay window: angled side units and center unit with double-hung sashes, paneled base, roof with copper cap and seat board.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "window",
+    "wood",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

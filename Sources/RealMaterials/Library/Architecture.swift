@@ -21,6 +21,11 @@ public extension MaterialLibrary {
             $0.colorA = linear(0x161616); $0.colorC = linear(0x5A2E1A, 0.35); $0.knobs = V4(0.35, 0.35, 0.5, 0); $0.seed = 8103
             $0.tileSize = 0.6; $0.hasMetallicMap = true; $0.normalStrength = 1.8; $0.resolution = 512
         },
+        // Factory-finished (Kynar) roofing steel: almost no chips, light dirt washed down the slope.
+        MaterialSpec(key: "metal.roofing", program: .paintedMetal).with {
+            $0.colorA = linear(0x3A3D3F); $0.colorC = linear(0x6A6A66, 0.4); $0.knobs = V4(0.04, 0.45, 0.42, 0); $0.seed = 8104
+            $0.tileSize = 1.2; $0.hasMetallicMap = true; $0.normalStrength = 0.6; $0.roughness = 0.45
+        },
         // realityhd:material.architecture
     ]
 }

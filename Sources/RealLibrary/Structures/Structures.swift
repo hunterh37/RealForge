@@ -37,6 +37,11 @@ public enum Structures {
         FireEscapeBay.self,
         CanvasAwning.self,
         CurtainWallPanel.self,
+        StorefrontBay.self,
+        BayWindow.self,
+        BrickChimney.self,
+        StandingSeamRoof.self,
+        GableRoofPanel.self,
         // realityhd:structure
     ]
 }
