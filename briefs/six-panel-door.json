@@ -1,0 +1,42 @@
+{
+  "budget": 14000,
+  "id": "six-panel-door",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-shaker",
+    "wood.oak",
+    "metal.brass-aged",
+    "plastic.black"
+  ],
+  "name": "Six-Panel Entry Door",
+  "notes": "",
+  "parts": [
+    "stiles, rails and mid rails",
+    "six raised fielded panels",
+    "jambs and head with stop",
+    "flat casing with back band and drip cap",
+    "oak threshold sill",
+    "brass knob and rose",
+    "deadbolt escutcheon",
+    "three butt hinges"
+  ],
+  "references": [],
+  "size": [
+    1.23,
+    2.31,
+    0.21
+  ],
+  "style": "Painted colonial front door, a few seasons old: knob brass rubbed, sill worn at the center.",
+  "summary": "Exterior six-panel entry door, 0.91 x 2.13 m: painted stile-and-rail leaf with raised panels, cased frame, brass knob, deadbolt, hinges and oak sill.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "wood",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

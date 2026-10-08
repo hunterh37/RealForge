@@ -1,0 +1,47 @@
+{
+  "budget": 17000,
+  "id": "garage-door",
+  "kind": "structure",
+  "materials": [
+    "metal.powder-white",
+    "metal.galvanized",
+    "rubber",
+    "wood.painted-exterior",
+    "glass.clear",
+    "metal.stainless",
+    "plastic.white",
+    "plastic.black",
+    "metal.steel",
+    "metal.painted",
+    "plastic.matte"
+  ],
+  "name": "Sectional Garage Door",
+  "notes": "",
+  "parts": [
+    "four horizontal sections with raised panels",
+    "section hinges and rollers",
+    "vertical tracks",
+    "jamb and head trim",
+    "bottom seal",
+    "lift handle and lock"
+  ],
+  "references": [],
+  "size": [
+    2.64,
+    2.24,
+    0.25
+  ],
+  "style": "Suburban white steel garage door, slightly dirty at the bottom.",
+  "summary": "Sectional garage door, 2.4 x 2.1 m: four insulated steel sections with raised panels, hinges, rollers in tracks, trim, lift handle and seal.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

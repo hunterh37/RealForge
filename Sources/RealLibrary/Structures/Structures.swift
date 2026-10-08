@@ -26,6 +26,12 @@ public enum Structures {
         PrivacyCurtain.self,
         Headwall.self,
         NurseStation.self,
+        SixPanelDoor.self,
+        DoubleHungWindow.self,
+        CasementWindow.self,
+        GarageDoor.self,
+        GeorgianEntry.self,
+        BrownstoneDoubleDoor.self,
         // realityhd:structure
     ]
 }
