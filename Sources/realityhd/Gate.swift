@@ -13,7 +13,7 @@ final class Stage {
     let focus: Entity
     let root = Entity()
 
-    init(id: String, seed: UInt64, sky: String = "afternoon", ground: Bool = true, matte: Bool = false, lod: Int = 0, state: String? = nil, live: Bool = false) async throws {
+    init(id: String, seed: UInt64, sky: String = "afternoon", ground: Bool = true, matte: Bool = false, lod: Int = 0, state: String? = nil, live: Bool = false, floor floorKey: String = "concrete.smooth") async throws {
         RealKitSetup.register()
         RealMaterialCache.shared.useShaderGraph = true
         let hint = Catalog.type(id)?.preview ?? PreviewHint()
@@ -36,8 +36,8 @@ final class Stage {
         let isProp = Catalog.type(id)?.tags.first == "prop" || hint.studio
         if ground && hint.ground && !matte && isProp {
             // Props: neutral sealed-concrete floor, so the judge sees the object, not giant forest litter.
-            var floor = Prim.terrain(size: V2(80, 80), segments: 8, material: "concrete.smooth") { _ in 0 }
-            floor.uvs = floor.uvs.map { $0 * 2.5 }   // finer aggregate: a smooth studio-like slab at prop scale
+            var floor = Prim.terrain(size: V2(80, 80), segments: 8, material: floorKey) { _ in 0 }
+            floor.uvs = floor.uvs.map { $0 * (floorKey == "concrete.smooth" ? 2.5 : 8) }   // finer aggregate: a smooth studio-like slab at prop scale
             let pad = Model(name: "stage-floor", surfaces: [floor])
             root.addChild(try await pad.modelEntityAsync())
         } else if ground && hint.ground && !matte {
@@ -80,22 +80,27 @@ func loadBrief(_ id: String) -> PropBrief? {
 
 /// Six-view contact sheet with a stats header. One image for the vision judge instead of six.
 @MainActor
-func makeSheet(_ id: String, seed: UInt64, geometry g: GeometryReport, brief: PropBrief?, panel: (w: Int, h: Int) = (640, 480)) async throws -> CGImage {
+func makeSheet(_ id: String, seed: UInt64, geometry g: GeometryReport, brief: PropBrief?, panel: (w: Int, h: Int) = (640, 480), views: Set<String>? = nil) async throws -> CGImage {
     let hint = Catalog.type(id)?.preview ?? PreviewHint()
     let stage = try await Stage(id: id, seed: seed)
     let az = hint.azimuth, el = hint.elevation, d = hint.distance
     var shots: [(String, CGImage)] = []
-    shots.append(("hero az \(Int(az)) el \(Int(el))", try await stage.shot(az: az, el: el, dist: d, w: panel.w, h: panel.h)))
-    shots.append(("side az \(Int(az + 90))", try await stage.shot(az: az + 90, el: el, dist: d, w: panel.w, h: panel.h)))
-    shots.append(("back az \(Int(az + 180))", try await stage.shot(az: az + 180, el: el + 5, dist: d, w: panel.w, h: panel.h)))
-    shots.append(("high az \(Int(az - 45)) el 50", try await stage.shot(az: az - 45, el: 50, dist: d, w: panel.w, h: panel.h)))
-    shots.append(("detail 2.2x", try await stage.shot(az: az + 15, el: el + 6, dist: d * 0.45, w: panel.w, h: panel.h)))
-    let golden = try await Stage(id: id, seed: seed, sky: "golden")
-    shots.append(("golden hour, grazing light", try await golden.shot(az: az - 20, el: el, dist: d, w: panel.w, h: panel.h)))
+    func want(_ v: String) -> Bool { views?.contains(v) ?? true }
+    if want("hero") { shots.append(("hero az \(Int(az)) el \(Int(el))", try await stage.shot(az: az, el: el, dist: d, w: panel.w, h: panel.h))) }
+    if want("side") { shots.append(("side az \(Int(az + 90))", try await stage.shot(az: az + 90, el: el, dist: d, w: panel.w, h: panel.h))) }
+    if want("back") { shots.append(("back az \(Int(az + 180))", try await stage.shot(az: az + 180, el: el + 5, dist: d, w: panel.w, h: panel.h))) }
+    if want("high") { shots.append(("high az \(Int(az - 45)) el 50", try await stage.shot(az: az - 45, el: 50, dist: d, w: panel.w, h: panel.h))) }
+    if want("detail") { shots.append(("detail 2.2x", try await stage.shot(az: az + 15, el: el + 6, dist: d * 0.45, w: panel.w, h: panel.h))) }
+    if want("golden") {
+        let golden = try await Stage(id: id, seed: seed, sky: "golden")
+        shots.append(("golden hour, grazing light", try await golden.shot(az: az - 20, el: el, dist: d, w: panel.w, h: panel.h)))
+    }
+    guard !shots.isEmpty else { throw CLIError("--views: none of hero,side,back,high,detail,golden") }
+    let cols = min(3, shots.count), rows = (shots.count + cols - 1) / cols
     let header = 64
-    let c = Canvas(panel.w * 3, panel.h * 2 + header)
+    let c = Canvas(panel.w * cols, panel.h * rows + header)
     for (i, (label, img)) in shots.enumerated() {
-        let x = (i % 3) * panel.w, y = header + (i / 3) * panel.h
+        let x = (i % cols) * panel.w, y = header + (i / cols) * panel.h
         c.image(img, x: x, y: y, w: panel.w, h: panel.h)
         c.text(label, x: x + 12, y: y + 10, size: 15, pill: true)
     }
@@ -105,7 +110,7 @@ func makeSheet(_ id: String, seed: UInt64, geometry g: GeometryReport, brief: Pr
     line += "   seed \(seed)"
     c.text(line, x: 14, y: 38, size: 15, color: CGColor(gray: 0.8, alpha: 1))
     let mats = g.materials.sorted { $0.value > $1.value }.map(\.key).joined(separator: "  ")
-    c.text(mats, x: panel.w * 3 - 14 - min(panel.w * 2, mats.count * 9), y: 12, size: 14, color: CGColor(gray: 0.7, alpha: 1))
+    c.text(mats, x: panel.w * cols - 14 - min(panel.w * (cols - 1), mats.count * 9), y: 12, size: 14, color: CGColor(gray: 0.7, alpha: 1))
     return c.cgImage
 }
 
@@ -206,6 +211,8 @@ func gateCommand(_ args: Args) async throws {
     let fitView = args.flag("--fit-view")
     let signoff = args.flag("--signoff")
     let skipSheet = args.flag("--no-sheet")
+    let views = args.opt("--views").map { Set($0.split(separator: ",").map(String.init)) }
+    if views != nil && signoff { throw CLIError("--signoff needs the full sheet; drop --views") }
     guard let id = args.next() else { print(usage); return }
     guard let t = Catalog.type(id) else { throw CLIError("unknown asset id \(id)") }
     var brief = loadBrief(id)
@@ -215,7 +222,7 @@ func gateCommand(_ args: Args) async throws {
     let g = GeometryLint.run(lod, budget: t.budget, brief: brief, hanging: t.tags.contains("ceiling"))
     var files: [String: String] = [:]
     if !skipSheet || !FileManager.default.fileExists(atPath: paths.sheet) {
-        writePNG(try await makeSheet(id, seed: seed, geometry: g, brief: brief), paths.sheet)
+        writePNG(try await makeSheet(id, seed: seed, geometry: g, brief: brief, views: views), paths.sheet)
     }
     files["sheet"] = paths.sheet
     var image: ImageMetrics?

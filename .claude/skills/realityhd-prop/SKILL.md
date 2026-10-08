@@ -15,8 +15,10 @@ step names them.
 swift build -q && swift run -q realityhd context prop
 ```
 
-This prints conventions, the full geometry API, every material key, existing props by theme and the
-loop commands. Read one existing prop of the same family only if the API listing is not enough
+This prints conventions, the geometry API, prop material keys (nature families hidden), existing
+props by theme and the loop commands. After the brief exists, `context materials <family>` or
+`context prop --brief <id>` reprints only the families the brief uses. Do not read `CATALOG.md`. Read one existing prop only if the API listing is not enough, and only the part needed:
+`grep -n "func \|// " <file>` then Read with offset/limit
 (`Props/Kitchen/CopperKettle.swift` lathe + tubes, `Props/Travel/VintageSuitcase.swift` extrude +
 hardware + stitching + LOD1, `Props/Furniture/ChesterfieldArmchair.swift` tufted upholstery,
 `Props/Furniture/BentwoodChair.swift` sweeps with grain along the path, `Props/Garden/StoneLantern.swift`
@@ -60,7 +62,14 @@ swift run -q realityhd gate <id> [--ref briefs/refs/<id>/a.jpg]
 ```
 
 Then run the `realityhd-gate` skill: Read `out/gate/<id>/sheet.png` (and `compare.png`), write the
-verdict, gate with `--verdict`. On fail apply the top 1-3 fixes and gate again. Stop after 6
+verdict, gate with `--verdict`. On fail apply the top 1-3 fixes and gate again.
+
+Token rules for the fix loop:
+- Apply fixes with Edit on the affected lines; do not re-Read the whole prop file between runs.
+  Locate parts with `grep -n "<part>" <file>`.
+- Mid-loop checks of a local fix: `gate <id> --views hero,detail` (2 panels). The first gate run, any
+  run whose verdict is scored for the final number, and `--signoff` use the full sheet.
+- Do not Read `compare.png` again unless the fix changed the silhouette. Stop after 6
 iterations and report the lowest criteria instead of inflating scores.
 
 ## 4. Ship

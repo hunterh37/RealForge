@@ -14,7 +14,14 @@ func contextCommand(_ args: Args) {
     case "gate": print(gateSheet)
     case "props": print(propSheet)
     default:
-        print(conventionsSheet); print(apiSheet); print(materialSheet(filter: nil)); print(propSheet); print(gateSheet)
+        // Props skip nature-only families; --families a,b or --brief <id> narrows further.
+        var fams: Set<String>? = args.opt("--families").map { Set($0.split(separator: ",").map(String.init)) }
+        if fams == nil, let id = args.opt("--brief"), let b = loadBrief(id) {
+            fams = Set(b.materials.map { String($0.split(separator: ".")[0]) })
+        }
+        print(conventionsSheet); print(apiSheet)
+        print(materialSheet(filter: nil, families: fams, exclude: fams == nil ? natureOnlyFamilies : []))
+        print(propSheet); print(gateSheet)
     }
 }
 
@@ -60,15 +67,20 @@ LODModel(m)  or  LODModel(levels: [m0, m1], switchDistances: [8])
 static let preview = PreviewHint(azimuth:, elevation:, distance:, studio: true)   rng.float(a...b) rng.vary(x, 0.1) rng.chance(p)
 """
 
-func materialSheet(filter: String?) -> String {
+/// Material families used only by nature assets; hidden from `context prop`.
+let natureOnlyFamilies: Set<String> = ["bark", "leaf", "grass", "fern", "moss", "fungus", "flower", "ground",
+                                       "rock", "cactus", "fruit", "water", "litter", "straw", "plant"]
+
+func materialSheet(filter: String?, families: Set<String>? = nil, exclude: Set<String> = []) -> String {
     // One line per family and (program, tile, notes) signature; variants listed by suffix.
     // About a quarter of the per-key table it replaces.
-    var lines = ["## Materials: family [program tile-m notes] variants (key = family.variant)"]
+    var lines = [(exclude.isEmpty ? "" : "(nature families hidden: realityhd context materials <family>)\n") + "## Materials: family [program tile-m notes] variants (key = family.variant)"]
     var order: [String] = []
     var groups: [String: [(sig: String, variants: [String])]] = [:]
     for s in MaterialLibrary.all where filter == nil || s.key.hasPrefix(filter!) {
         let parts = s.key.split(separator: ".", maxSplits: 1).map(String.init)
         let f = parts[0], v = parts.count > 1 ? parts[1] : ""
+        if exclude.contains(f) || families.map({ !$0.contains(f) }) == true { continue }
         var notes: [String] = []
         if s.mode != .opaque { notes.append("\(s.mode)") }
         if s.metallic > 0 || s.hasMetallicMap { notes.append("metal") }

@@ -51,11 +51,11 @@ realityhd new prop|nature|structure <id> [--theme Folder] [--author handle] [--m
 realityhd new scene <id> [--author handle]
 realityhd new material <family.variant> --program <TextureProgram> [--like key]
 realityhd demo splat|water|glass [--pbr]   engine feature demos (out/demo-<name>.png)
-realityhd context [prop|api|materials [family]|props|gate]   compact agent context from the live library
+realityhd context [prop [--brief id|--families a,b]|api|materials [family]|props|gate] compact agent context from the live library
 realityhd brief <id> --theme Folder --name "..."   briefs/<id>.json skeleton (size, parts, materials, refs)
 realityhd lint [id...] [--all]             budget, grounding, texel scale, size vs brief
 realityhd sheet <id> [--seed n]            out/gate/<id>/sheet.png: six views + stats, one image
-realityhd gate <id> [--ref img] [--view az,el] [--fit-view] [--verdict file] [--signoff] [--no-sheet] [--threshold t]
+realityhd gate <id> [--ref img] [--view az,el] [--fit-view] [--verdict file] [--signoff] [--no-sheet] [--views hero,detail] [--threshold t]
                                           vision gate: lint, sheet, reference compare, score, sign-off
 realityhd bench                           release timing (swift run -c release realityhd bench)
 realityhd perf [scene...] [--seed n]      tris, shadow tris, draws, instances at the camera hint per tier

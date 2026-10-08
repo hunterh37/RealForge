@@ -235,6 +235,7 @@ public enum Props {
         CilantroBunch.self,
         Jalapeno.self,
         GingerRoot.self,
+        HalogenSiphonBar.self,
         // realityhd:prop
     ]
 }

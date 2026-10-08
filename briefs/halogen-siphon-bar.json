@@ -1,0 +1,48 @@
+{
+  "budget": 14800,
+  "id": "halogen-siphon-bar",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "metal.chrome",
+    "metal.aluminum-brushed",
+    "plastic.black",
+    "glass.clear",
+    "emissive.led-red",
+    "plastic.matte"
+  ],
+  "name": "Halogen siphon bar",
+  "notes": "Front keypad buttons are tappable articulated parts (each press slides 2 mm in). Display is a red 7-segment LED. Reference photo briefs/refs/halogen-siphon-bar/a.jpg (cluttered window background, machine cropped) breaks silhouette matching; judged by eye.",
+  "parts": [
+    "stainless chassis with brushed top deck",
+    "two front keypad panels with red LED display and 9 keys",
+    "two finger-guarded cooling fans",
+    "brand badge",
+    "two halogen beam burner cups with square vents",
+    "chrome horseshoe stand bases",
+    "black turned handle columns",
+    "bent chrome arms with screw clamp",
+    "glass siphon upper globes with stem",
+    "red magnetic kitchen timer"
+  ],
+  "references": [],
+  "size": [
+    0.56,
+    0.62,
+    0.5
+  ],
+  "style": "commercial cafe siphon station, brushed stainless, lightly fingerprinted, chrome stands, clear borosilicate globes",
+  "summary": "Two-station halogen beam siphon heater: stainless box with keypads, fans and badge, aluminum burner cups, chrome stands holding glass globes; tappable keys.",
+  "tags": [
+    "prop",
+    "kitchen",
+    "appliance",
+    "articulated",
+    "electronics",
+    "metal",
+    "glass"
+  ],
+  "theme": "Kitchen",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
