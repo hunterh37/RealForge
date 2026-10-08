@@ -1,0 +1,39 @@
+{
+  "id": "fuse-link",
+  "kind": "prop",
+  "name": "Fuse link",
+  "theme": "Utility",
+  "size": [
+    0.202,
+    0.019,
+    0.114
+  ],
+  "summary": "Type K 15 A removable-buttonhead fuse link: tin-plated button, orange sheath tube over the element, tinned copper stranded leader.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "metal"
+  ],
+  "parts": [
+    "removable buttonhead and washer",
+    "orange auxiliary tube",
+    "fusible element sleeve",
+    "tinned stranded copper leader",
+    "crimped end"
+  ],
+  "materials": [
+    "plastic.orange",
+    "metal.tinned-copper",
+    "metal.aluminum-brushed"
+  ],
+  "style": "new, out of the bag, leader with a loose bend",
+  "budget": 2500,
+  "tolerance": 0.12,
+  "threshold": 0.85,
+  "notes": "Laid out flat as in the reference product photo; 23 in leader in an S.",
+  "references": [
+    "notes/refs/fuse-link.jpg"
+  ]
+}

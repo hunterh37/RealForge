@@ -1,0 +1,37 @@
+{
+  "id": "conductor-coil",
+  "kind": "prop",
+  "name": "Conductor coil",
+  "theme": "Utility",
+  "size": [
+    0.62,
+    0.049,
+    0.62
+  ],
+  "summary": "Coil of 1/0 ACSR bare conductor, about 30 m: stranded aluminum over a steel core, tied with three wraps of tie wire, cut ends showing strands.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "metal"
+  ],
+  "parts": [
+    "coiled conductor turns",
+    "helical strand lay",
+    "steel core",
+    "tie wire wraps",
+    "cut ends with splayed strands"
+  ],
+  "materials": [
+    "metal.acsr-strand",
+    "metal.galvanized"
+  ],
+  "style": "new bright aluminum strand, slightly loose turns",
+  "budget": 14000,
+  "tolerance": 0.12,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/conductor-coil.jpg"
+  ]
+}

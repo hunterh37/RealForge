@@ -1,0 +1,40 @@
+{
+  "budget": 10000,
+  "id": "cable-cutter",
+  "kind": "prop",
+  "materials": [
+    "metal.anodized-worn",
+    "metal.tool-ground",
+    "vinyl.dipped-red",
+    "metal.steel"
+  ],
+  "name": "Ratchet cable cutter",
+  "notes": "",
+  "parts": [
+    "hooked cutting blade",
+    "ratchet jaw with teeth",
+    "release pawl",
+    "side plates and bolts",
+    "red cushion grips with finger stops"
+  ],
+  "references": [
+    "notes/refs/cable-cutter.jpg"
+  ],
+  "size": [
+    0.285,
+    0.028,
+    0.093
+  ],
+  "style": "ratcheting cable cutter, black oxide blades, red cushioned handles",
+  "summary": "Ratcheting cable cutter lying flat: black hooked jaws with ratchet teeth and red cushion grip handles.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -33,6 +33,8 @@ public enum AssetTag {
         "trim", "ornament",
         // city streetscape: snap-grid road and sidewalk tiles, street furniture
         "city", "tile",
+        // lineman: overhead distribution hardware, line tools and PPE
+        "utility", "electrical", "ppe",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

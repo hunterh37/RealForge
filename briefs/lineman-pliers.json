@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "lineman-pliers",
+  "kind": "prop",
+  "materials": [
+    "metal.tool-ground",
+    "metal.hammer-forged",
+    "vinyl.dipped-red"
+  ],
+  "name": "Lineman pliers",
+  "notes": "",
+  "parts": [
+    "forged steel jaws with cutting knives",
+    "New England nose",
+    "hot riveted joint",
+    "dipped vinyl handles"
+  ],
+  "references": [
+    "notes/refs/lineman-pliers.jpg"
+  ],
+  "size": [
+    0.24,
+    0.016,
+    0.066
+  ],
+  "style": "9 in high-leverage side cutters, polished head, blue double dipped grips, Klein style",
+  "summary": "9 in high-leverage lineman's side-cutting pliers lying flat, polished forged head and dipped vinyl grips.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
