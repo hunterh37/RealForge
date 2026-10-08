@@ -379,6 +379,39 @@ sprinkler, trellis, planters). Tag `landscaping`. Test props `terracotta-pot`, `
 
 ![backyard-landscape](docs/scenes/backyard-landscape.png)
 
+### Lineman
+
+`lineman-yard` and `lineman-district` scenes with 25 gated power-line props for overhead distribution
+work: a framed distribution pole line, pole-top hardware, hot-line tools, PPE and an aerial bucket.
+Tools such as `hot-stick` are articulated (sliding hook head). Material library `Lineman`.
+
+| | |
+|---|---|
+| ![lineman-yard](docs/scenes/lineman-yard.png)<br>`lineman-yard` | ![lineman-district](docs/scenes/lineman-district.png)<br>`lineman-district` |
+
+Tools and PPE:
+
+| | | | |
+|---|---|---|---|
+| ![hot-stick](docs/assets/hot-stick.png)<br>`hot-stick` | ![lineman-pliers](docs/assets/lineman-pliers.png)<br>`lineman-pliers` | ![cable-cutter](docs/assets/cable-cutter.png)<br>`cable-cutter` | ![hydraulic-crimper](docs/assets/hydraulic-crimper.png)<br>`hydraulic-crimper` |
+| ![wire-grip](docs/assets/wire-grip.png)<br>`wire-grip` | ![wire-brush](docs/assets/wire-brush.png)<br>`wire-brush` | ![voltage-detector](docs/assets/voltage-detector.png)<br>`voltage-detector` | ![grounding-set](docs/assets/grounding-set.png)<br>`grounding-set` |
+| ![rubber-gloves](docs/assets/rubber-gloves.png)<br>`rubber-gloves` | ![leather-protectors](docs/assets/leather-protectors.png)<br>`leather-protectors` | ![insulating-blanket](docs/assets/insulating-blanket.png)<br>`insulating-blanket` | ![hard-hat](docs/assets/hard-hat.png)<br>`hard-hat` |
+| ![fall-harness](docs/assets/fall-harness.png)<br>`fall-harness` |   |   |   |
+
+Pole hardware:
+
+| | | | |
+|---|---|---|---|
+| ![distribution-pole](docs/assets/distribution-pole.png)<br>`distribution-pole` | ![pole-transformer](docs/assets/pole-transformer.png)<br>`pole-transformer` | ![fused-cutout](docs/assets/fused-cutout.png)<br>`fused-cutout` | ![fuse-link](docs/assets/fuse-link.png)<br>`fuse-link` |
+| ![lightning-arrester](docs/assets/lightning-arrester.png)<br>`lightning-arrester` | ![pin-insulator](docs/assets/pin-insulator.png)<br>`pin-insulator` | ![polymer-deadend](docs/assets/polymer-deadend.png)<br>`polymer-deadend` | ![hot-line-clamp](docs/assets/hot-line-clamp.png)<br>`hot-line-clamp` |
+| ![automatic-splice](docs/assets/automatic-splice.png)<br>`automatic-splice` | ![conductor-coil](docs/assets/conductor-coil.png)<br>`conductor-coil` |   |   |
+
+Vehicle:
+
+| | | | |
+|---|---|---|---|
+| ![aerial-bucket](docs/assets/aerial-bucket.png)<br>`aerial-bucket` | ![truck-cab-interior](docs/assets/truck-cab-interior.png)<br>`truck-cab-interior` |   |   |
+
 ## Performance
 
 Release build on an M2 Pro (`swift run -c release realityhd bench`).
