@@ -32,6 +32,11 @@ public enum Structures {
         GarageDoor.self,
         GeorgianEntry.self,
         BrownstoneDoubleDoor.self,
+        FrenchBalconyDoor.self,
+        WroughtIronBalcony.self,
+        FireEscapeBay.self,
+        CanvasAwning.self,
+        CurtainWallPanel.self,
         // realityhd:structure
     ]
 }
