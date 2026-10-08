@@ -1,0 +1,44 @@
+{
+  "budget": 12000,
+  "id": "hydraulic-crimper",
+  "kind": "prop",
+  "materials": [
+    "plastic.black",
+    "rubber.cordless-grip",
+    "plastic.resin-red",
+    "metal.anodized-worn",
+    "metal.steel"
+  ],
+  "name": "Battery hydraulic crimper",
+  "notes": "",
+  "parts": [
+    "C head with crimp dies",
+    "rotating head collar",
+    "pistol body with grip",
+    "trigger and retract button",
+    "18V battery pack",
+    "hydraulic ram"
+  ],
+  "references": [
+    "notes/refs/hydraulic-crimper.jpg"
+  ],
+  "size": [
+    0.37,
+    0.295,
+    0.082
+  ],
+  "style": "battery-powered 12 ton utility crimper, matte black body, red battery, die in head",
+  "summary": "Battery hydraulic crimper standing on its battery: C head with crimp dies, black pistol body, red 18V pack.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "plastic",
+    "metal"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

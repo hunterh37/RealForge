@@ -1,0 +1,43 @@
+{
+  "budget": 9000,
+  "id": "voltage-detector",
+  "kind": "prop",
+  "materials": [
+    "plastic.yellow",
+    "plastic.black",
+    "glass.led-lens",
+    "metal.stainless",
+    "emissive.led-red"
+  ],
+  "name": "Voltage detector",
+  "notes": "",
+  "parts": [
+    "yellow tubular body",
+    "detector head with LED lens and range dial",
+    "splined universal end fitting",
+    "contact probe hook",
+    "battery cap"
+  ],
+  "references": [
+    "notes/refs/voltage-detector.jpg"
+  ],
+  "size": [
+    0.34,
+    0.085,
+    0.075
+  ],
+  "style": "stick-mount audible/visual detector, molded yellow ABS, slight scuffs",
+  "summary": "Stick-mount audible voltage detector: yellow body, head with LED and range dial, splined end fitting and contact hook.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "plastic",
+    "electronics"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -255,6 +255,19 @@ public enum Props {
         OrnamentalFence.self,
         StreetClock.self,
         PlazaFountain.self,
+        HotStick.self,
+        VoltageDetector.self,
+        RubberGloves.self,
+        LeatherProtectors.self,
+        LinemanPliers.self,
+        CableCutter.self,
+        HydraulicCrimper.self,
+        GroundingSet.self,
+        WireBrush.self,
+        HardHat.self,
+        FallHarness.self,
+        InsulatingBlanket.self,
+        WireGrip.self,
         // realityhd:prop
     ]
 }

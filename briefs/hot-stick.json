@@ -1,0 +1,42 @@
+{
+  "budget": 5000,
+  "id": "hot-stick",
+  "kind": "prop",
+  "materials": [
+    "plastic.fiberglass-yellow",
+    "plastic.black",
+    "rubber",
+    "metal.stainless"
+  ],
+  "name": "Hot stick",
+  "notes": "",
+  "parts": [
+    "gloss yellow fiberglass tube 32 mm",
+    "black shotgun head with sliding hook",
+    "operating rod slot and slide handle",
+    "black hand guards",
+    "butt cap"
+  ],
+  "references": [
+    "notes/refs/hot-stick.jpg"
+  ],
+  "size": [
+    2.45,
+    0.06,
+    0.087
+  ],
+  "style": "8 ft shotgun hot stick lying on its side, Hastings class: gloss yellow fiberglass, black hardware, scuffed from truck bins",
+  "summary": "8 ft fiberglass shotgun hot stick lying on the ground: yellow gloss tube, black head with a hook that slides shut from the handle.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "articulated",
+    "plastic"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

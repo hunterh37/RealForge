@@ -1,0 +1,40 @@
+{
+  "budget": 14500,
+  "id": "insulating-blanket",
+  "kind": "prop",
+  "materials": [
+    "rubber.insulating-orange",
+    "plastic.black",
+    "metal.brass"
+  ],
+  "name": "Insulating blanket",
+  "notes": "",
+  "parts": [
+    "36 in square rubber blanket",
+    "grommet eyelets",
+    "embossed class stamp",
+    "clamp pin clothespin"
+  ],
+  "references": [
+    "notes/refs/insulating-blanket.jpg"
+  ],
+  "size": [
+    0.92,
+    0.06,
+    0.92
+  ],
+  "style": "Class 4 orange EPDM rubber insulating blanket lying flat with a wavy edge, blanket clamp pin",
+  "summary": "Orange 36 in rubber insulating blanket lying flat with eyelets and a blanket clamp pin.",
+  "tags": [
+    "prop",
+    "tool",
+    "handheld",
+    "utility",
+    "electrical",
+    "ppe",
+    "rubber"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
