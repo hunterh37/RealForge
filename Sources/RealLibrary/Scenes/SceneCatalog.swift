@@ -40,6 +40,7 @@ public enum SceneCatalog {
                 WoodshopScene.self,
                 CookingCounter.self,
                 BackyardLandscape.self,
+                CityBlock.self,
                 // realityhd:scene
     ]
 

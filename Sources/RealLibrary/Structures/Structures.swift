@@ -26,6 +26,7 @@ public enum Structures {
         PrivacyCurtain.self,
         Headwall.self,
         NurseStation.self,
+        GeneratedBuilding.self,
         // realityhd:structure
     ]
 }
