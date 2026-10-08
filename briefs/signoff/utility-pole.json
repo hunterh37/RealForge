@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9997907,
+  "date" : "2026-10-08",
+  "final" : 0.8601767,
+  "fingerprint" : "34491992c8aad680",
+  "id" : "utility-pole",
+  "iterations" : 2,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 9,
+    "edges" : 7,
+    "grounding" : 7,
+    "materials" : 7,
+    "proportion" : 9,
+    "silhouette" : 8,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.78499997
+}

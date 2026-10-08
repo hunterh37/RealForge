@@ -236,9 +236,12 @@ public enum Props {
         Jalapeno.self,
         GingerRoot.self,
         HalogenSiphonBar.self,
+        TrafficSignal.self,
+        PedestrianSignal.self,
         StreetNameSign.self,
         StopSign.self,
         ParkingMeter.self,
+        BusShelter.self,
         NewspaperBox.self,
         BikeRack.self,
         TreeGrate.self,
@@ -246,7 +249,12 @@ public enum Props {
         DrinkingFountain.self,
         ManholeCover.self,
         StormDrainGrate.self,
+        UtilityPole.self,
         PoliceCallBox.self,
+        CafeTableSet.self,
+        OrnamentalFence.self,
+        StreetClock.self,
+        PlazaFountain.self,
         // realityhd:prop
     ]
 }

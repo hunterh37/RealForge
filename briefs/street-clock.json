@@ -1,0 +1,43 @@
+{
+  "budget": 11000,
+  "id": "street-clock",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "metal.brass-aged",
+    "glass.pane",
+    "paint.wall",
+    "metal.iron",
+    "metal.rust"
+  ],
+  "name": "Street clock",
+  "notes": "",
+  "parts": [
+    "base",
+    "column",
+    "clock head",
+    "two dials",
+    "hands",
+    "crown"
+  ],
+  "references": [],
+  "size": [
+    0.86,
+    4.3,
+    0.6
+  ],
+  "style": "Victorian post clock, green paint",
+  "summary": "Two-dial post clock, 4.3 m: cast-iron column, fluted base, clock head with two white dials and a crown.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "antique"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
