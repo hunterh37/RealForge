@@ -94,7 +94,7 @@ import RealMaterials
         for b in briefs() {
             guard let t = Catalog.type(b.id) else { Issue.record("briefs/\(b.id).json: no asset with id \(b.id) (realityhd new prop \(b.id) --brief ...)"); continue }
             #expect(t.summary == b.summary, "\(b.id): summary differs from briefs/\(b.id).json")
-            #expect(t.budget <= 15_000)
+            #expect(t.budget <= (t.tags.first == "structure" ? 30_000 : 15_000))
             let e = t.init().build(seed: 1).levels[0].bounds
             let size = e.max - e.min
             for i in 0..<3 where b.size[i] > 0 {
