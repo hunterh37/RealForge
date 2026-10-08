@@ -1,0 +1,40 @@
+{
+  "id": "polymer-deadend",
+  "kind": "prop",
+  "name": "Polymer deadend insulator",
+  "theme": "Utility",
+  "size": [
+    0.074,
+    0.39,
+    0.074
+  ],
+  "summary": "15 kV silicone polymer deadend insulator: fiberglass rod in a gray silicone housing with five sheds, forged steel clevis and tongue ends.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "metal"
+  ],
+  "parts": [
+    "galvanized forged clevis with bolt and cotter",
+    "crimped end fitting collar",
+    "silicone housing core",
+    "five alternating sheds",
+    "tongue end fitting with eye hole",
+    "mold parting line"
+  ],
+  "materials": [
+    "rubber.silicone-gray",
+    "metal.galvanized",
+    "metal.galvanized-aged"
+  ],
+  "style": "new hot-dip galvanized fittings, matte gray silicone, light dust",
+  "budget": 11000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/polymer-deadend.jpg"
+  ]
+}

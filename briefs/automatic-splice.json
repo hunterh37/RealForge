@@ -1,0 +1,38 @@
+{
+  "id": "automatic-splice",
+  "kind": "prop",
+  "name": "Automatic splice",
+  "theme": "Utility",
+  "size": [
+    0.4,
+    0.0285,
+    0.0285
+  ],
+  "summary": "Full-tension automatic splice for 1/0 ACSR: tapered aluminum tube, internal jaw cones, color-coded funnel guides at both ends.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "metal"
+  ],
+  "parts": [
+    "tapered aluminum body",
+    "center stop dimples",
+    "color-coded plastic funnel guides",
+    "jaw cone ends",
+    "stamped size marking"
+  ],
+  "materials": [
+    "metal.aluminum-cast",
+    "plastic.resin-red"
+  ],
+  "style": "new, dull aluminum, red guides",
+  "budget": 3000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/automatic-splice.jpg"
+  ]
+}
