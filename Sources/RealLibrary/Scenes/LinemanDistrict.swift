@@ -19,7 +19,7 @@ public struct LinemanDistrict: RealSceneBuilder {
     // MARK: - Swappable assets and frame
 
     /// Catalog id of the line pole. Swap to "distribution-pole" once that branch merges.
-    public static let poleAsset = "utility-pole"
+    public static let poleAsset = "distribution-pole"
     /// Articulation state of the job-site pole when `poleAsset` is articulated.
     public static let jobPoleState = "damaged"
     /// Road centerlines (world x for north-south streets, world z for east-west streets).
