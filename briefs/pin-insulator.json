@@ -1,0 +1,42 @@
+{
+  "id": "pin-insulator",
+  "kind": "prop",
+  "name": "Pin insulator",
+  "theme": "Utility",
+  "size": [
+    0.152,
+    0.127,
+    0.152
+  ],
+  "summary": "ANSI 55-5 class porcelain pin insulator, 15 kV: wide gray skirt, black semiconducting crown with a top groove and side neck.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "ceramic"
+  ],
+  "parts": [
+    "wide flared skirt with drip edge",
+    "inner petticoat underside",
+    "black semiconducting glaze crown",
+    "top saddle groove",
+    "side tie neck",
+    "threaded pin hole with lead/poly thread insert",
+    "broken variant with chipped skirt"
+  ],
+  "materials": [
+    "ceramic.porcelain-gray",
+    "ceramic.porcelain-black",
+    "ceramic.porcelain-fracture",
+    "plastic.matte"
+  ],
+  "style": "new 55-5 glazed wet-process porcelain, light grime ring under the skirt, ANSI 70 gray",
+  "budget": 3000,
+  "tolerance": 0.08,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/pin-insulator.jpg"
+  ]
+}

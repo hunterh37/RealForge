@@ -257,6 +257,16 @@ public enum Props {
         PlazaFountain.self,
         AerialBucket.self,
         TruckCabInterior.self,
+        PinInsulator.self,
+        PolymerDeadend.self,
+        FusedCutout.self,
+        FuseLink.self,
+        LightningArrester.self,
+        HotLineClamp.self,
+        AutomaticSplice.self,
+        ConductorCoil.self,
+        PoleTransformer.self,
+        DistributionPole.self,
         // realityhd:prop
     ]
 }

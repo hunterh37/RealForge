@@ -1,0 +1,39 @@
+{
+  "id": "lightning-arrester",
+  "kind": "prop",
+  "name": "Lightning arrester",
+  "theme": "Utility",
+  "size": [
+    0.126,
+    0.36,
+    0.126
+  ],
+  "summary": "10 kV MCOV polymer-housed MOV distribution arrester: gray silicone housing with nine sheds, stainless line and ground studs with nuts.",
+  "tags": [
+    "prop",
+    "utility",
+    "electrical",
+    "handheld",
+    "metal"
+  ],
+  "parts": [
+    "silicone housing with nine sheds",
+    "top line terminal stud with nuts and washer",
+    "bottom ground stud",
+    "ground lead disconnector",
+    "end caps"
+  ],
+  "materials": [
+    "rubber.silicone-gray",
+    "metal.stainless",
+    "metal.galvanized"
+  ],
+  "style": "new silicone housing, matte gray",
+  "budget": 6000,
+  "tolerance": 0.1,
+  "threshold": 0.85,
+  "notes": "",
+  "references": [
+    "notes/refs/lightning-arrester.jpg"
+  ]
+}
