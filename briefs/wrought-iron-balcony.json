@@ -1,0 +1,38 @@
+{
+  "budget": 22000,
+  "id": "wrought-iron-balcony",
+  "kind": "structure",
+  "materials": [
+    "stone.brownstone",
+    "metal.wrought-iron",
+    "metal.rust"
+  ],
+  "name": "Wrought-Iron Balcony",
+  "notes": "",
+  "parts": [
+    "stone slab with molded edge",
+    "two iron brackets with scrolls",
+    "top rail and bottom rail",
+    "balusters",
+    "scroll panels",
+    "corner posts with finials"
+  ],
+  "references": [],
+  "size": [
+    1.92,
+    1.49,
+    0.72
+  ],
+  "style": "Old European balcony, iron painted black with rust bleeding at joints.",
+  "summary": "Wrought-iron balcony, 1.9 m: stone slab on brackets, iron railing with scroll balusters, top rail and corner posts.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "metal",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

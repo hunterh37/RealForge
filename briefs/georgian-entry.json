@@ -1,0 +1,43 @@
+{
+  "budget": 26000,
+  "id": "georgian-entry",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "stone.cast-grey",
+    "glass.pane",
+    "metal.brass-aged",
+    "plastic.black"
+  ],
+  "name": "Georgian Entry",
+  "notes": "",
+  "parts": [
+    "six-panel door leaf",
+    "two sidelights with muntins over panels",
+    "semicircular fanlight with radiating muntins",
+    "fluted pilasters with bases and capitals",
+    "entablature with cornice",
+    "stone step",
+    "brass knob and knocker"
+  ],
+  "references": [],
+  "size": [
+    2.64,
+    3.29,
+    0.565
+  ],
+  "style": "18th-century townhouse entry in gloss paint, crisp white trim, door in deep color.",
+  "summary": "Georgian entrance: six-panel door between leaded sidelights under a semicircular fanlight, fluted pilasters, entablature and stone step.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

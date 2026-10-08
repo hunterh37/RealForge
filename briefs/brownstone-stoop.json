@@ -1,0 +1,37 @@
+{
+  "budget": 14000,
+  "id": "brownstone-stoop",
+  "kind": "structure",
+  "materials": [
+    "stone.brownstone",
+    "metal.wrought-iron"
+  ],
+  "name": "Brownstone Stoop",
+  "notes": "",
+  "parts": [
+    "seven risers with nosings",
+    "landing",
+    "cheek walls with caps",
+    "cast-iron railings",
+    "newel posts with finials",
+    "balusters"
+  ],
+  "references": [],
+  "size": [
+    2.16,
+    2.45,
+    3.08
+  ],
+  "style": "Brooklyn brownstone stoop, worn treads, iron painted black.",
+  "summary": "Brownstone stoop: seven-riser stone stair to a landing, side cheek walls, cast-iron railings with newel posts and scrolls.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "stone",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

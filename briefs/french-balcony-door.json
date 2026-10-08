@@ -1,0 +1,44 @@
+{
+  "budget": 26000,
+  "id": "french-balcony-door",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "glass.pane",
+    "metal.wrought-iron",
+    "metal.brass-aged",
+    "stone.cast-grey"
+  ],
+  "name": "French Balcony Door",
+  "notes": "",
+  "parts": [
+    "two inswing glazed leaves",
+    "bottom panels",
+    "frame and casing",
+    "Juliet railing with balusters and scrolls",
+    "espagnolette handles",
+    "hinges"
+  ],
+  "references": [],
+  "size": [
+    1.61,
+    2.51,
+    0.26
+  ],
+  "style": "Parisian apartment French doors, painted grey-white, black iron rail.",
+  "summary": "French balcony door pair with Juliet railing: two glazed leaves with divided lites and panels, casing, wrought-iron railing across the opening.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "window",
+    "wood",
+    "glass",
+    "metal",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

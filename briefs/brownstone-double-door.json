@@ -1,0 +1,43 @@
+{
+  "budget": 26000,
+  "id": "brownstone-double-door",
+  "kind": "structure",
+  "materials": [
+    "wood.walnut",
+    "stone.brownstone",
+    "glass.pane",
+    "metal.brass-aged",
+    "metal.brass"
+  ],
+  "name": "Brownstone Double Door",
+  "notes": "",
+  "parts": [
+    "two tall leaves with glazed upper panels and raised lower panels",
+    "transom bar and transom light",
+    "brownstone jambs and lintel with cornice",
+    "brass knobs and push plates",
+    "hinges",
+    "threshold"
+  ],
+  "references": [],
+  "size": [
+    2.31,
+    3.76,
+    0.6
+  ],
+  "style": "New York 1880s rowhouse doors, varnish weathered, brownstone eroded at the edges.",
+  "summary": "Brownstone double entry: pair of tall walnut doors with glazed upper panels, transom light, carved brownstone surround and brass hardware.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "wood",
+    "stone",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,40 @@
+{
+  "budget": 12000,
+  "id": "gable-roof-panel",
+  "kind": "structure",
+  "materials": [
+    "ceramic.terracotta",
+    "wood.painted-exterior",
+    "wood.lumber-pine",
+    "wood.plywood",
+    "concrete.smooth"
+  ],
+  "name": "Gable Roof Tile Section",
+  "notes": "",
+  "parts": [
+    "overlapping clay tiles in courses",
+    "ridge tiles",
+    "fascia board",
+    "rafter tails",
+    "bargeboard",
+    "battens"
+  ],
+  "references": [],
+  "size": [
+    2.74,
+    1.66,
+    1.9
+  ],
+  "style": "Mediterranean terracotta, tiles slightly irregular, some weathered.",
+  "summary": "Clay tile roof section, 2.4 m: one gable slope at 40 degrees with overlapping pan tiles, ridge cap, fascia, rafter tails and bargeboard.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "ceramic",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

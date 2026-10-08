@@ -1,0 +1,38 @@
+{
+  "budget": 28000,
+  "id": "fire-escape-bay",
+  "kind": "structure",
+  "materials": [
+    "metal.wrought-iron",
+    "metal.rust",
+    "fence.chainlink"
+  ],
+  "name": "Fire Escape Bay",
+  "notes": "",
+  "parts": [
+    "slatted platform",
+    "railing with top rail and pickets",
+    "wall brackets with diagonal braces",
+    "stair with treads and stringers",
+    "stair handrail",
+    "hatch opening"
+  ],
+  "references": [],
+  "size": [
+    3.0,
+    4.51,
+    0.9
+  ],
+  "style": "Lower Manhattan tenement fire escape, many coats of black paint, rust at welds.",
+  "summary": "NYC fire escape floor module, 3 m storey: slatted iron platform, railing, cantilever brackets and a stair to the next level, stackable.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

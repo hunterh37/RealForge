@@ -1,0 +1,42 @@
+{
+  "budget": 18000,
+  "id": "casement-window",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "stone.cast-grey",
+    "glass.pane",
+    "metal.wrought-iron",
+    "wood.barn-white"
+  ],
+  "name": "Casement Window",
+  "notes": "",
+  "parts": [
+    "frame and center mullion",
+    "two outswing sashes with 2x3 lites",
+    "hinges",
+    "stone sill",
+    "brick-mould casing",
+    "crank operator"
+  ],
+  "references": [],
+  "size": [
+    1.29,
+    1.42,
+    0.21
+  ],
+  "style": "European cottage casement pair, white paint, sashes swing out.",
+  "summary": "Pair of outswing casement windows: painted frame and mullion, two hinged sashes with divided lites, crank operators and stone sill.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "window",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

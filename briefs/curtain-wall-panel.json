@@ -1,0 +1,42 @@
+{
+  "budget": 8000,
+  "id": "curtain-wall-panel",
+  "kind": "structure",
+  "materials": [
+    "metal.anodized-black",
+    "glass.curtain",
+    "metal.painted",
+    "concrete.smooth",
+    "rubber"
+  ],
+  "name": "Curtain-Wall Panel",
+  "notes": "",
+  "parts": [
+    "two I-section mullions",
+    "transoms",
+    "vision glass",
+    "spandrel glass",
+    "pressure plates and snap caps",
+    "slab edge"
+  ],
+  "references": [],
+  "size": [
+    1.6,
+    3.6,
+    0.62
+  ],
+  "style": "Mies-style black steel curtain wall, crisp, tinted glass.",
+  "summary": "Modernist curtain-wall bay, 1.5 m x 3.6 m floor module: steel I-section mullions, vision glass, spandrel panel at slab, pressure plates and caps.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "window",
+    "metal",
+    "glass",
+    "building"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

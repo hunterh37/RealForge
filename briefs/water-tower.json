@@ -1,0 +1,41 @@
+{
+  "budget": 28000,
+  "id": "water-tower",
+  "kind": "structure",
+  "materials": [
+    "wood.cedar-weathered",
+    "metal.wrought-iron",
+    "metal.rust",
+    "metal.galvanized-aged"
+  ],
+  "name": "Water Tower",
+  "notes": "",
+  "parts": [
+    "cedar stave tank",
+    "steel hoops with lugs",
+    "conical roof with finial",
+    "roof hatch",
+    "steel leg frame with cross bracing",
+    "ladder",
+    "piping"
+  ],
+  "references": [],
+  "size": [
+    3.55,
+    7.61,
+    3.52
+  ],
+  "style": "Manhattan wooden water tank, silvered cedar, rusty hoops.",
+  "summary": "NYC rooftop water tower: cedar stave tank with steel hoops, conical shingled roof and hatch, on a steel frame with ladder.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "wood",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

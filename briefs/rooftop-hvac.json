@@ -1,0 +1,46 @@
+{
+  "budget": 20000,
+  "id": "rooftop-hvac",
+  "kind": "structure",
+  "materials": [
+    "metal.powder-white",
+    "metal.galvanized-aged",
+    "metal.galvanized",
+    "metal.wrought-iron",
+    "metal.painted",
+    "plastic.matte",
+    "plastic.black",
+    "rubber",
+    "metal.steel",
+    "metal.satin-aluminum"
+  ],
+  "name": "Rooftop HVAC Unit",
+  "notes": "",
+  "parts": [
+    "cabinet with access panels",
+    "roof curb",
+    "condenser coil louvers",
+    "two fans with guards",
+    "service handles",
+    "conduit and gas pipe",
+    "rain hood"
+  ],
+  "references": [],
+  "size": [
+    2.54,
+    1.47,
+    1.72
+  ],
+  "style": "Commercial RTU, sun-faded beige, rain streaks.",
+  "summary": "Packaged rooftop HVAC unit: sheet-metal cabinet on a curb, condenser coil grilles, two fan guards on top, access panels and ductwork.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "metal",
+    "industrial"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
