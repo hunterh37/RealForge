@@ -1,0 +1,45 @@
+{
+  "budget": 6000,
+  "id": "utility-pole",
+  "kind": "prop",
+  "materials": [
+    "wood.lumber-oak",
+    "wood.weathered",
+    "metal.galvanized",
+    "ceramic.stoneware",
+    "metal.painted",
+    "metal.copper",
+    "rubber"
+  ],
+  "name": "Utility pole",
+  "notes": "",
+  "parts": [
+    "pole",
+    "crossarm",
+    "braces",
+    "insulators",
+    "transformer",
+    "wire stubs",
+    "step bolts"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    12.13,
+    1.19
+  ],
+  "style": "US distribution pole, weathered",
+  "summary": "Wood utility pole, 12 m, with a crossarm, pin insulators, a pole-top transformer and wire stubs.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "wood",
+    "metal"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

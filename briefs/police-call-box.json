@@ -1,0 +1,41 @@
+{
+  "budget": 6000,
+  "id": "police-call-box",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "metal.brass-aged",
+    "glass.frosted",
+    "metal.rust"
+  ],
+  "name": "Police call box",
+  "notes": "",
+  "parts": [
+    "fluted post",
+    "box body",
+    "door with handle",
+    "lettering",
+    "lamp globe",
+    "base"
+  ],
+  "references": [],
+  "size": [
+    0.4,
+    2.2,
+    0.4
+  ],
+  "style": "1910s Gamewell-style call box, repainted",
+  "summary": "Cast-iron police call box on a fluted post with a hinged door and a lamp on top.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "antique"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

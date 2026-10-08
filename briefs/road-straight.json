@@ -1,0 +1,44 @@
+{
+  "budget": 3200,
+  "id": "road-straight",
+  "kind": "structure",
+  "materials": [
+    "asphalt.road",
+    "asphalt.patch",
+    "paint.lane-yellow",
+    "paint.lane-white",
+    "concrete.sidewalk",
+    "asphalt.sealant"
+  ],
+  "name": "Straight two-lane road tile",
+  "notes": "",
+  "parts": [
+    "asphalt slab",
+    "double yellow centre line",
+    "white edge lines",
+    "concrete gutter pans",
+    "crack sealant lines",
+    "utility-cut patch",
+    "oil drips down the lane centres"
+  ],
+  "references": [],
+  "size": [
+    12,
+    0.1,
+    12
+  ],
+  "style": "US urban collector street, a few years old, sealed cracks",
+  "summary": "Straight two-lane road tile, 12 m snap cell: asphalt with oil stains, double yellow centre line, edge lines, concrete gutters, sealed cracks, a patch.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

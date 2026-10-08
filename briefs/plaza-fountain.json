@@ -1,0 +1,42 @@
+{
+  "budget": 15000,
+  "id": "plaza-fountain",
+  "kind": "prop",
+  "materials": [
+    "stone.cap",
+    "stone.wall-block",
+    "water.fountain",
+    "metal.copper-patina",
+    "water.fountain-foam"
+  ],
+  "name": "Tiered plaza fountain",
+  "notes": "",
+  "parts": [
+    "round basin with coping",
+    "pedestal",
+    "three tiers",
+    "finial",
+    "water"
+  ],
+  "references": [],
+  "size": [
+    4.08,
+    2.6,
+    4.08
+  ],
+  "style": "civic plaza fountain, weathered stone",
+  "summary": "Three-tier cast-stone plaza fountain in a round 4 m basin with water.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "stone",
+    "water",
+    "decor"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -47,6 +47,13 @@ public enum Structures {
         RusticatedBase.self,
         LouveredShutterPair.self,
         Entablature.self,
+        RoadStraight.self,
+        RoadIntersection.self,
+        RoadTJunction.self,
+        RoadCorner.self,
+        SidewalkCurb.self,
+        PlazaPaving.self,
+        CobblestoneTile.self,
         // realityhd:structure
     ]
 }

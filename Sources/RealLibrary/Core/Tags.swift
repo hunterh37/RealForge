@@ -31,6 +31,8 @@ public enum AssetTag {
         "architecture", "facade", "roof",
         // classical trim and ornament tiled along facade edges
         "trim", "ornament",
+        // city streetscape: snap-grid road and sidewalk tiles, street furniture
+        "city", "tile",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

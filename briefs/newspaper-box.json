@@ -1,0 +1,42 @@
+{
+  "budget": 5600,
+  "id": "newspaper-box",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "glass.pane",
+    "metal.steel",
+    "paper.sheet",
+    "sign.white"
+  ],
+  "name": "Newspaper vending box",
+  "notes": "",
+  "parts": [
+    "box body",
+    "window door",
+    "handle",
+    "coin mechanism",
+    "papers inside",
+    "legs"
+  ],
+  "references": [],
+  "size": [
+    0.52,
+    1.12,
+    0.5
+  ],
+  "style": "US street rack, blue paint, scuffed",
+  "summary": "Newspaper vending box: coin-op sheet-steel box with a window door, coin mechanism and a pedestal frame.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "container"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

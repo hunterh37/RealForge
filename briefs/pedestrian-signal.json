@@ -1,0 +1,47 @@
+{
+  "budget": 5400,
+  "id": "pedestrian-signal",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized",
+    "metal.galvanized-aged",
+    "metal.signal-yellow",
+    "glass.signal-off",
+    "emissive.signal-orange",
+    "emissive.signal-white",
+    "sign.white",
+    "plastic.black",
+    "metal.stainless"
+  ],
+  "name": "Pedestrian signal",
+  "notes": "",
+  "parts": [
+    "round pole",
+    "pedestrian head with hand and countdown",
+    "visor",
+    "push button box",
+    "push button sign",
+    "base plate and bolts"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    3.2,
+    0.65
+  ],
+  "style": "US countdown ped head",
+  "summary": "Pedestrian signal post: galvanized pole with a countdown walk/don't-walk head and an accessible push button with sign.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "light",
+    "sign"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

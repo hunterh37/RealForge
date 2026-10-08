@@ -1,0 +1,40 @@
+{
+  "budget": 3000,
+  "id": "stop-sign",
+  "kind": "prop",
+  "materials": [
+    "sign.red",
+    "sign.white",
+    "metal.galvanized",
+    "metal.steel"
+  ],
+  "name": "Stop sign",
+  "notes": "",
+  "parts": [
+    "octagon face",
+    "white border",
+    "STOP letters",
+    "square post",
+    "bolts"
+  ],
+  "references": [],
+  "size": [
+    0.76,
+    2.9,
+    0.06
+  ],
+  "style": "MUTCD R1-1, slightly faded",
+  "summary": "Stop sign: 75 cm red octagon with white border and STOP lettering on a galvanized square post.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "sign"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

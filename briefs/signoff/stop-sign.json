@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9995396,
+  "date" : "2026-10-08",
+  "final" : 0.8706513,
+  "fingerprint" : "b2facad1befc6e97",
+  "id" : "stop-sign",
+  "iterations" : 2,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 7,
+    "materials" : 8,
+    "proportion" : 9,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.80125
+}
