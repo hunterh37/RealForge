@@ -412,6 +412,56 @@ Vehicle:
 |---|---|---|---|
 | ![aerial-bucket](docs/assets/aerial-bucket.png)<br>`aerial-bucket` | ![truck-cab-interior](docs/assets/truck-cab-interior.png)<br>`truck-cab-interior` |   |   |
 
+### Architecture
+
+`city-block` scene and a procedural building generator (`BuildingGenerator`, `BuildingSpec`,
+`FloorPlan`) with eight styles: `georgian`, `federal`, `brownstone`, `italianate`, `haussmann`,
+`beaux-arts`, `art-deco`, `modernist`. The `generated-building` asset wraps the generator.
+68 gated pieces cover classical trim, facade openings and roofs, 12 m city grid tiles and street props.
+Material libraries `Architecture`, `Facade`, `City`. Tags `architecture`, `facade`, `trim`, `city`.
+
+| | |
+|---|---|
+| ![city-block](docs/scenes/city-block.png)<br>`city-block` | ![generated-building](docs/assets/generated-building.png)<br>`generated-building` |
+
+Trim and ornament:
+
+| | | | |
+|---|---|---|---|
+| ![architrave-surround](docs/assets/architrave-surround.png)<br>`architrave-surround` | ![balustrade-run](docs/assets/balustrade-run.png)<br>`balustrade-run` | ![classical-pilaster](docs/assets/classical-pilaster.png)<br>`classical-pilaster` | ![corinthian-column](docs/assets/corinthian-column.png)<br>`corinthian-column` |
+| ![dentil-course](docs/assets/dentil-course.png)<br>`dentil-course` | ![doric-column](docs/assets/doric-column.png)<br>`doric-column` | ![entablature](docs/assets/entablature.png)<br>`entablature` | ![frieze-band](docs/assets/frieze-band.png)<br>`frieze-band` |
+| ![ionic-column](docs/assets/ionic-column.png)<br>`ionic-column` | ![louvered-shutter-pair](docs/assets/louvered-shutter-pair.png)<br>`louvered-shutter-pair` | ![modillion-cornice](docs/assets/modillion-cornice.png)<br>`modillion-cornice` | ![parapet-coping](docs/assets/parapet-coping.png)<br>`parapet-coping` |
+| ![quoin-stack](docs/assets/quoin-stack.png)<br>`quoin-stack` | ![rusticated-base](docs/assets/rusticated-base.png)<br>`rusticated-base` | ![scroll-corbel](docs/assets/scroll-corbel.png)<br>`scroll-corbel` | ![segmental-pediment](docs/assets/segmental-pediment.png)<br>`segmental-pediment` |
+| ![string-course](docs/assets/string-course.png)<br>`string-course` | ![triangular-pediment](docs/assets/triangular-pediment.png)<br>`triangular-pediment` | ![voussoir-arch](docs/assets/voussoir-arch.png)<br>`voussoir-arch` | ![window-hood](docs/assets/window-hood.png)<br>`window-hood` |
+
+Facade and roof:
+
+| | | | |
+|---|---|---|---|
+| ![bay-window](docs/assets/bay-window.png)<br>`bay-window` | ![brick-chimney](docs/assets/brick-chimney.png)<br>`brick-chimney` | ![brownstone-double-door](docs/assets/brownstone-double-door.png)<br>`brownstone-double-door` | ![brownstone-stoop](docs/assets/brownstone-stoop.png)<br>`brownstone-stoop` |
+| ![canvas-awning](docs/assets/canvas-awning.png)<br>`canvas-awning` | ![casement-window](docs/assets/casement-window.png)<br>`casement-window` | ![curtain-wall-panel](docs/assets/curtain-wall-panel.png)<br>`curtain-wall-panel` | ![dormer-window](docs/assets/dormer-window.png)<br>`dormer-window` |
+| ![double-hung-window](docs/assets/double-hung-window.png)<br>`double-hung-window` | ![fire-escape-bay](docs/assets/fire-escape-bay.png)<br>`fire-escape-bay` | ![french-balcony-door](docs/assets/french-balcony-door.png)<br>`french-balcony-door` | ![gable-roof-panel](docs/assets/gable-roof-panel.png)<br>`gable-roof-panel` |
+| ![garage-door](docs/assets/garage-door.png)<br>`garage-door` | ![georgian-entry](docs/assets/georgian-entry.png)<br>`georgian-entry` | ![gutter-downspout](docs/assets/gutter-downspout.png)<br>`gutter-downspout` | ![rooftop-hvac](docs/assets/rooftop-hvac.png)<br>`rooftop-hvac` |
+| ![six-panel-door](docs/assets/six-panel-door.png)<br>`six-panel-door` | ![standing-seam-roof](docs/assets/standing-seam-roof.png)<br>`standing-seam-roof` | ![storefront-bay](docs/assets/storefront-bay.png)<br>`storefront-bay` | ![water-tower](docs/assets/water-tower.png)<br>`water-tower` |
+| ![wrought-iron-balcony](docs/assets/wrought-iron-balcony.png)<br>`wrought-iron-balcony` |    |    |    |
+
+City tiles:
+
+| | | | |
+|---|---|---|---|
+| ![cobblestone-tile](docs/assets/cobblestone-tile.png)<br>`cobblestone-tile` | ![plaza-paving](docs/assets/plaza-paving.png)<br>`plaza-paving` | ![road-corner](docs/assets/road-corner.png)<br>`road-corner` | ![road-intersection](docs/assets/road-intersection.png)<br>`road-intersection` |
+| ![road-straight](docs/assets/road-straight.png)<br>`road-straight` | ![road-t-junction](docs/assets/road-t-junction.png)<br>`road-t-junction` | ![sidewalk-curb](docs/assets/sidewalk-curb.png)<br>`sidewalk-curb` |    |
+
+Street props:
+
+| | | | |
+|---|---|---|---|
+| ![bike-rack](docs/assets/bike-rack.png)<br>`bike-rack` | ![bus-shelter](docs/assets/bus-shelter.png)<br>`bus-shelter` | ![cafe-table-set](docs/assets/cafe-table-set.png)<br>`cafe-table-set` | ![concrete-planter](docs/assets/concrete-planter.png)<br>`concrete-planter` |
+| ![drinking-fountain](docs/assets/drinking-fountain.png)<br>`drinking-fountain` | ![manhole-cover](docs/assets/manhole-cover.png)<br>`manhole-cover` | ![newspaper-box](docs/assets/newspaper-box.png)<br>`newspaper-box` | ![ornamental-fence](docs/assets/ornamental-fence.png)<br>`ornamental-fence` |
+| ![parking-meter](docs/assets/parking-meter.png)<br>`parking-meter` | ![pedestrian-signal](docs/assets/pedestrian-signal.png)<br>`pedestrian-signal` | ![plaza-fountain](docs/assets/plaza-fountain.png)<br>`plaza-fountain` | ![police-call-box](docs/assets/police-call-box.png)<br>`police-call-box` |
+| ![stop-sign](docs/assets/stop-sign.png)<br>`stop-sign` | ![storm-drain-grate](docs/assets/storm-drain-grate.png)<br>`storm-drain-grate` | ![street-clock](docs/assets/street-clock.png)<br>`street-clock` | ![street-name-sign](docs/assets/street-name-sign.png)<br>`street-name-sign` |
+| ![traffic-signal](docs/assets/traffic-signal.png)<br>`traffic-signal` | ![tree-grate](docs/assets/tree-grate.png)<br>`tree-grate` | ![utility-pole](docs/assets/utility-pole.png)<br>`utility-pole` |    |
+
 ## Performance
 
 Release build on an M2 Pro (`swift run -c release realityhd bench`).
