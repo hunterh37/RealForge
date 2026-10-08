@@ -42,6 +42,11 @@ public enum Structures {
         BrickChimney.self,
         StandingSeamRoof.self,
         GableRoofPanel.self,
+        GutterDownspout.self,
+        BrownstoneStoop.self,
+        RooftopHvac.self,
+        WaterTower.self,
+        DormerWindow.self,
         // realityhd:structure
     ]
 }

@@ -1,0 +1,42 @@
+{
+  "budget": 8000,
+  "id": "gutter-downspout",
+  "kind": "structure",
+  "materials": [
+    "metal.powder-white",
+    "metal.galvanized",
+    "decal.rubber-scuff",
+    "wood.painted-exterior",
+    "concrete.smooth"
+  ],
+  "name": "Gutter and Downspout",
+  "notes": "",
+  "parts": [
+    "K-style gutter",
+    "hidden hangers",
+    "end caps",
+    "outlet drop",
+    "offset elbows",
+    "downspout",
+    "wall straps",
+    "shoe",
+    "concrete splash block"
+  ],
+  "references": [],
+  "size": [
+    3.05,
+    3.08,
+    0.6
+  ],
+  "style": "Painted aluminum gutter, dirty streaks.",
+  "summary": "K-style aluminum gutter run, 3 m, with hangers, end cap, outlet, elbows and a downspout with straps and kick-out shoe.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
