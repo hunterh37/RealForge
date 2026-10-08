@@ -267,6 +267,19 @@ public enum Props {
         ConductorCoil.self,
         PoleTransformer.self,
         DistributionPole.self,
+        HotStick.self,
+        VoltageDetector.self,
+        RubberGloves.self,
+        LeatherProtectors.self,
+        LinemanPliers.self,
+        CableCutter.self,
+        HydraulicCrimper.self,
+        GroundingSet.self,
+        WireBrush.self,
+        HardHat.self,
+        FallHarness.self,
+        InsulatingBlanket.self,
+        WireGrip.self,
         // realityhd:prop
     ]
 }

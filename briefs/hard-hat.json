@@ -1,0 +1,38 @@
+{
+  "budget": 9000,
+  "id": "hard-hat",
+  "kind": "prop",
+  "materials": [
+    "plastic.hardhat",
+    "plastic.black",
+    "fabric.webbing"
+  ],
+  "name": "Hard hat",
+  "notes": "",
+  "parts": [
+    "full brim shell",
+    "crown ridge",
+    "suspension straps and headband",
+    "ratchet knob"
+  ],
+  "references": [
+    "notes/refs/hard-hat.jpg"
+  ],
+  "size": [
+    0.33,
+    0.18,
+    0.29
+  ],
+  "style": "Type I Class E full brim white hard hat, gloss HDPE, scuffs",
+  "summary": "White Class E full brim hard hat with ridged crown and 6 point suspension.",
+  "tags": [
+    "prop",
+    "ppe",
+    "handheld",
+    "utility",
+    "plastic"
+  ],
+  "theme": "Lineman",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
