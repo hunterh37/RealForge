@@ -71,3 +71,20 @@ compiled materials and keep textures.
 Menu > Performance: tier picker, adaptive switch, stats overlay (head-locked, inside the immersive space),
 live stats, every setting grouped by live and rebuild, and a reload button when build-time settings changed.
 Settings persist in UserDefaults. Launch args: `-tier performance -adaptive YES -hud YES`.
+
+## World streaming
+
+Large worlds load in tiles around the viewer and unload behind it (`Sources/RealKit/Streaming`).
+
+```swift
+let world = try await RealityHD.streamedScene("lineman-district", tileSize: 32,
+    settings: .init().with { $0.loadRadius = 96; $0.unloadRadius = 128 }, preloadAt: spawn)
+content.add(world.root)   // core (rigs, lights, far ground, large statics) + streamed tiles
+```
+
+`RealScene.tiled(tileSize:)` splits any scene (AO baked once over the whole scene); `RealWorldStreamer`
+streams any tile source (`loader: (RealTileCoord) async throws -> Entity?`). `RealStreamingSystem` ticks
+it every `interval` from `RealViewer.position`, converted into the streamer root's space, so moving the
+world root (vehicles, teleports) works. Loads run nearest first with a concurrency cap, look ahead along
+viewer motion, cancel when out of range, park unloaded tiles in an LRU cache and purge it on memory
+pressure. Keep `tileSize` a multiple of the field cell size (16-18 m).
