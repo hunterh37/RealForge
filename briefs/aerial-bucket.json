@@ -1,0 +1,52 @@
+{
+  "budget": 9000,
+  "id": "aerial-bucket",
+  "kind": "prop",
+  "materials": [
+    "fiberglass.bucket",
+    "plastic.matte",
+    "rubber.plate",
+    "metal.galvanized-aged",
+    "plastic.yellow",
+    "plastic.gloss",
+    "metal.chrome"
+  ],
+  "name": "Aerial bucket",
+  "notes": "floor at y = 0, inside floor 0.07; console on the -Z rim. Attachment constants: AerialBucket.floorPoint, AerialBucket.consolePoint (asset space, rest pose).",
+  "parts": [
+    "fiberglass shell 0.6 x 0.6 x 1.07 m with rolled lip",
+    "dark polyethylene liner with flange",
+    "molded side step",
+    "galvanized boom mounting plate with bolts",
+    "upper control console on the rim",
+    "boomStick 2-axis (boomStick pitch, boomStickSide roll)",
+    "rotateStick",
+    "jibLever",
+    "red estop (push)",
+    "tool-power toggle",
+    "horn button",
+    "tool hooks",
+    "lanyard D-ring"
+  ],
+  "references": [
+    "notes/refs/aerial-bucket.jpg (crop of Wikimedia Commons: Pepco hybrid bucket truck WAS 2010 8914)"
+  ],
+  "size": [
+    0.73,
+    1.33,
+    0.66
+  ],
+  "style": "current Altec / Plastic Composites single-man bucket, white gelcoat with grime, yellow console top plate.",
+  "summary": "Fiberglass one-man aerial bucket with liner, step, mount plate and upper console: boom stick, rotate stick, jib lever, e-stop, tool power.",
+  "tags": [
+    "prop",
+    "vehicle",
+    "utility",
+    "electrical",
+    "plastic",
+    "articulated"
+  ],
+  "theme": "Vehicle",
+  "threshold": 0.85,
+  "tolerance": 0.1
+}
