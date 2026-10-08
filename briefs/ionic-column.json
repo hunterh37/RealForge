@@ -1,0 +1,38 @@
+{
+  "budget": 16000,
+  "id": "ionic-column",
+  "kind": "structure",
+  "materials": [
+    "stone.marble-honed"
+  ],
+  "name": "Ionic column",
+  "notes": "type IonicColumn",
+  "parts": [
+    "square plinth",
+    "attic base torus scotia torus",
+    "24 flutes with fillets",
+    "astragal",
+    "egg-and-dart echinus",
+    "volute scrolls",
+    "thin abacus"
+  ],
+  "references": [],
+  "size": [
+    0.66,
+    4.0,
+    0.616
+  ],
+  "style": "Ionic column, 0.44 m diameter, honed white marble, 24 filleted flutes, scrolled volute capital",
+  "summary": "Ionic column, 4 m: attic base, 24 filleted flutes, astragal, echinus and paired volute scrolls under a thin abacus.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone",
+    "ornament"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

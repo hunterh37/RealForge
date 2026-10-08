@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9984393,
+  "date" : "2026-10-08",
+  "final" : 0.8548288,
+  "fingerprint" : "64b4990c64693a17",
+  "id" : "architrave-surround",
+  "iterations" : 3,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 8,
+    "materials" : 7,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.77750003
+}

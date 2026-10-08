@@ -1,0 +1,38 @@
+{
+  "budget": 20000,
+  "id": "corinthian-column",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Corinthian column",
+  "notes": "type CorinthianColumn",
+  "parts": [
+    "square plinth",
+    "attic base",
+    "24 filleted flutes",
+    "astragal",
+    "two rows of acanthus leaves",
+    "corner volutes",
+    "concave abacus with fleuron"
+  ],
+  "references": [],
+  "size": [
+    0.64,
+    4.5,
+    0.64
+  ],
+  "style": "Simplified Corinthian column, 0.45 m diameter, lathe bell with displaced acanthus rows and corner volutes",
+  "summary": "Corinthian column, 4.5 m: attic base, filleted flutes, bell capital with two acanthus rows, corner volutes, concave abacus.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone",
+    "ornament"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

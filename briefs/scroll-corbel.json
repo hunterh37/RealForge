@@ -1,0 +1,36 @@
+{
+  "budget": 4000,
+  "id": "scroll-corbel",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Scroll corbel",
+  "notes": "type ScrollCorbel",
+  "parts": [
+    "S-scroll side profile",
+    "volute bosses",
+    "raised front strap",
+    "mounting back",
+    "top bearing block"
+  ],
+  "references": [],
+  "size": [
+    0.17,
+    0.455,
+    0.3
+  ],
+  "style": "Classical S-scroll console bracket with volutes and an acanthus leaf on the front",
+  "summary": "Scroll corbel, 0.46 m: S-scroll console with volute bosses, a front strap and a bearing block.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone",
+    "ornament"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

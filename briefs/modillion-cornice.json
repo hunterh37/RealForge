@@ -1,0 +1,36 @@
+{
+  "budget": 3000,
+  "id": "modillion-cornice",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Modillion cornice",
+  "notes": "type ModillionCornice",
+  "parts": [
+    "bed mold cyma reversa",
+    "dentil band",
+    "scroll modillions",
+    "corona with drip soffit",
+    "cyma recta crown",
+    "fillets"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.48,
+    0.46
+  ],
+  "style": "Roman Corinthian cornice in dressed limestone, scroll modillions at 0.3 m centers, coffered soffit",
+  "summary": "Classical modillion cornice, 1.2 m run: bed mold, dentils, scroll modillions under a corona and cyma crown; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

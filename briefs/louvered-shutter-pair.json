@@ -1,0 +1,37 @@
+{
+  "budget": 10000,
+  "id": "louvered-shutter-pair",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-shaker",
+    "metal.cast-iron"
+  ],
+  "name": "Louvered shutter pair",
+  "notes": "type LouveredShutterPair",
+  "parts": [
+    "stiles",
+    "rails",
+    "angled louvers",
+    "strap hinges",
+    "S-holdbacks",
+    "mid rail"
+  ],
+  "references": [],
+  "size": [
+    1.17,
+    1.5,
+    0.045
+  ],
+  "style": "Painted wood louvered shutters, dark green, iron strap hinges and S tiebacks",
+  "summary": "Louvered shutter pair, 1.5 m: painted stiles and rails with angled louvers, mid rail, iron strap hinges and S-holdbacks.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "wood"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

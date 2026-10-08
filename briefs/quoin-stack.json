@@ -1,0 +1,37 @@
+{
+  "budget": 3000,
+  "id": "quoin-stack",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone",
+    "paint.stucco"
+  ],
+  "name": "Quoin stack",
+  "notes": "type QuoinStack",
+  "parts": [
+    "alternating long and short quoins",
+    "chamfered V-joints",
+    "tooled faces",
+    "mortar beds",
+    "corner arris",
+    "stucco wall returns"
+  ],
+  "references": [],
+  "size": [
+    0.92,
+    1.8,
+    0.92
+  ],
+  "style": "Rusticated limestone quoins at a building corner, alternating 0.6 / 0.4 m faces, 0.3 m courses",
+  "summary": "Quoin stack, 1.8 m: alternating long and short chamfered corner stones wrapping a building corner; tiles along Y.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

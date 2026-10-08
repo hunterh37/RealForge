@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "voussoir-arch",
+  "kind": "structure",
+  "materials": [
+    "stone.sandstone"
+  ],
+  "name": "Voussoir arch surround",
+  "notes": "type VoussoirArch",
+  "parts": [
+    "jamb blocks",
+    "impost moldings",
+    "wedge voussoirs",
+    "projecting keystone",
+    "rusticated joints"
+  ],
+  "references": [],
+  "size": [
+    2.43,
+    2.79,
+    0.174
+  ],
+  "style": "Semicircular rusticated arch surround, 1.2 m opening, 13 voussoirs with a dropped keystone, molded imposts",
+  "summary": "Voussoir arch surround, 1.2 m opening: rusticated jamb blocks, molded imposts, wedge voussoirs and a projecting keystone.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
