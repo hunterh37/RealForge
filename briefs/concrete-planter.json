@@ -1,0 +1,42 @@
+{
+  "budget": 11000,
+  "id": "concrete-planter",
+  "kind": "prop",
+  "materials": [
+    "concrete.smooth",
+    "concrete.rough",
+    "soil.potting",
+    "leaf.boxwood",
+    "leaf.boxwood-mass"
+  ],
+  "name": "Concrete planter",
+  "notes": "",
+  "parts": [
+    "planter shell",
+    "chamfered rim",
+    "plinth base",
+    "soil",
+    "shrub"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    1.36,
+    1.2
+  ],
+  "style": "modern city planter, rain-stained",
+  "summary": "Square precast concrete planter, 1.2 m, with a chamfered rim, soil and a boxwood shrub.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "concrete",
+    "plant",
+    "barrier"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

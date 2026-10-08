@@ -236,6 +236,17 @@ public enum Props {
         Jalapeno.self,
         GingerRoot.self,
         HalogenSiphonBar.self,
+        StreetNameSign.self,
+        StopSign.self,
+        ParkingMeter.self,
+        NewspaperBox.self,
+        BikeRack.self,
+        TreeGrate.self,
+        ConcretePlanter.self,
+        DrinkingFountain.self,
+        ManholeCover.self,
+        StormDrainGrate.self,
+        PoliceCallBox.self,
         // realityhd:prop
     ]
 }

@@ -1,0 +1,40 @@
+{
+  "budget": 6000,
+  "id": "storm-drain-grate",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron-street",
+    "metal.cast-iron-worn",
+    "concrete.sidewalk",
+    "ground.mud",
+    "mulch.bark"
+  ],
+  "name": "Storm drain grate",
+  "notes": "",
+  "parts": [
+    "bar grate",
+    "frame",
+    "concrete apron",
+    "silt under bars"
+  ],
+  "references": [],
+  "size": [
+    0.95,
+    0.04,
+    0.65
+  ],
+  "style": "US curb inlet grate",
+  "summary": "Storm drain inlet grate: cast-iron bar grate in a frame with a concrete apron.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "road"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

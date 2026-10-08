@@ -1,0 +1,43 @@
+{
+  "budget": 15000,
+  "id": "tree-grate",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron-street",
+    "stone.granite-curb",
+    "mulch.bark",
+    "bark.maple",
+    "leaf.maple-norway"
+  ],
+  "name": "Tree grate with tree pit",
+  "notes": "",
+  "parts": [
+    "two-piece radial grate",
+    "trunk opening",
+    "granite edging",
+    "mulch in the pit",
+    "young tree trunk",
+    "crown",
+    "steel tree guard"
+  ],
+  "references": [],
+  "size": [
+    2.86,
+    4.49,
+    2.76
+  ],
+  "style": "downtown street tree pit",
+  "summary": "Cast-iron tree grate, 1 m square, over a mulched tree pit with a young street tree, trunk opening and granite edging.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "plant"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,42 @@
+{
+  "budget": 6000,
+  "id": "parking-meter",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "glass.shelter",
+    "metal.steel",
+    "screen.bedside-lcd-off",
+    "plastic.black"
+  ],
+  "name": "Parking meter",
+  "notes": "",
+  "parts": [
+    "meter head",
+    "dome window",
+    "coin slot",
+    "card slot",
+    "display",
+    "pipe post",
+    "base"
+  ],
+  "references": [],
+  "size": [
+    0.21,
+    1.5,
+    0.17
+  ],
+  "style": "US city meter, dark grey, scuffed",
+  "summary": "Single-space parking meter: cast housing with a domed glass dome, coin slot and card reader on a steel pipe post.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

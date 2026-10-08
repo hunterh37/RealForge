@@ -275,7 +275,7 @@ public func citySignPlate(_ m: inout Model, outline: [V2], x: Xform, thickness: 
             var t = strokeText(str, height: hgt, stroke: hgt * 0.16, depth: 0.0006, material: textMaterial)
             t = t.transformed(Xform(translation: V3(at.x, at.y, 0), scale: V3(squeeze, 1, 1)))
             if s < 0 { t = t.transformed(Xform(rotation: simd_quatf(angle: .pi, axis: .up))) }
-            m.add(t, x.then(Xform(translation: V3(0, 0, s * (thickness / 2 + 0.0008)))))
+            m.add(t, x.child(Xform(translation: V3(0, 0, s * (thickness / 2 + 0.0008)))))
         }
     }
     if let back, !twoSided {
@@ -287,7 +287,7 @@ public func citySignPlate(_ m: inout Model, outline: [V2], x: Xform, thickness: 
 
 extension Xform {
     /// Apply `local` first, then self (self * local).
-    func then(_ local: Xform) -> Xform {
+    func child(_ local: Xform) -> Xform {
         Xform(translation: translation + rotation.act(local.translation * scale), rotation: rotation * local.rotation, scale: scale * local.scale)
     }
 }
