@@ -1,0 +1,35 @@
+{
+  "budget": 3500,
+  "id": "rusticated-base",
+  "kind": "structure",
+  "materials": [
+    "stone.sandstone"
+  ],
+  "name": "Rusticated base course",
+  "notes": "type RusticatedBase",
+  "parts": [
+    "banded rustication",
+    "chamfered V-joints",
+    "tooled block faces",
+    "plinth course",
+    "bed joints"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    1.2,
+    0.16
+  ],
+  "style": "Banded rustication with chamfered horizontal joints and staggered verticals over a plinth",
+  "summary": "Rusticated base panel, 1.2 m square: chamfered rusticated blocks in running bond above a projecting plinth; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,39 @@
+{
+  "budget": 7500,
+  "id": "ornamental-fence",
+  "kind": "prop",
+  "materials": [
+    "metal.painted",
+    "metal.iron",
+    "metal.rust"
+  ],
+  "name": "Ornamental fence segment",
+  "notes": "",
+  "parts": [
+    "posts",
+    "post caps",
+    "top and bottom rails",
+    "pickets",
+    "spear finials"
+  ],
+  "references": [],
+  "size": [
+    2.52,
+    1.42,
+    0.12
+  ],
+  "style": "black wrought-iron park fence",
+  "summary": "Ornamental iron fence segment, 2.4 m: square posts with ball caps, rails and spear-top pickets.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "fence"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

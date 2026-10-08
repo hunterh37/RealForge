@@ -1,0 +1,41 @@
+{
+  "budget": 6000,
+  "id": "drinking-fountain",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat",
+    "metal.stainless",
+    "metal.chrome",
+    "metal.steel"
+  ],
+  "name": "Public drinking fountain",
+  "notes": "",
+  "parts": [
+    "pedestal column",
+    "bowl",
+    "bubbler",
+    "push button",
+    "drain",
+    "base"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.98,
+    0.46
+  ],
+  "style": "park fountain, green powder coat",
+  "summary": "Pedestal drinking fountain: powder-coated steel column with a stainless bowl, bubbler and push button.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "water"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

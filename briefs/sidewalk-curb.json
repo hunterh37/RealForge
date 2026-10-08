@@ -1,0 +1,40 @@
+{
+  "budget": 6000,
+  "id": "sidewalk-curb",
+  "kind": "structure",
+  "materials": [
+    "concrete.sidewalk",
+    "stone.granite-curb",
+    "asphalt.patch"
+  ],
+  "name": "Sidewalk and curb tile",
+  "notes": "",
+  "parts": [
+    "concrete slabs",
+    "expansion joints",
+    "granite curb",
+    "curb face reveal",
+    "gum spots and stains"
+  ],
+  "references": [],
+  "size": [
+    3,
+    0.25,
+    3
+  ],
+  "style": "US downtown sidewalk, granite curb, some settling",
+  "summary": "Sidewalk tile, 3 x 3 m snap cell: 1.5 m broom-finished concrete slabs with tooled expansion joints behind a 15 cm granite curb along the road edge (-Z).",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete",
+    "stone"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

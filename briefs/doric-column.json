@@ -1,0 +1,36 @@
+{
+  "budget": 12000,
+  "id": "doric-column",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Doric column",
+  "notes": "type DoricColumn",
+  "parts": [
+    "square plinth",
+    "torus base",
+    "fluted shaft with entasis",
+    "necking and astragal",
+    "echinus",
+    "square abacus"
+  ],
+  "references": [],
+  "size": [
+    0.68,
+    3.6,
+    0.68
+  ],
+  "style": "Roman Doric column, 0.5 m diameter, 20 flutes meeting at arrises, entasis, torus base on plinth",
+  "summary": "Roman Doric column, 3.6 m: plinth, torus base, 20-flute shaft with entasis, astragal, echinus and abacus.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

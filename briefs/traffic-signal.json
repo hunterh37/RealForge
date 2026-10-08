@@ -1,0 +1,50 @@
+{
+  "budget": 15000,
+  "id": "traffic-signal",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized",
+    "metal.galvanized-aged",
+    "metal.signal-yellow",
+    "glass.signal-off",
+    "emissive.signal-red",
+    "sign.green-worn",
+    "sign.white",
+    "plastic.black",
+    "concrete.smooth"
+  ],
+  "name": "Traffic signal on mast arm",
+  "notes": "",
+  "parts": [
+    "tapered round pole",
+    "mast arm",
+    "arm-to-pole flange plate",
+    "two hanging signal heads",
+    "lamp visors",
+    "backplates with retroreflective border",
+    "pole-mounted head",
+    "street name blade",
+    "anchor base with bolts"
+  ],
+  "references": [],
+  "size": [
+    8.66,
+    6.9,
+    1.16
+  ],
+  "style": "US modern signal, yellow heads, galvanized arm",
+  "summary": "Traffic signal on a mast arm: galvanized pole, 8 m tapered arm, two hanging three-lamp heads with visors and backplates, a pole head and a street blade.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "light",
+    "sign"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

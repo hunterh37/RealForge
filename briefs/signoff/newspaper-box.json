@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9985612,
+  "date" : "2026-10-08",
+  "final" : 0.8768089,
+  "fingerprint" : "9972f3b319125f98",
+  "id" : "newspaper-box",
+  "iterations" : 1,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 7,
+    "materials" : 8,
+    "proportion" : 9,
+    "silhouette" : 9,
+    "wear" : 8
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.81125
+}

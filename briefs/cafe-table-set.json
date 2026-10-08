@@ -1,0 +1,41 @@
+{
+  "budget": 8000,
+  "id": "cafe-table-set",
+  "kind": "prop",
+  "materials": [
+    "metal.aluminum-brushed",
+    "metal.powdercoat",
+    "metal.diecast",
+    "rubber",
+    "paper.sheet"
+  ],
+  "name": "Caf\u00e9 table set",
+  "notes": "",
+  "parts": [
+    "round table top",
+    "pedestal and base",
+    "two chairs",
+    "slatted seats",
+    "rubber feet"
+  ],
+  "references": [],
+  "size": [
+    1.65,
+    0.85,
+    0.61
+  ],
+  "style": "European pavement caf\u00e9 set",
+  "summary": "Bistro caf\u00e9 set: round aluminium table and two stacking chairs.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "furniture"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

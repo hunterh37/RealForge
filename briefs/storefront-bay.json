@@ -1,0 +1,47 @@
+{
+  "budget": 24000,
+  "id": "storefront-bay",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "metal.painted",
+    "metal.anodized",
+    "stone.cast-grey",
+    "glass.pane",
+    "metal.stainless"
+  ],
+  "name": "Storefront Bay",
+  "notes": "",
+  "parts": [
+    "paneled bulkhead 0.45 m",
+    "display glazing in aluminum frame",
+    "glazed entry door with push bar",
+    "transom lights",
+    "sign band with blank fascia",
+    "cornice",
+    "cast-iron pilasters",
+    "stone base"
+  ],
+  "references": [],
+  "size": [
+    3.22,
+    3.84,
+    0.41
+  ],
+  "style": "Main-street shop front, painted wood bulkhead and pilasters, clear aluminum storefront.",
+  "summary": "Storefront bay, 3 m: 0.45 m paneled bulkhead, aluminum-framed glazing with an entry door, transom lights and a sign band with cornice.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "door",
+    "window",
+    "metal",
+    "glass",
+    "urban",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

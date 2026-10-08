@@ -1,0 +1,37 @@
+{
+  "budget": 16000,
+  "id": "canvas-awning",
+  "kind": "structure",
+  "materials": [
+    "fabric.canvas",
+    "metal.wrought-iron"
+  ],
+  "name": "Canvas Awning",
+  "notes": "",
+  "parts": [
+    "wall rail and brackets",
+    "tube frame arms",
+    "striped canvas slope",
+    "scalloped valance",
+    "side cheeks"
+  ],
+  "references": [],
+  "size": [
+    2.44,
+    0.9,
+    1.01
+  ],
+  "style": "Cafe awning, faded stripes, slight sag between ribs.",
+  "summary": "Shopfront canvas awning, 2.4 m: steel tube frame on wall brackets, striped canvas slope and scalloped valance.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "fabric",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

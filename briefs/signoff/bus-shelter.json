@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99996424,
+  "date" : "2026-10-08",
+  "final" : 0.86267495,
+  "fingerprint" : "e7a7f9f62718dc45",
+  "id" : "bus-shelter",
+  "iterations" : 1,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 7,
+    "grounding" : 7,
+    "materials" : 8,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.78875
+}

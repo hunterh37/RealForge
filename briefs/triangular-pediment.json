@@ -1,0 +1,35 @@
+{
+  "budget": 4000,
+  "id": "triangular-pediment",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Triangular pediment",
+  "notes": "type TriangularPediment",
+  "parts": [
+    "horizontal cornice",
+    "raking cornices",
+    "mitered apex",
+    "tympanum",
+    "returns at eaves"
+  ],
+  "references": [],
+  "size": [
+    3.18,
+    0.874,
+    0.19
+  ],
+  "style": "Classical triangular pediment, 15 degree pitch, raking cyma cornices mitered at apex, recessed tympanum",
+  "summary": "Triangular pediment, 3 m: horizontal cornice, two raking cornices mitered at the apex over a recessed tympanum.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

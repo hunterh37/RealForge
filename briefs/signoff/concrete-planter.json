@@ -1,0 +1,22 @@
+{
+  "automated" : 0.9996951,
+  "date" : "2026-10-08",
+  "final" : 0.86501837,
+  "fingerprint" : "8d7c973f19492cae",
+  "id" : "concrete-planter",
+  "iterations" : 1,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 8,
+    "grounding" : 8,
+    "materials" : 8,
+    "proportion" : 9,
+    "silhouette" : 8,
+    "wear" : 6
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.7925001
+}

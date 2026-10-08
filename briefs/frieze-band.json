@@ -1,0 +1,37 @@
+{
+  "budget": 4000,
+  "id": "frieze-band",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Frieze band",
+  "notes": "type FriezeBand",
+  "parts": [
+    "bead and fillet base",
+    "flat frieze field",
+    "carved rosettes",
+    "cyma reversa cap",
+    "fillets",
+    "bead-and-reel astragal"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.42,
+    0.065
+  ],
+  "style": "Plain classical frieze band with carved rosettes every 0.6 m, astragal below and cyma cap",
+  "summary": "Frieze band, 1.2 m run: flat frieze field with carved rosettes between an astragal and a cyma reversa cap; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone",
+    "ornament"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

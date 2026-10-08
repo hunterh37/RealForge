@@ -1,0 +1,43 @@
+{
+  "budget": 10000,
+  "id": "road-t-junction",
+  "kind": "structure",
+  "materials": [
+    "asphalt.road",
+    "asphalt.worn",
+    "paint.lane-white",
+    "paint.lane-yellow",
+    "concrete.sidewalk",
+    "asphalt.sealant"
+  ],
+  "name": "T-junction road tile",
+  "notes": "",
+  "parts": [
+    "asphalt slab",
+    "through centre line",
+    "branch crosswalk",
+    "stop bar",
+    "gutter pan along the closed edge",
+    "sealed cracks"
+  ],
+  "references": [],
+  "size": [
+    12,
+    0.1,
+    12
+  ],
+  "style": "US neighbourhood T-junction",
+  "summary": "T-junction road tile, 12 m snap cell: east-west through road with a south branch, crosswalk and stop bar on the branch, gutter on the closed side.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

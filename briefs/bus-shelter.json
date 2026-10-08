@@ -1,0 +1,46 @@
+{
+  "budget": 13500,
+  "id": "bus-shelter",
+  "kind": "prop",
+  "materials": [
+    "metal.aluminum-brushed",
+    "glass.shelter",
+    "metal.powdercoat",
+    "emissive.panel",
+    "metal.stainless",
+    "sign.white",
+    "sign.green"
+  ],
+  "name": "Bus shelter",
+  "notes": "",
+  "parts": [
+    "frame posts",
+    "roof canopy with fascia",
+    "back glass panels",
+    "end glass panel",
+    "ad panel",
+    "bench",
+    "route sign"
+  ],
+  "references": [],
+  "size": [
+    4.5,
+    2.57,
+    1.69
+  ],
+  "style": "modern city shelter",
+  "summary": "Bus shelter, 4 x 1.6 m: aluminium frame, clear polycarbonate side and back panels, cantilevered roof, perch bench and a lit advertising panel.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "glass",
+    "furniture"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

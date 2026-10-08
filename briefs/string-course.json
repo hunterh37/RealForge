@@ -1,0 +1,35 @@
+{
+  "budget": 1500,
+  "id": "string-course",
+  "kind": "structure",
+  "materials": [
+    "stone.sandstone"
+  ],
+  "name": "String course",
+  "notes": "type StringCourse",
+  "parts": [
+    "fascia",
+    "cyma reversa",
+    "weathered top",
+    "drip groove",
+    "fillet"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.16,
+    0.1
+  ],
+  "style": "Projecting sandstone belt course with weathered top and drip",
+  "summary": "String course, 1.2 m run: fascia, cyma reversa and sloped weathered top with a drip groove; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

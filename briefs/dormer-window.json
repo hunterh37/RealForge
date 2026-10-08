@@ -1,0 +1,42 @@
+{
+  "budget": 29000,
+  "id": "dormer-window",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "roofing.shingle-granule",
+    "glass.pane",
+    "metal.galvanized",
+    "wood.plywood",
+    "plastic.matte"
+  ],
+  "name": "Dormer Window",
+  "notes": "",
+  "parts": [
+    "front wall with double-hung window",
+    "side cheeks with siding",
+    "gable roof with shingles",
+    "fascia and rake trim",
+    "step flashing",
+    "roof patch"
+  ],
+  "references": [],
+  "size": [
+    2.42,
+    2.4,
+    2.65
+  ],
+  "style": "New England cape dormer, white trim, grey shingles.",
+  "summary": "Gable dormer on a roof slope: double-hung window in a clapboard-sided dormer with shingled gable roof, trim and flashing.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "window",
+    "wood",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

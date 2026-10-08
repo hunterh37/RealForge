@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "standing-seam-roof",
+  "kind": "structure",
+  "materials": [
+    "metal.roofing",
+    "wood.painted-exterior",
+    "wood.plywood",
+    "plastic.black"
+  ],
+  "name": "Standing-Seam Roof Panel",
+  "notes": "",
+  "parts": [
+    "metal pans",
+    "raised standing seams",
+    "ridge cap",
+    "eave drip edge",
+    "fascia",
+    "rake trim"
+  ],
+  "references": [],
+  "size": [
+    2.48,
+    1.3,
+    2.26
+  ],
+  "style": "Modern farmhouse charcoal standing seam.",
+  "summary": "Standing-seam metal roof section, 2.4 m: painted steel pans with raised seams at 400 mm, ridge cap, eave drip and fascia.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

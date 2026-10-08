@@ -1,0 +1,42 @@
+{
+  "budget": 16000,
+  "id": "double-hung-window",
+  "kind": "structure",
+  "materials": [
+    "wood.painted-exterior",
+    "wood.barn-white",
+    "glass.pane",
+    "metal.brass-aged",
+    "fabric.linen"
+  ],
+  "name": "Double-Hung Window",
+  "notes": "",
+  "parts": [
+    "frame jambs, head and sloped sill",
+    "upper and lower sashes in channels",
+    "six-over-six muntins",
+    "meeting rail and sash lock",
+    "casing with drip cap",
+    "sash lifts"
+  ],
+  "references": [],
+  "size": [
+    1.21,
+    1.69,
+    0.265
+  ],
+  "style": "Painted wood window from an old house, sill paint worn, lower sash slides up.",
+  "summary": "Double-hung sash window, 0.9 x 1.5 m: painted frame, two sliding sashes with six-over-six muntins, casing, sill and sash lock.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "window",
+    "wood",
+    "glass",
+    "articulated"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

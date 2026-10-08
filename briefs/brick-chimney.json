@@ -1,0 +1,42 @@
+{
+  "budget": 8000,
+  "id": "brick-chimney",
+  "kind": "structure",
+  "materials": [
+    "brick.red",
+    "concrete.smooth",
+    "ceramic.terracotta",
+    "metal.galvanized-aged",
+    "metal.galvanized",
+    "plastic.black",
+    "plastic.matte"
+  ],
+  "name": "Brick Chimney",
+  "notes": "",
+  "parts": [
+    "running bond brick stack",
+    "corbelled courses",
+    "concrete crown with drip",
+    "clay flue liners",
+    "sheet-metal rain cap",
+    "flashing at roof"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    2.46,
+    0.83
+  ],
+  "style": "Old house chimney, soot at the flue, crown cracked.",
+  "summary": "Brick chimney stack, 0.8 x 0.5 m: running bond brick, corbelled top course, concrete crown, two clay flue liners and a rain cap.",
+  "tags": [
+    "structure",
+    "architecture",
+    "roof",
+    "brick",
+    "concrete"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

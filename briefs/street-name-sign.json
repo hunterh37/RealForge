@@ -1,0 +1,38 @@
+{
+  "budget": 6000,
+  "id": "street-name-sign",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized",
+    "sign.green",
+    "sign.white"
+  ],
+  "name": "Street name sign post",
+  "notes": "",
+  "parts": [
+    "square perforated post",
+    "two crossed blades",
+    "white lettering and border",
+    "cross bracket"
+  ],
+  "references": [],
+  "size": [
+    0.9,
+    3.12,
+    0.9
+  ],
+  "style": "US green street blades",
+  "summary": "Street name sign post: square perforated steel post with two crossed green street name blades and a cap bracket.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "sign"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

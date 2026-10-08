@@ -1,0 +1,39 @@
+{
+  "budget": 9000,
+  "id": "manhole-cover",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron-street",
+    "metal.cast-iron-worn",
+    "asphalt.patch"
+  ],
+  "name": "Manhole cover",
+  "notes": "",
+  "parts": [
+    "cover disc",
+    "raised tread pattern",
+    "pick holes",
+    "frame ring",
+    "asphalt patch collar"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    0.03,
+    1.0
+  ],
+  "style": "US sewer lid, polished by tyres",
+  "summary": "Cast-iron manhole cover, 76 cm, with a diamond-tread pattern, pick holes and frame ring set in an asphalt patch.",
+  "tags": [
+    "prop",
+    "city",
+    "street",
+    "urban",
+    "outdoor",
+    "metal",
+    "road"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,39 @@
+{
+  "budget": 5200,
+  "id": "plaza-paving",
+  "kind": "structure",
+  "materials": [
+    "stone.granite-paver",
+    "ground.sand",
+    "asphalt.worn"
+  ],
+  "name": "Plaza paving tile",
+  "notes": "",
+  "parts": [
+    "50 cm slabs",
+    "darker border band",
+    "sand joints",
+    "slight height variance"
+  ],
+  "references": [],
+  "size": [
+    3,
+    0.25,
+    3
+  ],
+  "style": "civic plaza, light granite-look slabs",
+  "summary": "Plaza paving tile, 3 x 3 m snap cell: 50 cm granite-look concrete slabs in a stack bond with a darker band, sand joints, sidewalk height.",
+  "tags": [
+    "structure",
+    "city",
+    "street",
+    "road",
+    "tile",
+    "outdoor",
+    "concrete",
+    "stone"
+  ],
+  "theme": "City",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,35 @@
+{
+  "budget": 14000,
+  "id": "balustrade-run",
+  "kind": "structure",
+  "materials": [
+    "stone.cast-stone"
+  ],
+  "name": "Balustrade run",
+  "notes": "type BalustradeRun",
+  "parts": [
+    "plinth",
+    "bottom rail",
+    "turned vase balusters",
+    "molded handrail",
+    "end pedestals"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    0.95,
+    0.39
+  ],
+  "style": "Cast stone balustrade, vase balusters at 0.3 m centers between plinth rail and molded handrail, end pedestals",
+  "summary": "Balustrade run, 2.4 m: plinth rail, turned double-vase balusters, molded handrail and end pedestals; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

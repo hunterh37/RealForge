@@ -1,0 +1,35 @@
+{
+  "budget": 2500,
+  "id": "dentil-course",
+  "kind": "structure",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Dentil course",
+  "notes": "type DentilCourse",
+  "parts": [
+    "fillet below",
+    "dentil blocks",
+    "dentil spacing gaps",
+    "ovolo cap",
+    "fillet above"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.16,
+    0.105
+  ],
+  "style": "Ionic dentil band, blocks 60 mm wide at 90 mm centers, ovolo cap",
+  "summary": "Dentil course, 1.2 m run: square dentil blocks between a backing fascia and an ovolo cap; tiles along X.",
+  "tags": [
+    "structure",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Architecture",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
