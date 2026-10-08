@@ -255,6 +255,8 @@ public enum Props {
         OrnamentalFence.self,
         StreetClock.self,
         PlazaFountain.self,
+        AerialBucket.self,
+        TruckCabInterior.self,
         // realityhd:prop
     ]
 }

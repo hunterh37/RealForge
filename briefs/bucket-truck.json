@@ -1,0 +1,55 @@
+{
+  "budget": 30000,
+  "id": "bucket-truck",
+  "kind": "structure",
+  "materials": [
+    "paint.truck-white",
+    "paint.body-white",
+    "fiberglass.boom",
+    "fiberglass.bucket",
+    "rubber.truck-tire",
+    "metal.chrome",
+    "metal.aluminum-brushed",
+    "metal.painted",
+    "plastic.gloss",
+    "emissive.signal-orange"
+  ],
+  "name": "Bucket truck",
+  "notes": "front faces +Z, driver on +X. Attachment points: BucketTruck.driverEye (0.55, 2.42, 2.45), bucketFloor (-0.47, 2.60, 1.5), bucketConsole (-0.28, 3.73, 1.5) as public static V3 in asset space, rest pose. Also turretPivot, lowerBoomPivot, upperBoomPivot, boomTip. Width includes mirrors and outrigger housings; height includes bucket controls.",
+  "parts": [
+    "conventional cab with sloped hood, fenders, grille, headlights, mirrors",
+    "cab doors doorL doorR (hinge 0...70)",
+    "white steel utility body with compartment doors and paddle latches",
+    "turret on a pedestal (yaw 0...360)",
+    "steel lower boom (0...80)",
+    "fiberglass upper boom with jib stub (0...170)",
+    "one-man fiberglass bucket with upper controls, kept level (bucketLevel, bucketLevelLower mimics)",
+    "four vertical outriggers outriggerFL/FR/RL/RR (slide 0...0.9 m)",
+    "amber beacons and clearance lamps",
+    "rear bumper with steps",
+    "front wheels wheelFL/FR steer (-35...35), spinFL/FR/RL/RR wheel spin",
+    "11R22.5 tires with rib tread, drive lugs, white disc wheels"
+  ],
+  "references": [
+    "notes/refs/bucket-truck.jpg (Wikimedia Commons: Pepco hybrid diesel-electric bucket truck WAS 2010 8914)"
+  ],
+  "size": [
+    2.84,
+    3.85,
+    10.2
+  ],
+  "style": "current International DuraStar / Altec AT style fleet truck, gloss white paint, black chassis, light road grime.",
+  "summary": "White class-7 aerial device truck: conventional cab, utility body, turret, steel and fiberglass booms, one-man bucket, outriggers, beacons.",
+  "tags": [
+    "structure",
+    "vehicle",
+    "utility",
+    "electrical",
+    "metal",
+    "articulated",
+    "street"
+  ],
+  "theme": "Vehicle",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

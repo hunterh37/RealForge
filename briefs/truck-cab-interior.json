@@ -1,0 +1,50 @@
+{
+  "budget": 14000,
+  "id": "truck-cab-interior",
+  "kind": "prop",
+  "materials": [
+    "plastic.dash",
+    "vinyl.seat-grey",
+    "rubber.floor-mat",
+    "rubber.plate",
+    "metal.chrome",
+    "metal.aluminum-brushed",
+    "plastic.yellow",
+    "plastic.gloss"
+  ],
+  "name": "Truck cab interior",
+  "notes": "cab floor at y = 0, driver faces +Z, door side +X. Attachment constants TruckCabInterior.driverEye, steeringCenter, steeringAxis (asset space, rest pose).",
+  "parts": [
+    "rubber floor mat, toe board, door sill",
+    "dash with hooded gauge cluster",
+    "speedometer needle speedNeedle (0...270)",
+    "steering wheel steering (-540...540 about the column)",
+    "air-ride seat with backrest, headrest, armrest",
+    "floor console with PRNDL lever shifter (P 0, R -8, N -16, D -24, L -32)",
+    "yellow parking brake knob parkingBrake (pull 0...0.04)",
+    "pedals throttle and brake",
+    "PTO switch pto and beacon switch beaconSwitch",
+    "outrigger control panel with four levers"
+  ],
+  "references": [
+    "notes/refs/truck-cab-interior.jpg (Wikimedia Commons: Truck cab.JPG)"
+  ],
+  "size": [
+    1.35,
+    1.25,
+    1.85
+  ],
+  "style": "International DuraStar class fleet cab, charcoal stippled dash, grey vinyl seat, worn rubber mat.",
+  "summary": "Truck driver area at 1:1: air-ride seat, tilt steering wheel, gauge cluster, PRNDL lever, parking brake, pedals, PTO and outrigger switches.",
+  "tags": [
+    "prop",
+    "vehicle",
+    "utility",
+    "plastic",
+    "interior",
+    "articulated"
+  ],
+  "theme": "Vehicle",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
