@@ -542,6 +542,8 @@ Live with `RealityHD.articulated(id)` or `scene.addLive`; bake one state with `b
 | [`cooking-counter`](docs/scenes/cooking-counter.png) | kitchen, interior, showcase | realityhd | Kitchen wall run for a cooking sim: quartz counters, sink under a window, clear prep area, gas range and hood, shaker cabinets, subway tile. |
 | [`backyard-landscape`](docs/scenes/backyard-landscape.png) | garden, landscaping, outdoor, showcase | realityhd | Designed 14 x 10 m backyard: lawn, paver patio with fire pit and Adirondack chairs, pergola, retaining wall, mulch beds with shrubs, path lights, trees. |
 | [`city-block`](docs/scenes/city-block.png) | urban, street, outdoor, showcase | realityhd | Street of procedurally generated buildings in eight styles, sidewalks, asphalt road, street trees and lamps. |
+| [`lineman-yard`](docs/scenes/lineman-yard.png) | utility, urban, outdoor | hunter | Utility service yard: concrete lot, chain-link fence and gate, steel line shop, pole stacks, cable reels, truck stalls. |
+| [`lineman-district`](docs/scenes/lineman-district.png) | utility, urban, street, outdoor | hunter | Drivable city loop of four blocks: road tiles, sidewalks, generated buildings, signals, overhead pole line, job-site pole, service yard. |
 
 ## Materials
 

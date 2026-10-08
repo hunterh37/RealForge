@@ -26,6 +26,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     case woodshop = "woodshop"
     case cookingCounter = "cooking-counter"
     case backyardLandscape = "backyard-landscape"
+    case linemanYard = "lineman-yard"
+    case linemanDistrict = "lineman-district"
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -51,6 +53,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .woodshop: "Woodshop"
         case .cookingCounter: "Cooking Counter"
         case .backyardLandscape: "Backyard Landscape"
+        case .linemanYard: "Lineman Yard"
+        case .linemanDistrict: "Lineman District"
         }
     }
     var detail: String {
@@ -77,6 +81,8 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .woodshop: "Woodshop: table saw, miter saw bench, workbench under a pegboard, sawhorses, lumber rack, shop lights."
         case .cookingCounter: "Kitchen run: clear quartz prep counter, gas range with live knobs and flames, sink, hood, shaker cabinets."
         case .backyardLandscape: "Designed backyard: paver patio with fire pit and Adirondack chairs, pergola, retaining wall, beds, path lights."
+        case .linemanYard: "Utility service yard: steel line shop, pole stacks, cable reels, truck stalls."
+        case .linemanDistrict: "Four-block city loop with an overhead pole line, job-site pole and the service yard."
         }
     }
     /// Sky picked when the scene is opened from the menu.
