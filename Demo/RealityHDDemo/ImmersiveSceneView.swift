@@ -16,11 +16,15 @@ struct ImmersiveSceneView: View {
     @State private var anchor = Entity()
     /// Teleport destinations of the built scene.
     @State private var spots: [RealScene.Spot] = []
+    /// Grabbable being dragged and its offset from the pinch point (parent space).
+    @State private var dragging: (entity: Entity, offset: SIMD3<Float>)?
 
     var body: some View {
         RealityView { content, attachments in
             content.add(root)
-            if let hud = attachments.entity(for: "hud") {
+            // HUD only when enabled at open: reparenting the hosting entity while a previous space is
+            // being torn down aborts in CoreRE.
+            if model.showHUD, let hud = attachments.entity(for: "hud") {
                 let head = AnchorEntity(.head)
                 head.anchoring.trackingMode = .continuous
                 hud.position = SIMD3(0, -0.24, -0.8)
@@ -42,11 +46,25 @@ struct ImmersiveSceneView: View {
                 value.entity.realToggle()
             }
         })
+        // Pinch-and-drag a grabbable (direct or at a distance) to carry it; it stays where released.
+        .simultaneousGesture(DragGesture(minimumDistance: 0.005).targetedToAnyEntity().onChanged { value in
+            guard let root = value.entity.grabRoot, let parent = root.parent else { return }
+            let p = value.convert(value.location3D, from: .local, to: parent)
+            if dragging?.entity !== root {
+                dragging = (root, root.position - p)
+            }
+            if let d = dragging { root.position = p + d.offset }
+        }.onEnded { _ in dragging = nil })
         .task(id: model.rebuildToken) { await build() }
         .onChange(of: model.teleportTo) { _, name in
             guard let name else { return }
             model.teleportTo = nil
             if let s = spots.first(where: { $0.name == name }) { teleport(to: s) }
+        }
+        .onChange(of: model.step) { _, step in
+            guard let step else { return }
+            model.step = nil
+            apply(step)
         }
         .onChange(of: model.resetGrabsToken) { resetGrabs(anchor) }
         .onDisappear { model.spots = [] }
@@ -67,6 +85,8 @@ struct ImmersiveSceneView: View {
             }
             // Scene lighting hints (interior probe, fog off, its own sun) unless the menu sky applies.
             let env = try RealityHD.environment(for: scene, sky: config.scene.usesSceneLighting ? nil : config.sky.sunSky)
+            RealGrabStyle.useManipulation = false
+            if Self.cueEnabled { RealGrabCue.enable() }
             let world = try await scene.entity()
             root.children.removeAll()
             anchor.children.removeAll()
@@ -77,12 +97,16 @@ struct ImmersiveSceneView: View {
             model.spots = spots.map(\.name)
             if let cam = scene.camera { anchor.transform = Self.viewerTransform(eye: cam.eye, target: cam.target, extraYaw: config.yaw) }
             env.illuminate(world)
+            var cueError = ""
+            if Self.cueEnabled {
+                do { model.grabCount = try await RealGrabCue.attach(under: world) } catch { model.grabCount = 0; cueError = " grab cue: \(error)" }
+            }
             root.addChild(env.root)
             root.addChild(anchor)
             model.builtWith = perf
             let cost = scene.estimate(settings: perf)
             model.status = "\(id) seed \(seed) \(config.sky.rawValue) \(perf.tier?.rawValue ?? "custom"): "
-                + "\(Int(Date().timeIntervalSince(t0) * 1000)) ms, est \(cost.triangles / 1000)k tris \(cost.drawCalls) draws"
+                + "\(Int(Date().timeIntervalSince(t0) * 1000)) ms, \(model.grabCount) grabbable, est \(cost.triangles / 1000)k tris \(cost.drawCalls) draws" + cueError
         } catch {
             model.status = "error: \(error)"
         }
@@ -90,6 +114,8 @@ struct ImmersiveSceneView: View {
     }
 
     static let floorName = "teleport-floor"
+    /// Gaze dot on grabbables; launch arg `-cue NO` turns it off.
+    static var cueEnabled: Bool { UserDefaults.standard.object(forKey: "cue") as? Bool ?? true }
 
     /// Invisible tap target at floor level under the whole scene (props and parts above it win the hit).
     static func teleportFloor(size: Float = 160) -> Entity {
@@ -119,6 +145,27 @@ struct ImmersiveSceneView: View {
     private func teleport(to spot: RealScene.Spot) {
         var t = Self.viewerTransform(eye: spot.eye, target: spot.target)
         t.translation += feet
+        move(to: t)
+    }
+
+    /// Steps move the scene opposite the head's flat heading; turns rotate it about the viewer's feet.
+    private func apply(_ step: DemoStep, distance: Float = 1.0, turn: Float = 30) {
+        var f = RealViewer.forward
+        f.y = 0
+        f = simd_length(f) > 0.01 ? simd_normalize(f) : SIMD3(0, 0, -1)
+        let right = SIMD3(-f.z, 0, f.x)
+        var t = anchor.transform
+        switch step {
+        case .forward: t.translation -= f * distance
+        case .back: t.translation += f * distance
+        case .left: t.translation += right * distance
+        case .right: t.translation -= right * distance
+        case .turnLeft, .turnRight:
+            let r = simd_quatf(angle: (step == .turnLeft ? -turn : turn) * .pi / 180, axis: SIMD3(0, 1, 0))
+            let p = feet
+            t.translation = p + r.act(t.translation - p)
+            t.rotation = r * t.rotation
+        }
         move(to: t)
     }
 

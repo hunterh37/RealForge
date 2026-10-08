@@ -70,7 +70,7 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
         case .officeLobby: "Terrazzo lobby, marble reception, elevator bank, glass street front. Tap the elevators and door."
         case .conferenceRoom: "Boardroom table, mesh chairs, wall display, glass partition and door."
         case .officePlaza: "Plaza between curtain-wall office blocks, maples in planters, benches and lamps."
-        case .hospital: "ER floor: lobby, corridor, ER room and OR. Tap devices, pinch instruments, tap the floor to move."
+        case .hospital: "ER floor: lobby, corridor, ER room, OR, supply table. 60+ grabbable props show a white dot when looked at."
         case .hospitalLobby: "Waiting and intake lobby: kiosks, nurse station, beam seating, doors to treatment. Tap doors and kiosks."
         case .erRoom: "ER treatment room: stretcher, vitals monitor, IV pump, exam table, instrument counter. Grab the stethoscope."
         case .operatingRoom: "Operating room: surgical table under LED lights, anesthesia boom, draped back table with instruments."
@@ -83,6 +83,11 @@ enum DemoScene: String, CaseIterable, Identifiable, Codable, Hashable {
     var defaultSky: DemoSky? { self == .canyonRoad ? .golden : nil }
     /// Interiors and the plaza carry their own sun and probe; the menu sky is ignored for them.
     var usesSceneLighting: Bool { [.openOffice, .executiveOffice, .officeLobby, .conferenceRoom, .officePlaza, .hospital, .hospitalLobby, .erRoom, .operatingRoom, .woodshop, .cookingCounter].contains(self) }
+}
+
+/// Menu move pad: steps along the head's heading, snap turns about the viewer.
+enum DemoStep: Hashable {
+    case forward, back, left, right, turnLeft, turnRight
 }
 
 enum DemoSky: String, CaseIterable, Identifiable, Codable, Hashable {
@@ -130,6 +135,10 @@ final class DemoModel {
     var tapTeleport = UserDefaults.standard.object(forKey: "demo.tapTeleport") as? Bool ?? true {
         didSet { UserDefaults.standard.set(tapTeleport, forKey: "demo.tapTeleport") }
     }
+    /// Step or snap turn the immersive view applies once, then clears.
+    var step: DemoStep?
+    /// Grabbable objects in the open scene (each shows a white dot while looked at).
+    var grabCount = 0
     /// Bumped to put every grabbed object back.
     var resetGrabsToken = 0
     var showHUD = UserDefaults.standard.bool(forKey: "demo.hud") {

@@ -56,6 +56,11 @@ struct MenuView: View {
                 if model.open != nil {
                     Section("Move") {
                         Toggle("Tap floor to teleport", isOn: $model.tapTeleport)
+                        MovePad()
+                        if model.grabCount > 0 {
+                            Text("\(model.grabCount) grabbable objects: look for the white dot, pinch to pick up")
+                                .font(.footnote).foregroundStyle(.secondary)
+                        }
                         ForEach(model.spots, id: \.self) { name in
                             Button {
                                 model.teleportTo = name
@@ -112,5 +117,29 @@ struct FPSBadge: View {
     var body: some View {
         Text(String(format: "%.0f fps  %dk tris", stats.fps, stats.triangles / 1000))
             .font(.callout.monospacedDigit()).foregroundStyle(stats.fps > 0 && stats.fps < 80 ? .orange : .secondary)
+    }
+}
+
+/// Step 1 m along the head's heading or strafe; snap turn 30 degrees.
+struct MovePad: View {
+    @Environment(DemoModel.self) private var model
+    var body: some View {
+        Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+            GridRow {
+                pad("arrow.counterclockwise", .turnLeft)
+                pad("arrow.up", .forward)
+                pad("arrow.clockwise", .turnRight)
+            }
+            GridRow {
+                pad("arrow.left", .left)
+                pad("arrow.down", .back)
+                pad("arrow.right", .right)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+    private func pad(_ icon: String, _ step: DemoStep) -> some View {
+        Button { model.step = step } label: { Image(systemName: icon).font(.title2).frame(width: 56, height: 44) }
+            .buttonStyle(.bordered)
     }
 }

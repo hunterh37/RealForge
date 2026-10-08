@@ -49,10 +49,10 @@ public struct OperatingRoom: RealSceneBuilder {
         scene.addLive(AnesthesiaMachine(), at: place(0.85, -2.25, yaw: 0), seed: seed &+ 5, state: "running")
         scene.addLive(IvPole(), at: place(-0.75, -1.25), seed: seed &+ 6, state: "high-with-bag")
         scene.addLive(InfusionPump(), at: place(-0.75, -1.19, y: 1.05), seed: seed &+ 7, state: "on")
-        scene.addLive(DoctorStool(), at: place(0.0, -1.75, yaw: 10), seed: seed &+ 8, state: "high")
+        scene.addLive(DoctorStool(), at: place(0.0, -1.75, yaw: 10), seed: seed &+ 8, state: "high", grabbable: true)
 
         // Scrub side: Mayo stand over the foot, back table along the east side.
-        scene.addLive(MayoStand(), at: place(0.25, 1.75, yaw: 180), seed: seed &+ 10, state: "high")
+        scene.addLive(MayoStand(), at: place(0.25, 1.75, yaw: 180), seed: seed &+ 10, state: "high", grabbable: true)
         let bx: Float = 2.2, bz: Float = 1.6, top: Float = 0.86 + 0.003
         scene.add(HospitalFit.backTable(), at: place(bx, bz, yaw: 90))
         scene.addLive(InstrumentContainer(), at: place(bx, bz + 0.35, y: top, yaw: 90), seed: seed &+ 11, state: "open")
@@ -68,10 +68,10 @@ public struct OperatingRoom: RealSceneBuilder {
         scene.addLive(XrayViewer(), at: place(0.6, -D / 2 + 0.053, y: 1.3), seed: seed &+ 20, state: "both-on")
         scene.addLive(SupplyCabinet(), at: place(W / 2 - 0.177, -1.4, y: 1.4, yaw: -90), seed: seed &+ 21, state: "closed")
         scene.add(HospitalFit.counter(length: 1.8, doors: 3), at: place(W / 2 - 0.305, -1.4, yaw: -90))
-        scene.addLive(Microscope(), at: place(W / 2 - 0.3, -0.85, y: 0.91, yaw: -90), seed: seed &+ 26, state: "off")
+        scene.addLive(Microscope(), at: place(W / 2 - 0.3, -0.85, y: 0.91, yaw: -90), seed: seed &+ 26, state: "off", grabbable: true)
         scene.addLive(SharpsContainer(), at: place(W / 2 - 0.062, 0.2, y: 1.15, yaw: -90), seed: seed &+ 22, state: "closed")
         scene.addLive(SanitizerDispenser(), at: place(-W / 2 + 0.051, 0.3, y: 1.0, yaw: 90), seed: seed &+ 23, state: "idle")
-        scene.addLive(BiohazardBin(), at: place(-2.9, 2.9, yaw: 45), seed: seed &+ 24, state: "open")
+        scene.addLive(BiohazardBin(), at: place(-2.9, 2.9, yaw: 45), seed: seed &+ 24, state: "open", grabbable: true)
         scene.addLive(CrashCart(), at: place(-2.9, -2.8, yaw: 90), seed: seed &+ 25, state: "sealed")
 
         scene.farGround = nil

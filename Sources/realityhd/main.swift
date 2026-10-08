@@ -29,6 +29,8 @@ func run() async throws {
     case "context": contextCommand(args)
     case "brief": try briefCommand(args)
     case "anatomy": try await anatomyCommand(args)
+    case "promo": try await promoCommand(args)
+    case "export": try exportCommand(args)
     default: print(usage)
     }
 }

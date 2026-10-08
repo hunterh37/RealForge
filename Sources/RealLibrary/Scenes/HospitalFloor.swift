@@ -58,8 +58,8 @@ public struct HospitalFloor: RealSceneBuilder {
         // Corridor dressing: scrub sink outside the OR, parked stretcher, wheelchair, IV pole, cart.
         scene.addLive(ScrubSink(), at: place(cW / 2 - 0.34, orZ + 0.4, yaw: -90), seed: seed &+ 1, state: "left-running")
         scene.addLive(ErStretcher(), at: place(-cW / 2 + 0.5, cz - 6.2, yaw: 180), seed: seed &+ 2, state: "transport")
-        scene.addLive(Wheelchair(), at: place(-cW / 2 + 0.45, cz - 3.2, yaw: 90), seed: seed &+ 3, state: "brakes-on")
-        scene.addLive(IvPole(), at: place(cW / 2 - 0.4, cz + 5.2), seed: seed &+ 4, state: "low")
+        scene.addLive(Wheelchair(), at: place(-cW / 2 + 0.45, cz - 3.2, yaw: 90), seed: seed &+ 3, state: "brakes-on", grabbable: true)
+        scene.addLive(IvPole(), at: place(cW / 2 - 0.4, cz + 5.2), seed: seed &+ 4, state: "low", grabbable: true)
         scene.addLive(CrashCart(), at: place(cW / 2 - 0.36, cz + 3.8, yaw: -90), seed: seed &+ 5, state: "sealed")
         // Parked bed on the east wall; oxygen cylinder between the stretcher and wheelchair.
         scene.addLive(HospitalBed(), at: place(cW / 2 - 0.55, cz - 5.6, yaw: 90), seed: seed &+ 8, state: "flat")
@@ -67,6 +67,39 @@ public struct HospitalFloor: RealSceneBuilder {
         for (i, z) in [cz + 6.5, cz - 1.0].enumerated() {
             scene.addLive(SanitizerDispenser(), at: place(-cW / 2 + 0.051, z, y: 1.0, yaw: 90), seed: seed &+ UInt64(6 + i), state: "idle")
         }
+
+        // Supply table on the west wall past the ER front, laid out with grabbable kit (3 across, 6 along).
+        let tz = cz + 5.25, tx = -cW / 2 + 0.33, tableTop: Float = 0.86 + 0.003
+        scene.add(HospitalFit.backTable(length: 1.4, depth: 0.6), at: place(tx, tz, yaw: 90))
+        let kit: [(Float, Float, Float, (inout RealScene, Xform, UInt64) -> Void)] = [
+            (-0.17, -0.58, 20, { $0.addLive(Stethoscope(), at: $1, seed: $2, state: "resting") }),
+            (0.0, -0.58, -80, { $0.addLive(Sphygmomanometer(), at: $1, seed: $2, state: "deflated") }),
+            (0.17, -0.58, 90, { $0.addLive(Otoscope(), at: $1, seed: $2, state: "on") }),
+            (-0.17, -0.35, 10, { $0.addLive(Penlight(), at: $1, seed: $2, state: "off") }),
+            (0.0, -0.35, -5, { $0.addLive(ReflexHammer(), at: $1, seed: $2, state: "stowed") }),
+            (0.17, -0.35, 70, { $0.addLive(TympanicThermometer(), at: $1, seed: $2, state: "reading") }),
+            (-0.17, -0.12, -90, { $0.addLive(PulseOximeter(), at: $1, seed: $2, state: "on") }),
+            (0.0, -0.12, -70, { $0.addLive(Glucometer(), at: $1, seed: $2, state: "reading") }),
+            (0.17, -0.12, 80, { $0.addLive(Laryngoscope(), at: $1, seed: $2, state: "folded") }),
+            (-0.17, 0.12, 92, { $0.addLive(SurgicalScissors(), at: $1, seed: $2, state: "closed") }),
+            (0.0, 0.12, 88, { $0.addLive(Hemostat(), at: $1, seed: $2, state: "closed-locked") }),
+            (0.17, 0.12, 91, { $0.addLive(NeedleHolder(), at: $1, seed: $2, state: "locked-with-needle") }),
+            (-0.17, 0.35, 90, { $0.addLive(TissueForceps(), at: $1, seed: $2, state: "open") }),
+            (0.0, 0.35, 89, { $0.addLive(Scalpel(), at: $1, seed: $2, state: "shielded") }),
+            (0.17, 0.35, 80, { $0.addLive(WeitlanerRetractor(), at: $1, seed: $2, state: "closed") }),
+            (-0.17, 0.58, 15, { $0.addLive(Syringe(), at: $1, seed: $2, state: "drawn-5ml") }),
+            (0.0, 0.58, 0, { $0.addLive(PillBottle(), at: $1, seed: $2, state: "open") }),
+            (0.17, 0.58, -90, { $0.addLive(ClipboardChart(), at: $1, seed: $2, state: "open") }),
+        ]
+        for (i, k) in kit.enumerated() { k.3(&scene, place(tx + k.0, tz + k.1, y: tableTop, yaw: k.2), seed &+ UInt64(300 + i)) }
+        // Crash cart top: syringes, pill bottles, a second chart and an AED within reach of the ER door.
+        let cartX = cW / 2 - 0.36, cartZ = cz + 3.8, cartTop: Float = 1.048
+        scene.addLive(Syringe(), at: place(cartX - 0.1, cartZ - 0.22, y: cartTop, yaw: 5), seed: seed &+ 330, state: "full")
+        scene.addLive(Syringe(), at: place(cartX + 0.0, cartZ - 0.22, y: cartTop, yaw: -8), seed: seed &+ 331, state: "drawn-5ml")
+        scene.addLive(PillBottle(), at: place(cartX + 0.12, cartZ - 0.05, y: cartTop), seed: seed &+ 332, state: "open")
+        scene.addLive(PillBottle(), at: place(cartX + 0.04, cartZ + 0.02, y: cartTop), seed: seed &+ 333, state: "open")
+        scene.addLive(ClipboardChart(), at: place(cartX - 0.06, cartZ + 0.2, y: cartTop, yaw: 90), seed: seed &+ 334, state: "open")
+        scene.spots.append(.init("supplies", eye: V3(0.3, 1.65, tz + 0.2), target: V3(tx, 0.9, tz)))
 
         scene.farGround = "paving.slab"
         scene.lighting = .init(sky: SunSky(elevation: 34, azimuth: 165, turbidity: 2.4), interior: .clinical, fog: 0)

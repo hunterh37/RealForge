@@ -50,14 +50,14 @@ public struct ErRoom: RealSceneBuilder {
         scene.addLive(PatientMonitor(), at: place(1.55, -D / 2 + 0.11, y: 1.55), seed: seed &+ 3, state: "on")
         scene.addLive(IvPole(), at: place(-0.85, -1.15), seed: seed &+ 4, state: "high-with-bag")
         scene.addLive(InfusionPump(), at: place(-0.85, -1.09, y: 1.05), seed: seed &+ 5, state: "on")
-        scene.addLive(OverbedTable(), at: place(0.95, -0.55, yaw: 90), seed: seed &+ 6, state: "high")
+        scene.addLive(OverbedTable(), at: place(0.95, -0.55, yaw: 90), seed: seed &+ 6, state: "high", grabbable: true)
         scene.addLive(PrivacyCurtain(), at: place(0.4, D / 2 - 0.35, y: 0.3), seed: seed &+ 7, state: "half")
 
         // Doctor's exam table along the west wall, stool and scale beside it, X-ray viewer above.
         scene.addLive(ExamTable(), at: place(-W / 2 + 0.36, 0.95, yaw: 90), seed: seed &+ 10, state: "sitting")
-        scene.addLive(DoctorStool(), at: place(-1.75, 1.75, yaw: -60), seed: seed &+ 11, state: "high")
+        scene.addLive(DoctorStool(), at: place(-1.75, 1.75, yaw: -60), seed: seed &+ 11, state: "high", grabbable: true)
         scene.addLive(XrayViewer(), at: place(-W / 2 + 0.053, -1.2, y: 1.3, yaw: 90), seed: seed &+ 12, state: "both-on")
-        scene.addLive(MedicalScale(), at: place(-W / 2 + 0.35, -D / 2 + 0.4, yaw: 45), seed: seed &+ 13, state: "zeroed")
+        scene.addLive(MedicalScale(), at: place(-W / 2 + 0.35, -D / 2 + 0.4, yaw: 45), seed: seed &+ 13, state: "zeroed", grabbable: true)
 
         // East counter with the diagnostic kit, supply cabinet and sharps above.
         let cx = W / 2 - 0.305, cz: Float = -0.4, top: Float = 0.91
@@ -82,7 +82,7 @@ public struct ErRoom: RealSceneBuilder {
 
         // Code cart by the door, waste by the counter.
         scene.addLive(CrashCart(), at: place(W / 2 - 0.4, D / 2 - 1.3, yaw: -90), seed: seed &+ 50, state: "sealed")
-        scene.addLive(BiohazardBin(), at: place(-1.0, -D / 2 + 0.35), seed: seed &+ 51, state: "closed")
+        scene.addLive(BiohazardBin(), at: place(-1.0, -D / 2 + 0.35), seed: seed &+ 51, state: "closed", grabbable: true)
         scene.addLive(Aed(), at: place(W / 2 - 0.4, D / 2 - 1.3, y: 1.38, yaw: -90), seed: seed &+ 52, state: "closed")
 
         scene.field(CeilingLight(), seed: seed, state: "on", transforms: room.fixtureCells.sorted { ($0.x, $0.y) < ($1.x, $1.y) }.map {
