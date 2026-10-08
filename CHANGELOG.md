@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.4.0
+
+- `halogen-siphon-bar` prop (Kitchen) with brief and gate sign-off.
+- CLI: `realityhd export` and `realityhd promo`.
+- Grab cue, LOD and viewer updates; hospital scene; demo app.
+- Shorter agent context; `docs/guides/api.md`.
+
 ## 5.3.2
 
 - Texture synthesis runs on the visionOS simulator with Metal validation: albedo is written through an
