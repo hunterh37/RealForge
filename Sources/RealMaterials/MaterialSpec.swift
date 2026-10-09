@@ -27,6 +27,7 @@ public enum TextureProgram: Int32, Sendable, CaseIterable {
     case butcherBlock, seasonedIron, heatTint, bakedPatina
     case paverHerringbone, barkMulch
     case foodTissue
+    case petal
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should

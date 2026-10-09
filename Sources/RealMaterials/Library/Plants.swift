@@ -112,6 +112,18 @@ public extension MaterialLibrary {
             $0.knobs = V4(0.1, 0, 0, 0); $0.seed = 35; $0.tileSize = 0.02; $0.normalStrength = 1
             $0.resolution = 256; $0.roughness = 0.5; $0.wind = 0.05
         },
+        // Tintable petal: key suffix sets the body color ("flower.petal:E8334A"); pale throat, veins along v.
+        MaterialSpec(key: "flower.petal", program: .petal).with {
+            $0.colorA = linear(0xE8E4D8); $0.colorB = linear(0xD6D590); $0.colorC = linear(0xFFFFFF)
+            $0.knobs = V4(0.005, 0, 0, 0); $0.seed = 7501; $0.tileSize = 0.12; $0.normalStrength = 0.7
+            $0.resolution = 256; $0.roughness = 0.5; $0.twoSided = true; $0.translucency = 0.5; $0.wind = 0.05
+        },
+        // Tintable two-sided broad leaf ("leaf.plain:2E6A35"): veins along v, light transmission.
+        MaterialSpec(key: "leaf.plain", program: .plantStem).with {
+            $0.colorA = linear(0x3E6A2A); $0.colorB = linear(0x5E8A3A); $0.colorC = linear(0x8A7A4A)
+            $0.knobs = V4(0.04, 0, 0, 0); $0.seed = 7502; $0.tileSize = 0.06; $0.normalStrength = 1
+            $0.resolution = 256; $0.roughness = 0.45; $0.twoSided = true; $0.translucency = 0.35; $0.wind = 0.04
+        },
         // realityhd:material.plants
     ]
 }
