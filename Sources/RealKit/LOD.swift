@@ -22,6 +22,8 @@ public struct RealLODComponent: Component {
     public var current: Int = -1
     /// True while hidden past `cullDistance` (every LOD child disabled).
     public var culled = false
+    /// True while beyond the sun's shadow reach (see `RealPerformance.shadowReach`).
+    var shadowsOff = false
     public var center: SIMD3<Float> = .zero
     /// Bounds diagonal (meters): small objects fall under `RealPerformance.detailCullDistance`.
     public var size: Float = .infinity
@@ -35,23 +37,47 @@ public struct RealLODComponent: Component {
 
 public struct RealLODSystem: System {
     static let query = EntityQuery(where: .has(RealLODComponent.self))
-    /// Evaluate at most this often (seconds). LOD needs no per-frame precision.
+    /// Evaluate every entity at most this often (seconds). LOD needs no per-frame precision.
     nonisolated(unsafe) public static var interval: Double = 0.2
+    /// A pass is spread over this many frames, so no single frame pays for every LOD entity.
+    nonisolated(unsafe) public static var slices = 8
+    /// Entities a frame always handles, so small scenes finish in one frame.
+    static let minChunk = 96
     /// Starts full so the first update picks levels before LOD0 of every cell renders for a tick.
     private var accumulator: Double = .greatestFiniteMagnitude
+    private var pending: [Entity] = []
+    private var cursor = 0
+    private var firstPass = true
+    private var passViewer: SIMD3<Float> = .zero
+    private var passPerf = RealPerformance.active
+    private var passAdapt: Float = 1
 
-    public init(scene: RealityKit.Scene) {}
+    public init(scene: RealityKit.Scene) { pending.reserveCapacity(1024) }
 
     public mutating func update(context: SceneUpdateContext) {
-        accumulator += context.deltaTime
-        guard accumulator >= Self.interval else { return }
-        accumulator = 0
-        let viewer = MainActor.assumeIsolated { RealViewer.refresh(); return RealViewer.position }
-        let perf = RealPerformance.active, adapt = RealPerformance.adaptiveScale
+        if cursor >= pending.count {
+            accumulator += context.deltaTime
+            guard accumulator >= Self.interval else { return }
+            accumulator = 0
+            pending.removeAll(keepingCapacity: true)
+            for e in context.entities(matching: Self.query, updatingSystemWhen: .rendering) { pending.append(e) }
+            cursor = 0
+            passViewer = MainActor.assumeIsolated { RealViewer.refresh(); return RealViewer.position }
+            passPerf = RealPerformance.active
+            passAdapt = RealPerformance.adaptiveScale
+        }
+        // First pass runs whole; later passes run a slice per frame.
+        let chunk = firstPass ? pending.count : max(Self.minChunk, (pending.count + max(1, Self.slices) - 1) / max(1, Self.slices))
+        if !pending.isEmpty { firstPass = false }
+        let end = min(pending.count, cursor + chunk)
+        let perf = passPerf, adapt = passAdapt, viewer = passViewer
         let bias = max(0.05, perf.lodBias * adapt)
+        let reach = RealPerformance.shadowReach
         var switches = 0
-        for e in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
-            guard var lod = e.components[RealLODComponent.self] else { continue }
+        while cursor < end {
+            let e = pending[cursor]
+            cursor += 1
+            guard e.isActive, var lod = e.components[RealLODComponent.self] else { continue }
             let p = e.convert(position: lod.center, to: nil)
             let d = simd_distance(p, viewer)
             let culled = perf.hidden(distance: d, cullDistance: lod.cullDistance, groundCover: lod.groundCover, size: lod.size, adaptive: adapt)
@@ -63,14 +89,22 @@ public struct RealLODSystem: System {
                 let boundary = level > lod.current ? lod.switchDistances[lod.current] : lod.switchDistances[level]
                 if abs(ed - boundary) < boundary * lod.hysteresis { level = lod.current }
             }
-            if level != lod.current || culled != lod.culled {
-                Self.apply(level: level, culled: culled, under: e)
+            // Casters past 1.5x the shadow reach (plus their own size) cannot shade anything the cascade draws.
+            var shadowsOff = lod.shadowsOff
+            if reach > 0, lod.size.isFinite {
+                let edge = reach * 1.5 + lod.size
+                if d > edge { shadowsOff = true } else if d < edge * 0.9 { shadowsOff = false }
+            } else { shadowsOff = false }
+            if level != lod.current || culled != lod.culled || shadowsOff != lod.shadowsOff {
+                Self.apply(level: level, culled: culled, shadowsOff: shadowsOff, under: e)
                 if level != lod.current { switches += 1 }
                 lod.current = level
                 lod.culled = culled
+                lod.shadowsOff = shadowsOff
                 e.components.set(lod)
             }
         }
+        if cursor >= pending.count { pending.removeAll(keepingCapacity: true); cursor = 0 }
         RealPerformanceSystem.lodSwitchCounter += switches
     }
 }
@@ -78,14 +112,14 @@ public struct RealLODSystem: System {
 extension RealLODSystem {
     /// Enables `lod<level>` children of `e` and of its descendants (articulated parts, option groups),
     /// without crossing into entities that run their own LOD.
-    static func apply(level: Int, culled: Bool, under e: Entity) {
+    static func apply(level: Int, culled: Bool, shadowsOff: Bool = false, under e: Entity) {
         for c in e.children {
             if c.name.hasPrefix("lod"), let i = Int(c.name.dropFirst(3)) {
                 let on = !culled && i == level
-                if on { c.realApplyShadowPolicy() }
-                c.isEnabled = on
+                if on { c.realSetBeyondShadowReach(shadowsOff) }
+                if c.isEnabled != on { c.isEnabled = on }
             } else if !c.components.has(RealLODComponent.self) {
-                apply(level: level, culled: culled, under: c)
+                apply(level: level, culled: culled, shadowsOff: shadowsOff, under: c)
             }
         }
     }
@@ -101,6 +135,8 @@ public enum RealKitSetup {
         RealLODSystem.registerSystem()
         RealJointComponent.registerComponent()
         RealArticulationComponent.registerComponent()
+        RealJointMovingComponent.registerComponent()
+        RealJointIndex.registerComponent()
         RealArticulationSystem.registerSystem()
         RealRenderCostComponent.registerComponent()
         RealSunComponent.registerComponent()

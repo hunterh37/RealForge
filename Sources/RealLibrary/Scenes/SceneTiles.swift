@@ -26,8 +26,9 @@ public extension RealScene {
     /// Splits the scene into tiles of `tileSize` meters. Scene AO is baked once over the whole scene first,
     /// so tile seams shade the same as the unsplit scene. Statics whose bounds exceed `residentSize`
     /// (default: the tile size) stay in `core` so roads and slabs never pop with a tile.
+    /// `batchCell` overrides the static batch cell inside tiles: use a divisor of `tileSize` so batches never straddle a tile edge.
     /// Pick `tileSize` as a multiple of the field cell size (16-18 m) to keep instancing cells whole.
-    func tiled(tileSize: Float, origin: SIMD2<Float> = .zero, residentSize: Float? = nil) async -> RealTiledScene {
+    func tiled(tileSize: Float, origin: SIMD2<Float> = .zero, residentSize: Float? = nil, batchCell: Float? = nil) async -> RealTiledScene {
         let grid = RealTileGrid(tileSize: tileSize, origin: origin)
         let limit = residentSize ?? tileSize
         var statics = singles
@@ -36,14 +37,14 @@ public extension RealScene {
         var core = RealScene(name: name)
         core.rigs = rigs; core.lights = lights; core.camera = camera; core.spots = spots
         core.lighting = lighting; core.farGround = farGround
-        core.batchStatics = batchStatics; core.batchCell = batchCell
+        core.batchStatics = batchStatics; core.batchCell = batchCell ?? self.batchCell
 
         var tiles: [RealTileCoord: RealScene] = [:]
         func tile(_ c: RealTileCoord) -> RealScene {
             if let t = tiles[c] { return t }
             var t = RealScene(name: "\(name):\(c)")
             t.farGround = nil
-            t.batchStatics = batchStatics; t.batchCell = batchCell
+            t.batchStatics = batchStatics; t.batchCell = batchCell ?? self.batchCell
             return t
         }
         for var s in statics {
@@ -92,11 +93,11 @@ public extension RealityHD {
     /// tiles around a start point before returning.
     @MainActor
     static func streamedScene(_ id: String, seed: UInt64 = 1, tileSize: Float = 32,
-                              settings: RealWorldStreamer.Settings = .init(),
+                              settings: RealWorldStreamer.Settings = .init(), batchCell: Float? = nil,
                               preloadAt: SIMD3<Float>? = nil) async throws -> RealStreamedScene {
         let layout = await Task.detached(priority: .userInitiated) { () -> RealTiledScene? in
             guard let s = SceneCatalog.build(id, seed: seed) else { return nil }
-            return await s.tiled(tileSize: tileSize)
+            return await s.tiled(tileSize: tileSize, batchCell: batchCell)
         }.value
         guard let layout else { throw RealityHDError.unknown(id) }
         let streamed = try await RealStreamedScene(layout, settings: settings)

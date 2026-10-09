@@ -79,17 +79,29 @@ public struct RealArticulationComponent: Component {
     public init(rig: Rig, state: String) { self.rig = rig; self.state = state }
 }
 
+/// Present on a joint entity while its tween runs, so the system visits only moving joints (idle cost zero).
+public struct RealJointMovingComponent: Component { public init() {} }
+
+/// Name lookup tables on an articulated root: joint and light entities by part / light name. Replaces
+/// recursive `findEntity(named:)` scans on every `setJoints` call.
+public struct RealJointIndex: Component {
+    var joints: [String: Entity]
+    var lights: [String: Entity]
+}
+
 /// Moves every joint that has a tween in progress.
 public struct RealArticulationSystem: System {
-    static let query = EntityQuery(where: .has(RealJointComponent.self))
+    static let query = EntityQuery(where: .has(RealJointMovingComponent.self))
     public init(scene: RealityKit.Scene) {}
     public mutating func update(context: SceneUpdateContext) {
         let dt = Float(context.deltaTime)
         for e in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {
-            guard var j = e.components[RealJointComponent.self], j.moving else { continue }
+            guard var j = e.components[RealJointComponent.self] else { e.components.remove(RealJointMovingComponent.self); continue }
             _ = j.step(dt)
             e.transform = j.transform
+            let moving = j.moving
             e.components.set(j)
+            if !moving { e.components.remove(RealJointMovingComponent.self) }
         }
     }
 }
@@ -157,9 +169,11 @@ public extension Rig {
             (p.parent.flatMap { joints[$0] } ?? root).addChild(e)
             joints[p.name] = e
         }
+        var lightEntities: [String: Entity] = [:]
         for l in lights {
             let e = Entity()
             e.name = "light:\(l.name)"
+            lightEntities[l.name] = e
             let host = l.part.flatMap { joints[$0] } ?? root
             let inv = l.part.flatMap(index).map { parts[$0].pivot.inverse } ?? .identity
             let pos = inv.point(l.position), dir = inv.rotation.act(l.direction)
@@ -169,6 +183,7 @@ public extension Rig {
             e.isEnabled = Self.lightOn(l, opts)
         }
         root.components.set(RealArticulationComponent(rig: schema, state: start))
+        root.components.set(RealJointIndex(joints: joints, lights: lightEntities))
         if multiLOD {
             var b = base[0].bounds
             for p in parts where p.levels[0].triangleCount > 0 { let pb = p.levels[0].bounds; b = (simd_min(b.min, pb.min), simd_max(b.max, pb.max)) }
@@ -219,6 +234,18 @@ public extension RigLight {
 
 @MainActor
 public extension Entity {
+    /// Joint entity of part `part` under this articulated root (indexed; scans only when no index exists).
+    func realJoint(_ part: String) -> Entity? {
+        if let i = components[RealJointIndex.self] { return i.joints[part] }
+        return findEntity(named: "joint:\(part)")
+    }
+
+    /// Light entity `name` under this articulated root.
+    func realLight(_ name: String) -> Entity? {
+        if let i = components[RealJointIndex.self] { return i.lights[name] }
+        return findEntity(named: "light:\(name)")
+    }
+
     /// Nearest articulated root at or above this entity.
     var articulationRoot: Entity? {
         var e: Entity? = self
@@ -245,7 +272,7 @@ public extension Entity {
         guard let root = articulationRoot, let a = root.components[RealArticulationComponent.self] else { return }
         var current: [String: Float] = [:]
         for p in a.rig.parts where p.joint.mimic == nil {
-            if let j = root.findEntity(named: "joint:\(p.name)")?.components[RealJointComponent.self] { current[p.name] = j.moving ? j.to : j.value }
+            if let j = root.realJoint(p.name)?.components[RealJointComponent.self] { current[p.name] = j.moving ? j.to : j.value }
         }
         for (k, v) in values { current[k] = v }
         let resolved = a.rig.values(current)
@@ -263,7 +290,7 @@ public extension Entity {
     func currentOptions(_ rig: Rig) -> [String: Int] {
         var o: [String: Int] = [:]
         for p in rig.parts where p.optionCount > 1 {
-            guard let e = findEntity(named: "joint:\(p.name)") else { continue }
+            guard let e = realJoint(p.name) else { continue }
             if let c = e.children.first(where: { $0.name.hasPrefix("opt") && $0.isEnabled }), let i = Int(c.name.dropFirst(3)) { o[p.name] = i }
         }
         return o
@@ -271,7 +298,7 @@ public extension Entity {
 
     /// The entity holding option `index` of part `part` (scale or tint it for intensity).
     func optionEntity(part: String, index: Int = 1) -> Entity? {
-        articulationRoot?.findEntity(named: "joint:\(part)")?.children.first { $0.name == "opt\(index)" }
+        articulationRoot?.realJoint(part)?.children.first { $0.name == "opt\(index)" }
     }
 
     /// Cycles to the next state.
@@ -309,19 +336,26 @@ public extension Entity {
 
     private func applyJoints(_ values: [String: Float], rig: Rig, animated: Bool) {
         for p in rig.parts where p.joint.kind != .fixed {
-            guard let e = findEntity(named: "joint:\(p.name)"), var j = e.components[RealJointComponent.self] else { continue }
-            j.drive(to: values[p.name] ?? 0, animated: animated)
+            guard let e = realJoint(p.name), var j = e.components[RealJointComponent.self] else { continue }
+            let target = values[p.name] ?? 0
+            // Unchanged target and no tween running: nothing to write (setJoints repeats values every frame while driving).
+            if !j.moving, j.value == min(max(target, j.joint.range.lowerBound), j.joint.range.upperBound) { continue }
+            j.drive(to: target, animated: animated)
             e.components.set(j)
             if !animated { e.transform = j.transform }
+            if j.moving { e.components.set(RealJointMovingComponent()) } else { e.components.remove(RealJointMovingComponent.self) }
         }
     }
 
     private func applyOptions(_ options: [String: Int], rig: Rig) {
         for p in rig.parts where p.optionCount > 1 {
-            guard let e = findEntity(named: "joint:\(p.name)") else { continue }
+            guard let e = realJoint(p.name) else { continue }
             let o = options[p.name] ?? 0
-            for c in e.children where c.name.hasPrefix("opt") { c.isEnabled = c.name == "opt\(o)" }
+            for c in e.children where c.name.hasPrefix("opt") { let on = c.name == "opt\(o)"; if c.isEnabled != on { c.isEnabled = on } }
         }
-        for l in rig.lights { findEntity(named: "light:\(l.name)")?.isEnabled = Rig.lightOn(l, options) }
+        for l in rig.lights {
+            let on = Rig.lightOn(l, options)
+            if let e = realLight(l.name), e.isEnabled != on { e.isEnabled = on }
+        }
     }
 }
