@@ -57,9 +57,13 @@ public struct SkyParams {
     public var height: Int32
     public var drawSun: Int32
     public var exposure: Float
-    var pad0: Float = 0, pad1: Float = 0
+    /// Cloud deck coverage and thickness: 0 clear, 1 solid overcast (grey, soft, no sun disk).
+    public var overcast: Float
+    /// Offsets the cloud noise so each weather change can have its own cloud pattern.
+    public var cloudSeed: Float
     public init(sunDir: SIMD3<Float>, sunIntensity: Float = 22, turbidity: Float = 2, groundAlbedo: Float = 1,
-                width: Int = 1024, drawSun: Bool, exposure: Float = 1) {
+                width: Int = 1024, drawSun: Bool, exposure: Float = 1, overcast: Float = 0, cloudSeed: Float = 0) {
+        self.overcast = overcast; self.cloudSeed = cloudSeed
         self.sunDir = simd_normalize(sunDir); self.sunIntensity = sunIntensity; self.turbidity = turbidity
         self.groundAlbedo = groundAlbedo; self.width = Int32(width); self.height = Int32(width / 2)
         self.drawSun = drawSun ? 1 : 0; self.exposure = exposure
