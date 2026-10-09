@@ -134,6 +134,8 @@ public struct RealPerformance: Codable, Sendable, Hashable {
     nonisolated(unsafe) public private(set) static var generation: UInt64 = 0
     /// Adaptive governor multiplier (1 = no reduction). Runtime only, never persisted.
     nonisolated(unsafe) public internal(set) static var adaptiveScale: Float = 1
+    /// Largest sun shadow distance in use (meters, 0 = unknown). Meshes well past it stop casting.
+    nonisolated(unsafe) public internal(set) static var shadowReach: Float = 0
 
     /// The active settings. Assigning applies them (texture quality, LOD interval, cache invalidation).
     @MainActor public static var current: RealPerformance {
@@ -249,6 +251,8 @@ public struct RealRenderCostComponent: Component {
     /// The author allows shadows on this mesh.
     public var shadowEligible: Bool
     public var lodShift: Int
+    /// Set by `RealLODSystem` while the mesh sits beyond the sun's shadow reach: it stops casting.
+    var beyondShadowReach = false
     var appliedGeneration: UInt64 = .max
 
     public init(triangles: Int, drawCalls: Int, instances: Int = 1, size: Float, lod: Int, shadowEligible: Bool = true, lodShift: Int = 0) {
@@ -264,6 +268,15 @@ public extension Entity {
         realApplyShadowPolicy(force: true)
     }
 
+    /// Marks the mesh as past the shadow reach (or back inside it) and re-applies the policy when that changes.
+    func realSetBeyondShadowReach(_ beyond: Bool) {
+        guard var c = components[RealRenderCostComponent.self] else { return }
+        if c.beyondShadowReach == beyond { realApplyShadowPolicy(); return }
+        c.beyondShadowReach = beyond
+        components.set(c)
+        realApplyShadowPolicy(force: true)
+    }
+
     /// Re-applies the shadow policy if settings moved since it was last applied.
     func realApplyShadowPolicy(force: Bool = false) {
         guard var c = components[RealRenderCostComponent.self] else { return }
@@ -271,7 +284,7 @@ public extension Entity {
         guard force || c.appliedGeneration != gen else { return }
         c.appliedGeneration = gen
         components.set(c)
-        let cast = RealPerformance.active.castsShadow(lod: c.lod, size: c.size, eligible: c.shadowEligible, lodShift: c.lodShift)
+        let cast = !c.beyondShadowReach && RealPerformance.active.castsShadow(lod: c.lod, size: c.size, eligible: c.shadowEligible, lodShift: c.lodShift)
         components.set(DynamicLightShadowComponent(castsShadow: cast))
     }
 }
@@ -307,6 +320,10 @@ public final class RealStats {
     public internal(set) var lodSwitches = 0
     public internal(set) var adaptiveScale: Float = 1
     public internal(set) var textureMB = 0
+    /// Walks every costed entity to fill the counts. Frame timing stays on regardless. Turn off in shipping
+    /// builds that show no overlay; `collectInterval` sets the walk period.
+    nonisolated(unsafe) public static var collecting = true
+    nonisolated(unsafe) public static var collectInterval: Double = 0.5
     init() {}
 
     public var summary: String {
@@ -322,6 +339,7 @@ public struct RealPerformanceSystem: System {
     static let costQuery = EntityQuery(where: .has(RealRenderCostComponent.self))
     static let sunQuery = EntityQuery(where: .has(RealSunComponent.self))
     nonisolated(unsafe) static var lodSwitchCounter = 0
+    static var collectWindow: Double { max(0.25, RealStats.collectInterval) }
 
     private var generation: UInt64 = .max
     private var sunScale: Float = -1
@@ -348,8 +366,10 @@ public struct RealPerformanceSystem: System {
         let s = perf.shadowDistanceScale * RealPerformance.adaptiveScale
         if s != sunScale {
             sunScale = s
+            var reach: Float = 0
             for e in context.entities(matching: Self.sunQuery, updatingSystemWhen: .rendering) {
                 guard let sun = e.components[RealSunComponent.self] else { continue }
+                if perf.shadows { reach = max(reach, max(2, sun.baseShadowDistance * s)) }
                 if perf.shadows {
                     var sh = DirectionalLightComponent.Shadow()
                     sh.shadowProjection = .automatic(maximumDistance: max(2, sun.baseShadowDistance * s))
@@ -359,9 +379,20 @@ public struct RealPerformanceSystem: System {
                     e.components.remove(DirectionalLightComponent.Shadow.self)
                 }
             }
+            RealPerformance.shadowReach = reach
         }
 
-        guard window >= 0.5 else { return }
+        guard window >= Self.collectWindow else { return }
+        guard RealStats.collecting else {
+            // Timing only: no entity walk.
+            let fps = Double(frames) / window, frameMs = window / Double(frames) * 1000, worstMs = worst * 1000
+            window = 0; frames = 0; worst = 0
+            MainActor.assumeIsolated {
+                let st = RealStats.shared
+                st.fps = fps; st.frameMs = frameMs; st.worstFrameMs = worstMs; st.adaptiveScale = RealPerformance.adaptiveScale
+            }
+            return
+        }
         var tris = 0, draws = 0, inst = 0, casters = 0, meshes = 0
         for e in context.entities(matching: Self.costQuery, updatingSystemWhen: .rendering) where e.isActive {
             guard let c = e.components[RealRenderCostComponent.self] else { continue }
