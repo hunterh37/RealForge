@@ -35,6 +35,8 @@ public enum AssetTag {
         "city", "tile",
         // lineman: overhead distribution hardware, line tools and PPE
         "utility", "electrical", "ppe",
+        // insects: life-size articulated bugs; locomotion tags for spawners and behaviors
+        "insect", "flying", "crawling", "jumping", "glowing",
     ])
 
     /// Scene tags: any vocabulary tag plus these.

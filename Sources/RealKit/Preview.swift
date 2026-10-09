@@ -31,14 +31,16 @@ public final class RealPreview {
     public func add(_ e: Entity) { renderer.entities.append(e) }
 
     public func look(from eye: SIMD3<Float>, at target: SIMD3<Float>, fov: Float = 45) {
-        camera.components.set(PerspectiveCameraComponent(near: 0.03, far: 3000, fieldOfViewInDegrees: fov))
+        // Near plane scales with the view distance so life-size insects (mm) frame without clipping.
+        let near = min(0.03, max(0.0002, simd_distance(eye, target) * 0.05))
+        camera.components.set(PerspectiveCameraComponent(near: near, far: 3000, fieldOfViewInDegrees: fov))
         camera.look(at: target, from: eye, relativeTo: nil)
     }
 
     /// Frames an entity's visual bounds from a 3/4 view.
     public func frame(_ e: Entity, azimuth: Float = 35, elevation: Float = 12, distanceScale: Float = 1.25, fov: Float = 40) {
         let b = e.visualBounds(relativeTo: nil)
-        let c = b.center, r = max(0.2, simd_length(b.extents) * 0.5)
+        let c = b.center, r = max(0.003, simd_length(b.extents) * 0.5)
         let d = r / tan(fov * .pi / 360) * distanceScale
         let az = azimuth * .pi / 180, el = elevation * .pi / 180
         let eye = c + SIMD3(sin(az) * cos(el), sin(el), cos(az) * cos(el)) * d

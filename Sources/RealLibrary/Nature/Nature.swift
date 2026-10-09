@@ -33,6 +33,7 @@ public enum Nature {
         Firewood.self,
         FallenLog.self,
         RootStump.self,
+        Ladybug.self,
         // realityhd:nature
     ]
 }
