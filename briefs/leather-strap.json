@@ -1,0 +1,32 @@
+{
+  "budget": 8000,
+  "id": "leather-strap",
+  "kind": "prop",
+  "materials": [
+    "leather.oxblood-worn",
+    "leather.oxblood",
+    "fabric.linen"
+  ],
+  "name": "Leather shoulder strap",
+  "notes": "BugHunt runtime-stretched strap segment: 0..1 m along +Y, translationally uniform detail, no end hardware.",
+  "parts": [
+    "strap band",
+    "edge stitching both sides",
+    "burnished edges"
+  ],
+  "references": [],
+  "size": [
+    0.038,
+    1.0,
+    0.004
+  ],
+  "style": "oiled saddle-tan full-grain leather strap, waxed contrasting stitching",
+  "summary": "Shoulder-strap segment, 1.0 m x 38 mm x 4 mm: saddle-tan leather, burnished edges, edge stitching both sides.",
+  "tags": [
+    "prop",
+    "leather"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

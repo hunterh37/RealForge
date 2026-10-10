@@ -1,0 +1,43 @@
+{
+  "budget": 13300,
+  "id": "crossbody-bag",
+  "kind": "prop",
+  "materials": [
+    "leather.oxblood-worn",
+    "leather.oxblood",
+    "leather.split-tan",
+    "fabric.linen",
+    "metal.brass-aged"
+  ],
+  "name": "Naturalist crossbody satchel",
+  "notes": "BugHunt contract prop. Origin bottom-center, front +Z. Parts: body (root, fixed), flap (hinge at top back edge), floor/lug-l/lug-r markers. States closed, open.",
+  "parts": [
+    "gusseted body with rounded bottom corners",
+    "open top with inner walls",
+    "suede lining floor",
+    "front flap",
+    "brass buckle and tongue strap",
+    "brass rivets",
+    "brass D-ring lugs",
+    "saddle stitching",
+    "burnished edges"
+  ],
+  "references": [],
+  "size": [
+    0.304,
+    0.232,
+    0.103
+  ],
+  "style": "vintage naturalist satchel, oiled saddle-tan full-grain leather, lightly worn, aged brass",
+  "summary": "Naturalist crossbody satchel, 28 x 21 x 9 cm: saddle-tan leather gusseted body, open top with suede floor, buckled flap, brass D-rings; articulated flap.",
+  "tags": [
+    "prop",
+    "leather",
+    "antique",
+    "container",
+    "articulated"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
