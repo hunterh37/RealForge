@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "eave-bracket-set",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-exterior"
+  ],
+  "name": "Eave bracket set",
+  "notes": "",
+  "parts": [
+    "brackets",
+    "soffit board",
+    "pendants"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    0.492,
+    0.4
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Eave bracket set, 2.4 m run: three curved timber brackets under a soffit board with drop pendants.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

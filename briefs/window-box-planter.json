@@ -1,0 +1,39 @@
+{
+  "budget": 8000,
+  "id": "window-box-planter",
+  "kind": "prop",
+  "materials": [
+    "wood.cedar-weathered",
+    "metal.wrought-iron",
+    "leaf.plain",
+    "flower.petal"
+  ],
+  "name": "Window box planter",
+  "notes": "",
+  "parts": [
+    "box",
+    "brackets",
+    "soil",
+    "foliage",
+    "blooms"
+  ],
+  "references": [],
+  "size": [
+    1.0,
+    0.502,
+    0.236
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Cedar window box, 1 m: slatted box on iron brackets, soil, geranium foliage and red blooms.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "landscaping",
+    "wood",
+    "garden"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "juliet-balcony",
+  "kind": "prop",
+  "materials": [
+    "metal.wrought-iron"
+  ],
+  "name": "Juliet balcony",
+  "notes": "",
+  "parts": [
+    "top rail",
+    "balusters",
+    "scrolls",
+    "anchors"
+  ],
+  "references": [],
+  "size": [
+    1.59,
+    1.146,
+    0.222
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Juliet balcony rail, 1.5 m: wrought iron frame, round balusters, scroll panels, wall anchors.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

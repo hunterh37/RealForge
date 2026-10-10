@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "pyramid-skylight",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "metal.anodized",
+    "metal.galvanized"
+  ],
+  "name": "Pyramid skylight",
+  "notes": "",
+  "parts": [
+    "curb",
+    "glass faces",
+    "ribs",
+    "flashing"
+  ],
+  "references": [],
+  "size": [
+    1.44,
+    0.844,
+    1.44
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Pyramid rooftop skylight, 1.2 m: aluminum curb, four glass faces, hip ribs and flashing.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

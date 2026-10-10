@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "glass-entry-canopy",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "metal.stainless"
+  ],
+  "name": "Glass entry canopy",
+  "notes": "",
+  "parts": [
+    "glass sheet",
+    "fittings",
+    "tie rods",
+    "wall plates"
+  ],
+  "references": [],
+  "size": [
+    2.0,
+    0.959,
+    1.12
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Glass entry canopy, 2.0 m x 1.1 m: laminated glass sheet on spider fittings and two stainless tie rods.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "door",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

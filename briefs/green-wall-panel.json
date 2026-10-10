@@ -1,0 +1,35 @@
+{
+  "budget": 8000,
+  "id": "green-wall-panel",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat",
+    "leaf.hosta",
+    "leaf.boxwood"
+  ],
+  "name": "Green wall panel",
+  "notes": "",
+  "parts": [
+    "tray",
+    "drip rail",
+    "foliage clusters"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    1.2,
+    0.198
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Modular living-wall panel, 1.2 m square: powder-coated steel tray with hosta, boxwood and ivy foliage.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "landscaping",
+    "garden"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

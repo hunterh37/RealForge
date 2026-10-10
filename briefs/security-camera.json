@@ -1,0 +1,37 @@
+{
+  "budget": 8000,
+  "id": "security-camera",
+  "kind": "prop",
+  "materials": [
+    "plastic.white",
+    "glass.led-lens",
+    "metal.painted"
+  ],
+  "name": "Security camera",
+  "notes": "",
+  "parts": [
+    "body",
+    "shield",
+    "lens",
+    "arm",
+    "mount"
+  ],
+  "references": [],
+  "size": [
+    0.076,
+    0.1,
+    0.264
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Bullet security camera, 0.28 m: aluminum body, sun shield, glass lens, swivel arm and wall mount.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "urban",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

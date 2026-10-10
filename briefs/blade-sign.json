@@ -1,0 +1,37 @@
+{
+  "budget": 8000,
+  "id": "blade-sign",
+  "kind": "prop",
+  "materials": [
+    "metal.wrought-iron",
+    "paint.wall",
+    "wood.painted-shaker-worn"
+  ],
+  "name": "Blade sign",
+  "notes": "",
+  "parts": [
+    "bracket",
+    "chains",
+    "panel",
+    "trim"
+  ],
+  "references": [],
+  "size": [
+    0.1,
+    0.711,
+    0.932
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Projecting blade sign, 0.9 m bracket: scroll iron arm, two hanging chains, double-sided painted panel.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "street",
+    "urban",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
