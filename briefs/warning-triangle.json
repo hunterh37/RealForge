@@ -1,0 +1,40 @@
+{
+  "budget": 3500,
+  "id": "warning-triangle",
+  "kind": "prop",
+  "materials": [
+    "plastic.orange:C8201E",
+    "plastic.white",
+    "plastic.black",
+    "metal.steel"
+  ],
+  "name": "Reflective warning triangle",
+  "notes": "",
+  "parts": [
+    "red triangular ABS frame with molded ridge",
+    "white retroreflective prism band",
+    "orange-red fluorescent outer border",
+    "two folding rear stay legs",
+    "rubber feet",
+    "hinge pins"
+  ],
+  "references": [],
+  "size": [
+    0.43,
+    0.372,
+    0.156
+  ],
+  "style": "red ABS frame, retroreflective band, dusty from the trunk",
+  "summary": "Folding roadside warning triangle, 43 cm sides: red fluorescent frame with white reflective band, two stay legs, stands on asphalt.",
+  "tags": [
+    "prop",
+    "road",
+    "sign",
+    "plastic",
+    "outdoor",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

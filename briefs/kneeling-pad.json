@@ -1,0 +1,36 @@
+{
+  "budget": 2500,
+  "id": "kneeling-pad",
+  "kind": "prop",
+  "materials": [
+    "rubber.floor-mat",
+    "plastic.matte"
+  ],
+  "name": "Kneeling pad",
+  "notes": "",
+  "parts": [
+    "rounded foam slab",
+    "textured top face",
+    "handle cutout",
+    "edge bevel",
+    "grime on one end"
+  ],
+  "references": [],
+  "size": [
+    0.4,
+    0.037,
+    0.25
+  ],
+  "style": "dirty blue foam, compressed knee dents",
+  "summary": "40 x 25 cm closed-cell foam kneeling pad, 3 cm thick, blue with a black textured face and a carry-handle cutout.",
+  "tags": [
+    "prop",
+    "tool",
+    "outdoor",
+    "rubber",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

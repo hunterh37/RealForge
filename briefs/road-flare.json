@@ -1,0 +1,43 @@
+{
+  "budget": 3000,
+  "id": "road-flare",
+  "kind": "prop",
+  "materials": [
+    "plastic.orange:B3141A",
+    "plastic.black",
+    "plastic.white",
+    "emissive.signal-red",
+    "emissive.signal-orange",
+    "wood.ash",
+    "metal.steel"
+  ],
+  "name": "Road flare",
+  "notes": "",
+  "parts": [
+    "red wrapped paper body 32 mm",
+    "white warning label band",
+    "black striker cap",
+    "burning tip with flame",
+    "folding wire spike stand",
+    "ash crust",
+    "flying sparks"
+  ],
+  "references": [],
+  "size": [
+    0.149,
+    0.473,
+    0.131
+  ],
+  "style": "lit emergency flare, slightly charred tip",
+  "summary": "Standing 30 cm incendiary road flare on a wire stand: red paper-wrapped body, striker cap, burning tip with bright red flame.",
+  "tags": [
+    "prop",
+    "road",
+    "light",
+    "outdoor",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

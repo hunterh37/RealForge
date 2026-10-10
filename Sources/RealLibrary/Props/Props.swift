@@ -428,6 +428,17 @@ public enum Props {
         ConductorHead.self,
         RainChain.self,
         TieRodAnchorStar.self,
+        Flashlight.self,
+        TirePressureGauge.self,
+        KneelingPad.self,
+        PortableTireInflator.self,
+        GuardrailSection.self,
+        MileMarkerPost.self,
+        TireTreadDebris.self,
+        OwnersManual.self,
+        EmergencyKitBag.self,
+        WarningTriangle.self,
+        RoadFlare.self,
         // realityhd:prop
     ]
 }

@@ -1,0 +1,39 @@
+{
+  "budget": 4800,
+  "id": "flashlight",
+  "kind": "prop",
+  "materials": [
+    "metal.anodized-black",
+    "metal.aluminum-brushed",
+    "metal.chrome",
+    "glass.clear",
+    "rubber.silicone"
+  ],
+  "name": "D-cell flashlight",
+  "notes": "",
+  "parts": [
+    "knurled barrel",
+    "tapered head bezel",
+    "glass lens and reflector",
+    "tail cap button",
+    "lanyard loop"
+  ],
+  "references": [],
+  "size": [
+    0.258,
+    0.057,
+    0.057
+  ],
+  "style": "black anodized, lightly worn edges",
+  "summary": "25 cm black anodized aluminum flashlight with knurled grip, tapered head with reflector and lens, tail cap switch and lanyard loop.",
+  "tags": [
+    "prop",
+    "tool",
+    "light",
+    "metal",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
