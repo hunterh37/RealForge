@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- 25 props for architectural context: road vehicles `sedan-car`, `delivery-van`, `city-bus`, `pickup-truck`,
+  `mini-excavator` (Vehicle), `tower-crane`, `road-work-sign` (Construction), `soccer-goal`, `tennis-net` (Sports),
+  `subway-entrance`, `double-arm-lamp`, `pay-station`, `newsstand`, `fuel-canopy` (City), `public-art-sphere`,
+  `outdoor-stage`, `park-pavilion`, `bike-shelter` (Plaza), `bin-enclosure`, `siamese-connection`, `curb-ramp`,
+  `loading-dock` (Street), `small-wind-turbine`, `cage-ladder` (Roof), `glass-greenhouse` (Landscaping).
 - 25 props for architectural site planning: `scale-figure`, `gazebo`, `market-stall`, `food-cart`,
   `advertising-column`, `wayfinding-signpost`, `statue-plinth`, `shade-sail`, `street-banner-pole`, `tree-guard`,
   `bike-repair-station`, `city-bicycle`, `portable-toilet`, `wheelchair-ramp` (Entourage, Plaza), `playground-slide`,
