@@ -371,6 +371,10 @@ public enum Props {
         GardenKneeler.self,
         Anthill.self, LiftableStone.self, BarkSlab.self, BugNet.self, WristLauncher.self, CaptureNetPod.self,
         FieldJournal.self, SpecimenJar.self, Milkweed.self, FlowerBush.self,
+        ScaleFigure.self, Gazebo.self, MarketStall.self, FoodCart.self, AdvertisingColumn.self, WayfindingSignpost.self, StatuePlinth.self,
+        ShadeSail.self, StreetBannerPole.self, TreeGuard.self, BikeRepairStation.self, CityBicycle.self, PortableToilet.self, WheelchairRamp.self,
+        PlaygroundSlide.self, SwingSet.self, Seesaw.self, MonkeyBars.self, PullUpStation.self, SkateQuarterPipe.self,
+        SpeedBump.self, WheelStop.self, SolarPanelArray.self, RoofHatch.self, SiteCabin.self,
         // realityhd:prop
     ]
 }

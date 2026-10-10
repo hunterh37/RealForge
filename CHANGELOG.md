@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- 25 props for architectural site planning: `scale-figure`, `gazebo`, `market-stall`, `food-cart`,
+  `advertising-column`, `wayfinding-signpost`, `statue-plinth`, `shade-sail`, `street-banner-pole`, `tree-guard`,
+  `bike-repair-station`, `city-bicycle`, `portable-toilet`, `wheelchair-ramp` (Entourage, Plaza), `playground-slide`,
+  `swing-set`, `seesaw`, `monkey-bars`, `pull-up-station`, `skate-quarter-pipe` (Playground), `speed-bump`,
+  `wheel-stop` (Street), `solar-panel-array`, `roof-hatch` (Roof), `site-cabin` (Construction).
+
 ## 5.4.0
 
 - `halogen-siphon-bar` prop (Kitchen) with brief and gate sign-off.
