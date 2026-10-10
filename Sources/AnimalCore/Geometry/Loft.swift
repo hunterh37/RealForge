@@ -27,7 +27,7 @@ public struct LoftSection: Sendable {
 public enum Loft {
     /// Sections from `first` to `last` joined by quads. `uv` maps (u around, v along) to texture space.
     public static func build(_ sections: [LoftSection], segments: Int = 20, vRange: ClosedRange<Float> = 0...1,
-                             material: MaterialKey, uv: ((Float, Float) -> V2)? = nil) -> Surface {
+                             material: MaterialKey, uv: ((Float, Float) -> V2)? = nil, caps: Bool = false) -> Surface {
         precondition(sections.count >= 2)
         var s = Surface(material: material)
         let n = sections.count
@@ -52,6 +52,19 @@ public enum Loft {
             let a = UInt32(i) * row + UInt32(k)
             if handed { s.quad(a, a + row, a + row + 1, a + 1) } else { s.quad(a, a + 1, a + row + 1, a + row) }
         }}
+        if caps {
+            // Close both ends with a fan to the section centre so no opening shows at a seam.
+            for (i, sec) in [(0, sections[0]), (n - 1, sections[n - 1])] {
+                let v = vRange.lowerBound + (vRange.upperBound - vRange.lowerBound) * Float(i) / Float(n - 1)
+                let c = UInt32(s.positions.count)
+                s.add(sec.center, sec.up, uv?(0.5, v) ?? V2(0.5, v))
+                let r0 = UInt32(i) * row
+                for k in 0..<UInt32(segments) {
+                    let flip = (i == 0) != handed
+                    if flip { s.tri(c, r0 + k + 1, r0 + k) } else { s.tri(c, r0 + k, r0 + k + 1) }
+                }
+            }
+        }
         s.recomputeNormals()
         s.computeTangents()
         return s
