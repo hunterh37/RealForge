@@ -462,6 +462,27 @@ Street props:
 | ![stop-sign](docs/assets/stop-sign.png)<br>`stop-sign` | ![storm-drain-grate](docs/assets/storm-drain-grate.png)<br>`storm-drain-grate` | ![street-clock](docs/assets/street-clock.png)<br>`street-clock` | ![street-name-sign](docs/assets/street-name-sign.png)<br>`street-name-sign` |
 | ![traffic-signal](docs/assets/traffic-signal.png)<br>`traffic-signal` | ![tree-grate](docs/assets/tree-grate.png)<br>`tree-grate` | ![utility-pole](docs/assets/utility-pole.png)<br>`utility-pole` |    |
 
+### BugHunt
+
+Insects:
+
+| | | | |
+|---|---|---|---|
+| ![insect-bumblebee](docs/assets/insect-bumblebee.png)<br>`insect-bumblebee` | ![insect-caterpillar](docs/assets/insect-caterpillar.png)<br>`insect-caterpillar` | ![insect-centipede](docs/assets/insect-centipede.png)<br>`insect-centipede` | ![insect-cicada](docs/assets/insect-cicada.png)<br>`insect-cicada` |
+| ![insect-cricket](docs/assets/insect-cricket.png)<br>`insect-cricket` | ![insect-damselfly](docs/assets/insect-damselfly.png)<br>`insect-damselfly` | ![insect-dragonfly](docs/assets/insect-dragonfly.png)<br>`insect-dragonfly` | ![insect-dung-beetle](docs/assets/insect-dung-beetle.png)<br>`insect-dung-beetle` |
+| ![insect-firefly](docs/assets/insect-firefly.png)<br>`insect-firefly` | ![insect-garden-ant](docs/assets/insect-garden-ant.png)<br>`insect-garden-ant` | ![insect-grasshopper](docs/assets/insect-grasshopper.png)<br>`insect-grasshopper` | ![insect-honeybee](docs/assets/insect-honeybee.png)<br>`insect-honeybee` |
+| ![insect-jewel-beetle](docs/assets/insect-jewel-beetle.png)<br>`insect-jewel-beetle` | ![insect-katydid](docs/assets/insect-katydid.png)<br>`insect-katydid` | ![insect-ladybug](docs/assets/insect-ladybug.png)<br>`insect-ladybug` | ![insect-luna-moth](docs/assets/insect-luna-moth.png)<br>`insect-luna-moth` |
+| ![insect-mantis](docs/assets/insect-mantis.png)<br>`insect-mantis` | ![insect-monarch](docs/assets/insect-monarch.png)<br>`insect-monarch` | ![insect-morpho](docs/assets/insect-morpho.png)<br>`insect-morpho` | ![insect-pill-bug](docs/assets/insect-pill-bug.png)<br>`insect-pill-bug` |
+| ![insect-rhino-beetle](docs/assets/insect-rhino-beetle.png)<br>`insect-rhino-beetle` | ![insect-stag-beetle](docs/assets/insect-stag-beetle.png)<br>`insect-stag-beetle` | ![insect-stick-insect](docs/assets/insect-stick-insect.png)<br>`insect-stick-insect` | ![insect-swallowtail](docs/assets/insect-swallowtail.png)<br>`insect-swallowtail` |
+
+Props:
+
+| | | | |
+|---|---|---|---|
+| ![anthill](docs/assets/anthill.png)<br>`anthill` | ![bark-slab](docs/assets/bark-slab.png)<br>`bark-slab` | ![bug-net](docs/assets/bug-net.png)<br>`bug-net` | ![capture-net-pod](docs/assets/capture-net-pod.png)<br>`capture-net-pod` |
+| ![field-journal](docs/assets/field-journal.png)<br>`field-journal` | ![flower-bush](docs/assets/flower-bush.png)<br>`flower-bush` | ![liftable-stone](docs/assets/liftable-stone.png)<br>`liftable-stone` | ![milkweed](docs/assets/milkweed.png)<br>`milkweed` |
+| ![specimen-jar](docs/assets/specimen-jar.png)<br>`specimen-jar` | ![wrist-launcher](docs/assets/wrist-launcher.png)<br>`wrist-launcher` |    |    |
+
 ## Performance
 
 Release build on an M2 Pro (`swift run -c release realityhd bench`).
