@@ -31,6 +31,8 @@ public enum PlantKit {
         public var constantWidth = false
         /// Midline raised along the normal by `fold * width` (V-fold or curl; negative cups the strip).
         public var fold: Float = 0
+        /// Leaf outline: 0 keeps the grass taper; above 0 the width swells to a belly at t = 0.5^(1/belly) and closes at the tip.
+        public var belly: Float = 0
         public var u: V2 = V2(0, 1)
         public var v: V2 = V2(0, 1)
         /// Wind weight at root and tip; grows with t^1.5.
@@ -51,7 +53,7 @@ public enum PlantKit {
         let n = max(1, b.segments)
         let ds = b.length / Float(n)
         var p = b.root
-        let pointed = b.tipWidth <= 0 && b.fold == 0
+        let pointed = b.tipWidth <= 0 && b.fold == 0 && b.belly == 0
         let cols = b.fold != 0 ? 3 : 2
         var rows: [[UInt32]] = []
         for i in 0...n {
@@ -68,7 +70,8 @@ public enum PlantKit {
             if nrm.y < 0 { nrm = -nrm }
             let shade = simd_normalize(nrm * (1 - b.upNormal) + up * b.upNormal)
             let taper: Float = b.constantWidth ? 1 : pow(max(0, 1 - t), 0.55)
-            let w = b.width * (b.tipWidth + (1 - b.tipWidth) * taper)
+            let w = b.belly > 0 ? b.width * max(pow(sin(.pi * pow(t, b.belly)), 0.6), 0.1 * (1 - t) + 0.02)
+                                : b.width * (b.tipWidth + (1 - b.tipWidth) * taper)
             let wt = b.weight.x + (b.weight.y - b.weight.x) * pow(t, 1.5)
             let occ = b.ao.x + (b.ao.y - b.ao.x) * smoothstep(0, 0.7, t)
             let vv = b.v.x + (b.v.y - b.v.x) * t

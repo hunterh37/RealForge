@@ -28,6 +28,7 @@ public enum TextureProgram: Int32, Sendable, CaseIterable {
     case paverHerringbone, barkMulch
     case foodTissue
     case chitin, insectFur, compoundEye, insectWing, insectVeins, caterpillarBands
+    case petal
 }
 
 /// A fully specified PBR material: which texture program, its colors/knobs, and how RealityKit should

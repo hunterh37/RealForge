@@ -554,4 +554,17 @@ S plantStem(float2 uv, constant RFParams &P) {
     s.albedo = c; s.height = 0.5 + 0.25 * ridge; s.rough = 0.5 + 0.1 * (1.0 - ridge); s.ao = 1.0;
     return s;
 }
+
+// Petal: colorA is the body tint, throat darkens, veins run along v, faint hue drift and a soft sheen.
+S petal(float2 uv, constant RFParams &P) {
+    S s = defaults(); uint sd = P.seed;
+    float vein = 0.5 + 0.5 * cos(uv.x * 6.2831853 * 40.0 + 2.0 * fbm(uv, int2(4, 4), 3, sd + 1u));
+    float drift = fbm(uv, int2(3, 3), 4, sd + 2u);
+    float throat = exp(-uv.y * 0.12 / max(P.f.x, 0.004));
+    float3 c = P.colorA.rgb * (0.86 + 0.14 * vein + 0.1 * drift);
+    c = mix(c, P.colorB.rgb, throat);
+    c = mix(c, P.colorC.rgb, smoothstep(0.55, 1.0, drift) * 0.25);
+    s.albedo = c; s.height = 0.4 + 0.3 * vein; s.rough = 0.42 + 0.12 * (1.0 - vein); s.ao = 1.0;
+    return s;
+}
 """#
