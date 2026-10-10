@@ -16,20 +16,27 @@ extension BirdRigBuilder {
             secs.append(LoftSection(center: c, right: BirdFrame.X, up: f.U, halfWidth: 0.5 * a.bodyWidth * r,
                                     halfDorsal: 0.5 * a.bodyDepth * 0.86 * r, halfVentral: 0.5 * a.bodyDepth * 1.10 * r, exponent: 2.0))
         }
-        rig.base[0].add(Loft.build(secs, segments: 24, material: f.mat(.body)))
+        rig.base[0].add(Loft.build(secs, segments: 24, material: f.mat(.body), caps: true))
     }
 
     static func addHead(_ rig: inout Rig, _ f: BirdFrame) {
         let a = f.a
         // Neck: from inside the body front up to the back of the head, textured with the body's front end.
         let pn = f.neckPivot
-        let pe = f.headCenter + V3(0, -0.15 * a.headHeight, 0.25 * a.headLength)
+        let pe = f.headCenter + V3(0, -0.12 * a.headHeight, 0.05 * a.headLength)
         let r0 = 0.5 * a.bodyWidth * 0.80, r1 = 0.5 * a.headWidth * 0.92
         let neck = Loft.along([pn - f.neckDir * 0.012, lerp(pn, pe, 0.5), pe], up: V3(0, 1, 0.3), count: 6, segments: 18,
                               vRange: 0.88...1.0, exponent: 2, material: f.mat(.body)) { t in
-            let r = lerp(r0, r1, t); return V3(r, r, r)
+            let r = lerp(r0, r1, t); return V3(r, r * 0.9, r * 1.25)
         }
         rig.add(neck, to: BirdJoint.neckPitch.name)
+        // Throat: fills the space in front of the neck between the breast and the chin.
+        let p0 = f.bodyFront - f.A * (0.08 * a.bodyLength) + f.U * (0.05 * a.bodyDepth)
+        let p1 = f.headCenterAt(0.72) + V3(0, -0.28 * a.headHeight, 0)
+        let ax = p1 - p0, half = simd_length(ax) * 0.62
+        let throat = Loft.ellipsoid(center: lerp(p0, p1, 0.5), axis: ax, up: V3(0, 0, -1), radii: V3(0.5 * a.headWidth * 0.86, 0.5 * a.headHeight * 0.72, half),
+                                    rings: 10, segments: 18, material: f.mat(.body), uv: { u, v in V2(0.38 + 0.12 * cos(u * 2 * .pi), 0.9 + 0.1 * v) })
+        rig.add(throat, to: BirdJoint.neckPitch.name)
 
         // Head hull.
         var secs: [LoftSection] = []
@@ -39,7 +46,7 @@ extension BirdRigBuilder {
             secs.append(LoftSection(center: f.headCenterAt(t), right: BirdFrame.X, up: BirdFrame.Y, halfWidth: f.headHalfWidth(t),
                                     halfDorsal: 0.5 * a.headHeight * 0.5 * hp, halfVentral: 0.5 * a.headHeight * (0.58 + 0.2 * (1 - t)) * hp, exponent: 2.2))
         }
-        rig.add(Loft.build(secs, segments: 22, material: f.mat(.head)), to: BirdJoint.headPitch.name)
+        rig.add(Loft.build(secs, segments: 22, material: f.mat(.head), caps: true), to: BirdJoint.headPitch.name)
 
         addBeak(&rig, f)
         addEyes(&rig, f)
