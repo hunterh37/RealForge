@@ -483,6 +483,22 @@ Props:
 | ![field-journal](docs/assets/field-journal.png)<br>`field-journal` | ![flower-bush](docs/assets/flower-bush.png)<br>`flower-bush` | ![liftable-stone](docs/assets/liftable-stone.png)<br>`liftable-stone` | ![milkweed](docs/assets/milkweed.png)<br>`milkweed` |
 | ![specimen-jar](docs/assets/specimen-jar.png)<br>`specimen-jar` | ![wrist-launcher](docs/assets/wrist-launcher.png)<br>`wrist-launcher` |    |    |
 
+### Animals
+
+Rigged, animated birds and ground animals (`import RealityHDAnimals`). Each bird has about 40 joints and
+individual feather cards; `WildlifeWorld` lands them on perches taken from placed props and on an open palm.
+Preview: `swift run animalpreview <species> --pose perched`. Details in [docs/ANIMALS.md](docs/ANIMALS.md).
+
+| | | | |
+|---|---|---|---|
+| ![american-goldfinch](docs/assets/animal-american-goldfinch.png)<br>`american-goldfinch` | ![american-robin](docs/assets/animal-american-robin.png)<br>`american-robin` | ![baltimore-oriole](docs/assets/animal-baltimore-oriole.png)<br>`baltimore-oriole` | ![black-capped-chickadee](docs/assets/animal-black-capped-chickadee.png)<br>`black-capped-chickadee` |
+| ![blue-jay](docs/assets/animal-blue-jay.png)<br>`blue-jay` | ![cedar-waxwing](docs/assets/animal-cedar-waxwing.png)<br>`cedar-waxwing` | ![eastern-bluebird](docs/assets/animal-eastern-bluebird.png)<br>`eastern-bluebird` | ![mourning-dove](docs/assets/animal-mourning-dove.png)<br>`mourning-dove` |
+| ![northern-cardinal](docs/assets/animal-northern-cardinal.png)<br>`northern-cardinal` | ![ruby-throated-hummingbird](docs/assets/animal-ruby-throated-hummingbird.png)<br>`ruby-throated-hummingbird` |     |     |
+
+| | | | |
+|---|---|---|---|
+| ![eastern-chipmunk](docs/assets/animal-eastern-chipmunk.png)<br>`eastern-chipmunk` | ![eastern-cottontail](docs/assets/animal-eastern-cottontail.png)<br>`eastern-cottontail` | ![eastern-gray-squirrel](docs/assets/animal-eastern-gray-squirrel.png)<br>`eastern-gray-squirrel` | ![european-hedgehog](docs/assets/animal-european-hedgehog.png)<br>`european-hedgehog` |
+
 ## Performance
 
 Release build on an M2 Pro (`swift run -c release realityhd bench`).
