@@ -1,0 +1,37 @@
+{
+  "budget": 8000,
+  "id": "solar-panel-rack",
+  "kind": "prop",
+  "materials": [
+    "glass.tinted",
+    "metal.anodized",
+    "metal.galvanized"
+  ],
+  "name": "Solar panel rack",
+  "notes": "",
+  "parts": [
+    "panels",
+    "frames",
+    "rails",
+    "feet"
+  ],
+  "references": [],
+  "size": [
+    3.14,
+    0.917,
+    1.608
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Roof solar rack, 3.1 m: three framed monocrystalline panels at 20 degrees on aluminum rails and feet.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "urban",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

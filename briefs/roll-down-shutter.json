@@ -1,0 +1,39 @@
+{
+  "budget": 8000,
+  "id": "roll-down-shutter",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized-aged",
+    "metal.painted",
+    "metal.steel"
+  ],
+  "name": "Roll-down shutter",
+  "notes": "",
+  "parts": [
+    "slats",
+    "roll housing",
+    "guide rails",
+    "bottom bar",
+    "lock"
+  ],
+  "references": [],
+  "size": [
+    1.94,
+    1.5,
+    0.26
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Roll-down security shutter, 1.8 m: interlocking steel slats, top housing, side guide rails, bottom bar with lock.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "door",
+    "window",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

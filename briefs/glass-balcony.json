@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "glass-balcony",
+  "kind": "prop",
+  "materials": [
+    "concrete.smooth",
+    "glass.clear",
+    "metal.stainless"
+  ],
+  "name": "Glass balcony",
+  "notes": "",
+  "parts": [
+    "slab",
+    "glass panels",
+    "standoffs",
+    "handrail"
+  ],
+  "references": [],
+  "size": [
+    2.4,
+    1.092,
+    1.2
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Concrete balcony slab 2.4 m x 1.2 m with frameless glass balustrade on stainless standoffs and handrail.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "concrete",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

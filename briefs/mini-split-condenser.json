@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "mini-split-condenser",
+  "kind": "prop",
+  "materials": [
+    "metal.enamel",
+    "metal.galvanized",
+    "plastic.white"
+  ],
+  "name": "Mini-split condenser",
+  "notes": "",
+  "parts": [
+    "casing",
+    "fan grille",
+    "brackets",
+    "line set"
+  ],
+  "references": [],
+  "size": [
+    0.9,
+    0.663,
+    0.362
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Wall-mounted mini-split condenser, 0.8 m: enamel casing, fan grille, service panel, bracket and line set.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "urban",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

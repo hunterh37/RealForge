@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "wall-sconce",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron",
+    "glass.pane",
+    "emissive.warm"
+  ],
+  "name": "Wall sconce",
+  "notes": "",
+  "parts": [
+    "backplate",
+    "arm",
+    "glass",
+    "bulb",
+    "cap"
+  ],
+  "references": [],
+  "size": [
+    0.14,
+    0.38,
+    0.23
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Exterior wall lantern, 0.38 m: cast backplate, scroll arm, glass cylinder with lit bulb, hooded cap.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

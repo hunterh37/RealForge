@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "vertical-fin-screen",
+  "kind": "prop",
+  "materials": [
+    "wood.cedar-weathered",
+    "metal.anodized-black"
+  ],
+  "name": "Vertical fin screen",
+  "notes": "",
+  "parts": [
+    "fins",
+    "rails",
+    "standoffs"
+  ],
+  "references": [],
+  "size": [
+    1.8,
+    2.4,
+    0.36
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Vertical timber fin screen, 1.8 m: 40 mm cedar fins at 120 mm pitch between steel top and bottom rails.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

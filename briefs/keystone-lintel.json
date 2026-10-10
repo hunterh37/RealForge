@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "keystone-lintel",
+  "kind": "prop",
+  "materials": [
+    "stone.limestone"
+  ],
+  "name": "Keystone lintel",
+  "notes": "",
+  "parts": [
+    "lintel",
+    "keystone",
+    "skewbacks"
+  ],
+  "references": [],
+  "size": [
+    1.396,
+    0.34,
+    0.165
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Cut-stone window lintel, 1.4 m, with projecting keystone and flanking skewbacks.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

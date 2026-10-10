@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "brise-soleil",
+  "kind": "prop",
+  "materials": [
+    "metal.anodized",
+    "metal.anodized-black"
+  ],
+  "name": "Brise-soleil",
+  "notes": "",
+  "parts": [
+    "blades",
+    "outriggers",
+    "end caps"
+  ],
+  "references": [],
+  "size": [
+    2.22,
+    1.67,
+    0.62
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Horizontal sun-shading louvers, 2.2 m: extruded aluminum airfoil blades on outrigger brackets.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

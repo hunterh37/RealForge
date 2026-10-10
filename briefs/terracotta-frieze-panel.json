@@ -1,0 +1,34 @@
+{
+  "budget": 14000,
+  "id": "terracotta-frieze-panel",
+  "kind": "prop",
+  "materials": [
+    "ceramic.terracotta"
+  ],
+  "name": "Terracotta frieze panel",
+  "notes": "",
+  "parts": [
+    "tiles",
+    "rosettes",
+    "corner leaves",
+    "border"
+  ],
+  "references": [],
+  "size": [
+    2.394,
+    0.594,
+    0.069
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Terracotta frieze band, 2.4 m: four glazed tiles each with a raised rosette and leaf corners.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "ceramic"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

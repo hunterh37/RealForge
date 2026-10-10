@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "entry-intercom",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "glass.led-lens",
+    "emissive.led-green"
+  ],
+  "name": "Entry intercom panel",
+  "notes": "",
+  "parts": [
+    "plate",
+    "camera",
+    "speaker",
+    "buttons",
+    "led"
+  ],
+  "references": [],
+  "size": [
+    0.14,
+    0.38,
+    0.05
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Video entry intercom, 0.12 m x 0.36 m: stainless plate, camera lens, speaker, four buttons and status LED.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "door",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

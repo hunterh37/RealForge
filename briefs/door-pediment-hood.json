@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "door-pediment-hood",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-exterior"
+  ],
+  "name": "Door pediment hood",
+  "notes": "",
+  "parts": [
+    "pediment",
+    "dentils",
+    "consoles"
+  ],
+  "references": [],
+  "size": [
+    1.573,
+    0.74,
+    0.34
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Door pediment hood, 1.5 m: triangular pediment with dentil bed on two scroll consoles.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

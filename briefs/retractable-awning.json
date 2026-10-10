@@ -1,0 +1,37 @@
+{
+  "budget": 8000,
+  "id": "retractable-awning",
+  "kind": "prop",
+  "materials": [
+    "fabric.canvas",
+    "metal.powder-white"
+  ],
+  "name": "Retractable awning",
+  "notes": "",
+  "parts": [
+    "cassette",
+    "arms",
+    "fabric",
+    "valance",
+    "hinges"
+  ],
+  "references": [],
+  "size": [
+    3.04,
+    1.005,
+    2.026
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Retractable patio awning, 3 m wide, 2 m projection: roller cassette, folding scissor arms, striped acrylic fabric and valance.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "fabric",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

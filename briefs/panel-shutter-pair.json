@@ -1,0 +1,36 @@
+{
+  "budget": 8000,
+  "id": "panel-shutter-pair",
+  "kind": "prop",
+  "materials": [
+    "wood.painted-shaker-worn",
+    "metal.cast-iron"
+  ],
+  "name": "Panel shutter pair",
+  "notes": "",
+  "parts": [
+    "two leaves",
+    "raised panels",
+    "strap hinges",
+    "holdbacks"
+  ],
+  "references": [],
+  "size": [
+    1.048,
+    1.5,
+    0.05
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Raised-panel shutter pair, 1.5 m: painted stiles and rails, two raised panels per leaf, strap hinges and holdbacks.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "wood",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

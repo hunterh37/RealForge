@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "pressed-metal-cornice",
+  "kind": "prop",
+  "materials": [
+    "metal.painted"
+  ],
+  "name": "Pressed metal cornice",
+  "notes": "",
+  "parts": [
+    "crown profile",
+    "modillions",
+    "returns"
+  ],
+  "references": [],
+  "size": [
+    2.408,
+    0.6,
+    0.5
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Pressed-metal cornice, 2.4 m run: stepped crown profile, modillion blocks and end returns.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

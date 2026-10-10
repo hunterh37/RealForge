@@ -1,0 +1,38 @@
+{
+  "budget": 8000,
+  "id": "window-ac-unit",
+  "kind": "prop",
+  "materials": [
+    "plastic.matte",
+    "metal.galvanized",
+    "plastic.black"
+  ],
+  "name": "Window air conditioner",
+  "notes": "",
+  "parts": [
+    "cabinet",
+    "grille",
+    "controls",
+    "fins",
+    "bracket"
+  ],
+  "references": [],
+  "size": [
+    0.66,
+    0.467,
+    0.423
+  ],
+  "style": "architectural facade add-on, weathered",
+  "summary": "Window air conditioner, 0.6 m: plastic cabinet, louvered grille, control strip, side fins and support bracket.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
