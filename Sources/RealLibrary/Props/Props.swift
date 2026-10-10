@@ -375,6 +375,7 @@ public enum Props {
         ShadeSail.self, StreetBannerPole.self, TreeGuard.self, BikeRepairStation.self, CityBicycle.self, PortableToilet.self, WheelchairRamp.self,
         PlaygroundSlide.self, SwingSet.self, Seesaw.self, MonkeyBars.self, PullUpStation.self, SkateQuarterPipe.self,
         SpeedBump.self, WheelStop.self, SolarPanelArray.self, RoofHatch.self, SiteCabin.self,
+        PanelShutterPair.self, RollDownShutter.self, RetractableAwning.self, BriseSoleil.self, VerticalFinScreen.self, WindowBoxPlanter.self, JulietBalcony.self, GlassBalcony.self, KeystoneLintel.self, DoorPedimentHood.self, EaveBracketSet.self, PressedMetalCornice.self, TerracottaFriezePanel.self, WallVentLouver.self, WindowAcUnit.self, MiniSplitCondenser.self, SecurityCamera.self, BladeSign.self, AddressPlaque.self, EntryIntercom.self, WallSconce.self, GlassEntryCanopy.self, GreenWallPanel.self, PyramidSkylight.self, SolarPanelRack.self,
         // realityhd:prop
     ]
 }

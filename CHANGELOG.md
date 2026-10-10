@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 25 facade addon props for architecture apps (Facade): `address-plaque`, `blade-sign`, `brise-soleil`, `door-pediment-hood`, `eave-bracket-set`, `entry-intercom`, `glass-balcony`, `glass-entry-canopy`, `green-wall-panel`, `juliet-balcony`, `keystone-lintel`, `mini-split-condenser`, `panel-shutter-pair`, `pressed-metal-cornice`, `pyramid-skylight`, `retractable-awning`, `roll-down-shutter`, `security-camera`, `solar-panel-rack`, `terracotta-frieze-panel`, `vertical-fin-screen`, `wall-sconce`, `wall-vent-louver`, `window-ac-unit`, `window-box-planter`.
 - 25 props for architectural site planning: `scale-figure`, `gazebo`, `market-stall`, `food-cart`,
   `advertising-column`, `wayfinding-signpost`, `statue-plinth`, `shade-sail`, `street-banner-pole`, `tree-guard`,
   `bike-repair-station`, `city-bicycle`, `portable-toilet`, `wheelchair-ramp` (Entourage, Plaza), `playground-slide`,
