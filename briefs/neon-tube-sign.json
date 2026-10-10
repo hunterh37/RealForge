@@ -1,0 +1,35 @@
+{
+  "budget": 3500,
+  "id": "neon-tube-sign",
+  "kind": "prop",
+  "materials": [
+    "emissive.signal-red",
+    "emissive.signal-white",
+    "glass.clear",
+    "metal.stainless",
+    "metal.transformer-gray",
+    "plastic.black"
+  ],
+  "name": "Neon tube sign",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.0,
+    0.545,
+    0.087
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Neon tube sign, 1.0 x 0.5 m: script OPEN and oval border in glowing tube on a black backer with standoffs.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "sign",
+    "light",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

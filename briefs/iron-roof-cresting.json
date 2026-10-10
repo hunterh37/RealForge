@@ -1,0 +1,30 @@
+{
+  "budget": 6500,
+  "id": "iron-roof-cresting",
+  "kind": "prop",
+  "materials": [
+    "metal.wrought-iron"
+  ],
+  "name": "Iron roof cresting",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.46,
+    0.562,
+    0.05
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Victorian ridge cresting, 2.4 m: cast shoes, base rail, scrolled anthemion repeats, spiked finials.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "ornament",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

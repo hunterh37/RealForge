@@ -1,0 +1,33 @@
+{
+  "budget": 4000,
+  "id": "dryer-vent-hood",
+  "kind": "prop",
+  "materials": [
+    "fabric.linen",
+    "metal.aluminum-brushed",
+    "metal.powder-white",
+    "metal.screw-zinc",
+    "plastic.black",
+    "plastic.white"
+  ],
+  "name": "Dryer vent hood",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.17,
+    0.19,
+    0.115
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Dryer vent hood, 0.16 m plate: 100 mm duct stub, louvered hood with gravity flap, caulk bead, screws.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

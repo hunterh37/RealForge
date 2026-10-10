@@ -1,0 +1,35 @@
+{
+  "budget": 3000,
+  "id": "clerestory-ribbon",
+  "kind": "prop",
+  "materials": [
+    "concrete.smooth",
+    "glass.pane",
+    "metal.aluminum-brushed",
+    "metal.anodized",
+    "metal.galvanized",
+    "metal.steel"
+  ],
+  "name": "Clerestory ribbon",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    3.7,
+    0.74,
+    0.221
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Clerestory ribbon window, 3.6 x 0.6 m: anodized frame, six panes, two tilted hopper vents, flashing, lintel.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "metal",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

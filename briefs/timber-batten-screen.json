@@ -1,0 +1,29 @@
+{
+  "budget": 4000,
+  "id": "timber-batten-screen",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized",
+    "wood.charred"
+  ],
+  "name": "Timber batten screen",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.5,
+    2.413,
+    0.152
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Timber batten screen, 1.5 x 2.4 m: charred vertical battens at irregular pitch and depth on steel rails.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,30 @@
+{
+  "budget": 4500,
+  "id": "window-security-grille",
+  "kind": "prop",
+  "materials": [
+    "metal.wrought-iron"
+  ],
+  "name": "Window security grille",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.9,
+    1.46,
+    0.079
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Wrought-iron window grille, 0.9 x 1.4 m: flat frame, 12 mm bars with collars, scroll panels, lozenge.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "ornament",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

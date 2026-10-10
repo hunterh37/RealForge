@@ -1,0 +1,33 @@
+{
+  "budget": 8500,
+  "id": "porthole-window",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "glass.tinted",
+    "metal.stainless",
+    "metal.steel"
+  ],
+  "name": "Porthole window",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.6,
+    0.6,
+    0.08
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Round porthole window, 0.6 m: stainless ring with 12 bolts, rubber gasket, tinted pane.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "metal",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

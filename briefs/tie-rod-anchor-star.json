@@ -1,0 +1,30 @@
+{
+  "budget": 4000,
+  "id": "tie-rod-anchor-star",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron",
+    "metal.rust"
+  ],
+  "name": "Tie rod anchor star",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.3,
+    0.438,
+    0.076
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Tie-rod anchor star, 0.36 m: eight-point cast-iron plate, domed nut, wedge key, rust bloom.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "ornament",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

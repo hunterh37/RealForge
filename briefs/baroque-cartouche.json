@@ -1,0 +1,31 @@
+{
+  "budget": 12000,
+  "id": "baroque-cartouche",
+  "kind": "prop",
+  "materials": [
+    "stone.cast-stone",
+    "stone.limestone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Baroque cartouche",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.801,
+    1.069,
+    0.097
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Baroque cartouche, 0.7 x 0.95 m: scrolled cast-stone border, shell crest, acanthus, husks, blank panel.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "ornament",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
