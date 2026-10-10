@@ -26,6 +26,8 @@ public final class BirdPuppet {
     private var defs: [Joint]
     private var last: [Float]
     private let specs: [BirdJointSpec]
+    /// Joint-driven part options (folded wing, closed tail).
+    private var links: [(joint: Int, link: RigOptionLink, entity: Entity, option: Int)] = []
 
     init(template: BirdTemplate) {
         species = template.built.profile.species
@@ -44,12 +46,22 @@ public final class BirdPuppet {
         joints = js; rest = rs; defs = ds
         last = [Float](repeating: .nan, count: specs.count)
         holder.name = "bird:\(species.rawValue)"
+        for l in built.rig.optionLinks {
+            guard let j = specs.firstIndex(where: { $0.name == l.joint }), let e = model.findEntity(named: "joint:\(l.part)") else { continue }
+            links.append((j, l, e, -1))
+        }
         model.position = [0, -built.comHeight, 0]
         holder.addChild(model)
     }
 
     /// Poses every joint. Skips joints that moved less than a thousandth of a degree.
     public func apply(_ pose: BirdPose) {
+        for k in links.indices {
+            let o = links[k].link.option(pose.values[links[k].joint])
+            guard o != links[k].option else { continue }
+            links[k].option = o
+            for c in links[k].entity.children where c.name.hasPrefix("opt") { c.isEnabled = c.name == "opt\(o)" }
+        }
         for i in 0..<specs.count {
             var v = pose.values[i]
             if let m = specs[i].mimic { v = pose.values[m.master] * m.ratio }

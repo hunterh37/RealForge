@@ -60,7 +60,7 @@ public struct BirdAnatomy: Sendable {
     /// Half span measured from the body side.
     public var halfSpan: Float { (wingspan - bodyWidth) / 2 }
     /// Height of the body center above the feet when perched.
-    public var standHeight: Float { tarsus * 0.94 + tarsus * 0.7 * 0.9 + bodyDepth * 0.45 }
+    public var standHeight: Float { tarsus * 0.80 + tarsus * 0.45 + bodyDepth * 0.30 }
 }
 
 /// Habitat features a species looks for. Weights live in `BirdBehavior.likes`.

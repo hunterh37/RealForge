@@ -14,7 +14,7 @@ extension BirdRigBuilder {
             let t = Float(i) / Float(n - 1), r = bp(t)
             let c = f.C + f.A * ((t - 0.5) * a.bodyLength) - f.U * (0.02 * a.bodyDepth * r)
             secs.append(LoftSection(center: c, right: BirdFrame.X, up: f.U, halfWidth: 0.5 * a.bodyWidth * r,
-                                    halfDorsal: 0.5 * a.bodyDepth * 0.88 * r, halfVentral: 0.5 * a.bodyDepth * 1.06 * r, exponent: 2.2))
+                                    halfDorsal: 0.5 * a.bodyDepth * 0.86 * r, halfVentral: 0.5 * a.bodyDepth * 1.10 * r, exponent: 2.0))
         }
         rig.base[0].add(Loft.build(secs, segments: 24, material: f.mat(.body)))
     }
@@ -24,7 +24,7 @@ extension BirdRigBuilder {
         // Neck: from inside the body front up to the back of the head, textured with the body's front end.
         let pn = f.neckPivot
         let pe = f.headCenter + V3(0, -0.15 * a.headHeight, 0.25 * a.headLength)
-        let r0 = 0.5 * a.bodyWidth * 0.66, r1 = 0.5 * a.headWidth * 0.9
+        let r0 = 0.5 * a.bodyWidth * 0.80, r1 = 0.5 * a.headWidth * 0.92
         let neck = Loft.along([pn - f.neckDir * 0.012, lerp(pn, pe, 0.5), pe], up: V3(0, 1, 0.3), count: 6, segments: 18,
                               vRange: 0.88...1.0, exponent: 2, material: f.mat(.body)) { t in
             let r = lerp(r0, r1, t); return V3(r, r, r)
@@ -97,18 +97,17 @@ extension BirdRigBuilder {
     static func addCrest(_ rig: inout Rig, _ f: BirdFrame) {
         let a = f.a
         guard a.crestHeight > 0 else { return }
-        let pivot = f.headCenter + V3(0, 0.2 * a.headHeight, 0.2 * a.headLength)
-        let n = 7
-        for i in 0..<n {
-            let t = Float(i) / Float(n - 1)
-            let base = pivot + V3((Float(i % 2) - 0.5) * 0.0012, -0.002 + 0.0, -0.05 * a.headLength + (0.30 * a.headLength) * (t - 0.4) * 0.8)
-            let g = radians(14 + 38 * t)
-            let d = simd_normalize(V3(0, cos(g), sin(g)))
-            let c = Feather.card(base: base, direction: d, normal: BirdFrame.X, length: a.crestHeight * (1.0 - 0.18 * abs(t - 0.35)) * 1.25,
-                                 width: a.crestLength * 0.26, camber: 0.0003, droop: 0, curl: -0.003, shade: V2(0.55, 1),
-                                 flipSide: i % 2 == 0, material: f.mat(.crest))
-            rig.add(c, to: BirdJoint.crest.name)
+        // Tuft rising from the crown and sweeping back to a point.
+        let root = f.headCenter + V3(0, 0.30 * a.headHeight, -0.10 * a.headLength)
+        let mid = root + V3(0, 0.55 * a.crestHeight, 0.30 * a.crestLength)
+        let tip = root + V3(0, 0.95 * a.crestHeight, 0.75 * a.crestLength)
+        let w = 0.5 * a.headWidth * 0.55
+        let tuft = Loft.along([root - V3(0, 0.2 * a.headHeight, 0), root, mid, tip], up: V3(0, 0.3, 1), count: 10, segments: 14, exponent: 2,
+                              material: f.mat(.crest)) { t in
+            let k = t < 0.15 ? 1 : max(0.04, 1 - pow((t - 0.15) / 0.85, 1.3))
+            return V3(w * k, w * 0.75 * k, w * 0.75 * k)
         }
+        rig.add(tuft, to: BirdJoint.crest.name)
     }
 
     static func addTail(_ rig: inout Rig, _ f: BirdFrame, _ rng: inout SeededRNG) {
@@ -122,31 +121,26 @@ extension BirdRigBuilder {
                 let t = Float(i) / Float(nH - 1)
                 var len = a.tailLength
                 if a.tailFork > 0 { len -= a.tailFork * (1 - t) } else { len += a.tailFork * t }
-                let w = a.tailWidth / Float(a.tailFeathers) * 1.9
-                let off = (Float(i) + 0.5) * (a.tailWidth / Float(a.tailFeathers)) * 0.9
-                let base = f.tailPivot + V3(s.sign * off, 0, 0) - nT * (Float(i) * 0.0003)
-                let omega = radians(1.2 + 2.0 * Float(i)) * s.sign
+                let w = a.tailWidth * 0.5 / Float(nH) * 2.1
+                let off = (Float(i) + 0.5) * (a.tailWidth * 0.5 / Float(nH)) * 0.5
+                let base = f.tailPivot + V3(s.sign * off, 0, 0) - nT * (Float(i) * 0.00035)
+                let omega = radians(0.4 + 0.9 * Float(i)) * s.sign
                 let d = simd_quatf(angle: omega, axis: nT).act(f.tailDir)
-                let c = Feather.card(base: base, direction: d, normal: nT, length: len, width: w, camber: 0.0004, droop: a.tailLength * 0.03,
+                let c = Feather.card(base: base, direction: d, normal: nT, length: len, width: w, camber: 0.0003, droop: a.tailLength * 0.015,
                                      shade: V2(0.55, 1), flipSide: s == .left, material: f.mat(.tail))
-                rig.add(c, to: part)
+                rig.add(c, to: part, option: 1)
             }
         }
-        // Coverts over and under the tail base.
-        let bp = f.bodyProfile
-        for i in 0..<7 {
-            let k = Float(i) / 6 * 2 - 1
-            let tb: Float = 0.14 + 0.05 * abs(k)
-            let top = f.C + f.A * ((tb - 0.5) * a.bodyLength) + f.U * (0.5 * a.bodyDepth * 0.88 * bp(tb) * 0.9) + V3(k * 0.5 * a.bodyWidth * bp(tb) * 0.7, 0, 0)
-            let len = (0.22 * a.bodyLength + 0.22 * a.tailLength) * (1 - 0.15 * abs(k))
-            let d = simd_normalize(f.tailDir * 0.9 + V3(k * 0.12, 0, 0))
-            rig.add(Feather.card(base: top, direction: d, normal: nT, length: len, width: a.tailWidth * 0.34, camber: 0.0005, droop: len * 0.04,
-                                 shade: V2(0.6, 1), flipSide: i % 2 == 0, material: f.mat(.backCard)), to: pitch)
-            let under = top - f.U * (0.5 * a.bodyDepth * 0.88 * bp(tb) * 0.9 + 0.5 * a.bodyDepth * 1.06 * bp(tb) * 0.9) + f.U * 0.002
-            let ud = simd_normalize(f.tailDir * 0.95 + V3(k * 0.1, -0.05, 0))
-            rig.add(Feather.card(base: under, direction: ud, normal: -nT, length: len * 0.8, width: a.tailWidth * 0.34, camber: 0.0005,
-                                 droop: len * 0.03, shade: V2(0.6, 1), flipSide: i % 2 == 1, material: f.mat(.bellyCard)), to: pitch)
+        // Solid core so the closed tail reads as one surface; the cards above give the feather edges.
+        var core: [LoftSection] = []
+        let side = simd_normalize(simd_cross(f.tailDir, nT))
+        for i in 0..<8 {
+            let t = Float(i) / 7
+            let c = f.tailPivot + f.tailDir * (t * a.tailLength * 0.94) - nT * (0.0012 + a.tailLength * 0.015 * t * t)
+            let hw = 0.5 * a.tailWidth * (0.55 + 0.35 * min(1, t * 1.6)) * (t > 0.92 ? 0.9 : 1)
+            core.append(LoftSection(center: c, right: side, up: nT, halfWidth: hw, halfDorsal: max(0.0006, 0.004 * (1 - t)), halfVentral: max(0.0005, 0.003 * (1 - t)), exponent: 3))
         }
+        rig.add(Loft.build(core, segments: 16, material: f.mat(.tailCore)), to: pitch)
     }
 
     static func addLeg(_ rig: inout Rig, _ f: BirdFrame, _ s: Side) {
