@@ -1,0 +1,34 @@
+{
+  "budget": 6000,
+  "id": "bark-slab",
+  "kind": "prop",
+  "materials": [
+    "bark.oak",
+    "wood.deadwood",
+    "wood.endgrain-weathered"
+  ],
+  "name": "Loose bark slab",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "curled oak bark outer face",
+    "pale fibrous inner face",
+    "ragged torn rim"
+  ],
+  "references": [],
+  "size": [
+    0.164,
+    0.041,
+    0.399
+  ],
+  "style": "fallen oak bark, ridged, torn edges",
+  "summary": "Loose oak bark slab, 40 cm: curled ridged bark, pale fibrous inner face, ragged torn edges; handheld, liftable.",
+  "tags": [
+    "prop",
+    "wood",
+    "outdoor",
+    "handheld"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

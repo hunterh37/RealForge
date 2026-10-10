@@ -1,0 +1,38 @@
+{
+  "budget": 14500,
+  "id": "flower-bush",
+  "kind": "prop",
+  "materials": [
+    "leaf.privet",
+    "leaf.privet-mass",
+    "flower.hydrangea",
+    "plant.stem"
+  ],
+  "name": "Butterfly bush",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "leafy mound",
+    "lance leaves",
+    "lilac flower panicles",
+    "woody stems"
+  ],
+  "references": [],
+  "size": [
+    1.2,
+    0.95,
+    1.2
+  ],
+  "style": "Buddleja davidii in bloom",
+  "summary": "Butterfly bush in bloom, 1 m: arching mound of grey-green leaves with long lilac flower panicles.",
+  "tags": [
+    "prop",
+    "plant",
+    "flower",
+    "garden",
+    "outdoor",
+    "landscaping"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

@@ -1,0 +1,36 @@
+{
+  "budget": 14000,
+  "id": "anthill",
+  "kind": "prop",
+  "materials": [
+    "soil.potting",
+    "ground.dirt",
+    "ground.mud"
+  ],
+  "name": "Ant mound",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "soil mound",
+    "entrance crater",
+    "tunnel opening",
+    "loose soil grains",
+    "spoil pellets"
+  ],
+  "references": [],
+  "size": [
+    0.3,
+    0.074,
+    0.3
+  ],
+  "style": "crumbly excavated soil, dark tunnel mouth",
+  "summary": "Ant mound, 25 cm: crumbly soil heap with an off-centre entrance crater, dark tunnel and loose grains.",
+  "tags": [
+    "prop",
+    "ground",
+    "outdoor",
+    "garden"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

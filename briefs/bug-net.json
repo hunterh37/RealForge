@@ -1,0 +1,41 @@
+{
+  "budget": 9000,
+  "id": "bug-net",
+  "kind": "prop",
+  "materials": [
+    "wood.hammer-hickory-grimy",
+    "metal.brass-aged",
+    "insect.netting",
+    "fabric.canvas"
+  ],
+  "name": "Insect sweep net",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "turned oak handle",
+    "brass ferrule",
+    "butt cap",
+    "brass hoop",
+    "canvas collar",
+    "mesh bag"
+  ],
+  "references": [],
+  "size": [
+    0.315,
+    0.315,
+    1.48
+  ],
+  "style": "naturalist sweep net, aged brass, cotton netting",
+  "summary": "Insect sweep net, 1.3 m: turned oak handle, brass ferrule, 30 cm brass hoop, fine mesh bag (articulated bag).",
+  "tags": [
+    "prop",
+    "tool",
+    "wood",
+    "metal",
+    "outdoor",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

@@ -8,7 +8,7 @@
 //    `evaluate()` is generated from `TextureProgram.allCases`, so there is no switch to edit.
 
 /// Program families, in compile order. Append new family sources here.
-let programSources: [String] = [metalBark, metalFoliage, metalStone, metalBuilt, metalPlant, metalIndustrial, metalGround, metalConifer, metalRock, metalFabric, metalWater, metalCraft, metalOffice, metalSports, metalMedical, metalAnatomy, metalWoodshopShop, metalWoodshopTools, metalPantry, metalKitchen, metalCookware, metalFood, metalLandscaping, metalRecipe]
+let programSources: [String] = [metalBark, metalFoliage, metalStone, metalBuilt, metalPlant, metalIndustrial, metalGround, metalConifer, metalRock, metalFabric, metalWater, metalCraft, metalOffice, metalSports, metalMedical, metalAnatomy, metalWoodshopShop, metalWoodshopTools, metalPantry, metalKitchen, metalCookware, metalFood, metalLandscaping, metalRecipe, metalInsect]
 
 /// `evaluate()` dispatch, one case per `TextureProgram`.
 var metalDispatch: String {
