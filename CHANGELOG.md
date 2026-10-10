@@ -2,7 +2,15 @@
 
 ## Unreleased
 
+<<<<<<< HEAD
 - 25 facade addon props for architecture apps (Facade): `address-plaque`, `blade-sign`, `brise-soleil`, `door-pediment-hood`, `eave-bracket-set`, `entry-intercom`, `glass-balcony`, `glass-entry-canopy`, `green-wall-panel`, `juliet-balcony`, `keystone-lintel`, `mini-split-condenser`, `panel-shutter-pair`, `pressed-metal-cornice`, `pyramid-skylight`, `retractable-awning`, `roll-down-shutter`, `security-camera`, `solar-panel-rack`, `terracotta-frieze-panel`, `vertical-fin-screen`, `wall-sconce`, `wall-vent-louver`, `window-ac-unit`, `window-box-planter`.
+=======
+- 25 props for architectural context: road vehicles `sedan-car`, `delivery-van`, `city-bus`, `pickup-truck`,
+  `mini-excavator` (Vehicle), `tower-crane`, `road-work-sign` (Construction), `soccer-goal`, `tennis-net` (Sports),
+  `subway-entrance`, `double-arm-lamp`, `pay-station`, `newsstand`, `fuel-canopy` (City), `public-art-sphere`,
+  `outdoor-stage`, `park-pavilion`, `bike-shelter` (Plaza), `bin-enclosure`, `siamese-connection`, `curb-ramp`,
+  `loading-dock` (Street), `small-wind-turbine`, `cage-ladder` (Roof), `glass-greenhouse` (Landscaping).
+>>>>>>> origin/main
 - 25 props for architectural site planning: `scale-figure`, `gazebo`, `market-stall`, `food-cart`,
   `advertising-column`, `wayfinding-signpost`, `statue-plinth`, `shade-sail`, `street-banner-pole`, `tree-guard`,
   `bike-repair-station`, `city-bicycle`, `portable-toilet`, `wheelchair-ramp` (Entourage, Plaza), `playground-slide`,
