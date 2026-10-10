@@ -1,0 +1,30 @@
+{
+  "budget": 10000,
+  "id": "cable-railing-panel",
+  "kind": "prop",
+  "materials": [
+    "metal.stainless",
+    "wood.oak"
+  ],
+  "name": "Cable railing panel",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.85,
+    1.05,
+    0.1
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Cable railing, 1.8 m: stainless posts, nine tensioned cables, swage ends, oak cap.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

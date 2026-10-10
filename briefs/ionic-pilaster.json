@@ -1,0 +1,30 @@
+{
+  "budget": 12000,
+  "id": "ionic-pilaster",
+  "kind": "prop",
+  "materials": [
+    "stone.cast-stone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Ionic pilaster",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.798,
+    3.0,
+    0.16
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Ionic pilaster, 3.0 m: Attic base, fluted shaft, volute capital with echinus and abacus.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

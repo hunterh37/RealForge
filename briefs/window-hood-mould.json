@@ -1,0 +1,30 @@
+{
+  "budget": 8000,
+  "id": "window-hood-mould",
+  "kind": "prop",
+  "materials": [
+    "stone.limestone",
+    "stone.sandstone"
+  ],
+  "name": "Window hood mould",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.22,
+    1.228,
+    0.138
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Window hood mould, 1.1 m: arched label moulding with returns, carved stops and crown keyblock.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

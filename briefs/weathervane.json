@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "weathervane",
+  "kind": "prop",
+  "materials": [
+    "glass.frosted",
+    "metal.copper",
+    "metal.copper-patina",
+    "metal.stainless",
+    "metal.wrought-iron"
+  ],
+  "name": "Weathervane",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.86,
+    0.905,
+    0.86
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Weathervane, 1.1 m: copper rooster and arrow on a spindle with N-E-S-W arms and glass ball.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

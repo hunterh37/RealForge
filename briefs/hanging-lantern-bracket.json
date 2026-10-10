@@ -1,0 +1,35 @@
+{
+  "budget": 9000,
+  "id": "hanging-lantern-bracket",
+  "kind": "prop",
+  "materials": [
+    "ceramic.bisque",
+    "emissive.warm",
+    "glass.clear",
+    "metal.brass-aged",
+    "metal.rust",
+    "metal.wrought-iron"
+  ],
+  "name": "Hanging lantern bracket",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.2,
+    0.757,
+    0.79
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Scroll-arm bracket with hanging 0.45 m four-pane glass lantern, brass cap and candle flame.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "light",
+    "metal",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

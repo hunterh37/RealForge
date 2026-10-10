@@ -1,0 +1,32 @@
+{
+  "budget": 9000,
+  "id": "oculus-window",
+  "kind": "prop",
+  "materials": [
+    "glass.tinted",
+    "metal.wrought-iron",
+    "stone.limestone"
+  ],
+  "name": "Oculus window",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.176,
+    1.176,
+    0.105
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Round oculus window, 0.9 m: stone ring with four keystones, iron wheel glazing bars.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "stone",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

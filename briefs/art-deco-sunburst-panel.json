@@ -1,0 +1,32 @@
+{
+  "budget": 12000,
+  "id": "art-deco-sunburst-panel",
+  "kind": "prop",
+  "materials": [
+    "metal.brass",
+    "metal.brass-aged",
+    "stone.marble-dark"
+  ],
+  "name": "Art deco sunburst panel",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.0,
+    0.6,
+    0.075
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Art Deco sunburst panel 1.0 x 0.6 m: stepped frame, 17 brass rays, concentric arcs, sun disc.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "metal",
+    "decor"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

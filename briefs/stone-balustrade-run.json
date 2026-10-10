@@ -1,0 +1,30 @@
+{
+  "budget": 15000,
+  "id": "stone-balustrade-run",
+  "kind": "prop",
+  "materials": [
+    "stone.limestone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Stone balustrade run",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.48,
+    1.467,
+    0.42
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Stone balustrade, 2.4 m: 15 turned balusters, moulded rails, end piers with urns.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

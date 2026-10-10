@@ -1,0 +1,32 @@
+{
+  "budget": 11000,
+  "id": "shutter-hold-back-set",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron",
+    "metal.rust",
+    "wood.painted-exterior"
+  ],
+  "name": "Shutter hold back set",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.609,
+    1.2,
+    0.161
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Open louvered shutter 0.4 x 1.2 m with strap hinges, pintles, S-shaped shutter dog and latch.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "wood",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,32 @@
+{
+  "budget": 12000,
+  "id": "gable-dormer",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "metal.galvanized-aged",
+    "wood.barn-white"
+  ],
+  "name": "Gable dormer",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.407,
+    1.92,
+    1.22
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Gable dormer, 1.2 m: painted cheeks, double-hung window, bargeboards, finial, seam roof.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "wood",
+    "window"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
