@@ -296,10 +296,11 @@ public final class RealMaterialCache {
         let perf = RealPerformance.active
         o.cutout = s.mode == .cutout; o.aoMap = t.ao != nil; o.metallicMap = t.metallic != nil
         o.wind = s.wind > 0 && perf.wind; o.translucency = s.translucency > 0 && perf.translucency; o.antiTile = s.antiTile && perf.antiTile
-        o.topLayer = s.topAmount > 0 && perf.snowLayer; o.fog = RealAtmosphere.fogDensity > 0 && perf.fog; o.triplanar = s.triplanar
+        o.topLayer = s.topAmount > 0 && perf.snowLayer; o.fog = perf.fog; o.triplanar = s.triplanar
         o.instanceJitter = jitter != .zero && perf.instanceVariation
         o.transparent = s.mode == .transparent
         o.flowNormals = s.mode == .transparent && s.flow > 0 && perf.waterFlow
+        o.wet = !o.transparent && !o.cook && s.mode != .emissive
         let cookSpec = cook ? s.cooked.map { spec($0) } : nil
         let tc = try cookSpec.flatMap { try textures($0) }
         o.cook = tc != nil

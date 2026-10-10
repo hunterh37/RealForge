@@ -115,6 +115,9 @@ public struct RealShaderOptions: Hashable, Sendable {
     /// `Doneness`, then Maillard browning and char per object-space face direction (`BrownPos`,
     /// `BrownNeg`: 0 raw, 1 deep golden brown, 2 burnt), plus an `Oil` sheen.
     public var cook = false
+    /// Rain wetness (`Wetness` 0...1): rough surfaces darken, every surface turns glossy, upward faces
+    /// wetter than sides.
+    public var wet = false
     public init() {}
 }
 
@@ -298,6 +301,18 @@ public enum RealShaderGraph {
             rough = g.node("ND_mix_float", [("float", "fg", "0.92"), ("float", "bg", rough), ("float", "mix", charMask)], out: "float")
             rough = g.node("ND_mix_float", [("float", "fg", "0.12"), ("float", "bg", rough), ("float", "mix", g.mul(g.param("Oil"), "0.85"))], out: "float")
         }
+        if o.wet {
+            let wn = g.node("ND_normal_vector3", [("string", "space", "\"world\"")], out: "float3")
+            let wy = g.separate("ND_separate3_vector3", "float3", wn, ["outx", "outy", "outz"])[1]
+            let up = g.node("ND_smoothstep_float", [("float", "in", wy), ("float", "low", "0.3"), ("float", "high", "0.9")], out: "float")
+            let w = g.param("Wetness")
+            // Water films collect on upward faces; vertical faces stay damp.
+            let sheen = g.mul(w, g.add("0.55", g.mul(up, "0.45")))
+            // Porous (rough) surfaces darken when wet; polished ones do not.
+            let dark = g.add("1", g.mul(g.mul(w, rt[0]), "-0.42"))
+            tint = g.node("ND_multiply_color3FA", [("color3f", "in1", tint), ("float", "in2", dark)], out: "color3f")
+            rough = g.node("ND_mix_float", [("float", "fg", "0.06"), ("float", "bg", rough), ("float", "mix", g.mul(sheen, "0.92"))], out: "float")
+        }
         var surfaceInputs: [(String, String, String)] = [
             ("color3f", "baseColor", tint), ("float3", "normal", normal), ("float", "roughness", rough),
             ("float", "specular", g.param("Specular")),
@@ -415,6 +430,7 @@ public enum RealShaderGraph {
                 color3f inputs:TopColor = (0.05, 0.09, 0.02)
                 float inputs:TopAmount = 1
                 float inputs:TopLow = 0.55
+                float inputs:Wetness = 0
                 float inputs:Doneness = 0
                 float3 inputs:BrownPos = (0, 0, 0)
                 float3 inputs:BrownNeg = (0, 0, 0)

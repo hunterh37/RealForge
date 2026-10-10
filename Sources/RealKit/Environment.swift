@@ -27,6 +27,11 @@ public struct SunSky: Sendable {
     /// Aerial perspective: extinction per meter and haze brightness relative to the horizon sky.
     public var fogDensity: Float = 0.0035
     public var fogBrightness: Float = 1
+    /// Cloud cover: 0 clear, 1 solid overcast. Greys the sky and IBL and removes the sun disk; the
+    /// directional sun is scaled down with it (direct light under heavy overcast is about 6% of clear).
+    public var overcast: Float = 0
+    /// Selects the cloud pattern.
+    public var cloudSeed: Float = 0
     public init() {}
     public init(elevation: Float, azimuth: Float = 135, turbidity: Float = 2.2) { self.elevation = elevation; self.azimuth = azimuth; self.turbidity = turbidity }
 
@@ -155,6 +160,7 @@ public final class RealEnvironment {
     public let params: SunSky
     /// Exposure (EV) of the active probe (sky or interior).
     public let iblExposure: Float
+    private var sunBase: Float = 0
 
     /// - Parameters:
     ///   - skybox: add a visible sky dome (full immersion). Leave off in mixed reality.
@@ -165,7 +171,7 @@ public final class RealEnvironment {
         params = p
         root.name = "RealEnvironment"
         // IBL: sky without the sun disk (the directional light carries the sun; avoids double counting).
-        let iblTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: p.skyResolution / 2, drawSun: false))
+        let iblTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: p.skyResolution / 2, drawSun: false, overcast: p.overcast, cloudSeed: p.cloudSeed))
         guard let iblImage = synth.cgImage(iblTex) else { throw TextureSynth.SynthError.encode }
         // Horizon haze color drives aerial perspective in every ShaderGraph material.
         do {
@@ -190,8 +196,9 @@ public final class RealEnvironment {
 
         sun.name = "Sun"
         var light = DirectionalLightComponent()
-        light.intensity = p.sunLux * (0.35 + 0.65 * min(1, max(0, sin(radians(p.elevation)) * 2.5)))
-        let warm = max(0, 1 - p.elevation / 25)
+        light.intensity = p.sunLux * (0.35 + 0.65 * min(1, max(0, sin(radians(p.elevation)) * 2.5))) * (1 - 0.94 * pow(min(1, max(0, p.overcast)), 1.3))
+        sunBase = light.intensity
+        let warm = max(0, 1 - p.elevation / 25) * (1 - p.overcast)
         light.color = .init(SIMD3(1, 0.93 - 0.2 * warm, 0.85 - 0.4 * warm))
         sun.components.set(light)
         var shadow = DirectionalLightComponent.Shadow()
@@ -199,7 +206,7 @@ public final class RealEnvironment {
         shadow.depthBias = 1.5
         let perf = RealPerformance.active
         shadow.shadowProjection = .automatic(maximumDistance: max(2, p.shadowDistance * perf.shadowDistanceScale * RealPerformance.adaptiveScale))
-        if perf.shadows { sun.components.set(shadow) }
+        if perf.shadows, p.overcast < 0.85 { sun.components.set(shadow) }
         sun.components.set(RealSunComponent(baseShadowDistance: p.shadowDistance))
         sun.look(at: .zero, from: p.sunDirection * 50, relativeTo: nil)
         RealWind.sunTravel = -p.sunDirection
@@ -207,7 +214,7 @@ public final class RealEnvironment {
 
         if skybox {
             let skyWidth = min(8192, max(512, Int(Float(p.skyResolution * 2) * RealPerformance.active.skyboxScale)))
-            let skyTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: skyWidth, drawSun: true, exposure: 1.25))
+            let skyTex = try synth.skyTexture(SkyParams(sunDir: p.sunDirection, turbidity: p.turbidity, width: skyWidth, drawSun: true, exposure: 1.25, overcast: p.overcast, cloudSeed: p.cloudSeed))
             if let img = synth.cgImage(skyTex) {
                 let tr = try TextureResource(image: img, withName: "realityhd.skybox", options: .init(semantic: .hdrColor, mipmapsMode: .none))
                 var m = UnlitMaterial()
@@ -219,6 +226,16 @@ public final class RealEnvironment {
                 root.addChild(e)
                 self.skybox = e
             }
+        }
+    }
+
+    /// Lightning: raises the IBL by `k` x 3.2 EV and the sun light with it. Pass 0 to restore.
+    public func flash(_ k: Float) {
+        let k = min(1, max(0, k))
+        ibl.components.set(ImageBasedLightComponent(source: .single(resource), intensityExponent: iblExposure + 3.2 * k))
+        if var l = sun.components[DirectionalLightComponent.self] {
+            l.intensity = sunBase + 60000 * k
+            sun.components.set(l)
         }
     }
 

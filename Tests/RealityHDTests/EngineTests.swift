@@ -26,4 +26,13 @@ import RealKit
         #expect(u.contains("int inputs:index = 2"), "splat weight comes from uv2")
         #expect(u.contains("ND_transformpoint_vector3"), "jitter hashes the instance origin")
     }
+
+    @Test func wetFlagDrivesRoughnessAndAlbedoFromWetness() {
+        var o = RealShaderOptions()
+        o.wet = true
+        let wet = RealShaderGraph.usda(o)
+        #expect(wet.contains("inputs:Wetness.connect") || wet.contains("</Root/RealSurface.inputs:Wetness>"), "wet graph reads the Wetness input")
+        o.wet = false
+        #expect(!RealShaderGraph.usda(o).contains("</Root/RealSurface.inputs:Wetness>"), "dry graph never reads it")
+    }
 }
