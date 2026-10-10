@@ -175,7 +175,7 @@ public enum BirdRigBuilder {
             folded[foldPartName(s)] = 1
             for w in spreadParts { folded[BirdJoint.wing(s, w).name] = 1 }
         }
-        rig.states = [RigState("perched", BirdPoses.perched(p).named, options: folded), RigState("flight", BirdPoses.glide(p).named)]
+        rig.states = [RigState("perched", BirdPoses.perched(p).named, options: folded), RigState("flight", BirdPoses.glide(p).named, options: [BirdJoint.tailFanL.name: 1, BirdJoint.tailFanR.name: 1])]
         rig.defaultState = "perched"
         let feet = Side.allCases.map { f.foot($0) }
         let roots = Side.allCases.map { f.shoulder($0) }
