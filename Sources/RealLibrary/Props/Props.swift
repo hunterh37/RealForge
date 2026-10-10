@@ -349,6 +349,8 @@ public enum Props {
         StepLadder.self,
         GalvanizedBucket.self,
         GardenKneeler.self,
+        Anthill.self, LiftableStone.self, BarkSlab.self, BugNet.self, WristLauncher.self, CaptureNetPod.self,
+        FieldJournal.self, SpecimenJar.self, Milkweed.self, FlowerBush.self,
         // realityhd:prop
     ]
 }

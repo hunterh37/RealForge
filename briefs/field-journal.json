@@ -1,0 +1,43 @@
+{
+  "budget": 7000,
+  "id": "field-journal",
+  "kind": "prop",
+  "materials": [
+    "leather.oxblood-worn",
+    "paper.pages",
+    "paper.sheet",
+    "metal.brass-aged",
+    "fabric.webbing"
+  ],
+  "name": "Naturalist field journal",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "leather back cover",
+    "leather front cover",
+    "rounded spine",
+    "ivory page block",
+    "brass corners",
+    "elastic band",
+    "ribbon marker"
+  ],
+  "references": [],
+  "size": [
+    0.156,
+    0.039,
+    0.248
+  ],
+  "style": "worn leather naturalist notebook",
+  "summary": "Naturalist field journal, 15 x 21 cm: worn leather covers, ivory page block, brass corners, band; articulated cover.",
+  "tags": [
+    "prop",
+    "book",
+    "leather",
+    "paper",
+    "antique",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

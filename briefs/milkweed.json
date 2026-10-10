@@ -1,0 +1,36 @@
+{
+  "budget": 12000,
+  "id": "milkweed",
+  "kind": "prop",
+  "materials": [
+    "plant.stem",
+    "leaf.milkweed",
+    "flower.azalea"
+  ],
+  "name": "Common milkweed",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "stout stem",
+    "opposite oval leaves",
+    "flower umbels",
+    "seed pod"
+  ],
+  "references": [],
+  "size": [
+    0.39,
+    0.9,
+    0.33
+  ],
+  "style": "Asclepias syriaca in bloom",
+  "summary": "Common milkweed, 0.9 m: stout stem, opposite broad oval leaves, dusky-pink flower umbels, warty seed pod.",
+  "tags": [
+    "prop",
+    "plant",
+    "flower",
+    "garden",
+    "outdoor"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

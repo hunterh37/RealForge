@@ -1,0 +1,36 @@
+{
+  "budget": 6000,
+  "id": "liftable-stone",
+  "kind": "prop",
+  "materials": [
+    "rock.granite-bare",
+    "rock.river-wet",
+    "ground.mud"
+  ],
+  "name": "Liftable field stone",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "flat granite slab",
+    "rounded worn edges",
+    "damp dark underside",
+    "clinging soil clumps"
+  ],
+  "references": [],
+  "size": [
+    0.366,
+    0.081,
+    0.269
+  ],
+  "style": "weathered field stone, damp underside",
+  "summary": "Flat field stone, 35 cm: weathered granite top, damp dark underside with clinging soil; handheld, liftable.",
+  "tags": [
+    "prop",
+    "rock",
+    "stone",
+    "outdoor",
+    "handheld"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

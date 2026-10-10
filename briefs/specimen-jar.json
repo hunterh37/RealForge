@@ -1,0 +1,39 @@
+{
+  "budget": 5000,
+  "id": "specimen-jar",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "leather.split-tan",
+    "paper.sheet",
+    "sack.jute"
+  ],
+  "name": "Glass specimen jar",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "thick glass body",
+    "rolled lip",
+    "punted base",
+    "cork stopper",
+    "paper label band",
+    "twine"
+  ],
+  "references": [],
+  "size": [
+    0.085,
+    0.13,
+    0.085
+  ],
+  "style": "antique specimen jar with cork",
+  "summary": "Glass specimen jar, 13 cm: thick clear glass, rolled lip, tapered cork stopper, twine-tied paper label; handheld.",
+  "tags": [
+    "prop",
+    "container",
+    "glass",
+    "antique",
+    "handheld"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

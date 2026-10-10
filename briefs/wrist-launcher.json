@@ -1,0 +1,42 @@
+{
+  "budget": 9000,
+  "id": "wrist-launcher",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "leather.tan",
+    "glass.gauge-lens",
+    "paper.sheet"
+  ],
+  "name": "Wrist net launcher",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "brass watch case",
+    "domed crystal",
+    "ivory dial with ticks and hands",
+    "knurled barrel",
+    "side push button",
+    "stitched leather strap",
+    "buckle"
+  ],
+  "references": [],
+  "size": [
+    0.044,
+    0.088,
+    0.066
+  ],
+  "style": "vintage brass field gadget on a tan leather strap",
+  "summary": "Wrist net launcher: brass watch case, dial, knurled barrel (muzzle), push button (button), leather strap; articulated.",
+  "tags": [
+    "prop",
+    "tool",
+    "metal",
+    "leather",
+    "antique",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

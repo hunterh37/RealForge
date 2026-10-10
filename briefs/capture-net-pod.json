@@ -1,0 +1,39 @@
+{
+  "budget": 9000,
+  "id": "capture-net-pod",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "vinyl.seat-grey",
+    "fabric.canvas",
+    "insect.netting"
+  ],
+  "name": "Capture net pod",
+  "notes": "BugHunt contract prop",
+  "parts": [
+    "folded net ball",
+    "brass meridian ribs",
+    "end caps",
+    "leather grip band",
+    "deployed net dome",
+    "weighted brass rim beads"
+  ],
+  "references": [],
+  "size": [
+    0.062,
+    0.054,
+    0.062
+  ],
+  "style": "brass and leather throwable net ball",
+  "summary": "Capture net pod: 5 cm brass-banded ball (packed) that opens to a 45 cm weighted net dome (deploy); articulated net.",
+  "tags": [
+    "prop",
+    "tool",
+    "metal",
+    "handheld",
+    "articulated"
+  ],
+  "theme": "BugHunt",
+  "threshold": 0.85,
+  "tolerance": 0.15
+}

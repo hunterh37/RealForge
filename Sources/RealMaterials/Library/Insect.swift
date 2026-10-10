@@ -85,6 +85,18 @@ public extension MaterialLibrary {
             MaterialSpec(key: "insect.lantern-off", program: nil).with {
                 $0.baseColor = V3(0.82, 0.78, 0.5); $0.roughness = 0.5
             },
+            MaterialSpec(key: "insect.netting", program: .chainLink).with {
+                $0.colorA = linear(0xE6E2D4); $0.colorB = linear(0xA8A290)
+                $0.knobs = V4(0, 0.07, 0.6, 0); $0.seed = 1160; $0.tileSize = 0.012; $0.resolution = 512
+                $0.normalStrength = 1; $0.mode = .cutout; $0.twoSided = true; $0.roughness = 0.75
+            },
+            wing("leaf.milkweed", 8, .katydidTegmen, a: 0x5E7E48, b: 0xC8C8A0, c: 0x8A7A4A, rough: 0.7, seed: 1171).with {
+                $0.translucency = 0.45; $0.specular = 0.3; $0.wind = 0.03
+            },
+            MaterialSpec(key: "soil.ant-mound", program: .pottingSoil).with {
+                $0.colorA = linear(0x4A3826); $0.colorB = linear(0x6A5034); $0.colorC = linear(0xA8946E)
+                $0.knobs = V4(0.25, 0.2, 0.25, 220); $0.seed = 1170; $0.tileSize = 0.2; $0.normalStrength = 3; $0.roughness = 0.92
+            },
             MaterialSpec(key: "insect.caterpillar", program: .caterpillarBands).with {
                 $0.colorA = linear(0xE8C42A); $0.colorB = linear(0x161412); $0.colorC = linear(0xEEEBE0)
                 $0.seed = 1150; $0.tileSize = 1; $0.resolution = 512; $0.normalStrength = 0.8; $0.roughness = 0.45; $0.clearcoat = 0.3
