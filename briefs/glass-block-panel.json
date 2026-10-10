@@ -1,0 +1,32 @@
+{
+  "budget": 7500,
+  "id": "glass-block-panel",
+  "kind": "prop",
+  "materials": [
+    "concrete.smooth",
+    "glass.clear",
+    "glass.frosted",
+    "metal.powder-white"
+  ],
+  "name": "Glass block panel",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.25,
+    1.235,
+    0.087
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Glass block panel, 1.2 m square: 6 x 6 frosted blocks in mortar joints inside an aluminum channel.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

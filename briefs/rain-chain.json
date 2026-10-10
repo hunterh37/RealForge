@@ -1,0 +1,34 @@
+{
+  "budget": 12000,
+  "id": "rain-chain",
+  "kind": "prop",
+  "materials": [
+    "ceramic.stoneware",
+    "metal.copper",
+    "metal.copper-patina",
+    "metal.rust",
+    "metal.steel",
+    "stone.sandstone"
+  ],
+  "name": "Rain chain",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.54,
+    2.44,
+    0.54
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Copper rain chain, 2.4 m: 21 cup links on a wire spine from an outlet bracket into a pebble basin.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal",
+    "garden"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

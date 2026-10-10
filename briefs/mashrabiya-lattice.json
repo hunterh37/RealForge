@@ -1,0 +1,29 @@
+{
+  "budget": 15000,
+  "id": "mashrabiya-lattice",
+  "kind": "prop",
+  "materials": [
+    "wood.walnut"
+  ],
+  "name": "Mashrabiya lattice",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.26,
+    1.5,
+    0.1
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Mashrabiya lattice screen, 1.2 x 1.5 m: walnut frame, turned spindle grid, octagonal star rings, cornice cap.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "wood",
+    "ornament"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

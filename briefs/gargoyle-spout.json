@@ -1,0 +1,31 @@
+{
+  "budget": 7000,
+  "id": "gargoyle-spout",
+  "kind": "prop",
+  "materials": [
+    "metal.rust",
+    "stone.limestone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Gargoyle spout",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.4,
+    0.523,
+    0.688
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Gothic gargoyle spout, 0.65 m projection: carved limestone grotesque with horns, brow, open mouth and spine.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "ornament",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

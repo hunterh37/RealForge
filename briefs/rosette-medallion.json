@@ -1,0 +1,31 @@
+{
+  "budget": 9500,
+  "id": "rosette-medallion",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "stone.cast-stone"
+  ],
+  "name": "Rosette medallion",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.5,
+    0.5,
+    0.148
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Rosette medallion, 0.5 m: stone disc with beaded rim, two rings of 16 petals, fluted dish and domed boss.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "ornament",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,33 @@
+{
+  "budget": 3500,
+  "id": "fanlight-transom",
+  "kind": "prop",
+  "materials": [
+    "glass.pane",
+    "stone.cast-stone",
+    "wood.painted-exterior"
+  ],
+  "name": "Fanlight transom",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.2,
+    0.685,
+    0.092
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Semicircular fanlight, 1.2 m wide: painted frame, 11 radiating glazing bars, astragal rings, keystone.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "door",
+    "wood",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

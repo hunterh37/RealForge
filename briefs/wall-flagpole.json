@@ -1,0 +1,33 @@
+{
+  "budget": 7500,
+  "id": "wall-flagpole",
+  "kind": "prop",
+  "materials": [
+    "fabric.webbing",
+    "metal.aluminum-brushed",
+    "metal.brass-aged",
+    "metal.cast-iron"
+  ],
+  "name": "Wall flagpole",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.871,
+    1.436,
+    1.496
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Wall flagpole, 1.9 m at 45 degrees: cast bracket, aluminum pole, gilt ball, halyard cleat, rippled striped flag.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "sign",
+    "metal",
+    "fabric"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

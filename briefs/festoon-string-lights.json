@@ -1,0 +1,32 @@
+{
+  "budget": 13500,
+  "id": "festoon-string-lights",
+  "kind": "prop",
+  "materials": [
+    "emissive.warm",
+    "metal.brass",
+    "metal.steel",
+    "plastic.black"
+  ],
+  "name": "Festoon string lights",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    3.031,
+    0.885,
+    0.119
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Festoon string lights, 3 m span: three drooping strands on eye hooks, 14 warm bulbs each, sockets, plug tail.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "light",
+    "electrical"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

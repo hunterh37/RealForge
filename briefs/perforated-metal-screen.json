@@ -1,0 +1,29 @@
+{
+  "budget": 14500,
+  "id": "perforated-metal-screen",
+  "kind": "prop",
+  "materials": [
+    "metal.anodized",
+    "metal.powder-white"
+  ],
+  "name": "Perforated metal screen",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.9,
+    1.8,
+    0.098
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Perforated metal screen, 0.9 x 1.8 m: gradient-hole panel, folded edges, four standoff brackets.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

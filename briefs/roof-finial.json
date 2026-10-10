@@ -1,0 +1,32 @@
+{
+  "budget": 4500,
+  "id": "roof-finial",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "metal.copper-patina",
+    "metal.galvanized"
+  ],
+  "name": "Roof finial",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.26,
+    0.95,
+    0.26
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Roof finial, 0.95 m: lead-clad plinth, turned baluster, brass ball, three-petal fleur-de-lis spike.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "ornament",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

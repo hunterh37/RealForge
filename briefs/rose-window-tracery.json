@@ -1,0 +1,32 @@
+{
+  "budget": 10000,
+  "id": "rose-window-tracery",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron",
+    "stone.cast-stone"
+  ],
+  "name": "Rose window tracery",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.72,
+    1.72,
+    0.135
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Gothic rose window, 1.7 m: cast-stone frame, 12 radial mullions, stained-glass petal lights, central boss.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "ornament",
+    "stone",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

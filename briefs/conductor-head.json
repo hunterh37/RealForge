@@ -1,0 +1,31 @@
+{
+  "budget": 8000,
+  "id": "conductor-head",
+  "kind": "prop",
+  "materials": [
+    "metal.copper",
+    "metal.copper-patina",
+    "metal.rust"
+  ],
+  "name": "Conductor head",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.44,
+    0.945,
+    0.34
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Copper conductor head, 0.8 m: riveted box with flared funnel, scalloped face, date plate, downpipe, clip.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal",
+    "ornament"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

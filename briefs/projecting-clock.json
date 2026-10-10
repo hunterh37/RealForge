@@ -1,0 +1,32 @@
+{
+  "budget": 7500,
+  "id": "projecting-clock",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "plastic.black",
+    "plastic.white"
+  ],
+  "name": "Projecting clock",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.136,
+    0.872,
+    0.941
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Projecting bracket clock, 0.45 m dial: double-faced, Roman numerals, gilt hands, cast scroll bracket, finial.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "sign",
+    "metal",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,30 @@
+{
+  "budget": 8000,
+  "id": "swag-garland-relief",
+  "kind": "prop",
+  "materials": [
+    "stone.cast-stone"
+  ],
+  "name": "Swag garland relief",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.2,
+    0.5,
+    0.116
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Neoclassical swag frieze, 2.1 m: stone band, three fruit-and-leaf swags, rosettes, ribbons, tassels.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "ornament",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,30 @@
+{
+  "budget": 4000,
+  "id": "sunshade-louver-bank",
+  "kind": "prop",
+  "materials": [
+    "metal.aluminum-brushed",
+    "metal.anodized",
+    "metal.steel"
+  ],
+  "name": "Sunshade louver bank",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.98,
+    1.26,
+    0.57
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Sunshade louver bank, 2.0 x 1.2 m: eight tilted aerofoil aluminum blades on two cantilever outriggers.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
