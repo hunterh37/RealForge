@@ -51,7 +51,7 @@ struct BirdFrame {
     /// Mirror an axis (a pseudovector) for the left side.
     func axis(_ v: V3, _ s: Side) -> V3 { s == .right ? v : V3(v.x, -v.y, -v.z) }
 
-    var bodyProfile: Profile { Profile([V2(0, 0.30), V2(0.12, 0.55), V2(0.3, 0.86), V2(0.5, 1.0), V2(0.7, 1.0), V2(0.88, 0.90), V2(1, 0.74)]) }
+    var bodyProfile: Profile { Profile([V2(0, 0.36), V2(0.14, 0.66), V2(0.36, 0.93), V2(0.6, 1.0), V2(0.8, 0.95), V2(0.93, 0.82), V2(1, 0.66)]) }
 
     /// Front-center of the body loft.
     var bodyFront: V3 { C + A * (a.bodyLength / 2) }
@@ -69,7 +69,7 @@ struct BirdFrame {
         { s in
             let t: Float = 0.66
             let c = headCenterAt(t)
-            return V3(s.sign * (headHalfWidth(t) * 0.97 - 0.35 * a.eyeRadius), c.y + 0.06 * a.headHeight, c.z)
+            return V3(s.sign * (headHalfWidth(t) * 0.97 - 0.62 * a.eyeRadius), c.y + 0.06 * a.headHeight, c.z)
         }
     }
 
@@ -82,18 +82,22 @@ struct BirdFrame {
 
     var legX: Float { 0.5 * a.bodyWidth * 0.5 }
     func foot(_ s: Side) -> V3 { V3(s.sign * legX, 0, -0.02) }
-    func ankle(_ s: Side) -> V3 { foot(s) + V3(0, 0.94 * a.tarsus, 0.34 * a.tarsus) }
-    func hip(_ s: Side) -> V3 { ankle(s) + V3(0, 0.63 * a.tarsus, -0.2 * a.tarsus) }
+    func ankle(_ s: Side) -> V3 { foot(s) + V3(0, 0.80 * a.tarsus, 0.30 * a.tarsus) }
+    func hip(_ s: Side) -> V3 { ankle(s) + V3(0, 0.45 * a.tarsus, -0.3 * a.tarsus) }
 }
 
 public enum BirdRigBuilder {
+    public static let tailFanThreshold: Float = 3
+    /// Wing parts that carry spread-feather geometry; hidden (option 1, empty) while folded.
+    public static let spreadParts: [BirdJoint.WingJoint] = [.flap, .twist, .elbow, .secFold, .handTwist, .primA, .primB, .primC]
+
     public static func build(_ p: BirdProfile, seed: UInt64 = 1) -> BirdRig {
         let f = BirdFrame(p)
         var rng = SeededRNG(seed: seed &+ UInt64(abs(p.species.rawValue.hashValue) & 0xFFFF))
         var rig = Rig(name: p.species.rawValue, lods: 1, switchDistances: [])
         var specs = [BirdJointSpec?](repeating: nil, count: BirdJoint.count)
 
-        func declare(_ j: BirdJoint, parent: BirdJoint?, pivot: V3, axis: V3, mimic: (BirdJoint, Float)? = nil) {
+        func declare(_ j: BirdJoint, parent: BirdJoint?, pivot: V3, axis: V3, mimic: (BirdJoint, Float)? = nil, options: Int = 1) {
             let ax = simd_length(axis) > 0 ? simd_normalize(axis) : BirdFrame.X
             let joint: Joint
             if let m = mimic {
@@ -101,7 +105,7 @@ public enum BirdRigBuilder {
             } else {
                 joint = Joint(.revolute, axis: ax, range: j.range, duration: 0.4)
             }
-            rig.part(j.name, parent: parent?.name, pivot: pivot, joint: joint)
+            rig.part(j.name, parent: parent?.name, pivot: pivot, joint: joint, options: options)
             specs[j.index] = BirdJointSpec(name: j.name, parent: parent?.index, pivot: pivot, axis: ax, range: j.range,
                                            mimic: mimic.map { ($0.0.index, $0.1) })
         }
@@ -121,8 +125,8 @@ public enum BirdRigBuilder {
         // Tail.
         declare(.tailPitch, parent: nil, pivot: f.tailPivot, axis: BirdFrame.X)
         let tailBase = f.tailPivot
-        declare(.tailFanL, parent: .tailPitch, pivot: tailBase - V3(0.002, 0, 0), axis: f.axis(f.U, .left))
-        declare(.tailFanR, parent: .tailPitch, pivot: tailBase + V3(0.002, 0, 0), axis: f.U)
+        declare(.tailFanL, parent: .tailPitch, pivot: tailBase - V3(0.002, 0, 0), axis: f.axis(f.U, .left), options: 2)
+        declare(.tailFanR, parent: .tailPitch, pivot: tailBase + V3(0.002, 0, 0), axis: f.U, options: 2)
         // Legs.
         for s in Side.allCases {
             declare(.leg(s, .hip), parent: nil, pivot: f.hip(s), axis: BirdFrame.X)
@@ -136,28 +140,42 @@ public enum BirdRigBuilder {
             let hs = f.wingHalfSpan
             let E = S + V3(s.sign * 0.24 * hs, 0, 0), Wr = E + V3(s.sign * 0.30 * hs, 0, 0)
             let handTip = Wr + V3(s.sign * 0.22 * hs, 0, 0)
-            declare(.wing(s, .flap), parent: nil, pivot: S, axis: f.axis(f.Bk, s))
+            declare(.wing(s, .flap), parent: nil, pivot: S, axis: f.axis(f.Bk, s), options: 2)
             declare(.wing(s, .sweep), parent: .wing(s, .flap), pivot: S, axis: f.axis(f.U, s))
-            declare(.wing(s, .twist), parent: .wing(s, .sweep), pivot: S, axis: BirdFrame.X)
-            declare(.wing(s, .elbow), parent: .wing(s, .twist), pivot: E, axis: f.axis(f.U, s))
-            declare(.wing(s, .secFold), parent: .wing(s, .elbow), pivot: E, axis: f.axis(f.U, s))
+            declare(.wing(s, .twist), parent: .wing(s, .sweep), pivot: S, axis: BirdFrame.X, options: 2)
+            declare(.wing(s, .elbow), parent: .wing(s, .twist), pivot: E, axis: f.axis(f.U, s), options: 2)
+            declare(.wing(s, .secFold), parent: .wing(s, .elbow), pivot: E, axis: f.axis(f.U, s), options: 2)
             declare(.wing(s, .wrist), parent: .wing(s, .elbow), pivot: Wr, axis: f.axis(f.U, s))
-            declare(.wing(s, .handTwist), parent: .wing(s, .wrist), pivot: Wr, axis: BirdFrame.X)
+            declare(.wing(s, .handTwist), parent: .wing(s, .wrist), pivot: Wr, axis: BirdFrame.X, options: 2)
             // Master control for the primary fan; the three groups follow it.
             declare(.wing(s, .primFold), parent: nil, pivot: Wr, axis: f.axis(f.U, s))
             let mid = lerp(Wr, handTip, 0.5)
-            declare(.wing(s, .primA), parent: .wing(s, .handTwist), pivot: Wr, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.46))
-            declare(.wing(s, .primB), parent: .wing(s, .handTwist), pivot: mid, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.47))
-            declare(.wing(s, .primC), parent: .wing(s, .handTwist), pivot: handTip, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.28))
+            declare(.wing(s, .primA), parent: .wing(s, .handTwist), pivot: Wr, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.46), options: 2)
+            declare(.wing(s, .primB), parent: .wing(s, .handTwist), pivot: mid, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.47), options: 2)
+            declare(.wing(s, .primC), parent: .wing(s, .handTwist), pivot: handTip, axis: f.axis(f.U, s), mimic: (.wing(s, .primFold), 0.28), options: 2)
         }
         precondition(specs.allSatisfy { $0 != nil })
+        // Tail feather cards show once the fan opens; the closed tail is the solid core.
+        for j in [BirdJoint.tailFanL, .tailFanR] { rig.optionLinks.append(RigOptionLink(part: j.name, joint: j.name, thresholds: [tailFanThreshold])) }
+        // Folded wing shells, swapped in above `foldThreshold` of primFold.
+        for s in Side.allCases {
+            rig.part(foldPartName(s), parent: nil, pivot: f.shoulder(s), joint: Joint(.revolute, axis: BirdFrame.X, range: 0...1, duration: 0.2), options: 2)
+            let fold = BirdJoint.wing(s, .primFold).name
+            rig.optionLinks.append(RigOptionLink(part: foldPartName(s), joint: fold, thresholds: [foldThreshold]))
+            for w in spreadParts { rig.optionLinks.append(RigOptionLink(part: BirdJoint.wing(s, w).name, joint: fold, thresholds: [foldThreshold])) }
+        }
 
         addBody(&rig, f, &rng)
         addHead(&rig, f)
         addTail(&rig, f, &rng)
-        for s in Side.allCases { addLeg(&rig, f, s); addWing(&rig, f, s, &rng) }
+        for s in Side.allCases { addLeg(&rig, f, s); addWing(&rig, f, s, &rng); addFoldedWing(&rig, f, s, &rng) }
 
-        rig.states = [RigState("perched", BirdPoses.perched(p).named), RigState("flight", BirdPoses.glide(p).named)]
+        var folded: [String: Int] = [:]
+        for s in Side.allCases {
+            folded[foldPartName(s)] = 1
+            for w in spreadParts { folded[BirdJoint.wing(s, w).name] = 1 }
+        }
+        rig.states = [RigState("perched", BirdPoses.perched(p).named, options: folded), RigState("flight", BirdPoses.glide(p).named, options: [BirdJoint.tailFanL.name: 1, BirdJoint.tailFanR.name: 1])]
         rig.defaultState = "perched"
         let feet = Side.allCases.map { f.foot($0) }
         let roots = Side.allCases.map { f.shoulder($0) }

@@ -1,0 +1,33 @@
+{
+  "budget": 14000,
+  "id": "oriel-bay-window",
+  "kind": "prop",
+  "materials": [
+    "glass.clear",
+    "metal.copper-patina",
+    "stone.limestone",
+    "wood.barn-white"
+  ],
+  "name": "Oriel bay window",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.045,
+    2.045,
+    0.688
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Oriel bay window, 1.9 m: three facets, corbelled underside, casements, copper hip roof.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "wood",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

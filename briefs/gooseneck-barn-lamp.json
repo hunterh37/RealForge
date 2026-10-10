@@ -1,0 +1,32 @@
+{
+  "budget": 7000,
+  "id": "gooseneck-barn-lamp",
+  "kind": "prop",
+  "materials": [
+    "emissive.warm",
+    "metal.enamel",
+    "metal.painted:1F3D2B",
+    "metal.steel"
+  ],
+  "name": "Gooseneck barn lamp",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.376,
+    0.5,
+    0.808
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Gooseneck barn lamp: wall plate, curved arm, 0.36 m enamel dome shade, bulb and wire guard.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "light",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

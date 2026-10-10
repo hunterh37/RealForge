@@ -1,0 +1,33 @@
+{
+  "budget": 12000,
+  "id": "lancet-window-tracery",
+  "kind": "prop",
+  "materials": [
+    "glass.tinted",
+    "metal.wrought-iron",
+    "stone.limestone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Lancet window tracery",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.9,
+    2.028,
+    0.2
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Gothic lancet window, 0.7 x 1.9 m: moulded stone surround, mullion, quatrefoil, leaded glass.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "window",
+    "stone",
+    "glass"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

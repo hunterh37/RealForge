@@ -1,0 +1,33 @@
+{
+  "budget": 14000,
+  "id": "roof-cupola",
+  "kind": "prop",
+  "materials": [
+    "metal.brass",
+    "metal.copper-patina",
+    "metal.wrought-iron",
+    "wood.barn-white"
+  ],
+  "name": "Roof cupola",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.222,
+    2.0,
+    1.222
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Roof cupola, 0.9 m: louvered square belvedere, cornice, copper pyramid roof, ball finial.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "wood",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

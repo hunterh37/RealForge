@@ -1,0 +1,33 @@
+{
+  "budget": 8000,
+  "id": "stoop-steps",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "metal.wrought-iron",
+    "stone.brownstone",
+    "stone.limestone-sooted"
+  ],
+  "name": "Stoop steps",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.76,
+    2.265,
+    2.855
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Brownstone stoop, 1.4 m wide: six steps, cheek walls, iron railings with newels.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "stone",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

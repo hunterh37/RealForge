@@ -25,59 +25,44 @@ extension BirdRigBuilder {
                                 curl: rng.float(-0.0006...0.0006), shade: shade, flipSide: flip, material: f.mat(mat))
         }
 
-        // Arm: smooth tubes under the coverts.
-        let rh = max(0.0035, 0.045 * hs)
-        func arm(_ x0: Float, _ x1: Float, _ r0: Float, _ r1: Float, to j: BirdJoint.WingJoint) {
-            let tube = Loft.along([P(x0, 0.05 * c), P(x1, 0.05 * c)], up: f.U, count: 5, segments: 10, material: f.mat(.arm)) { t in
-                let r = lerp(r0, r1, t); return V3(r, r * 0.8, r * 0.8)
+        // Solid wing panels: an elliptical airfoil lofted along the span on each bone segment. The
+        // cards below only add the feathered trailing edge and the primary fingers.
+        func panel(_ x0: Float, _ x1: Float, chord: (Float) -> Float, lead: Float, to j: BirdJoint.WingJoint) {
+            var secs: [LoftSection] = []
+            let m = 8
+            for i in 0..<m {
+                let t = Float(i) / Float(m - 1)
+                let xs = lerp(x0, x1, t), ch = chord(t)
+                let th = max(0.0010, 0.11 * ch * (1 - 0.5 * t))
+                secs.append(LoftSection(center: P(xs, lead + 0.5 * ch, th * 0.25), right: f.Bk, up: nrm, halfWidth: 0.5 * ch,
+                                        halfDorsal: th * 0.6, halfVentral: th * 0.4, exponent: 2))
             }
-            rig.add(tube, to: part(j))
+            rig.add(Loft.build(secs, segments: 16, material: f.mat(.wingFold)), to: part(j))
         }
-        arm(0, xE, rh * 1.15, rh, to: .twist)
-        arm(xE, xW, rh, rh * 0.8, to: .elbow)
-        arm(xW, xW + Dh, rh * 0.8, rh * 0.5, to: .handTwist)
+        panel(-0.25 * H, xE + 0.04 * hs, chord: { t in c * (1.0 - 0.05 * t) }, lead: -0.04 * c, to: .twist)
+        panel(xE - 0.04 * hs, xW + 0.04 * hs, chord: { t in c * (0.97 - 0.27 * t) }, lead: -0.035 * c, to: .secFold)
+        panel(xW - 0.04 * hs, xW + Dh * 1.15, chord: { t in c * 0.72 * (1 - 0.55 * t * t) }, lead: -0.03 * c, to: .handTwist)
 
-        // Secondaries.
+        // Secondaries: trailing-edge cards from mid chord to just past the panel.
         let ns = 9
         for j in 0..<ns {
             let t = Float(j) / Float(ns - 1)
-            let al = 100 - 16 * t + rng.float(-1.5...1.5)
-            let zb0 = 0.08 * c
-            let len = (c * (0.97 - 0.08 * t) - zb0) / sin(radians(al))
+            let al = 96 - 10 * t + rng.float(-1...1)
+            let zb0 = 0.45 * c
+            let len = (c * (1.04 - 0.16 * t) - zb0) / sin(radians(al))
             let xs = xE + F * (Float(j) + 0.5) / Float(ns)
-            rig.add(card(P(xs, zb0), dir(al), len, F / Float(ns) * 2.2, .flight, droop: 0.05), to: part(.secFold))
+            rig.add(card(P(xs, zb0, -0.0004), dir(al), len, F / Float(ns) * 2.6, .flight, droop: 0.03), to: part(.secFold))
         }
-        // Tertials ride on the humerus.
-        for (k, al) in [Float(106), 101, 97].enumerated() {
-            let xs = H * (0.3 + 0.3 * Float(k))
-            rig.add(card(P(xs, 0.1 * c, layer(1)), dir(al), 0.82 * c, F / Float(ns) * 2.4, .flight, droop: 0.06), to: part(.flap))
-        }
-        // Covert rows: greater, median, lesser. Forearm rows fold with the secondaries.
-        let rows: [(z: Float, len: Float, layer: Int)] = [(0.30, 0.42, 1), (0.20, 0.32, 2), (0.10, 0.24, 3)]
-        for row in rows {
-            let nc = 10
-            for j in 0..<nc {
-                let t = Float(j) / Float(nc - 1)
-                let al = 98 - 14 * t + rng.float(-2...2)
-                let xs = xE + F * (Float(j) + 0.5) / Float(nc)
-                rig.add(card(P(xs, row.z * c, layer(row.layer)), dir(al), row.len * c, F / Float(nc) * 2.5, .covert, droop: 0.05), to: part(.secFold))
-            }
-            for j in 0..<4 {
-                let xs = H * (Float(j) + 0.5) / 4
-                rig.add(card(P(xs, row.z * c * 0.8, layer(row.layer)), dir(102), row.len * c, H / 4 * 2.5, .covert, droop: 0.05), to: part(.flap))
-            }
-        }
-        // Scapulars along the back.
-        for j in 0..<4 {
-            let xs = H * (0.1 + 0.22 * Float(j))
-            rig.add(card(P(xs, 0.0, layer(3)), dir(108 + 3 * Float(j)), 0.6 * c, H / 3, .covert, droop: 0.05), to: part(.flap))
+        for (k, al) in [Float(100), 97, 94].enumerated() {
+            let xs = H * (0.25 + 0.3 * Float(k))
+            rig.add(card(P(xs, 0.45 * c, -0.0004), dir(al), 0.62 * c, F / Float(ns) * 2.8, .flight, droop: 0.03), to: part(.flap))
         }
         // Primaries, fanned along the hand.
         let np = a.primaries
         for i in 0..<np {
             let tt = Float(i) / Float(np - 1)
             let xs = xW + Dh * 0.95 * tt
-            let zb0 = 0.10 * c
+            let zb0 = 0.18 * c
             let beta = tt * radians(78)
             let xTip = xW + (hs - xW) * sin(beta)
             let zTip = 0.98 * c * cos(beta)
@@ -85,9 +70,8 @@ extension BirdRigBuilder {
             let al = degrees(atan2(dz, dx))
             let len = (dx * dx + dz * dz).squareRoot() * (np == 9 && i == np - 1 ? 0.8 : 1)
             let group: BirdJoint.WingJoint = i < np / 3 ? .primA : (i < 2 * np / 3 ? .primB : .primC)
-            let w = max(0.0035, Dh / Float(np) * 2.1)
+            let w = max(0.0045, Dh / Float(np) * 3.0)
             rig.add(card(P(xs, zb0), dir(al), len, w, .flight, droop: 0.04), to: part(group))
-            rig.add(card(P(xs, 0.28 * c, layer(1)), dir(al), min(len * 0.4, 0.4 * c), w * 1.1, .covert, droop: 0.04), to: part(group))
         }
     }
 }

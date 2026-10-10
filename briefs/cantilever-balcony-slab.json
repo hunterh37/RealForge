@@ -1,0 +1,35 @@
+{
+  "budget": 12000,
+  "id": "cantilever-balcony-slab",
+  "kind": "prop",
+  "materials": [
+    "concrete.rough",
+    "concrete.smooth",
+    "emissive.warm",
+    "glass.clear",
+    "metal.stainless",
+    "plastic.black"
+  ],
+  "name": "Cantilever balcony slab",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.4,
+    1.26,
+    1.403
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Cantilever balcony, 2.4 m: concrete slab, thermal break, glass balustrade, downlights.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "concrete",
+    "glass",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

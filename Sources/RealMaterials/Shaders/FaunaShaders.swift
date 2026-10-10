@@ -104,17 +104,18 @@ S plumageBody(float2 uv, constant RFParams &P) {
     float d = min(uv.x, 1.0 - uv.x); float t = d * 2.0;
     FaRes r = fa_rows(t, uv.y, R, H, P.seed, 0.62, 0.55);
     float bnd = P.f.y;
-    float zn = (r.fid - 0.5) * 0.12 + 0.07 * fbm(float2(r.tc, r.vc), int2(4, 6), 3, P.seed + 3u);
-    bool under = (r.tc + zn) > bnd;
-    float3 base = under ? P.colorB.rgb : P.colorA.rgb;
-    // Accent patch: ventral side, down from the front, ragged per feather.
+        // Colour fields use the continuous surface coordinate with a soft edge; per-feather noise only
+    // feathers the boundary slightly so it never reads as a pixel grid.
+    float fz = 0.04 * fbm(float2(t, uv.y), int2(4, 6), 3, P.seed + 3u) + (r.fid - 0.5) * 0.03;
+    float uw = smoothstep(bnd - 0.07, bnd + 0.07, t + fz);
+    bool under = uw > 0.5;
+    float3 base = mix(P.colorA.rgb, P.colorB.rgb, uw);
     float patch = 0.0;
-    if (P.f.z > 0.001 && under) {
-        float pv = (1.0 - r.vc) / P.f.z;
-        float lat = smoothstep(bnd + 0.02, bnd + 0.30, r.tc + zn * 0.5);
-        float w = (1.0 - smoothstep(0.45, 1.0, pv)) * lat;
-        float thr = r.fid2 * 0.8 + 0.05;
-        patch = smoothstep(thr - 0.12, thr, w);
+    if (P.f.z > 0.001) {
+        float pv = (1.0 - uv.y) / P.f.z;
+        float lat = smoothstep(bnd - 0.02, bnd + 0.22, t + fz);
+        float w = (1.0 - smoothstep(0.55, 1.05, pv + fz * 2.0)) * lat;
+        patch = smoothstep(0.25, 0.75, w + (r.fid2 - 0.5) * 0.08);
         base = mix(base, P.colorC.rgb, patch);
     }
     // Spots / streaks on underparts.
@@ -143,23 +144,19 @@ S plumageHead(float2 uv, constant RFParams &P) {
     int H = max(5, int(round(R * 0.9)));
     float d = min(uv.x, 1.0 - uv.x); float t = d * 2.0;
     FaRes r = fa_rows(t, uv.y, R, H, P.seed + 17u, 0.62, 0.5);
-    float zn = (r.fid - 0.5) * 0.10 + 0.06 * fbm(float2(r.tc, r.vc), int2(4, 4), 3, P.seed + 9u);
-    bool side = (r.tc + zn) > P.f.y;
-    float3 base = side ? P.colorB.rgb : P.colorA.rgb;
-    float thr = r.fid2 * 0.8 + 0.05;
-    // Face mask: lores and eye region, from the crown boundary down to the throat, near the beak.
-    if (P.f.w > 0.001 && side) {
-        float m = smoothstep(1.0 - P.f.w - 0.05, 1.0 - P.f.w + 0.03, r.vc + (r.fid - 0.5) * 0.06);
-        float lat = smoothstep(P.f.y, P.f.y + 0.08, r.tc);
-        float w = m * lat;
-        base = mix(base, P.colorC.rgb, smoothstep(thr - 0.15, thr, w));
+    float fz = 0.035 * fbm(float2(t, uv.y), int2(4, 4), 3, P.seed + 9u) + (r.fid - 0.5) * 0.025;
+    float sw = smoothstep(P.f.y - 0.06, P.f.y + 0.06, t + fz);
+    float3 base = mix(P.colorA.rgb, P.colorB.rgb, sw);
+    float jit = (r.fid2 - 0.5) * 0.08;
+    if (P.f.w > 0.001) {
+        float m = smoothstep(1.0 - P.f.w - 0.06, 1.0 - P.f.w + 0.06, uv.y + fz);
+        float lat = smoothstep(P.f.y - 0.04, P.f.y + 0.10, t + fz);
+        base = mix(base, P.colorC.rgb, smoothstep(0.3, 0.7, m * lat + jit));
     }
-    // Chin / throat patch: ventral side, from the beak end back.
     if (P.f.z > 0.001) {
-        float pv = (r.vc - (1.0 - P.f.z)) / P.f.z;                 // 1 at beak, 0 at patch end
-        float lat = smoothstep(0.62, 0.82, r.tc + zn * 0.6);
-        float w = smoothstep(-0.05, 0.5, pv) * lat;
-        base = mix(base, P.colorC.rgb, smoothstep(thr - 0.15, thr, w));
+        float pv = (uv.y - (1.0 - P.f.z)) / P.f.z;
+        float lat = smoothstep(0.60, 0.84, t + fz);
+        base = mix(base, P.colorC.rgb, smoothstep(0.3, 0.7, smoothstep(-0.05, 0.5, pv) * lat + jit));
     }
     S s = fa_featherShade(r, base, 9.0, 1.0, P.seed, uv);
     s.metal = 0.0;

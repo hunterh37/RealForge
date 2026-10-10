@@ -1,0 +1,35 @@
+{
+  "budget": 6000,
+  "id": "wall-mailbox",
+  "kind": "prop",
+  "materials": [
+    "metal.brass",
+    "metal.brass-aged",
+    "metal.galvanized-aged",
+    "metal.painted:1E2A33",
+    "metal.screw-zinc",
+    "metal.stainless",
+    "plastic.black"
+  ],
+  "name": "Wall mailbox",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.404,
+    0.3,
+    0.155
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Wall mailbox, 0.32 m: steel box, rain hood, hinged slot flap, brass number plate, cylinder lock.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

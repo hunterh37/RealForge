@@ -1,0 +1,30 @@
+{
+  "budget": 12000,
+  "id": "corbel-table",
+  "kind": "prop",
+  "materials": [
+    "brick.red",
+    "stone.cast-stone"
+  ],
+  "name": "Corbel table",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.04,
+    0.41,
+    0.2
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Brick corbel table, 2.0 m: stepped corbels, small arches between, projecting drip course.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "brick"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
