@@ -1,0 +1,32 @@
+{
+  "budget": 15000,
+  "id": "wall-trellis-vine",
+  "kind": "prop",
+  "materials": [
+    "leaf.plain",
+    "wood.cedar-weathered",
+    "wood.deadwood"
+  ],
+  "name": "Wall trellis vine",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.2,
+    2.228,
+    0.149
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Cedar diamond trellis 1.2 x 2.2 m on standoffs, with a twining vine and leaf clusters.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "garden",
+    "wood",
+    "plant"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

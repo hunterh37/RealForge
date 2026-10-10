@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "wall-banner-pole",
+  "kind": "prop",
+  "materials": [
+    "fabric.canvas",
+    "fabric.wool",
+    "metal.brass-aged",
+    "metal.wrought-iron"
+  ],
+  "name": "Wall banner pole",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.974,
+    1.975,
+    0.167
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Wall banner, 0.7 x 1.8 m: canvas on a crossbar, wall brackets, brass finials, weight bar.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "sign",
+    "fabric",
+    "metal"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,34 @@
+{
+  "budget": 12000,
+  "id": "chimney-pot-cluster",
+  "kind": "prop",
+  "materials": [
+    "brick.common",
+    "ceramic.terracotta",
+    "metal.galvanized",
+    "metal.tinned-copper",
+    "stone.cast-stone"
+  ],
+  "name": "Chimney pot cluster",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.04,
+    1.953,
+    0.64
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Chimney stack, 0.9 m: brick shaft, corbelled cap, lead flashing, three terracotta pots.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "roof",
+    "brick",
+    "ceramic"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

@@ -1,0 +1,31 @@
+{
+  "budget": 6500,
+  "id": "fire-escape-landing",
+  "kind": "prop",
+  "materials": [
+    "metal.cast-iron-street",
+    "metal.grate-iron",
+    "metal.rust"
+  ],
+  "name": "Fire escape landing",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    3.828,
+    3.341,
+    1.175
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Fire escape landing, 1.6 m: grated platform, rail, swing ladder, 9-tread stair flight.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

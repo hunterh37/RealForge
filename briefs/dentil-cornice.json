@@ -1,0 +1,29 @@
+{
+  "budget": 12000,
+  "id": "dentil-cornice",
+  "kind": "prop",
+  "materials": [
+    "wood.barn-white"
+  ],
+  "name": "Dentil cornice",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    2.0,
+    0.34,
+    0.215
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Dentil cornice, 2.0 m: bed mould, 25 dentils, egg-and-dart band, corona and crown.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "wood"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

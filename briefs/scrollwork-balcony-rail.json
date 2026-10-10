@@ -1,0 +1,31 @@
+{
+  "budget": 14000,
+  "id": "scrollwork-balcony-rail",
+  "kind": "prop",
+  "materials": [
+    "metal.brass-aged",
+    "metal.wrought-iron"
+  ],
+  "name": "Scrollwork balcony rail",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    1.66,
+    1.155,
+    0.076
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Wrought-iron scroll rail, 1.6 m: pickets, paired C-scrolls, central medallion, leaf finials.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "metal",
+    "urban"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}

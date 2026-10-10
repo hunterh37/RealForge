@@ -1,0 +1,30 @@
+{
+  "budget": 7000,
+  "id": "quoin-stones",
+  "kind": "prop",
+  "materials": [
+    "brick.common",
+    "stone.limestone"
+  ],
+  "name": "Quoin stones",
+  "notes": "",
+  "parts": [],
+  "references": [],
+  "size": [
+    0.55,
+    2.0,
+    0.55
+  ],
+  "style": "architectural facade customizer, weathered",
+  "summary": "Corner quoins, 2.0 m: ten courses of alternating long and short dressed blocks on both faces.",
+  "tags": [
+    "prop",
+    "architecture",
+    "facade",
+    "trim",
+    "stone"
+  ],
+  "theme": "Facade",
+  "threshold": 0.85,
+  "tolerance": 0.12
+}
