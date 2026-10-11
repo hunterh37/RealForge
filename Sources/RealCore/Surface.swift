@@ -32,8 +32,10 @@ public struct Surface: Sendable {
         positions.append(p); normals.append(n); uvs.append(uv); extra.append(e); occlusion.append(1)
         return UInt32(positions.count - 1)
     }
-    public mutating func tri(_ a: UInt32, _ b: UInt32, _ c: UInt32) { indices += [a, b, c] }
-    public mutating func quad(_ a: UInt32, _ b: UInt32, _ c: UInt32, _ d: UInt32) { indices += [a, b, c, a, c, d] }
+    public mutating func tri(_ a: UInt32, _ b: UInt32, _ c: UInt32) { indices.append(a); indices.append(b); indices.append(c) }
+    public mutating func quad(_ a: UInt32, _ b: UInt32, _ c: UInt32, _ d: UInt32) {
+        indices.append(a); indices.append(b); indices.append(c); indices.append(a); indices.append(c); indices.append(d)
+    }
 
     public mutating func append(_ o: Surface, _ x: Xform = .identity) {
         let base = UInt32(positions.count)
@@ -75,7 +77,11 @@ public struct Surface: Sendable {
         }
         if weldSeams {
             var groups: [SIMD3<Int32>: [Int]] = [:]
-            for (i, p) in positions.enumerated() { groups[SIMD3<Int32>((p * 1e4).rounded(.toNearestOrAwayFromZero)), default: []].append(i) }
+            groups.reserveCapacity(positions.count)
+            for (i, p) in positions.enumerated() {
+                let q = (p * 1e4).rounded(.toNearestOrAwayFromZero)
+                groups[SIMD3<Int32>(Int32(q.x), Int32(q.y), Int32(q.z)), default: []].append(i)
+            }
             for (_, g) in groups where g.count > 1 {
                 let s = g.reduce(V3.zero) { $0 + acc[$1] }
                 for i in g { acc[i] = s }
@@ -96,7 +102,7 @@ public struct Surface: Sendable {
             guard abs(det) > 1e-12 else { continue }
             let r = 1 / det
             let sdir = (e1 * d2.y - e2 * d1.y) * r, tdir = (e2 * d1.x - e1 * d2.x) * r
-            for i in [i0, i1, i2] { tan[i] += sdir; bit[i] += tdir }
+            tan[i0] += sdir; bit[i0] += tdir; tan[i1] += sdir; bit[i1] += tdir; tan[i2] += sdir; bit[i2] += tdir
         }
         tangents = positions.indices.map { i in
             let n = normals[i]
@@ -116,9 +122,8 @@ public struct Surface: Sendable {
         var edge = [Float](repeating: 0, count: positions.count)
         for t in stride(from: 0, to: indices.count, by: 3) {
             let a = Int(indices[t]), b = Int(indices[t + 1]), c = Int(indices[t + 2])
-            for (i, j) in [(a, b), (b, c), (c, a), (b, a), (c, b), (a, c)] {
-                sum[i] += positions[j]; cnt[i] += 1; edge[i] += simd_distance(positions[i], positions[j])
-            }
+            func acc(_ i: Int, _ j: Int) { sum[i] += positions[j]; cnt[i] += 1; edge[i] += simd_distance(positions[i], positions[j]) }
+            acc(a, b); acc(b, c); acc(c, a); acc(b, a); acc(c, b); acc(a, c)
         }
         if occlusion.count != positions.count { occlusion = Array(repeating: 1, count: positions.count) }
         for i in positions.indices where cnt[i] > 0 {

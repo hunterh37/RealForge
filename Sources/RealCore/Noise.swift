@@ -29,7 +29,7 @@ public enum Noise {
 
     /// Perlin gradient noise in roughly [-1, 1].
     public static func perlin(_ p: V3, seed: UInt32 = 0) -> Float {
-        let f = p.rounded(.down), i = SIMD3<Int32>(f), d = p - f
+        let f = p.rounded(.down), i = SIMD3<Int32>(Int32(f.x), Int32(f.y), Int32(f.z)), d = p - f
         let u = d * d * d * (d * (d * 6 - 15) + 10)
         func g(_ ox: Int32, _ oy: Int32, _ oz: Int32) -> Float {
             grad(hash(i.x + ox, i.y + oy, i.z + oz, seed), d - V3(Float(ox), Float(oy), Float(oz)))
@@ -59,7 +59,7 @@ public enum Noise {
 
     /// Worley F1 distance (cellular), for faceted stone.
     public static func worley(_ p: V3, seed: UInt32 = 0) -> (f1: Float, f2: Float) {
-        let c = SIMD3<Int32>(p.rounded(.down))
+        let fl = p.rounded(.down), c = SIMD3<Int32>(Int32(fl.x), Int32(fl.y), Int32(fl.z))
         var f1: Float = 9, f2: Float = 9
         for z in -1...1 { for y in -1...1 { for x in -1...1 {
             let cell = c &+ SIMD3<Int32>(Int32(x), Int32(y), Int32(z))
