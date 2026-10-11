@@ -250,15 +250,18 @@ public enum InsectKit {
             let det = (ax * ax + ay * ay) * (bx * cy - cx * by) - (bx * bx + by * by) * (ax * cy - cx * ay) + (cx * cx + cy * cy) * (ax * by - bx * ay)
             return cross(a, b, c) > 0 ? det > 1e-9 : det < -1e-9
         }
-        let boundary = Set((0..<outline.count).map { i in [i, (i + 1) % outline.count].sorted() }.map { "\($0[0])-\($0[1])" })
+        let nPts = pts.count
+        func edgeKey(_ a: Int, _ b: Int) -> Int { min(a, b) * nPts + max(a, b) }
+        let boundary = Set((0..<outline.count).map { edgeKey($0, ($0 + 1) % outline.count) })
+        func has(_ t: (Int, Int, Int), _ v: Int) -> Bool { t.0 == v || t.1 == v || t.2 == v }
         for _ in 0..<6 {
             var flipped = false
             outer: for i in tris.indices {
-                let t = tris[i]; let e = [(t.0, t.1, t.2), (t.1, t.2, t.0), (t.2, t.0, t.1)]
-                for (a, b, c) in e {
-                    if boundary.contains("\(min(a, b))-\(max(a, b))") { continue }
-                    guard let j = tris.indices.first(where: { $0 != i && [tris[$0].0, tris[$0].1, tris[$0].2].contains(a) && [tris[$0].0, tris[$0].1, tris[$0].2].contains(b) }) else { continue }
-                    let o = tris[j]; let dIdx = [o.0, o.1, o.2].first { $0 != a && $0 != b }!
+                let t = tris[i]
+                for (a, b, c) in [(t.0, t.1, t.2), (t.1, t.2, t.0), (t.2, t.0, t.1)] {
+                    if boundary.contains(edgeKey(a, b)) { continue }
+                    guard let j = tris.indices.first(where: { $0 != i && has(tris[$0], a) && has(tris[$0], b) }) else { continue }
+                    let o = tris[j]; let dIdx = o.0 != a && o.0 != b ? o.0 : (o.1 != a && o.1 != b ? o.1 : o.2)
                     if inCircle(pts[a], pts[b], pts[c], pts[dIdx]) {
                         // New triangles must keep orientation and be convex quads.
                         let s0 = cross(pts[c], pts[dIdx], pts[b]), s1 = cross(pts[dIdx], pts[c], pts[a])
