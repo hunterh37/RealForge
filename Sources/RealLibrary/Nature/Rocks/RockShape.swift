@@ -184,7 +184,7 @@ func rockCluster(name: String, parts: [RockPart], lods: Int, facets: Bool = fals
         var byN: [Int: Surface] = [:]
         for (n, s) in zip(subs, surfs) { byN[n] = s.transformed(p.xform) }
         meshes.append(byN)
-        if let s = byN.values.first {
+        if let n = subs.first, let s = byN[n] {
             let b = s.bounds, e = (b.max - b.min) / 2
             spheres.append(((b.min + b.max) / 2, (e.x + e.y + e.z) / 3))
         } else { spheres.append((.zero, 0)) }

@@ -41,7 +41,7 @@ public struct HospitalFloor: RealSceneBuilder {
         let at = place(0, cz)
         scene.add(corridor.shell(), at: at, bake: true)
         scene.add(corridor.ceilingModel(), at: at)
-        scene.field(CeilingLight(), seed: seed, state: "on", transforms: corridor.fixtureCells.map {
+        scene.field(CeilingLight(), seed: seed, state: "on", transforms: corridor.fixtureCells.sorted { ($0.x, $0.y) < ($1.x, $1.y) }.map {
             let c = corridor.cellCenter($0); return place(c.x, c.z + cz, y: cH).matrix
         })
         // Crash rail along both walls.
