@@ -1,0 +1,34 @@
+{
+  "budget": 5000,
+  "id": "wheel-lock-key",
+  "kind": "prop",
+  "materials": [
+    "metal.steel",
+    "metal.chrome"
+  ],
+  "name": "Wheel lock key",
+  "notes": "",
+  "parts": [
+    "hardened steel socket with keyed pattern",
+    "knurled body",
+    "flat bottom"
+  ],
+  "references": [],
+  "size": [
+    0.031,
+    0.046,
+    0.031
+  ],
+  "style": "hardened steel, dark, fine knurl",
+  "summary": "Locking lug nut key: knurled steel body with an irregular spline pattern in the socket.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal",
+    "handheld"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

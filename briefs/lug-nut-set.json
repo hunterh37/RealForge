@@ -1,0 +1,33 @@
+{
+  "budget": 7000,
+  "id": "lug-nut-set",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "metal.steel"
+  ],
+  "name": "Lug nut set",
+  "notes": "",
+  "parts": [
+    "five hex lug nuts with conical seat",
+    "one flange nut",
+    "thread bore"
+  ],
+  "references": [],
+  "size": [
+    0.108,
+    0.036,
+    0.106
+  ],
+  "style": "chrome-plated steel, 21 mm hex, five on the ground",
+  "summary": "Five 21 mm conical-seat lug nuts with thread bores, scattered close.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

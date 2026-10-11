@@ -1,0 +1,35 @@
+{
+  "budget": 5000,
+  "id": "wheel-chock",
+  "kind": "prop",
+  "materials": [
+    "plastic.yellow",
+    "plastic.black",
+    "plastic.matte:8A7B5F"
+  ],
+  "name": "Rubber wheel chock",
+  "notes": "",
+  "parts": [
+    "sloped ramp face",
+    "ribbed grip face",
+    "base",
+    "pull handle hole"
+  ],
+  "references": [],
+  "size": [
+    0.288,
+    0.137,
+    0.204
+  ],
+  "style": "molded black rubber, scuffed, dusty",
+  "summary": "Molded rubber wheel chock: wedge with ribbed ramp, flat base and carry loop.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "rubber"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
