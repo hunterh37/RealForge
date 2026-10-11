@@ -184,7 +184,7 @@ func rockCluster(name: String, parts: [RockPart], lods: Int, facets: Bool = fals
         var byN: [Int: Surface] = [:]
         for (n, s) in zip(subs, surfs) { byN[n] = s.transformed(p.xform) }
         meshes.append(byN)
-        if let s = byN.values.first {
+        if let n = subs.first, let s = byN[n] {
             let b = s.bounds, e = (b.max - b.min) / 2
             spheres.append(((b.min + b.max) / 2, (e.x + e.y + e.z) / 3))
         } else { spheres.append((.zero, 0)) }
@@ -207,12 +207,15 @@ func rockCluster(name: String, parts: [RockPart], lods: Int, facets: Bool = fals
 func facetted(_ s: Surface) -> Surface {
     var o = Surface(material: s.material)
     let occ = s.occlusion.count == s.positions.count ? s.occlusion : Array(repeating: 1, count: s.positions.count)
+    let cap = s.indices.count
+    o.positions.reserveCapacity(cap); o.normals.reserveCapacity(cap); o.uvs.reserveCapacity(cap)
+    o.extra.reserveCapacity(cap); o.occlusion.reserveCapacity(cap * 2); o.indices.reserveCapacity(cap)
     for t in stride(from: 0, to: s.indices.count, by: 3) {
-        let i = (0..<3).map { Int(s.indices[t + $0]) }
-        let n = simd_normalize(simd_cross(s.positions[i[1]] - s.positions[i[0]], s.positions[i[2]] - s.positions[i[0]]))
+        let i0 = Int(s.indices[t]), i1 = Int(s.indices[t + 1]), i2 = Int(s.indices[t + 2])
+        let n = simd_normalize(simd_cross(s.positions[i1] - s.positions[i0], s.positions[i2] - s.positions[i0]))
         guard n.x.isFinite else { continue }
         let base = UInt32(o.positions.count)
-        for k in i { _ = o.add(s.positions[k], n, s.uvs[k]); o.occlusion.append(occ[k]) }
+        for k in [i0, i1, i2] { _ = o.add(s.positions[k], n, s.uvs[k]); o.occlusion.append(occ[k]) }
         o.tri(base, base + 1, base + 2)
     }
     o.computeTangents()

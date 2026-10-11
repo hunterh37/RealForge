@@ -124,7 +124,8 @@ public extension Surface {
     private static func chain(_ rawSegs: [(UInt64, UInt64)], _ rawPos: [UInt64: V3]) -> [[V3]] {
         // Weld by position: UV and normal seams duplicate vertices, so edge keys alone do not connect.
         var weld: [SIMD3<Int32>: UInt64] = [:], pos: [UInt64: V3] = [:], canon: [UInt64: UInt64] = [:]
-        for (k, p) in rawPos {
+        for k in rawPos.keys.sorted() {
+            let p = rawPos[k]!
             let q = SIMD3<Int32>(Int32((p.x * 2e5).rounded()), Int32((p.y * 2e5).rounded()), Int32((p.z * 2e5).rounded()))
             if let c = weld[q] { canon[k] = c } else { weld[q] = k; canon[k] = k; pos[k] = p }
         }
@@ -136,7 +137,7 @@ public extension Surface {
         for (a, b) in segs where a != b { adj[a, default: []].append(b); adj[b, default: []].append(a) }
         var used = Set<UInt64>(), loops: [[V3]] = []
         // Start open chains at their ends first so they come out whole.
-        let starts = adj.keys.sorted { (adj[$0]?.count ?? 0) < (adj[$1]?.count ?? 0) }
+        let starts = adj.keys.sorted { (adj[$0]?.count ?? 0, $0) < (adj[$1]?.count ?? 0, $1) }
         for start in starts where !used.contains(start) {
             var loop: [UInt64] = [start]; used.insert(start)
             var cur = start, prev: UInt64? = nil

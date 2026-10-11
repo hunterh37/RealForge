@@ -100,7 +100,7 @@ public struct HospitalLobby: RealSceneBuilder {
 
         // Troffers in the lay-in grid.
         var lights: [simd_float4x4] = []
-        for c in room.fixtureCells { lights.append(place(room.cellCenter(c).x, room.cellCenter(c).z, y: H).matrix) }
+        for c in room.fixtureCells.sorted(by: { ($0.x, $0.y) < ($1.x, $1.y) }) { lights.append(place(room.cellCenter(c).x, room.cellCenter(c).z, y: H).matrix) }
         if !lights.isEmpty { scene.field(CeilingLight(), seed: seed, state: "on", transforms: lights) }
 
         scene.farGround = "paving.slab"
