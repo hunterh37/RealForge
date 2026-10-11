@@ -1,0 +1,39 @@
+{
+  "budget": 8000,
+  "id": "bottle-jack",
+  "kind": "prop",
+  "materials": [
+    "metal.painted:C8201E",
+    "metal.steel",
+    "metal.chrome"
+  ],
+  "name": "Bottle jack",
+  "notes": "",
+  "parts": [
+    "saddle",
+    "extension screw",
+    "ram cylinder",
+    "body",
+    "release valve",
+    "pump socket",
+    "base"
+  ],
+  "references": [],
+  "size": [
+    0.135,
+    0.218,
+    0.125
+  ],
+  "style": "painted steel 2 ton hydraulic, red",
+  "summary": "2-ton hydraulic bottle jack: red body, threaded extension screw, saddle, base, pump socket and release screw.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal",
+    "handheld"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

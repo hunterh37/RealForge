@@ -1,0 +1,40 @@
+{
+  "budget": 15000,
+  "id": "spare-tire",
+  "kind": "prop",
+  "materials": [
+    "rubber.tire",
+    "metal.powdercoat:2A2C2F",
+    "metal.steel",
+    "metal.chrome",
+    "plastic.black",
+    "rubber.silicone"
+  ],
+  "name": "Compact spare tire",
+  "notes": "",
+  "parts": [
+    "tread",
+    "sidewall with embossed lettering band",
+    "steel wheel with vent holes",
+    "five lug holes",
+    "center bore",
+    "valve stem"
+  ],
+  "references": [],
+  "size": [
+    0.649,
+    0.159,
+    0.649
+  ],
+  "style": "compact temporary, T155/70D17, steel wheel, new tread",
+  "summary": "Compact temporary spare: 17 inch steel wheel with vent holes, five lug holes and valve stem, tread and sidewall.",
+  "tags": [
+    "prop",
+    "vehicle",
+    "rubber",
+    "metal"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
