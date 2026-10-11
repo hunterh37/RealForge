@@ -1,0 +1,38 @@
+{
+  "budget": 12000,
+  "id": "scissor-jack",
+  "kind": "prop",
+  "materials": [
+    "metal.powdercoat:1B1C1E",
+    "metal.steel",
+    "metal.screw-zinc"
+  ],
+  "name": "Scissor jack",
+  "notes": "",
+  "parts": [
+    "saddle pad",
+    "four stamped arms",
+    "pivot pins",
+    "lead screw",
+    "base plate",
+    "crank eye"
+  ],
+  "references": [],
+  "size": [
+    0.372,
+    0.117,
+    0.111
+  ],
+  "style": "stamped steel, black oxide paint, zinc screw",
+  "summary": "Stamped-steel scissor jack, collapsed: saddle, four arms, lead screw with crank eye, base plate.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal",
+    "handheld"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

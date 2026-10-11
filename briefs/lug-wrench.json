@@ -1,0 +1,36 @@
+{
+  "budget": 9000,
+  "id": "lug-wrench",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "metal.steel",
+    "plastic.black"
+  ],
+  "name": "Cross lug wrench",
+  "notes": "",
+  "parts": [
+    "four-way cross arms",
+    "socket ends 17/19/21 mm and 22 mm hex",
+    "center hub",
+    "rubber grip sleeve on long arm"
+  ],
+  "references": [],
+  "size": [
+    0.46,
+    0.03,
+    0.46
+  ],
+  "style": "chrome-plated steel, scuffed, black grip",
+  "summary": "Four-way cross lug wrench: 460 mm chrome arms with 17, 19, 21 and 22 mm sockets, rubber-sleeved long arm.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal",
+    "handheld"
+  ],
+  "theme": "TireChange",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

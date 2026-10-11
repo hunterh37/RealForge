@@ -453,6 +453,14 @@ public enum Props {
         ShutterHoldBackSet.self,
         WallMailbox.self,
         ArtDecoSunburstPanel.self,
+        LugWrench.self,
+        ScissorJack.self,
+        BottleJack.self,
+        WheelChock.self,
+        SpareTire.self,
+        Hubcap.self,
+        LugNutSet.self,
+        WheelLockKey.self,
         // realityhd:prop
     ]
 }
