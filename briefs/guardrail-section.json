@@ -1,0 +1,40 @@
+{
+  "budget": 8000,
+  "id": "guardrail-section",
+  "kind": "prop",
+  "materials": [
+    "metal.galvanized-aged",
+    "metal.galvanized",
+    "wood.pine-aged",
+    "soil.potting",
+    "plastic.orange"
+  ],
+  "name": "Highway guardrail section",
+  "notes": "",
+  "parts": [
+    "W-beam rail with two corrugation peaks",
+    "steel posts",
+    "blockout spacers",
+    "splice overlap with bolts",
+    "post bolts and washers",
+    "round delineator reflector"
+  ],
+  "references": [],
+  "size": [
+    4.009,
+    0.92,
+    0.484
+  ],
+  "style": "galvanized, dull gray, mud at the foot",
+  "summary": "3.81 m W-beam steel guardrail with three steel posts at 1.905 m, blocked out, rail top at 0.76 m, galvanized with a round reflector.",
+  "tags": [
+    "prop",
+    "road",
+    "barrier",
+    "metal",
+    "outdoor"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

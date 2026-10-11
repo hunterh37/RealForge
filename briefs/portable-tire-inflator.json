@@ -1,0 +1,42 @@
+{
+  "budget": 9000,
+  "id": "portable-tire-inflator",
+  "kind": "prop",
+  "materials": [
+    "plastic.yellow",
+    "plastic.black",
+    "metal.chrome",
+    "emissive.signal-green",
+    "plastic.orange:C8201E",
+    "rubber"
+  ],
+  "name": "12V portable tire inflator",
+  "notes": "",
+  "parts": [
+    "housing with carry handle",
+    "pressure display",
+    "power button",
+    "coiled hose and chuck",
+    "12 V plug and cord",
+    "rubber feet",
+    "vent slots"
+  ],
+  "references": [],
+  "size": [
+    0.542,
+    0.157,
+    0.15
+  ],
+  "style": "yellow and black, scuffed corners",
+  "summary": "Compact 12 V air compressor, 22 x 12 x 13 cm: yellow and black housing, digital pressure display, coiled air hose, 12 V plug cord.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "plastic",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

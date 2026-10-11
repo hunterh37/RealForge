@@ -1,0 +1,22 @@
+{
+  "automated" : 0.99997723,
+  "date" : "2026-10-10",
+  "final" : 0.8732421,
+  "fingerprint" : "831ce7a57af22ce9",
+  "id" : "warning-triangle",
+  "iterations" : 2,
+  "judge" : "agent",
+  "scores" : {
+    "artifacts" : 8,
+    "construction" : 8,
+    "edges" : 8,
+    "grounding" : 8,
+    "materials" : 8,
+    "proportion" : 8,
+    "silhouette" : 9,
+    "wear" : 7
+  },
+  "seed" : 1,
+  "threshold" : 0.85,
+  "vision" : 0.80500007
+}

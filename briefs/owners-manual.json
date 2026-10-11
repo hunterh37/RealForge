@@ -1,0 +1,38 @@
+{
+  "budget": 2500,
+  "id": "owners-manual",
+  "kind": "prop",
+  "materials": [
+    "leather.black",
+    "paper.sheet",
+    "pages"
+  ],
+  "name": "Vehicle owner's manual",
+  "notes": "",
+  "parts": [
+    "vinyl cover",
+    "spine",
+    "title block",
+    "page block edges",
+    "ribbon bookmark",
+    "corner wear"
+  ],
+  "references": [],
+  "size": [
+    0.15,
+    0.015,
+    0.257
+  ],
+  "style": "black vinyl, faint scuffs",
+  "summary": "Glovebox owner's manual, 15 x 21 cm, 14 mm thick, black vinyl cover with a silver title block, page edges, and a ribbon bookmark.",
+  "tags": [
+    "prop",
+    "book",
+    "paper",
+    "vehicle",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

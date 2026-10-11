@@ -1,0 +1,38 @@
+{
+  "budget": 3000,
+  "id": "mile-marker-post",
+  "kind": "prop",
+  "materials": [
+    "plastic.white",
+    "plastic.black",
+    "metal.galvanized"
+  ],
+  "name": "Highway mile marker post",
+  "notes": "",
+  "parts": [
+    "flat post",
+    "green panel face",
+    "white reflective border",
+    "numeral bars",
+    "bolt heads",
+    "rounded top"
+  ],
+  "references": [],
+  "size": [
+    0.199,
+    1.21,
+    0.199
+  ],
+  "style": "sun-faded green, dirt splash at the base",
+  "summary": "Green fiberglass mile marker, 1.2 m tall with a 15 x 45 cm retroreflective green panel and white numerals bars, rounded top and flat post.",
+  "tags": [
+    "prop",
+    "road",
+    "sign",
+    "plastic",
+    "outdoor"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

@@ -1,0 +1,40 @@
+{
+  "budget": 5000,
+  "id": "tire-pressure-gauge",
+  "kind": "prop",
+  "materials": [
+    "metal.chrome",
+    "plastic.black",
+    "rubber.silicone",
+    "glass.gauge-lens",
+    "paper.sheet"
+  ],
+  "name": "Dial tire pressure gauge",
+  "notes": "",
+  "parts": [
+    "dial face with psi ticks",
+    "glass lens",
+    "rubber boot",
+    "chrome chuck head",
+    "hose segment",
+    "bleeder valve button"
+  ],
+  "references": [],
+  "size": [
+    0.203,
+    0.028,
+    0.08
+  ],
+  "style": "chrome and black rubber, shop-worn",
+  "summary": "Analog dial tire gauge: 52 mm face reading 0-60 psi, chrome chuck, rubber hose and bleeder button, protective rubber boot.",
+  "tags": [
+    "prop",
+    "tool",
+    "vehicle",
+    "metal",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}

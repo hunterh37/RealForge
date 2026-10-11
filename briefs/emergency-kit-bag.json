@@ -1,0 +1,40 @@
+{
+  "budget": 9000,
+  "id": "emergency-kit-bag",
+  "kind": "prop",
+  "materials": [
+    "fabric.nylon:B3201C",
+    "fabric.webbing",
+    "plastic.black",
+    "plastic.white",
+    "metal.chrome"
+  ],
+  "name": "Roadside emergency kit bag",
+  "notes": "",
+  "parts": [
+    "padded nylon body",
+    "zipper with pull",
+    "white cross patch",
+    "two webbing handles",
+    "reflective strip",
+    "bottom foot panel"
+  ],
+  "references": [],
+  "size": [
+    0.3,
+    0.182,
+    0.203
+  ],
+  "style": "red nylon, slightly squashed",
+  "summary": "30 x 14 x 20 cm red nylon roadside emergency bag: zippered top, white cross patch, two webbing handles and a reflective strip.",
+  "tags": [
+    "prop",
+    "container",
+    "fabric",
+    "vehicle",
+    "handheld"
+  ],
+  "theme": "Roadside",
+  "threshold": 0.85,
+  "tolerance": 0.08
+}
