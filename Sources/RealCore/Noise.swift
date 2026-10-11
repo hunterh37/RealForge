@@ -9,22 +9,17 @@ public enum Noise {
         return h
     }
 
+    /// 12 edge gradients of a cube as (axis a, axis b, sign a, sign b): grad = sa * d[a] + sb * d[b].
+    /// Table lookup instead of a 12-way switch (the branch mispredicts on hashed input).
+    @usableFromInline static let gradTable: [(UInt8, UInt8, Float, Float)] = [
+        (0, 1, 1, 1), (0, 1, -1, 1), (0, 1, 1, -1), (0, 1, -1, -1),
+        (0, 2, 1, 1), (0, 2, -1, 1), (0, 2, 1, -1), (0, 2, -1, -1),
+        (1, 2, 1, 1), (1, 2, -1, 1), (1, 2, 1, -1), (1, 2, -1, -1),
+    ]
+
     @inlinable static func grad(_ h: UInt32, _ d: V3) -> Float {
-        // 12 edge gradients of a cube
-        switch h % 12 {
-        case 0: return d.x + d.y
-        case 1: return -d.x + d.y
-        case 2: return d.x - d.y
-        case 3: return -d.x - d.y
-        case 4: return d.x + d.z
-        case 5: return -d.x + d.z
-        case 6: return d.x - d.z
-        case 7: return -d.x - d.z
-        case 8: return d.y + d.z
-        case 9: return -d.y + d.z
-        case 10: return d.y - d.z
-        default: return -d.y - d.z
-        }
+        let g = gradTable[Int(h % 12)]
+        return g.2 * d[Int(g.0)] + g.3 * d[Int(g.1)]
     }
 
     /// Perlin gradient noise in roughly [-1, 1].
