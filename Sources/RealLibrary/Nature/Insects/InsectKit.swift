@@ -229,20 +229,26 @@ public enum InsectKit {
     /// Triangulates the outline with interior points (ear clip of the outline, then each interior
     /// point splits its containing triangle and edges are flipped toward Delaunay).
     static func delaunayFan(outline: [V2], interior: [V2]) -> [UInt32] {
-        var pts = outline + interior
-        var tris: [(Int, Int, Int)] = []
+        struct Tri { var a: Int, b: Int, c: Int
+            func has(_ v: Int) -> Bool { a == v || b == v || c == v } }
+        let pts = outline + interior
+        var tris: [Tri] = []
         let base = Shape2D.triangulate(outline)
-        for i in stride(from: 0, to: base.count, by: 3) { tris.append((Int(base[i]), Int(base[i + 1]), Int(base[i + 2]))) }
+        tris.reserveCapacity(base.count / 3 + interior.count * 2)
+        for i in stride(from: 0, to: base.count, by: 3) { tris.append(Tri(a: Int(base[i]), b: Int(base[i + 1]), c: Int(base[i + 2]))) }
         func cross(_ o: V2, _ a: V2, _ b: V2) -> Float { (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x) }
         for (k, q) in interior.enumerated() {
             let qi = outline.count + k
-            guard let t = tris.firstIndex(where: { tr in
-                let a = pts[tr.0], b = pts[tr.1], c = pts[tr.2]
-                let s = cross(a, b, c) >= 0 ? Float(1) : -1
-                return cross(a, b, q) * s >= -1e-7 && cross(b, c, q) * s >= -1e-7 && cross(c, a, q) * s >= -1e-7
-            }) else { continue }
-            let tr = tris.remove(at: t)
-            tris += [(tr.0, tr.1, qi), (tr.1, tr.2, qi), (tr.2, tr.0, qi)]
+            var found = -1
+            for t in tris.indices {
+                let tr = tris[t]
+                let a = pts[tr.a], b = pts[tr.b], c = pts[tr.c]
+                let s: Float = cross(a, b, c) >= 0 ? 1 : -1
+                if cross(a, b, q) * s >= -1e-7 && cross(b, c, q) * s >= -1e-7 && cross(c, a, q) * s >= -1e-7 { found = t; break }
+            }
+            guard found >= 0 else { continue }
+            let tr = tris.remove(at: found)
+            tris.append(Tri(a: tr.a, b: tr.b, c: qi)); tris.append(Tri(a: tr.b, b: tr.c, c: qi)); tris.append(Tri(a: tr.c, b: tr.a, c: qi))
         }
         // Edge flips (Lawson) for better shaped triangles.
         func inCircle(_ a: V2, _ b: V2, _ c: V2, _ d: V2) -> Bool {
@@ -252,22 +258,25 @@ public enum InsectKit {
         }
         let nPts = pts.count
         func edgeKey(_ a: Int, _ b: Int) -> Int { min(a, b) * nPts + max(a, b) }
-        let boundary = Set((0..<outline.count).map { edgeKey($0, ($0 + 1) % outline.count) })
-        func has(_ t: (Int, Int, Int), _ v: Int) -> Bool { t.0 == v || t.1 == v || t.2 == v }
+        var boundary = Set<Int>()
+        for i in outline.indices { boundary.insert(edgeKey(i, (i + 1) % outline.count)) }
         for _ in 0..<6 {
             var flipped = false
             outer: for i in tris.indices {
                 let t = tris[i]
-                for (a, b, c) in [(t.0, t.1, t.2), (t.1, t.2, t.0), (t.2, t.0, t.1)] {
+                for e in 0..<3 {
+                    let (a, b, c) = e == 0 ? (t.a, t.b, t.c) : e == 1 ? (t.b, t.c, t.a) : (t.c, t.a, t.b)
                     if boundary.contains(edgeKey(a, b)) { continue }
-                    guard let j = tris.indices.first(where: { $0 != i && has(tris[$0], a) && has(tris[$0], b) }) else { continue }
-                    let o = tris[j]; let dIdx = o.0 != a && o.0 != b ? o.0 : (o.1 != a && o.1 != b ? o.1 : o.2)
+                    var j = -1
+                    for x in tris.indices where x != i && tris[x].has(a) && tris[x].has(b) { j = x; break }
+                    guard j >= 0 else { continue }
+                    let o = tris[j]; let dIdx = o.a != a && o.a != b ? o.a : (o.b != a && o.b != b ? o.b : o.c)
                     if inCircle(pts[a], pts[b], pts[c], pts[dIdx]) {
                         // New triangles must keep orientation and be convex quads.
                         let s0 = cross(pts[c], pts[dIdx], pts[b]), s1 = cross(pts[dIdx], pts[c], pts[a])
                         let sOrig = cross(pts[a], pts[b], pts[c])
                         if (s0 > 0) != (sOrig > 0) || (s1 > 0) != (sOrig > 0) { continue }
-                        tris[i] = (c, dIdx, b) ; tris[j] = (dIdx, c, a)
+                        tris[i] = Tri(a: c, b: dIdx, c: b); tris[j] = Tri(a: dIdx, b: c, c: a)
                         flipped = true
                         continue outer
                     }
@@ -275,8 +284,10 @@ public enum InsectKit {
             }
             if !flipped { break }
         }
-        pts.removeAll()
-        return tris.flatMap { [UInt32($0.0), UInt32($0.1), UInt32($0.2)] }
+        var out: [UInt32] = []
+        out.reserveCapacity(tris.count * 3)
+        for t in tris { out.append(UInt32(t.a)); out.append(UInt32(t.b)); out.append(UInt32(t.c)) }
+        return out
     }
 
     // MARK: elytra
